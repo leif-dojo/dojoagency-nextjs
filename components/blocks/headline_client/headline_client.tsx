@@ -1,0 +1,60 @@
+//"use client"
+import React, { useContext, useEffect, useState } from 'react'
+import styles from './headline_client.module.scss'
+import Image from 'next/image'
+import ShareIcons from '@/components/generic/share_icons/share_icons'
+import IconLink from '@/public/icons/icon-link.svg'
+
+export const typename = 'Set_Components_Wysiwyg'
+
+const WysiwygBlock = ({ block }: { block: any }) => {
+  console.log("Headline client: ", block)
+
+  return (
+    <section className={`${styles.root} w-full bg-white text-slate`}>
+      <div className="px-100 py-50">
+        <div className="block md:flex">
+          <div className="w-full md:w-8/12">
+            <div className='wysiwyg text-110 leading-140 font-300' dangerouslySetInnerHTML={{ __html: block.headline }}></div>
+          </div>
+          <div className="w-full md:w-4/12 text-right">
+            <div className="w-full md:w-10/12 ml-auto mr-0 text-left pt-30">
+              <div className="w-full text-25 leading-none font-300 pb-20">
+                CLIENT
+              </div>
+              {block.client[0].client_logo && (
+                <div className='logo bg-slate relative block w-7/12 mr-auto ml-0 z-10'>
+                  <Image
+                    src={block.client[0].client_logo?.permalink}
+                    width={block.client[0].client_logo?.width}
+                    height={block.client[0].client_logo?.height}
+                    alt={block.client[0].client_logo?.alt ? block.client[0].client_logo.alt : ''}
+                  />
+                </div>
+              )}
+              <div className="w-full bg-slate h-1 my-25 opacity-10"></div>
+              <div className="w-full flex flex-nowrap">
+                <div className="w-full md:w-1/2">
+                  <div className="text-25 leading-none font-300 pb-20">Share</div>
+                  <ShareIcons />
+                </div>
+                <div className="w-full md:w-1/2">
+                  <div className="text-25 leading-none font-300 pb-20">Copy Link</div>
+                  <div className="w-full">
+                    <div className={`${styles.icon} flex items-center justify-center`}>
+                      <a href="" className={`relative flex items-center justify-center text-blue cursor-pointer`} aria-label="copy to clipboard" >
+                        <IconLink />
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  )
+}
+
+export default WysiwygBlock

@@ -1,0 +1,39 @@
+//Scrollbars global
+$scrollbg: theme('colors.white');
+$scrollbarthumb: theme('colors.blue');
+$scrollbarthumbhover: theme('colors.orange');
+$scrollwidth: 15px;
+
+/* global scroll */
+*{
+	scrollbar-color: $scrollbarthumb $scrollbg;
+	scrollbar-width: $scrollwidth;
+}
+
+/* width */
+::-webkit-scrollbar {
+	width: $scrollwidth;
+	cursor: grab;
+    z-index: 999999;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+	background: $scrollbg;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: $scrollbarthumb;
+    border-radius: 25px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+	background: $scrollbarthumbhover;
+}
+
+/* Handle on grab */
+::-webkit-scrollbar-thumb:active {
+	cursor: grabbing;
+}

@@ -1,0 +1,51 @@
+@import '../../../styles/variables';
+
+.root {
+  li {
+
+    &:last-child {
+      margin-right: 0;
+    }
+    a {
+      color: theme('colors.slate');
+
+      &:hover,
+      &.active {
+        color: theme('colors.orange');
+        transition: color 0.5s cubic-bezier(0.6, 0, 0.25, 1);
+        padding-bottom: 0.3rem;
+        &::after {
+          opacity: 1;
+        }
+      }
+      &::after {
+        display: block;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        border-bottom: 0.2rem solid;
+        opacity: 0;
+        transition: opacity 0.5s cubic-bezier(0.72, 0.16, 0.345, 0.875);
+        @screen md {
+          content: '';
+        }
+        @screen lg {
+          border-bottom-width: 0.2rem;
+        }
+      }
+    }
+  }
+}
+.logo {
+  width: 15rem;
+  svg {
+    width: 100%;
+    height: auto;
+    margin: 0;
+    fill: theme('colors.orange');
+    @screen lg {
+
+    }
+  }
+}

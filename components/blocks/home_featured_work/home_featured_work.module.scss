@@ -1,0 +1,56 @@
+@import '../../../styles/variables';
+
+.root {
+
+    .grid {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        max-height: 60vw;
+        gap: 30px;
+    }
+
+    .project {
+        width: calc(33.333% - 20px);
+        aspect-ratio: 2/2;
+        transition: all 100ms ease-in-out;
+
+        &:nth-child(2),
+        &:nth-child(3),
+        &:nth-child(6) {
+            aspect-ratio: 2/1;
+        }
+
+        &:hover {
+            .image {
+                transform: scale(1.05);
+                transition: all 500ms ease-in-out;
+            }
+            .imagehover {
+                opacity: 1;
+            }
+            .hover {
+                opacity: 1;
+            }
+        }
+    }
+
+    .image {
+        min-width: 100%;
+        min-height: 100%;
+        object-fit: cover;
+        transition: all 500ms ease-in-out;
+    }
+    .imagehover {
+        min-width: 100%;
+        min-height: 100%;
+        object-fit: cover;
+        transition: all 500ms ease-in-out;
+        z-index: 50;
+        opacity: 0;
+    }
+    .hover {
+        opacity: 0;
+        z-index: 55;
+    }
+}

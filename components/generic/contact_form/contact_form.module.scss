@@ -1,0 +1,47 @@
+@import '../../../styles/variables';
+
+.root {
+  z-index: 999;
+  transition: all 500ms ease-out 0ms;
+	-webkit-animation: popfade 1000ms ease both;
+	animation: popfade 1000ms ease both;
+
+  .bg{
+    img{
+      opacity: 0.1;
+    }
+  }
+
+  .inputWrapper {
+    
+  }
+
+  .close {
+    z-index: 999;
+
+    svg {
+      position: absolute;
+      display: block;
+      top: 50%;
+      left: 50%;
+      transform: translateX(-50%) translateY(-50%);
+      width: 1.6rem;
+      height: 100%;
+      fill: theme('colors.white');
+      z-index: 89;
+    }
+  }
+}
+
+
+@-webkit-keyframes popfade {
+	from {
+		opacity: 0;
+	}
+}
+
+@keyframes popfade {
+	from {
+		opacity: 0;
+	}
+}

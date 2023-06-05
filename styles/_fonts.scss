@@ -1,0 +1,52 @@
+@font-face {
+    font-family: 'PostGrotesk';
+    font-weight: 700;
+    src: url('/fonts/post-grotesk/PostGrotesk-Bold.woff') format('woff');
+    font-style: normal;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: 'PostGrotesk';
+    font-weight: 500;
+    src: url('/fonts/post-grotesk/PostGrotesk-Medium.woff') format('woff');
+    font-style: normal;
+    font-display: swap;
+  }
+  
+  @font-face {
+    font-family: 'PostGrotesk';
+    font-weight: 200;
+    src: url('/fonts/post-grotesk/PostGrotesk-Light.woff') format('woff');
+    font-style: normal;
+    font-display: swap;
+  }
+  
+  @font-face {
+    font-family: 'PostGrotesk';
+    font-weight: 400;
+    src: url('/fonts/post-grotesk/PostGrotesk-Book.woff') format('woff');
+    font-style: normal;
+    font-display: swap;
+  }
+  
+  @font-face {
+    font-family: 'Post Grotesk';
+    src: url('/fonts/post-grotesk/PostGrotesk-Black.woff2') format('woff2'),
+      url('/fonts/post-grotesk/PostGrotesk-Black.woff') format('woff');
+    font-weight: 900;
+    font-style: normal;
+    font-display: swap;
+  }
+  
+  @font-face {
+    font-family: 'NothingYouCouldDo';
+    font-weight: 500;
+      src: url('/fonts/NothingYouCouldDo/NothingYouCouldDo.eot');
+      src: url('/fonts/NothingYouCouldDo/NothingYouCouldDo.eot?#iefix') format('embedded-opentype'),
+          url('/fonts/NothingYouCouldDo/NothingYouCouldDo.woff2') format('woff2'),
+          url('/fonts/NothingYouCouldDo/NothingYouCouldDo.woff') format('woff'),
+          url('/fonts/NothingYouCouldDo/NothingYouCouldDo.ttf') format('truetype'),
+          url('/fonts/NothingYouCouldDo/NothingYouCouldDo.svg#Gotham-Thin') format('svg');
+    font-style: normal;
+    font-display: swap;
+  }

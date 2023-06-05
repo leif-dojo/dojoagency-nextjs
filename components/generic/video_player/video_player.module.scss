@@ -1,0 +1,41 @@
+.root {
+    --plyr-color-main: #fa642d;
+
+    iframe, 
+    video {
+        width: 100%!important;
+        height: auto!important;
+        aspect-ratio: 16/9;
+    }
+    .player {
+        position: relative;
+        width: 100%!important;
+        height: auto!important;
+        aspect-ratio: 16/9;
+
+        transition: all 1000ms ease-out 0ms;
+        -webkit-animation: popfade 1000ms ease both;
+        animation: popfade 1000ms ease both;
+
+        div,
+        iframe, 
+        video {
+            position: relative;
+            transition: all 1000ms ease-out 0ms;
+            -webkit-animation: popfade 1000ms ease both;
+            animation: popfade 1000ms ease both;
+        }
+    }
+    @-webkit-keyframes popfade {
+        from {
+            opacity: 0;
+        }
+    }
+    
+    @keyframes popfade {
+        from {
+            opacity: 0;
+        }
+    }
+    
+}

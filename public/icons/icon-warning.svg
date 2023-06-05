@@ -1,0 +1,9 @@
+
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="icon-warning" fill-rule="nonzero">
+            <circle id="Oval" fill="#CA5438" cx="12" cy="12" r="12"></circle>
+            <path d="M13.164,14.424 L10.932,14.424 L10.68,6 L13.416,6 L13.164,14.424 Z M10.5,17.232 C10.5,16.776 10.644,16.41 10.932,16.134 C11.22,15.846 11.592,15.702 12.048,15.702 C12.504,15.702 12.876,15.846 13.164,16.134 C13.452,16.41 13.596,16.776 13.596,17.232 C13.596,17.664 13.452,18.03 13.164,18.33 C12.876,18.63 12.504,18.78 12.048,18.78 C11.592,18.78 11.22,18.63 10.932,18.33 C10.644,18.03 10.5,17.664 10.5,17.232 Z" id="Shape" fill="#FBF9F6"></path>
+        </g>
+    </g>
+</svg>

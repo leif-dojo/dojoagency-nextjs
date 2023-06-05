@@ -1,0 +1,101 @@
+@import '../../../styles/variables';
+
+.root {
+    .grid {
+
+    }
+    .hover {
+
+    }
+    .slider {
+        height:53vw;
+        overflow: visible;
+        .slide{
+            height: 50%;
+            //border: 2px solid orange;
+            aspect-ratio: 3/2;
+            .project {
+                position: absolute;
+                aspect-ratio: 3/2;
+                width: 90%;
+                //border: 2px solid orange;
+                z-index: 10;
+                video,
+                iframe {
+                    height: 56.25vw;
+                    aspect-ratio: 16/9;
+                    object-fit: cover;
+                    object-position: center center;
+                    width: 100vw;
+                    left: 50%;
+                    min-height: 100%;
+                    min-width: 100%;
+                    position: absolute;
+                    top: 50%;
+                    transform: translate(-50%,-50%);
+                }
+            }
+            &:nth-child(1n){
+                .project {
+                    top: 0rem;
+                    left: -20rem;
+                }
+            }
+            &:nth-child(2n){
+                .project {
+                    top: -30rem;
+                    right: -100rem;
+                    left: auto;
+                }
+            }
+            &:nth-child(3n){
+                .project {
+                    top:auto;
+                    bottom: -50rem;
+                    right: 0rem;
+                    left: auto;
+                }
+            }
+            &:nth-child(4n){
+                .project {
+                    top: -60rem;
+                    left: auto;
+                    right: -200rem;
+                }
+            }
+            &:nth-child(5n){
+                .project {
+                    top:auto;
+                    bottom: -50rem;
+                    right: 0rem;
+                    left: auto;
+                }
+            }
+            &:hover {
+                z-index: 99;
+                .hover {
+                    opacity: 1;
+                }
+            }
+        }
+    }
+    .popup {
+        transition: all 800ms cubic-bezier(0.6, 0, 0.25, 1);
+        transition: all 500ms ease-out 0ms;
+        -webkit-animation: popfade 1000ms ease both;
+        animation: popfade 1000ms ease both;
+        z-index: 999;
+    }
+
+    @-webkit-keyframes popfade {
+        from {
+          opacity: 0;
+        }
+      }
+      
+      @keyframes popfade {
+        from {
+          opacity: 0;
+        }
+      }
+}

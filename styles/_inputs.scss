@@ -1,0 +1,136 @@
+/*********************************************
+	Inputs
+*********************************************/
+
+input,
+textarea,
+select {
+	font-family: 'Lato',sans-serif;
+	display: block;
+	position: relative;
+	color: theme('colors.slate');
+	background-color: #FFF;
+	line-height: 1em;
+	font-size: 20rem;
+	font-weight: 500;
+    font-style: normal;
+	padding: 0.5em 1em;
+	transition: all 500ms ease-in-out 0s;
+	background-repeat: no-repeat;
+	background-position: left center;
+	border: 0px solid #b6b6b6;
+	height: auto;
+	width: auto;
+	max-width: 100%;
+	border-radius: 0px;
+	box-sizing: border-box;
+	vertical-align: bottom;
+
+	&:focus {
+		color: #000;
+		background-color: #FFF;
+	}
+
+	&:valid {}
+
+	&:invalid,
+	&.has-error {
+		border: 1px solid #a94442;
+		//background-color: rgba(#ffd8d8, 0.5);
+	}
+	&.is-valid {
+		border: 1px solid #3c763d!important;
+		//background-color: rgba(#008751, 0.5);
+	}
+}
+
+input[type="submit"],
+textarea,
+select {
+	background-image: none;
+}
+select{
+    
+    option{
+        font-weight: 500;
+	    color: #000;
+	    line-height: 1;
+    }
+}
+
+
+input[placeholder] {
+	font-weight: 500;
+	color: #000;
+	line-height: 1;
+}
+
+::placeholder {
+	color: #000;
+	line-height: 1;
+}
+
+::-webkit-input-placeholder {
+	color: #000;
+	line-height: 1;
+}
+
+:-moz-placeholder {
+	color: #000;
+	line-height: 1;
+}
+
+::-moz-placeholder {
+	color: #000;
+	line-height: 1;
+}
+
+:-ms-input-placeholder {
+	color: #000;
+	line-height: 1;
+}
+
+.form-control {
+	color: #000;
+	line-height: 1;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+	background-color: rgb(255, 255, 255) !important;
+	-webkit-box-shadow: 0 0 0px 1000px white inset;
+}
+
+
+label {
+	font-size: 1em;
+	padding-top: 0.5em;
+	padding-bottom: 0.5em;
+	font-weight: normal;
+	display: inline-block;
+}
+
+input#submit {
+	width: auto;
+	color: #000;
+	font-weight: bold;
+	font-size: 1em;
+	margin: 0 0 1em 0;
+	display: inline-block;
+	text-align: center;
+}
+
+input[type="checkbox"] {
+	background-color: #CCC;
+	display: inline-block;
+
+	&:before {
+		content: '';
+		display: none;
+	}
+}
+
+input[type="file"] {}
+

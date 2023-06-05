@@ -1,0 +1,43 @@
+@import '../../../styles/variables';
+
+.root {
+    .grid {
+
+    }
+
+    .project {
+        aspect-ratio: 1/1;
+        &:hover {
+            .image {
+                transform: scale(1.05);
+                transition: all 500ms ease-in-out;
+            }
+            .imagehover {
+                opacity: 1;
+            }
+            .hover {
+                opacity: 1;
+            }
+        }
+    }
+
+
+    .image {
+        min-width: 100%;
+        min-height: 100%;
+        object-fit: cover;
+        transition: all 500ms ease-in-out;
+    }
+    .imagehover {
+        min-width: 100%;
+        min-height: 100%;
+        object-fit: cover;
+        transition: all 500ms ease-in-out;
+        z-index: 50;
+        opacity: 0;
+    }
+    .hover {
+        opacity: 0;
+        z-index: 55;
+    }
+}

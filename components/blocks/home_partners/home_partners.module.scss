@@ -1,0 +1,23 @@
+@import '../../../styles/variables';
+
+.root {
+
+}
+
+.oval {
+    svg{
+        position: relative;
+        width: 100%;
+        height: auto;
+        path{
+            position: relative;
+        }
+    }
+}
+.ovalarrow{
+    svg{
+        position: relative;
+        width: 100%;
+        height: auto;
+    }
+}
