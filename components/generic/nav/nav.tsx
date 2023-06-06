@@ -23,7 +23,7 @@ const NavBlock = ({
         {nav && (
           <ul className="flex items-center flex-col justify-center text-center">
           
-            {nav.tree.map((t) => (
+            {nav.tree.map((t:any) => (
               <li key={`yy_${t.page.url}`} className='py-20'>
                 <Link href={`${t.page.url}`} className="cursor-pointer font-lato text-54 leading-none text-slate font-300">
                     {t.page.title}

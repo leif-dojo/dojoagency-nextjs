@@ -142,7 +142,7 @@ const GalleryHorizontalBlock = ({ block }: { block: any }) => {
       cursorChangeHandler("default")
   }
 
-  const openOrClose = (index) => {
+  const openOrClose = (index:any) => {
     setActiveIndex(index)
     active ? setActive(false) : setActive(true)
     //active ? document.body.classList.remove('body-lock') : document.body.classList.add('body-lock')
@@ -179,7 +179,7 @@ const GalleryHorizontalBlock = ({ block }: { block: any }) => {
                 onSlideChange={() => console.log('slide change')}
                 onSwiper={(swiper) => console.log(swiper)}
               >
-                {block?.gallery_grid?.map((item, index) => {
+                {block?.gallery_grid?.map((item:any, index:any) => {
                 return (
                 <SwiperSlide className={`${styles.slide}`} key={index}>
                   <div className={`${styles.project} absolute flex justify-center items-center overflow-hidden`}>
@@ -239,7 +239,7 @@ const GalleryHorizontalBlock = ({ block }: { block: any }) => {
               </Swiper>
           </div>
           <div ref={ScrollerRef} className={`gallery w-full h-full hidden`}>
-            {block?.gallery_grid?.map((item, index) => {
+            {block?.gallery_grid?.map((item:any, index: any) => {
               console.log('col: ', index, item)
               return (
                 <div className={`${styles.project} project absolute flex items-center overflow-hidden bg-dark w-full`} key={index}>
@@ -287,7 +287,7 @@ const GalleryHorizontalBlock = ({ block }: { block: any }) => {
                           </div>
                         )}
                         
-                        <div className='absolute flex w-full h-full z-10 left-0 top-0' onClick={() => openOrClose()}></div>
+                        <div className='absolute flex w-full h-full z-10 left-0 top-0' onClick={() => openOrClose(0)}></div>
                       </div>
                     )}
                     <div className={`${styles.hover} relative z-5 text-40 font-500 leading-none text-white opacity-0`}>
@@ -302,7 +302,7 @@ const GalleryHorizontalBlock = ({ block }: { block: any }) => {
         </div>
         {active && (
           <div className={`${styles.popup} fixed  bg-white w-screen h-screen left-0 top-0 z-10`}>
-          <div className="relative  w-full h-full px-100 flex flex-col items-center justify-center" onClick={() => openOrClose()}>
+          <div className="relative  w-full h-full px-100 flex flex-col items-center justify-center" onClick={() => openOrClose(0)}>
             <div className="relative w-full">
               {!block?.gallery_grid[activeindex].video_embed && !block?.gallery_grid[activeindex].video_local && block?.gallery_grid[activeindex].image && (
                 <Image

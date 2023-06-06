@@ -4,7 +4,12 @@ import Image from 'next/image'
 import styles from './video_player.module.scss'
 import { useThemeContext } from '@/context/theme'
 import dynamic from "next/dynamic"
+import { ReactPlayerProps } from 'react-player';
 const ReactPlayer = dynamic(() => import("react-player/lazy"), { ssr: false })
+//const ReactPlayer = dynamic((import("react-player/lazy") as any), { ssr: false });
+//import _ReactPlayer, { ReactPlayerProps } from 'react-player';
+//const ReactPlayer = _ReactPlayer as unknown as React.FC<ReactPlayerProps>;
+
 import IconPlay from "@/public/icons/cursor-play.svg"
 
 export const typename = 'Set_Components_Video'
@@ -38,6 +43,13 @@ const VideoBlock = ({ image_placeholder, video_placeholder, video }: { image_pla
         setPlaying(playing ? false : true)
     };
 
+    const [hasWindow, setHasWindow] = useState(false);
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      setHasWindow(true);
+    }
+  }, []);
+
     return (
         <div className={`${styles.root} relative`}>
             <div className='relative w-full h-400 aspect-video' onMouseEnter={() => onMouseEnter()} onMouseLeave={() => onMouseLeave()}>
@@ -66,7 +78,6 @@ const VideoBlock = ({ image_placeholder, video_placeholder, video }: { image_pla
                     <div className="video-inner absolute block w-full h-full aspect-video">
                         <ReactPlayer 
                             className={`${styles.player} react-player w-full h-auto aspect-video`}
-                            //ref={refPlaceholder}
                             url={"https://player.vimeo.com/video/163721649"}
                             playing={true}
                             loop={true}
@@ -91,11 +102,10 @@ const VideoBlock = ({ image_placeholder, video_placeholder, video }: { image_pla
                         <div className="video-inner absolute block w-full h-full">
                             <ReactPlayer 
                                 className={`${styles.player} react-player w-full h-auto aspect-video`}
-                                //ref={refVideo}
                                 url={"https://player.vimeo.com/video/22439234"}
                                 playing={playing}
                                 loop={false}
-                                controls={false}
+                                controls={true}
                                 volume={1}
                                 muted={false}
                                 //width='1920px'

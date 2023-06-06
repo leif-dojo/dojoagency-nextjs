@@ -1,5 +1,5 @@
 //'use client'
-import { getClient, clientNoCache } from "@/lib/client"
+import { getClient } from "@/lib/client"
 import React from 'react'
 import PageQuery from '@/queries/page'
 import { useThemeContext } from '@/context/theme'

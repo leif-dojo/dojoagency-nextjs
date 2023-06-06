@@ -14,6 +14,7 @@ html {
 	box-sizing: border-box;
 	font-size: 1px;
 	font-size: calc((1px / 768px) * 100vw); //1rem at 768px = 1px
+
 	//font-size: clamp(10px, 1vw, 200px);
 	@screen md {
 		font-size: calc((1px / 1920px) * 100vw); //1rem at 1080px = 1px
@@ -26,7 +27,7 @@ body {
 	height: 100%;
 	max-width: 100%;
 	color: theme('colors.slate');
-	background-color:theme('colors.white');
+	background-color: theme('colors.white');
 }
 
 *,
@@ -40,7 +41,7 @@ body {
 //  Global Links
 //  ---------------------------------------------------------------------------
 a {
-    color: #000;
+	color: #000;
 	text-decoration: none;
 }
 
@@ -71,35 +72,61 @@ a:focus {
 //  ---------------------------------------------------------------------------
 //  Global lists
 //  ---------------------------------------------------------------------------
-ul{
-    &.list {
-        position: relative;
-        display: block;
-        width: 100%;
-        height: auto;
-        padding: 0em 0 1em 1em;
-        margin: 0 0 1em 0;
-        list-style-type: disc;
-        list-style-position: inside;
-        margin-bottom: 1em;
+ul {
+	&.list {
+		position: relative;
+		display: block;
+		width: 100%;
+		height: auto;
+		padding: 0em 0 1em 1em;
+		margin: 0 0 1em 0;
+		list-style-type: disc;
+		list-style-position: inside;
+		margin-bottom: 1em;
 
-        li {
-            margin: 0 0 0.5em 0;
-            a { }
-        }
-    }
+		li {
+			margin: 0 0 0.5em 0;
+
+			a {}
+		}
+	}
 }
+
 //  ---------------------------------------------------------------------------
 //  Accessibility
 //  ---------------------------------------------------------------------------
-.a11y {
-
-}
+.a11y {}
 
 //  ---------------------------------------------------------------------------
 //  Lock content for modals
 //  ---------------------------------------------------------------------------
 .body-lock {
-    height: 100vh;
-    overflow-y: hidden;
+	height: 100vh;
+	overflow-y: hidden;
+}
+
+.wysiwyg {
+	p {
+		line-height: inherit;
+	}
+
+	ul {
+		position: relative;
+		display: block;
+		width: 100%;
+		height: auto;
+		padding: 30rem 0 0rem 0;
+		margin: 0 0 1em 0;
+		list-style-type: disc;
+		list-style-position: inside;
+		margin-bottom: 1em;
+
+		li {
+			margin: 0 0 0.5em 0;
+
+			p {
+				display: inline-block;
+			}
+		}
+	}
 }

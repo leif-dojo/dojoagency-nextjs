@@ -1,5 +1,5 @@
 //"use-client"
-import { getClient, clientNoCache } from "@/lib/client"
+import { getClient } from "@/lib/client"
 import React from 'react'
 import PageQuery from '@/queries/page'
 import Repeater from '@/utils/rendering/repeater'
@@ -15,7 +15,7 @@ export default async function Page(context: { params: { slug: string } }) {
     }
   });
   //console.log("page home: ", context.params.slug, data.entry?.components)
-  console.log("PAGE HOME: ", context.params)
+  //console.log("PAGE HOME: ", context.params)
   //console.log("page home HomeHeroBlock: ", HomeHeroBlock)
   return (
     <div className={`page pt-80`}>

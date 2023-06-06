@@ -55,8 +55,8 @@ const HomeFeaturedWork = ({ block }: { block: any }) => {
   }, [x,y]);*/
   const [mouse, setMouse] = useState({x: 0, y: 0, moved: false})
 
-  function parallaxIt(target, movement) {
-    let rect = sectionRef.current.getBoundingClientRect();
+  function parallaxIt(target: any, movement: any) {
+    let rect = sectionRef?.current ? sectionRef?.current?.getBoundingClientRect() : {width:0,height:0};
     gsap.to(target, {
       duration: 0,
       x: (mouse.x - rect.width / 2) / rect.width * movement,
@@ -153,12 +153,12 @@ const HomeFeaturedWork = ({ block }: { block: any }) => {
   <section ref={sectionRef} className={`${styles.root} relative w-full bg-blue z-10`}>
     <div className="px-100 py-100">
       <div className='w-full font-lato text-80 leading-90 font-300 text-white pb-20 pl-80'>
-        {block?.headline} - {mouse.x}
+        {block?.headline}
       </div>
       <div className={`${styles.grid} grid w-full `}>
 
-        {block?.featured_projects?.map((block, index) => {
-          //console.log('col: ', index, block)
+        {block?.featured_projects?.map((block: any, index: any) => {
+          //console.log('home featured col: ', index, block)
           return (
             <a href={`${block?.link}`} className={`${styles.project} project relative  overflow-hidden bg-dark w-1/3`} key={index}>
               <span className="flex justify-center items-center w-full h-full">

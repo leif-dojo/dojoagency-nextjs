@@ -18,10 +18,11 @@ import TimelineBlock from "@/components/blocks/timeline/timeline"
 import VideoBlock from "@/components/blocks/video/video"
 import WysiwygBlock from "@/components/blocks/wysiwyg/wysiwyg"
 import HeadlineBlock from "@/components/blocks/headline/headline"
-import HeadlineClientBlock from "@/components/blocks/headline_client/headline_client"
+import HeadlineHeroBlock from "@/components/blocks/headline_hero/headline_hero"
 import TextScrollerBlock from "@/components/blocks/text_scroller/text_scroller"
 import ImageGridBlock from "@/components/blocks/image_grid/image_grid"
-
+import PostNavigationBlock from "@/components/blocks/post_navigation/post_navigation"
+import ProjectGridBlock from "@/components/blocks/project_grid/project_grid"
 
 //TODO OPTIMIZE 
 //const HomeHeroBlock = dynamic(() => import(`@/components/blocks/home_hero/home_hero`)),
@@ -73,12 +74,16 @@ const Repeater = ({ blocks }: { blocks: BlockInterface[] }) => (
                 return <ImageBlock block={block} ></ImageBlock>;
               case 'Set_Components_Headline':
                 return <HeadlineBlock block={block} ></HeadlineBlock>;
-              case 'Set_Components_HeadlineClient':
-                return <HeadlineClientBlock block={block} ></HeadlineClientBlock>;  
+              case 'Set_Components_HeadlineHero':
+                return <HeadlineHeroBlock block={block} ></HeadlineHeroBlock>;  
               case 'Set_Components_TextScroller':
                 return <TextScrollerBlock block={block} ></TextScrollerBlock>;
               case 'Set_Components_ImageGrid':
                 return <ImageGridBlock block={block} ></ImageGridBlock>;
+              case 'Set_Components_PostNavigation':
+                return <PostNavigationBlock block={block} ></PostNavigationBlock>;
+              case 'Set_Components_ProjectGrid':
+                return <ProjectGridBlock block={block} ></ProjectGridBlock>;
             }
           })()
         )

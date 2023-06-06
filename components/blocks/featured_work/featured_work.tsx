@@ -12,7 +12,7 @@ const HomeFeaturedWork = ({ block }: { block: any }) => {
     <div className="px-100 py-100">
       <div className={`${styles.grid} grid grid-cols-2 md:grid-cols-3 gap-30 w-full `}>
 
-        {block?.featured_projects?.map((block, index) => {
+        {block?.featured_projects?.map((block: any, index: any) => {
           //console.log('col: ', index, block)
           return (
             <a href={`${block?.link}`} className={`${styles.project} relative  overflow-hidden bg-dark f-full`} key={index}>

@@ -18,7 +18,7 @@ const HomeHeadlineBlock = ({ block }: { block: any }) => {
 
   useLayoutEffect(() => {
     let ctx = gsap.context(() => {
-      gsap
+      /*gsap
       .timeline({
         scrollTrigger: {
           trigger: sectionRef.current,
@@ -35,7 +35,7 @@ const HomeHeadlineBlock = ({ block }: { block: any }) => {
       }, {
           backgroundColor: "#ffffff", 
       },
-      )
+      )*/
 
       //tele
       gsap
@@ -56,11 +56,13 @@ const HomeHeadlineBlock = ({ block }: { block: any }) => {
       )
       gsap.to('.tele-ticker', { rotation: '+=4cw', repeat: -1, ease: 'none'}) 
 
-      let split = new ScrollText({
-        words: 0,
-        chars: 1,
-        spacing: "0.33em"
-      }).split(SubRef.current)
+      if (SubRef.current) {
+        let split = new ScrollText({
+          words: 0,
+          chars: 1,
+          spacing: "0.33em"
+        }).split(SubRef?.current)
+      }
 
       //main
       gsap

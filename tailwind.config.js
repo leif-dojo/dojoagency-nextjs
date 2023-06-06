@@ -122,7 +122,8 @@ module.exports = {
         90,
         100,
         110,
-        113
+        113,
+        140
       ]),
     },
     letterSpacing: {
@@ -159,8 +160,10 @@ module.exports = {
         20,
         21,
         22,
+        140,
         200,
         280,
+        300,
         ...range(0, 200, 5),
       ]),
     },
@@ -177,12 +180,11 @@ module.exports = {
       aqua: '#00ba9c',
       green: '#00ba9c',
       gold: '#f2ac25',
+      grey: '#e6e7e8',
+      lightgrey: '#e6e7e8',
       brand: {
         orange: '#fa642d',
-        blue: '#8db7d7',
-        light: '#fbf9f7',
-        lightblue: '#97afc1',
-        accent: '#5f81b0',
+        blue: '#8db7d7'
       },
     },
     maxWidth: {
@@ -215,6 +217,7 @@ module.exports = {
           80,
           100,
           120,
+          140
         ]),
       },
       backgroundImage: {

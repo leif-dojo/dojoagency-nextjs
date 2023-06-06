@@ -188,6 +188,7 @@ export default gql`
                   focus_css
                 }
               }
+              link
             }
           }
           ... on Set_Components_FeaturedWork {
@@ -457,7 +458,7 @@ export default gql`
             headline
             type
           }
-          ... on Set_Components_HeadlineClient {
+          ... on Set_Components_HeadlineHero {
             headline
             type
             client {
@@ -483,6 +484,9 @@ export default gql`
                 client_name
               }
             }
+            eyebrow
+            sharing_title
+            show_sharing
           }
           ... on Set_Components_TextScroller {
             wysiwyg
@@ -565,6 +569,49 @@ export default gql`
                   extension
                 }
               }
+            }
+          }
+          ... on Set_Components_PostNavigation {
+            back_link
+            back_link_copy
+            forward_link
+            forward_link_copy
+            type
+          }
+          ... on Set_Components_ProjectGrid {
+            type
+            wysiwyg
+            headline
+            project_grid {
+              popup_headline
+              popup_image {
+                ... on Asset_Assets {
+                  id
+                  permalink
+                  is_video
+                  width
+                  height
+                  extension
+                }
+              }
+              popup_wysiwyg
+              project_description
+              project_entry {
+                ... on Entry_Projects_Project {
+                  id
+                }
+              }
+              project_image {
+                ... on Asset_Assets {
+                  id
+                  permalink
+                  is_video
+                  width
+                  height
+                  extension
+                }
+              }
+              project_title
             }
           }
         }

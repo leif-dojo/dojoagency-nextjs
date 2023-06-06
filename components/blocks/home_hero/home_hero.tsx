@@ -61,7 +61,7 @@ const HomeHeroBlock = ({ block }: { block: any }) => {
       var nbDrop = 858; 
 
       // function to generate a random number range.
-      function randRange( minNum, maxNum) {
+      function randRange( minNum: any, maxNum: any) {
         return (Math.floor(Math.random() * (maxNum - minNum + 1)) + minNum);
       }
 
@@ -99,7 +99,7 @@ const HomeHeroBlock = ({ block }: { block: any }) => {
           //backDrops += '<div class="drop" style="right: ' + increment + '%; bottom: ' + (randoFiver + randoFiver - 1 + 100) + '%; animation-delay: 0.' + randoHundo + 's; animation-duration: 0.5' + randoHundo + 's;"><div class="stem" style="animation-delay: 0.' + randoHundo + 's; animation-duration: 0.5' + randoHundo + 's;"></div><div class="splat" style="animation-delay: 0.' + randoHundo + 's; animation-duration: 0.5' + randoHundo + 's;"></div></div>';
         }
       
-        rainSection.appendChild(drops);
+        rainSection?.appendChild(drops);
         //$('.rain.back-row').append(backDrops);
       }
       // Make it rain

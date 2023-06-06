@@ -6,12 +6,19 @@
         box-shadow: 0px 0px 10px rgba(0,0,0,0.15);
         .item {
             transition: all 200ms ease-in-out;
+            border-right: 2px solid #FFF;
             .top {
                 opacity:0;
                 box-shadow: 0px 0px 10px rgba(0,0,0,0.15);
                 transition: all 500ms ease-in-out;
             }
             .mid{
+                .year {
+                    text-align: center;
+                }
+                .headlinewrap{
+                     width: 0%;
+                }
                 .headline{
                     opacity: 0;
                     max-width: 0px;
@@ -31,6 +38,14 @@
                     transition: all 500ms ease-in-out;
                 }
                 .mid{
+                    .year {
+                        width: auto;
+                        text-align: left;
+                    }
+                    .headlinewrap {
+                        width: 100%;
+                        margin-left:auto;
+                    }
                     .headline{
                         opacity: 1;
                         max-width: 300px;
@@ -42,6 +57,9 @@
                     top: 100%;
                     transition: all 500ms ease-in-out;
                 }
+            }
+            &:last-child{
+                border-right-width: 0;
             }
         }
     }

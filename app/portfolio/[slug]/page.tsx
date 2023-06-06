@@ -1,5 +1,5 @@
 //'use client'
-import { getClient, clientNoCache } from "@/lib/client"
+import { getClient } from "@/lib/client"
 import React from 'react'
 import PageQuery from '@/queries/page'
 import { useThemeContext } from '@/context/theme'
@@ -56,9 +56,9 @@ console.log("PAGE: ", context.params)
   <div className="page bg-white pt-80">
     <Repeater blocks={data.entry?.components} />
 
-    <div className='container w-full flex flex-nowrap mx-auto py-40'>
+    <div className='container w-full flex flex-nowrap mx-auto py-100'>
       <div className='flex w-1/2 justify-items-start'>
-        <a href={`/portfolio/`} className="inline-flex mr-auto" aria-label="Previous"><Arrow className="rotate-180"/><span className="font-nothingyoucoulddo text-40 font-400 text-blue pl-20">Portfolio</span></a>
+        <a href={`/portfolio/`} className="inline-flex mr-auto" aria-label="Previous"><Arrow className="rotate-180"/><span className="font-nothingyoucoulddo text-40 font-400 text-blue pl-20">Back to Portfolio</span></a>
       </div>
       <div className='flex w-1/2 justify-items-end'>
         

@@ -24,6 +24,8 @@ const Cursor = () => {
         return <div className={`${styles.heart}`}><IconHeart /></div>;
       case 'horizontal-scroll':
         return <div className={`${styles.horizontal} flex`}><div className="w-full font-lato text-20 leading-none font-500 text-orange text-center pb-10 mt-auto mb-0">Scroll »</div></div>;
+      case 'view':
+        return <div className={`${styles.view} flex`}><div className="w-full font-lato text-20 leading-none font-500 text-orange text-center pb-10 mt-auto mb-0">View »</div></div>;
     }
   }
 

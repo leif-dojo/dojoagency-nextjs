@@ -11,7 +11,7 @@ const ImageGridBlock = ({ block }: { block: any }) => {
     <div className="px-100 py-100">
       <div className={`${styles.grid} grid grid-cols-2 md:grid-cols-3 gap-30 w-full `}>
 
-        {block?.image_grid?.map((block, index) => {
+        {block?.image_grid?.map((block:any, index:any) => {
           //console.log('col: ', index, block)
           return (
             <a href={`${block?.link}`} className={`${styles.project} relative  overflow-hidden bg-dark f-full`} key={index}>
@@ -19,21 +19,25 @@ const ImageGridBlock = ({ block }: { block: any }) => {
                 {block.image && (
                   <span className='absolute w-full h-full top-0 left-0'>
 
-                    <Image
-                      src={block.image?.permalink}
-                      width={block.image?.width}
-                      height={block.image?.height}
-                      alt={block.image?.alt ? block.image.alt : ''}
-                      className={`${styles.image} relative w-full h-auto`}
-                    />
-
-                    <Image
-                      src={block.image_hover?.permalink}
-                      width={block.image_hover?.width}
-                      height={block.image_hover?.height}
-                      alt={block.image_hover?.alt ? block.image_hover.alt : ''}
-                      className={`${styles.imagehover} absolute top-0 w-full h-auto`}
-                    />
+                    {block.image && (
+                      <Image
+                        src={block.image?.permalink}
+                        width={block.image?.width}
+                        height={block.image?.height}
+                        alt={block.image?.alt ? block.image.alt : ''}
+                        className={`${styles.image} relative w-full h-auto`}
+                      />
+                    )}
+                    
+                    {block.image_hover && (
+                      <Image
+                        src={block.image_hover?.permalink}
+                        width={block.image_hover?.width}
+                        height={block.image_hover?.height}
+                        alt={block.image_hover?.alt ? block.image_hover.alt : ''}
+                        className={`${styles.imagehover} absolute top-0 w-full h-auto`}
+                      />
+                    )}
 
                     {block.video_embed && (
                           <div className="video absolute w-full h-full overflow-hidden top-0 z-1" >

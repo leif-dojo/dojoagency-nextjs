@@ -1,5 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  //output: 'export', //enabled static export for static deploy
   webpack(config, options) {
     config.module.rules.push({
       test: /\.svg$/,

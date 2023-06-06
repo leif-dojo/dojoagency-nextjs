@@ -59,7 +59,7 @@ export class SplitText {
 		return foundTextNodes;
 	}
 	createElement(text: string, relatedNode: Node): Node {
-		console.log(`Create element with text: '${text}'`);
+		//console.log(`Create element with text: '${text}'`);
 		const node = document.createElement("div");
 		const nodeText = document.createTextNode(text);
 		(node as NodeWithText).nodeText = nodeText;

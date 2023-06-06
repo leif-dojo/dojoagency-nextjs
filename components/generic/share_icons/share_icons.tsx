@@ -23,7 +23,7 @@ const SocialIconsBlock = () => {
     }
   ]
 
-  const getSocialIcon = (t) => {
+  const getSocialIcon = (t:any) => {
     switch(t.type) {
       case 'linkedin':
         return <IconLinkedIn />;
@@ -38,7 +38,7 @@ const SocialIconsBlock = () => {
   return (
     <div className={`${styles.root}`}>
       <div className="flex items-left gap-20 relative w-auto">
-          {socials.map((t) => (
+          {socials.map((t:any) => (
             <div key={`${t.type}`} className={`${styles.icon} flex items-center justify-center`}>
               <a href={t.url} className={`relative flex items-center justify-center text-blue cursor-pointer`} aria-label="LinkedIn" >
               {getSocialIcon(t)}

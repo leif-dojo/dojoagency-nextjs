@@ -21,7 +21,7 @@ const TimelineBlock = ({ block }: { block: any }) => {
 
       <div className={`${styles.timeline} relative flex flex-nowrap items-stretch w-full my-200`}>
 
-        {block?.timeline?.map((block, index) => {
+        {block?.timeline?.map((block:any, index:any) => {
           console.log('col: ', index, block)
           return (
             <div className={`${styles.item} relative flex-1`} key={index}>
@@ -40,9 +40,9 @@ const TimelineBlock = ({ block }: { block: any }) => {
               )}
               <div className={`${styles.mid} relative bg-orange z-10`} style={{backgroundColor: block.color}}>
                   <div className='flex items-stretch px-10 py-10'>
-                    <div className='text-20 leading-none text-white'>{block.year}</div>
-                    <div className={`overflow-hidden ml-auto`}>
-                      <div className={`${styles.headline} relative text-20 leading-none text-white whitespace-nowrap`}>{block.headline}</div>
+                    <div className={`${styles.year} w-full text-20 leading-none text-white text-center`}>{block.year}</div>
+                    <div className={`${styles.headlinewrap} overflow-hidden w-0 mx-0`}>
+                      <div className={`${styles.headline} relative text-20 leading-none text-white whitespace-nowrap text-right`}>{block.headline}</div>
                     </div>
                   </div>
               </div>
@@ -61,10 +61,10 @@ const TimelineBlock = ({ block }: { block: any }) => {
                         )}
                       </div>
                       <div className='w-1/2 text-right'>
-                        {block?.overview?.map((item, index) => {
+                        {block?.overview?.map((item:any, index:any) => {
                           //console.log('col: ', index, block)
                           return (
-                            <div className='text-20 font-300 leading-none text-slate text-left py-5'>{item}</div>
+                            <div className='text-20 font-300 leading-none text-slate text-left py-5' key={index}>{item}</div>
                           )
                         })}
                       </div>

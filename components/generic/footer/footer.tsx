@@ -39,7 +39,7 @@ const FooterBlock = ({
                 itemScope
                 itemType="http://www.schema.org/SiteNavigationElement"
               >
-                {footer_nav.tree.map((t) => {
+                {footer_nav.tree.map((t:any) => {
                   return (
                     <li key={`${t.page?.url}`} className='pb-25'>
                       <Link href={`${t.page?.url}`} className="cursor-pointer font-lato text-27 leading-none text-white font-400">

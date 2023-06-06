@@ -15,17 +15,18 @@ const TextScrollerBlock = ({ block }: { block: any }) => {
   useLayoutEffect(() => {
 
     let ctx = gsap.context(() => {
-      let split = new ScrollText({
-        words: 1,
-        chars: 0,
-        spacing: "0.33em"
-      }).split(TextRef.current)
-      //console.log("split: ", split)
-
+      if (TextRef.current) {
+        let split = new ScrollText({
+          words: 1,
+          chars: 0,
+          spacing: "0.33em"
+        }).split(TextRef?.current)
+        //console.log("split: ", split)
+      }
 
       const items = gsap.utils.toArray(".wysiwyg div")
       //console.log("items: ",items)
-      items.forEach((item, index) => {
+      items.forEach((item:any, index:any) => {
         //const p = gsap.utils.selector(item);
         //console.log("each: ", p)
         /*gsap
@@ -58,7 +59,7 @@ const TextScrollerBlock = ({ block }: { block: any }) => {
           scrollTrigger: {
             trigger: item,
             start: "center 75%",
-            end: "center 25%",
+            end: "center 10%",
             //scrub: true,
             // end: "+=500",
             //markers: true,
@@ -71,7 +72,7 @@ const TextScrollerBlock = ({ block }: { block: any }) => {
           {
             autoAlpha: 0,
           }, {
-              duration: 0.5,
+              duration: 0.25,
               autoAlpha: 1,
               stagger: 0,
               ease: 'power3.out'
@@ -125,7 +126,7 @@ const TextScrollerBlock = ({ block }: { block: any }) => {
   <section ref={sectionRef} className={`${styles.root} relative w-full bg-black text-white overflow-hidden`}>
     <div className={`${styles.background} absolute h-full w-full left-0 top-0`}>
       {block.background_image && (
-          <div className='w-full h-full opacity-20 fixed top-0'>
+          <div className='w-full h-full opacity-30 fixed top-0'>
             <img src={block.background_image?.permalink} className='aspect-video'/>
           </div>
         )}

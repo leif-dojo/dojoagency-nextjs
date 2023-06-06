@@ -1,0 +1,160 @@
+"use client"
+import React, { useRef, useState, useLayoutEffect } from 'react'
+import Image from 'next/image'
+import styles from './project_grid.module.scss'
+import { useThemeContext } from '@/context/theme'
+import IconX from '@/public/icons/icon-x.svg'
+import Arrow from '@/public/icons/icon-triangle.svg'
+
+import { gsap } from 'gsap'
+import { ScrollTrigger } from 'gsap/dist/ScrollTrigger'
+
+export const typename = 'Set_Components_ProjectGrid'
+
+const ProjectGridBlock = ({ block }: { block: any }) => {
+
+  const [active, setActive] = useState(false)
+  const [activeindex, setActiveIndex] = useState(1)
+
+  const { cursorType, cursorChangeHandler} = useThemeContext();
+
+
+
+  const onMouseEnter = () => {
+    cursorChangeHandler("view")
+  }
+
+  const onMouseLeave = () => {
+      cursorChangeHandler("default")
+  }
+
+  const openOrClose = (index:any) => {
+    setActiveIndex(index)
+    active ? setActive(false) : setActive(true)
+    active ? document.body.classList.remove('body-lock') : document.body.classList.add('body-lock')
+  }
+  const onNext = () => {
+    let next = activeindex +1;
+    if(next >= block.project_grid.length) {next = 0}
+    setActiveIndex(next)
+  }
+  const onPrev = () => {
+    let prev = activeindex -1;
+    if(prev < 0) {prev = block.project_grid.length-1}
+    setActiveIndex(prev)
+  }
+
+  return (
+  <section className={`${styles.root} w-full bg-white text-slate overflow-hidden`}>
+    <div className="px-100 py-100">
+      <div className="w-full">
+        <div className="w-full">
+          <div className='wysiwyg text-50 leading-none font-700 pb-10' dangerouslySetInnerHTML={{ __html: block.headline }}></div>
+        </div>
+        <div className="w-full">
+          <div className='wysiwyg text-30 leading-40 font-300' dangerouslySetInnerHTML={{ __html: block.wysiwyg }}></div>
+        </div>
+      </div>
+
+      <div className={`${styles.grid} grid grid-cols-2 md:grid-cols-3 gap-30 w-full pt-30`} onMouseEnter={() => onMouseEnter()} onMouseLeave={() => onMouseLeave()}>
+
+        {block?.project_grid?.map((block:any, index:any) => {
+          //console.log('col: ', index, block)
+          return (
+            <div className={`${styles.project} relative  overflow-hidden cursor-pointer`} onClick={() => openOrClose(index)} key={index}>
+              <div className="block w-full h-full">
+                <div className={`w-full px-30 py-20`}>
+                  {block.project_title && (
+                    <div className={`text-30 leading-40 font-700 text-slate`}>
+                      {block.project_title}
+                    </div>
+                  )}
+                  {block.project_description && (
+                    <div className={`text-30 leading-40 font-300 text-slate`}>
+                      {block.project_description}
+                    </div>
+                  )}
+                </div>
+                {block.project_image && (
+                  <div className='relative w-full h-300 top-0 left-0'>
+                    <Image
+                      src={block.project_image?.permalink}
+                      width={block.project_image?.width}
+                      height={block.project_image?.height}
+                      alt={block.project_image?.alt ? block.project_image.alt : ''}
+                      className={`${styles.image} relative w-full h-auto`}
+                    />
+                  </div>
+                )}
+              </div>
+            </div>
+          )
+        })}
+      </div>
+    </div>
+
+    {active && (
+      <div className={`${styles.popup} fixed   w-screen h-screen left-0 top-0 z-10`}>
+        <div className="relative px-100 py-40 w-full h-full overflow-y-scroll">
+        <div className="relative bg-white w-full h-auto">
+
+          <div className={`${styles.close} absolute top-50 right-50 flex items-center cursor-pointer`} role="none" onClick={() => openOrClose(0)}>
+            <div className="a11y hidden">Toggle Menu</div>
+            <IconX />
+          </div>
+
+          <div className="relative w-full px-150 pt-200 pb-100">
+
+            <div className="block md:flex">
+              <div className="w-full md:w-5/12 md:pr-30">
+                {block?.project_grid[activeindex].popup_headline && (
+                  <div className="text-90 leading-120 font-300 mb-20">
+                    {block?.project_grid[activeindex].popup_headline}
+                  </div>
+                )}
+                {block?.project_grid[activeindex].popup_wysiwyg && (
+                  <div className="w-full">
+                    <div className='wysiwyg text-30 leading-40 font-300 text-slate' dangerouslySetInnerHTML={{ __html: block?.project_grid[activeindex].popup_wysiwyg }}></div>
+                  </div>
+                )}
+              </div>
+              <div className="w-full md:w-7/12">
+                {block?.project_grid[activeindex].popup_image && (
+                  <div className='relative w-full pl-50'>
+                    <Image
+                      src={block?.project_grid[activeindex].popup_image?.permalink}
+                      width={block?.project_grid[activeindex].popup_image?.width}
+                      height={block?.project_grid[activeindex].popup_image?.height}
+                      alt={block?.project_grid[activeindex].popup_image?.alt ? block?.project_grid[activeindex].popup_image.alt : ''}
+                      className={`${styles.image} relative w-full h-auto`}
+                    />
+                  </div>
+                )}
+              </div>
+            </div>
+
+
+          </div>
+          <div className='container w-full flex flex-nowrap px-100 py-100'>
+            <div className='flex w-1/2 justify-items-start'>
+              <div className="inline-flex mr-auto" aria-label="Previous" onClick={() => onPrev()}>
+                  <Arrow className="rotate-180"/>
+                  <span className="font-nothingyoucoulddo text-40 font-400 text-blue pl-20 cursor-pointer">Previous</span>
+                </div>
+            </div>
+            <div className='flex w-1/2 justify-items-end'>
+              <div  className="inline-flex ml-auto" aria-label="Next" onClick={() => onNext()}>
+                  <span className="font-nothingyoucoulddo text-40 font-400 text-blue pr-20 cursor-pointer">Next</span> 
+                  <Arrow />
+                </div>
+            </div>
+          </div>
+        </div>
+        </div>
+      </div>
+    )}
+      
+  </section>
+)}
+
+export default ProjectGridBlock

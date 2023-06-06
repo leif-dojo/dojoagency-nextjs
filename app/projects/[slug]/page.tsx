@@ -1,5 +1,5 @@
 //'use client'
-import { getClient, clientNoCache } from "@/lib/client"
+import { getClient } from "@/lib/client"
 import React from 'react'
 import ProjectQuery from '@/queries/project'
 import Repeater from '@/utils/rendering/repeater'
@@ -17,7 +17,7 @@ export default async function Page(context: { params: { slug: string } }) {
     }
   });
   //const { loading, error, data } = useQuery(GlobalQuery, { client });
-  console.log("Project data: ", context.params.slug, data)
+  //console.log("Project data: ", context.params.slug, data)
 
   // Forward fetched data to your Client Component
   if (!data.entry) {

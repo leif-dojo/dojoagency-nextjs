@@ -68,7 +68,7 @@ const HeaderBlock = ({ nav}: HeaderInterface) => {
       <div
         id="header-root"
         className={`${styles.root} ${(Dir === 'up') ? styles.up : ''} ${(Dir === 'down') ? styles.down : ''}`}>
-        <div className="px-100 flex items-center justify-between relative z-10">
+        <div className="px-100 flex items-center justify-between relative py-10 z-10">
           <Link href={''} as={''} className={`${styles.logo} relative text-left`} aria-label="Dojo Agency">
               <Logo />
           </Link>

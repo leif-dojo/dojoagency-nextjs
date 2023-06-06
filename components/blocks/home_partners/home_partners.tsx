@@ -75,10 +75,6 @@ const HomePartners = ({ block }: { block: any }) => {
         {alpha: 0, y: 50 }, 
         {alpha: 1, y: 0, duration: 0.3}
       ).fromTo(
-        ".recent",
-        {alpha: 0, }, 
-        {alpha: 1, duration: 0.2}
-      ).fromTo(
         ".logo",
         {alpha: 0, }, 
         {alpha: 1, duration: 0.2}
@@ -102,7 +98,7 @@ const HomePartners = ({ block }: { block: any }) => {
   return (
     <section ref={sectionRef} className={`${styles.root} relative w-full bg-darkgrey text-white z-10`}>
       <div className="px-100 py-190">
-        {block?.partners_grid?.map((block, index) => {
+        {block?.partners_grid?.map((block: any, index: any) => {
           //console.log('col: ', index, block)
           return (
             <div key={index}>

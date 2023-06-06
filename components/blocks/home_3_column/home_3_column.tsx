@@ -61,10 +61,11 @@ const Home3Column = ({ block }: { block: any }) => {
   <section ref={sectionRef} className="relative w-full bg-aqua text-white py-280 z-10">
     <div className="px-100 flex gap-30">
 
-      {block?.columns?.map((block, index) => {
-        console.log('col: ', index, block)
+      {block?.columns?.map((block:any, index:any) => {
+        //console.log('col: ', index, block)
         return (
           <div className={`${styles.column} column w-full md:w-1/3`} key={index}>
+            <a href={`${block?.link ? block?.link: null}`} className={``}>
             <div className='w-full pb-10'>
               {block.icon && (
                 <div className='inline-block w-80 mr-10'>
@@ -85,6 +86,7 @@ const Home3Column = ({ block }: { block: any }) => {
             <div className='text-30 leading-40 font-300'>
               {block.content}
             </div>
+            </a>
           </div>
         )
       })}
