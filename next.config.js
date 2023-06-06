@@ -24,8 +24,8 @@ const nextConfig = {
         hostname: '**.dojoagency.com.local',
       },
       {
-        protocol: 'http',
-        hostname: '**.dojoagency.com',
+        protocol: 'https',
+        hostname: 'cms.dojoagency.com',
       },
     ],
   },
