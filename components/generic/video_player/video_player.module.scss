@@ -1,6 +1,11 @@
 .root {
     --plyr-color-main: #fa642d;
 
+    .image {
+        min-width: 100%;
+        min-height: 100%;
+    }
+
     iframe, 
     video {
         width: 100%!important;

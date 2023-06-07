@@ -67,7 +67,7 @@ const VideoBlock = ({ image_placeholder, video_placeholder, video }: { image_pla
                         width={image_placeholder?.width}
                         height={image_placeholder?.height}
                         alt={image_placeholder?.alt ? image_placeholder.alt : ''}
-                        className='object-cover'
+                        className={`${styles.image} relative object-cover`}
                         />
                     </div>
                 )}
