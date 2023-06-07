@@ -4,7 +4,7 @@ import Image from 'next/image'
 export const typename = 'Set_Components_2ColumnImage'
 
 const Column2ImageBlock = ({ block }: { block: any }) => {
-console.log("Column2ImageBlock", block)
+  //console.log("Column2ImageBlock", block)
   return (
   <section className="w-full bg-white text-slate">
     <div className=" px-100 py-100">

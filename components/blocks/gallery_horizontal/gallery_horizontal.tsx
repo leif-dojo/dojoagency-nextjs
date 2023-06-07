@@ -139,7 +139,7 @@ const GalleryHorizontalBlock = ({ block }: { block: any }) => {
         </div>
         {active && (
         <div className={`${styles.popup} fixed  bg-white w-screen h-screen left-0 top-0 z-10`}>
-          <div className={`${styles.close} absolute top-50 right-50 flex items-center cursor-pointer`} role="none" onClick={() => openOrClose(0)}>
+          <div className={`${styles.close} absolute top-50 right-50 flex items-center cursor-pointer z-10`} role="none" onClick={() => openOrClose(0)}>
             <div className={`font-lato text-orange text-80 font-300 leading-none`}>X</div>
           </div>
 

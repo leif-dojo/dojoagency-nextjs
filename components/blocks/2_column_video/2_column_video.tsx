@@ -10,7 +10,7 @@ const Column2VideoBlock = ({ block }: { block: any }) => {
 
   const { cursorType, cursorChangeHandler} = useThemeContext();
 
- console.log("2column video: ", block)
+ //console.log("2column video: ", block)
   return (
   <section className="w-full bg-white text-slate" onMouseEnter={() => cursorChangeHandler("default")} onMouseLeave={() => cursorChangeHandler("default")}>
     <div className="px-100 py-100">

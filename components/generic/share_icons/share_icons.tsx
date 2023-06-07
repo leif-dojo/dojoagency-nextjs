@@ -11,15 +11,15 @@ const SocialIconsBlock = () => {
   const socials = [
     { 
       type: 'linkedin', 
-      url:'linkhere'
+      url:'https://www.linkedin.com/'
     },
     { 
       type: 'instagram', 
-      url:'linkhere'
+      url:'https://www.instagram.com/'
     },
     { 
       type: 'facebook', 
-      url:'linkhere'
+      url:'https://www.facebook.com/'
     }
   ]
 
@@ -40,7 +40,7 @@ const SocialIconsBlock = () => {
       <div className="flex items-left gap-20 relative w-auto">
           {socials.map((t:any) => (
             <div key={`${t.type}`} className={`${styles.icon} flex items-center justify-center`}>
-              <a href={t.url} className={`relative flex items-center justify-center text-blue cursor-pointer`} aria-label="LinkedIn" >
+              <a href={t.url} className={`relative flex items-center justify-center text-blue cursor-pointer`} aria-label={`${t.type}`} target='_blank'>
               {getSocialIcon(t)}
               </a>
             </div>

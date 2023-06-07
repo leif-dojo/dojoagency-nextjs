@@ -1,4 +1,4 @@
-//"use client"
+"use client"
 import React, { useContext, useEffect, useState } from 'react'
 import styles from './headline_hero.module.scss'
 import Image from 'next/image'
@@ -8,7 +8,11 @@ import IconLink from '@/public/icons/icon-link.svg'
 export const typename = 'Set_Components_Wysiwyg'
 
 const WysiwygBlock = ({ block }: { block: any }) => {
-  console.log("Headline client: ", block)
+  //console.log("Headline client: ", block)
+  
+  const copyToClip = () => {
+    navigator.clipboard.writeText(location.href);
+  }
 
   return (
     <section className={`${styles.root} w-full bg-white text-slate`}>
@@ -28,7 +32,7 @@ const WysiwygBlock = ({ block }: { block: any }) => {
                 {block.sharing_title}
               </div>
               {block.client[0] && block.client[0].client_logo && (
-                <div className='logo bg-slate relative block w-7/12 mr-auto ml-0 z-10'>
+                <div className='logo relative block w-7/12 mr-auto ml-0 z-10'>
                   <Image
                     src={block.client[0].client_logo?.permalink}
                     width={block.client[0].client_logo?.width}
@@ -46,12 +50,12 @@ const WysiwygBlock = ({ block }: { block: any }) => {
                     <ShareIcons />
                   </div>
                   <div className="w-full md:w-1/2">
-                    <div className="text-25 leading-none font-300 pb-20">Copy Link</div>
+                    <div className="text-25 leading-none font-300 pb-20 cursor-pointer">Copy Link</div>
                     <div className="w-full">
                       <div className={`${styles.icon} flex items-center justify-center`}>
-                        <a href="" className={`relative flex items-center justify-center text-blue cursor-pointer`} aria-label="copy to clipboard" >
+                        <div className={`relative flex items-center justify-center text-blue cursor-pointer`} aria-label="copy to clipboard" onClick={copyToClip}>
                           <IconLink />
-                        </a>
+                        </div>
                       </div>
                     </div>
                   </div>
