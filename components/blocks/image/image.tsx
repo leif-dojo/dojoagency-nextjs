@@ -8,7 +8,7 @@ const ImageBlock = ({ block }: { block: any }) => {
   //console.log("ImageBlock", block )
   return (
   <section className="w-full bg-white text-slate">
-    <div className="px-200 py-100">
+    <div className="px-50 md:px-200 py-100">
       <div className="flex w-full">
         {block.image && (
           <div className='w-full'>
