@@ -68,7 +68,7 @@ const HeaderBlock = ({ nav}: HeaderInterface) => {
       <div
         id="header-root"
         className={`${styles.root} ${(Dir === 'up') ? styles.up : ''} ${(Dir === 'down') ? styles.down : ''}`}>
-        <div className="px-100 flex items-center justify-between relative py-10 z-10">
+        <div className="w-full px-50 md:px-100 flex items-center justify-between relative py-10 z-10">
           <Link href={''} as={''} className={`${styles.logo} relative text-left`} aria-label="Dojo Agency">
               <Logo />
           </Link>
@@ -83,7 +83,7 @@ const HeaderBlock = ({ nav}: HeaderInterface) => {
         </div>
         {showMobileMenu && 
           <div className={`${styles.menuwrap} fixed  bg-white w-screen h-screen left-0 top-0 z-10`}>
-            <div className="relative  w-full h-full px-100 flex flex-col items-center justify-center" onClick={() => openOrClose()}>
+            <div className="relative  w-full h-full px-50 md:px-100 flex flex-col items-center justify-center" onClick={() => openOrClose()}>
               <div className="relative w-full">
                 <div className={`${styles.close} absolute top-30 right-0 flex items-center cursor-pointer`} role="none" onClick={() => openOrClose()}>
                   <div className="a11y hidden">Toggle Menu</div>

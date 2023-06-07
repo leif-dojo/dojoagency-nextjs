@@ -155,12 +155,12 @@ const HomeFeaturedWork = ({ block }: { block: any }) => {
       <div className='w-full font-lato text-80 leading-90 font-300 text-white pb-20 pl-80'>
         {block?.headline}
       </div>
-      <div className={`${styles.grid} grid w-full `}>
+      <div className={`${styles.grid} block md:grid w-full `}>
 
         {block?.featured_projects?.map((block: any, index: any) => {
           //console.log('home featured col: ', index, block)
           return (
-            <a href={`${block?.link}`} className={`${styles.project} project relative  overflow-hidden bg-dark w-1/3`} key={index}>
+            <a href={`${block?.link}`} className={`${styles.project} project relative  overflow-hidden bg-dark w-full md:w-1/3`} key={index}>
               <span className="flex justify-center items-center w-full h-full">
                 {block.image && (
                   <span className='absolute w-full h-full top-0 left-0'>

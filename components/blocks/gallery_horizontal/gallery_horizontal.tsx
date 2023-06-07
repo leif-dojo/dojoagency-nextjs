@@ -2,6 +2,7 @@
 import React, { useRef, useState, useLayoutEffect } from 'react'
 import Image from 'next/image'
 import styles from './gallery_horizontal.module.scss'
+import IconX from '@/public/icons/icon-x.svg'
 
 import { useThemeContext } from '@/context/theme'
 
@@ -29,110 +30,6 @@ const GalleryHorizontalBlock = ({ block }: { block: any }) => {
   const [activeindex, setActiveIndex] = useState(1)
 
   const { cursorType, cursorChangeHandler} = useThemeContext();
-
-  useLayoutEffect(() => {
-
-    let ctx = gsap.context(() => {
-
-      /*var slideDelay = 1.5;
-      var slideDuration = 1;
-      var slides = document.querySelectorAll(".project");
-      var numSlides = slides.length;
-      
-      gsap.set(slides, { xPercent: (i) => i * 100 });
-      
-      var wrap = gsap.utils.wrap(-100, (numSlides - 1) * 100);
-      var wrapProgress = gsap.utils.wrap(0, 1);
-      var timer = gsap.delayedCall(slideDelay, autoPlay).pause();
-      var proxy = document.createElement("div");
-      var slideWidth = 0;
-      var wrapWidth = 0;
-      var animation = gsap.timeline({ repeat: -1 });
-      resize();
-      
-      var draggable = new Draggable(proxy, {
-        trigger: ".gallery",
-        type: "x",
-        inertia: true,
-        throwProps: true,
-        onPressInit: function () {
-          animation.pause();
-          timer.pause();
-          updateProgress();
-        },
-        snap: {
-          x: (value) => gsap.utils.snap(slideWidth, value)
-        },
-        onDrag: updateProgress,
-        onThrowUpdate: updateProgress,
-        onThrowComplete: function () {
-          timer.restart(true);
-        }
-      });
-      
-      window.addEventListener("resize", resize);
-      
-      function animateSlides(direction) {
-        var progress = animation.progress() + direction / numSlides;
-        timer.pause();
-        animation.pause();
-        gsap.to(animation, {
-          duration: slideDuration,
-          progress: gsap.utils.snap(1 / numSlides, progress),
-          overwrite: true,
-          modifiers: {
-            progress: wrapProgress // value => (value < 0 || value === 1 ? 1 : 0) + (value % 1)
-          },
-          onComplete: () => timer.restart(true)
-        });
-      }
-      
-      function autoPlay() {
-        animation.play();
-        gsap.fromTo(
-          animation,
-          { timeScale: 0 },
-          { timeScale: 1, duration: 1, overwrite: true, ease: "power1.in" }
-        );
-      }
-      
-      function updateProgress() {
-        animation.progress(wrapProgress(gsap.getProperty(proxy, "x") / wrapWidth));
-      }
-      
-      function resize() {
-        var progress = animation.progress();
-        slideWidth = slides[0].offsetWidth;
-        wrapWidth = slideWidth * numSlides;
-      
-        animation
-          .progress(0)
-          .clear()
-          .to(slides, {
-            duration: 100,
-            xPercent: "+=" + numSlides * 100,
-            ease: "none",
-            modifiers: {
-              xPercent: wrap
-            }
-          })
-          .to(proxy, { x: wrapWidth, duration: 100, ease: "none" }, 0)
-          .progress(progress);
-      }*/
-      
-      /*Hamster(document.querySelector(".gallery")).wheel(function (
-        event,
-        delta,
-        deltaX,
-        deltaY
-      ) {
-        event.preventDefault();
-        animateSlides(delta / 30);
-      });*/
-
-    }, sectionRef);
-    return () => ctx.revert();
-  }, []);
 
   const onMouseEnter = () => {
     cursorChangeHandler("horizontal-scroll")
@@ -238,111 +135,57 @@ const GalleryHorizontalBlock = ({ block }: { block: any }) => {
               })}
               </Swiper>
           </div>
-          <div ref={ScrollerRef} className={`gallery w-full h-full hidden`}>
-            {block?.gallery_grid?.map((item:any, index: any) => {
-              console.log('col: ', index, item)
-              return (
-                <div className={`${styles.project} project absolute flex items-center overflow-hidden bg-dark w-full`} key={index}>
-                  <div className="flex justify-center items-center w-full h-full aspect-video">
-
-                    <div className='absolute w-full h-full top-0 left-0'>
-
-                      {item.image && (
-                        <Image
-                          src={item.image?.permalink}
-                          width={item.image?.width}
-                          height={item.image?.height}
-                          alt={item.image?.alt ? item.image.alt : ''}
-                          className={`${styles.image} relative w-full h-auto`}
-                        />
-                      )}
-
-                      {item.video_embed && (
-                            <div className="video absolute w-full h-full overflow-hidden top-0 z-1" >
-                              <div className="video-inner absolute block w-full h-full">
-                                <iframe src={`${item.video_embed}?autoplay=1&loop=1&autopause=0&background=1&muted=1`} 
-                                title="Vimeo video player"
-                                className="vimeo w-full h-full"
-                                width="640" height="360"
-                                allow="autoplay; fullscreen"></iframe>
-                            </div>
-                        </div>
-                      )}
-
-                      {item.video_local && (
-                            <div className="video absolute w-full h-full overflow-hidden top-0 z-1" >
-                              <div className="video-inner absolute block w-full h-full">
-                                <video 
-                                  className="html-video w-full aspect-video"
-                                  width="640" 
-                                  height="360"
-                                  autoPlay
-                                  controls
-                                  loop
-                                  muted
-                                  preload="auto">
-                                  <source src={`${item.video_local?.permalink}`} type="video/mp4"></source>
-                                </video>
-                            </div>
-                        </div>
-                      )}
-                      
-                      <div className='absolute flex w-full h-full z-10 left-0 top-0' onClick={() => openOrClose(0)}></div>
-                    </div>
-
-                    <div className={`${styles.hover} relative z-5 text-40 font-500 leading-none text-white opacity-0`}>
-                      {item.headline}
-                    </div>
-                  </div>
-                </div>
-              )
-            })}
-            </div>
           </div>
         </div>
         {active && (
-          <div className={`${styles.popup} fixed  bg-white w-screen h-screen left-0 top-0 z-10`}>
-          <div className="relative  w-full h-full px-100 flex flex-col items-center justify-center" onClick={() => openOrClose(0)}>
-            <div className="relative w-full">
+        <div className={`${styles.popup} fixed  bg-white w-screen h-screen left-0 top-0 z-10`}>
+          <div className={`${styles.close} absolute top-50 right-50 flex items-center cursor-pointer`} role="none" onClick={() => openOrClose(0)}>
+            <IconX />
+          </div>
+
+          <div className="relative w-full h-full flex flex-col items-center justify-center">
+            <div className="absolute w-full h-full px-100 py-100 flex flex-col items-center justify-center">
+
               {!block?.gallery_grid[activeindex].video_embed && !block?.gallery_grid[activeindex].video_local && block?.gallery_grid[activeindex].image && (
                 <Image
                   src={block?.gallery_grid[activeindex].image?.permalink}
                   width={block?.gallery_grid[activeindex].image?.width}
                   height={block?.gallery_grid[activeindex].image?.height}
                   alt={block?.gallery_grid[activeindex].image?.alt ? block?.gallery_grid[activeindex].image.alt : ''}
-                  className={`${styles.image} relative w-full h-auto`}
+                  className={`${styles.image} relative min-w-full min-h-full w-100 h-auto  object-contain`}
                 />
               )}
 
               {block?.gallery_grid[activeindex].video_embed && (
-                    <div className="video relative w-full h-full overflow-hidden aspect-video top-0 z-1" >
-                      <div className="video-inner absolute block w-full h-full">
-                        <iframe src={`${block?.gallery_grid[activeindex].video_embed}`} 
-                        title="Vimeo video player"
-                        className="vimeo w-full h-full"
-                        width="640" height="360"
-                        allow="autoplay; fullscreen"></iframe>
-                    </div>
+                <div className="video relative w-full h-full overflow-hidden aspect-video top-0 z-1 object-contain" >
+                  <div className="video-inner absolute block w-full h-full flex flex-col items-center justify-center object-contain">
+                    <iframe src={`${block?.gallery_grid[activeindex].video_embed}`} 
+                    title="Vimeo video player"
+                    className="vimeo relative min-w-full min-h-full w-100 h-auto object-contain aspect-video"
+                    width="640" height="360"
+                    allow="autoplay; fullscreen"></iframe>
+                  </div>
                 </div>
               )}
 
               {block?.gallery_grid[activeindex].video_local && (
-                    <div className="video relative w-full h-full overflow-hidden aspect-video top-0 z-1" >
-                      <div className="video-inner absolute block w-full h-full">
-                        <video 
-                          className="html-video w-full aspect-video"
-                          width="640" 
-                          height="360"
-                          autoPlay
-                          controls
-                          loop
-                          muted
-                          preload="auto">
-                          <source src={`${block?.gallery_grid[activeindex].video_local?.permalink}`} type="video/mp4"></source>
-                        </video>
-                    </div>
+                <div className="video relative w-full h-full overflow-hidden aspect-video top-0 z-1 object-contain" >
+                  <div className="video-inner absolute block w-full h-full flex flex-col items-center justify-center object-contain">
+                    <video 
+                      className="html-video relative min-w-full min-h-full w-100 h-auto  object-contain aspect-video"
+                      width="640" 
+                      height="360"
+                      autoPlay
+                      controls
+                      loop
+                      muted
+                      preload="auto">
+                      <source src={`${block?.gallery_grid[activeindex].video_local?.permalink}`} type="video/mp4"></source>
+                    </video>
+                  </div>
                 </div>
               )}
+              
             </div>
           </div>
         </div>

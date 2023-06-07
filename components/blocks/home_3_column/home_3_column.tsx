@@ -59,7 +59,7 @@ const Home3Column = ({ block }: { block: any }) => {
   
   return (
   <section ref={sectionRef} className="relative w-full bg-aqua text-white py-280 z-10">
-    <div className="px-100 flex gap-30">
+    <div className="px-50 md:px-100 block md:flex gap-30">
 
       {block?.columns?.map((block:any, index:any) => {
         //console.log('col: ', index, block)

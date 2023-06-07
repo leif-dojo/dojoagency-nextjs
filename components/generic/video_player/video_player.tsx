@@ -57,7 +57,7 @@ const VideoBlock = ({ image_placeholder, video_placeholder, video }: { image_pla
                 {image_placeholder && (           
                     <div className='relative w-full h-full'>
                         {!hovering && !active && (  
-                            <div className='absolute left-90 top-50 w-160 h-160 z-10 text-orange'>
+                            <div className='absolute left-90 top-50 w-80 md:w-160 h-80 md:h-160 z-10 text-orange'>
                             <IconPlay /> 
                             <div className="pt-10 text-white text-20 leading-none font-300 whitespace-nowrap">Play Dojo Reel</div>
                             </div>
@@ -75,7 +75,7 @@ const VideoBlock = ({ image_placeholder, video_placeholder, video }: { image_pla
                 {video_placeholder && (
                     <div className="video absolute w-full h-full top-0 z-1" >
                         {!hovering && !active && (  
-                            <div className='absolute left-90 top-50 w-160 h-160 z-10 text-orange'>
+                            <div className='absolute left-90 top-50 w-80 md:w-160 h-80 md:h-160 z-10 text-orange'>
                             <IconPlay /> 
                             <div className="pt-10 text-white text-20 leading-none font-300 whitespace-nowrap">Play Dojo Reel</div>
                             </div>

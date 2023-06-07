@@ -4,5 +4,8 @@
 
 }
 .column {
-    width: calc(33.333% - 20px)
+    width: 100%;
+    @screen md {
+        width: calc(33.333% - 20px);
+    }
 }

@@ -103,12 +103,12 @@ const HomePartners = ({ block }: { block: any }) => {
           return (
             <div key={index}>
               {step === index && (
-                <div className="flex">
-                  <div className="w-1/2 text-center">
+                <div className="block md:flex">
+                  <div className="w-full md:w-1/2 text-center">
                     <div className={`${styles.wrap} w-3/4 mx-auto relative pt-30 pb-50`}>
                       <div ref={RecentRef} className="recent text-52 font-600">Recent Partners</div>
                       <div ref={CircleRef} className={`${styles.oval} circle absolute left-0 top-0 w-full h-full`}><Oval /></div>
-                      <div className="w-1/2 text-center mx-auto aspect-video">
+                      <div className="w-full md:w-1/2 text-center mx-auto aspect-video">
                         {block.client[0].client_logo && (
                           <div ref={LogoRef} className='logo relative block w-full mr-auto ml-auto z-10'>
                             <Image
@@ -127,7 +127,7 @@ const HomePartners = ({ block }: { block: any }) => {
                     </div>
 
                   </div>
-                  <div className="w-1/2">
+                  <div className="w-full md:w-1/2">
                     <div ref={CopyRef} className='copy text-40 leading-60 font-300 text-white' dangerouslySetInnerHTML={{ __html: block.description }}></div>
                     <div ref={NextRef} className='next w-full flex text-left pt-20 text-blue'>
                       <NextArrow />

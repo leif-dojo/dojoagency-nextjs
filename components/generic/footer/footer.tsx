@@ -28,7 +28,7 @@ const FooterBlock = ({
   return (
     <>
       <footer  className={`${styles.root} relative bg-black`}>
-        <div className="relative  mx-100 py-60 z-10">
+        <div className="relative  mx-50 md:mx-100 py-60 z-10">
           <div className={`${styles.nav} flex flex-col md:grid grid-cols-12 gap-x-30`}>
             <div className="col-span-full md:col-span-2">
               <ul
@@ -47,15 +47,15 @@ const FooterBlock = ({
                 })}
               </ul>
             </div>
-            <div className="col-span-full md:col-span-3 flex flex-col">
+            <div className="col-span-full md:col-span-3 flex flex-col mt-100 md:mt-0">
               <div className={cn(styles.address, 'flex text-27 leading-32 font-400 text-white text-left')}>
                 <div className={`${styles.pin} mr-10 text-blue`}><IconPin /></div>
                 {footer.address}
               </div>
-              <div className='pt-30'>
+              <div className='pt-30 pb-100 md:pb-0'>
                 <Socials socials={footer.socials}/>
               </div>
-              <div className={cn(styles.address, 'text-36 leading-none font-500 text-white text-left mt-auto cursor-pointer')} onClick={()=> openOrClose()}>
+              <div className={cn(styles.address, 'text-60 md:text-36 leading-none font-500 text-white text-left mt-auto cursor-pointer')} onClick={()=> openOrClose()}>
                 {footer.form_cta}
               </div>
             </div>
@@ -63,13 +63,13 @@ const FooterBlock = ({
 
             </div>
           </div>
-          <div className={`${styles.copyright} text-right`}>
-            <div className={`text-18 font-300 leading-none text-white text-right`}>
+          <div className={`${styles.copyright} text-right pt-100 md:pt-0`}>
+            <div className={`text-18 font-300 leading-none text-white text-left md:text-right`}>
                 {footer.copyright}
             </div>
           </div>
         </div>
-        <div className={`absolute w-1/2 h-full right-0 top-0 bottom-0 `}>
+        <div className={`absolute w-full md:w-1/2 h-full right-0 top-0 bottom-0 `}>
           {footer.video_embed && (
               <div className="video-wrap absolute w-full h-full overflow-hidden top-0 right-0 z-0">
                 <div className={`${styles.video} absolute block w-full h-full opacity-50 aspect-video`}>

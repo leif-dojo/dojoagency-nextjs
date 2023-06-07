@@ -6,12 +6,15 @@
         display: flex;
         flex-direction: column;
         flex-wrap: wrap;
-        max-height: 60vw;
+
         gap: 30px;
+        @screen md {
+            max-height: 60vw;
+        }
     }
 
     .project {
-        width: calc(33.333% - 20px);
+        width: 100%;
         aspect-ratio: 2/2;
         transition: all 100ms ease-in-out;
 
@@ -32,6 +35,9 @@
             .hover {
                 opacity: 1;
             }
+        }
+        @screen md {
+            width: calc(33.333% - 20px);
         }
     }
 

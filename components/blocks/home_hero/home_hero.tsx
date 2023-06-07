@@ -140,19 +140,19 @@ const HomeHeroBlock = ({ block }: { block: any }) => {
     <div ref={RainRef} id="rain" className={`${styles.rain} absolute w-full h-full top-0 left-0 z-9`}></div>
 
     <div className='w-full'>
-      <div className={`fixed top-140 w-full px-100 z-5`}>
-        <div ref={LogoRef} className={`${styles.logo} logo flex justify-center w-full text-center px-80 pb-40`}>
+      <div className={`fixed top-140 w-full px-50 md:px-100 z-5`}>
+        <div ref={LogoRef} className={`${styles.logo} logo flex justify-center w-full text-center px-0 md:px-80 pb-40`}>
           <Logo />
         </div>
       </div>
-      <div className={`relative w-full bg-slate px-100 mt-180 pb-120 z-6`}>
+      <div className={`relative w-full bg-slate px-50 md:px-100 mt-180 pb-120 z-6`}>
         <div ref={HeadlineRef} className='w-full text-white text-center font-lato text-113 font-300 leading-none py-20'>
           {block?.headline}
         </div>
         <div ref={DownRef} className={`${styles.arrow} flex justify-center w-full text-center py-20`}>
           <Arrow />
         </div>
-        <div ref={VideoRef} className='relative px-160 z-10'>
+        <div ref={VideoRef} className='relative px-40 md:px-160 z-10'>
           <VideoPlayer
             image_placeholder={block.image}
             video_placeholder={block.video_embed ? block.video_embed : block.video_local?.permalink}
