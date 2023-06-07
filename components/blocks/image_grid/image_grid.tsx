@@ -1,20 +1,32 @@
+"use client"
 import React from 'react'
 import Image from 'next/image'
 import styles from './image_grid.module.scss'
+import { useThemeContext } from '@/context/theme'
 
 export const typename = 'Set_Components_ImageGrid'
 
 const ImageGridBlock = ({ block }: { block: any }) => {
+  const { cursorType, cursorChangeHandler} = useThemeContext();
+
+  const onMouseEnter = () => {
+    cursorChangeHandler("next")
+  }
+
+  const onMouseLeave = () => {
+      cursorChangeHandler("default")
+  }
+
   //console.log("ImageGridBlock", block);
   return (
   <section className={`${styles.root} w-full bg-white text-slate overflow-hidden`}>
     <div className="px-100 py-100">
-      <div className={`${styles.grid} grid grid-cols-2 md:grid-cols-3 gap-30 w-full `}>
+      <div className={`${styles.grid} grid grid-cols-2 md:grid-cols-3 gap-50 w-full `}>
 
         {block?.image_grid?.map((block:any, index:any) => {
           //console.log('col: ', index, block)
           return (
-            <a href={`${block?.link}`} className={`${styles.project} relative  overflow-hidden bg-dark f-full`} key={index}>
+            <a href={`${block?.link}`} className={`${styles.project} relative  overflow-hidden bg-dark f-full`} key={index} onMouseEnter={() => onMouseEnter()} onMouseLeave={() => onMouseLeave()}>
               <span className="flex justify-center items-center w-full h-full">
                 {block.image && (
                   <span className='absolute w-full h-full top-0 left-0'>
@@ -71,11 +83,11 @@ const ImageGridBlock = ({ block }: { block: any }) => {
                     
                   </span>
                 )}
-                <span className={`relative w-full`}>
-                  <span className={`${styles.headline} absolute w-full z-5 text-30 font-500 text-white text-center`}>
+                <span className={`relative w-full flex justify-center items-center`}>
+                  <span className={`${styles.headline} absolute w-full z-5 text-60 leading-none font-500 text-white text-center`}>
                     {block.image_headline}
                   </span>
-                  <span className={`${styles.hover} absolute w-full z-5 text-30 font-500 text-white text-center`}>
+                  <span className={`${styles.hover} absolute w-full z-5 text-40 leading-none font-500 text-white text-center`}>
                     {block.image_headline_hover}
                   </span>
                 </span>

@@ -76,7 +76,7 @@ const ProjectGridBlock = ({ block }: { block: any }) => {
                   )}
                 </div>
                 {block.project_image && (
-                  <div className='relative w-full h-300 top-0 left-0'>
+                  <div className={`${styles.projectimage} relative w-full h-300 top-0 left-0`}>
                     <Image
                       src={block.project_image?.permalink}
                       width={block.project_image?.width}
@@ -98,27 +98,29 @@ const ProjectGridBlock = ({ block }: { block: any }) => {
         <div className="relative px-100 py-40 w-full h-full overflow-y-scroll">
         <div className="relative bg-white w-full h-auto">
 
-          <div className={`${styles.close} absolute top-50 right-50 flex items-center cursor-pointer`} role="none" onClick={() => openOrClose(0)}>
+          <div className={`${styles.close} absolute top-50 right-50 flex items-center z-10 cursor-pointer`} role="none" onClick={() => openOrClose(0)}>
             <div className="a11y hidden">Toggle Menu</div>
-            <IconX />
+            <div className={`font-lato text-slate text-80 font-300 leading-none`}>X</div>
           </div>
 
           <div className="relative w-full px-150 pt-200 pb-100">
 
             <div className="block md:flex">
-              <div className="w-full md:w-5/12 md:pr-30">
-                {block?.project_grid[activeindex].popup_headline && (
-                  <div className="text-90 leading-120 font-300 mb-20">
-                    {block?.project_grid[activeindex].popup_headline}
-                  </div>
-                )}
-                {block?.project_grid[activeindex].popup_wysiwyg && (
-                  <div className="w-full">
-                    <div className='wysiwyg text-30 leading-40 font-300 text-slate' dangerouslySetInnerHTML={{ __html: block?.project_grid[activeindex].popup_wysiwyg }}></div>
-                  </div>
-                )}
+              <div className="w-full md:w-6/12 md:pr-30 flex items-center">
+                <div className='w-full'>
+                  {block?.project_grid[activeindex].popup_headline && (
+                    <div className="text-90 leading-120 font-300 mb-20">
+                      {block?.project_grid[activeindex].popup_headline}
+                    </div>
+                  )}
+                  {block?.project_grid[activeindex].popup_wysiwyg && (
+                    <div className="w-full">
+                      <div className='wysiwyg text-30 leading-40 font-300 text-slate' dangerouslySetInnerHTML={{ __html: block?.project_grid[activeindex].popup_wysiwyg }}></div>
+                    </div>
+                  )}
+                </div>
               </div>
-              <div className="w-full md:w-7/12">
+              <div className="w-full md:w-6/12">
                 {block?.project_grid[activeindex].popup_image && (
                   <div className='relative w-full pl-50'>
                     <Image

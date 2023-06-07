@@ -51,16 +51,16 @@ const NavBlock = ({
                   )}
               </div>
               <div className="relative w-full ">
-                <div className={`${styles.close} relative top-0 right-0 h-0 text-right`}>
-                  <div className="relative inline-block text-100 font-300 leading-none text-slate cursor-pointer z-10" onClick={() => openOrClose()}>X</div>
+                <div className={`${styles.close} absolute top-30 right-0 h-0 text-right`}>
+                  <div className={`relative inline-block font-lato text-80 font-300 leading-none cursor-pointer z-10 text-slate`} onClick={() => openOrClose()}>X</div>
                 </div>
               </div>
-                <div className="relative  w-full h-full flex items-center z-10 flex justify-items-end">
-                  <div className={`w-1/2 ml-auto text-left`}>
+                <div className="relative  w-full h-full flex items-center z-10 justify-items-end">
+                  <div className={`w-1/2 ml-auto text-left pr-0 md:pr-200`}>
                     <div className='text-90 font-300 text-slate pb-40'>
                       Connect With Us
                     </div>
-                    <div className={`${styles.inputWrapper} w-full`}>
+                    <div className={`${styles.inputwrapper} w-full`}>
                       <label className="w-full text-left text-20 leading-none font-300 pb-20 text-slate" htmlFor="name">Name*</label>
                       <input
                         id="name"
@@ -93,16 +93,16 @@ const NavBlock = ({
                   )}
               </div>
                 <div className="relative  w-full ">
-                <div className={`${styles.close} relative top-0 right-0 h-0 text-right`}>
-                  <div className="relative inline-block text-100 font-300 leading-none text-gold cursor-pointer z-10" onClick={() => openOrClose()}>X</div>
+                <div className={`${styles.close} absolute top-30 right-0 h-0 text-right`}>
+                <div className={`relative inline-block font-lato text-80 font-300 leading-none cursor-pointer z-10 text-gold`} onClick={() => openOrClose()}>X</div>
                 </div>
               </div>
                   <div className="relative  w-full h-full flex items-center z-10 flex justify-items-end">
-                  <div className={`w-1/2 ml-auto text-left`}>
+                  <div className={`w-1/2 ml-auto text-left pr-0 md:pr-200`}>
                     <div className='text-90 font-300 text-gold pb-40'>
                       Connect With Us
                     </div>
-                    <div className={`${styles.inputWrapper} w-full`}>
+                    <div className={`${styles.inputwrapper} w-full`}>
                       <label className="w-full text-left text-20 leading-none font-300 pb-20 text-white" htmlFor="email">Email*</label>
                       <input
                         id="email"
@@ -135,16 +135,16 @@ const NavBlock = ({
                   )}
               </div>
                 <div className="relative  w-full ">
-                <div className={`${styles.close} relative top-0 right-0 h-0 text-right`}>
-                  <div className="relative inline-block text-100 font-300 leading-none text-white cursor-pointer z-10" onClick={() => openOrClose()}>X</div>
+                <div className={`${styles.close} absolute top-30 right-0 h-0 text-right`}>
+                <div className={`relative inline-block font-lato text-80 font-300 leading-none cursor-pointer z-10 text-white`} onClick={() => openOrClose()}>X</div>
                 </div>
               </div>
                   <div className="relative  w-full h-full flex items-center z-10 flex justify-items-end">
-                  <div className={`w-1/2 ml-auto text-left`}>
+                  <div className={`w-1/2 ml-auto text-left pr-0 md:pr-200`}>
                     <div className='text-90 font-300 text-slate pb-40'>
                       Connect With Us
                     </div>
-                    <div className={`${styles.inputWrapper} w-full`}>
+                    <div className={`${styles.inputwrapper} w-full`}>
                       <label className="w-full text-left text-20 leading-none font-300 pb-20 text-slate" htmlFor="message">Message*</label>
                       <textarea
                         id="message"
@@ -166,7 +166,7 @@ const NavBlock = ({
 
           {step === 4 && (
             <div className={`${styles.step} step bg-bluelight w-full h-full px-100`}>
-                            <div className={`${styles.bg} bg absolute w-full h-full left-0 top-0`}>
+              <div className={`${styles.bg} bg absolute w-full h-full left-0 top-0`}>
                   {data.step_4_image && (
                     <Image
                       src={data.step_4_image?.permalink}
@@ -178,21 +178,21 @@ const NavBlock = ({
                   )}
               </div>
               <div className="relative  w-full ">
-                <div className={`${styles.close} relative top-0 right-0 h-0 text-right`}>
-                  <div className="relative inline-block text-100 font-300 leading-none text-slate cursor-pointer z-10" onClick={() => openOrClose()}>X</div>
+                <div className={`${styles.close} absolute top-30 right-0 h-0 text-right`}>
+                  <div className={`relative inline-block font-lato text-80 font-300 leading-none cursor-pointer z-10 text-slate`} onClick={() => openOrClose()}>X</div>
                 </div>
               </div>
               <div className="relative  w-full h-full flex items-center z-10 flex justify-items-end">
-                <div className={`w-1/2 ml-auto text-left`}>
-                  <div className='text-90 font-300 text-slate pb-40'>
+                <div className={`w-1/2 ml-auto text-left pr-0 md:pr-200`}>
+                  <div className='text-90 font-300 text-slate leading-none pb-40'>
                     Thanks! We will <br /> be in touch soon.
                   </div>
                   <div className={`w-1/2`}>
 
                   </div>
                   <div className='w-full text-left pt-20'>
-                    <div className='font-nothingyoucoulddo text-30 font-400 text-slate inline-flex' onClick={() => openOrClose()}>
-                      <Arrow className="rotate-180"/>
+                    <div className='font-nothingyoucoulddo text-30 font-400 text-slate inline-flex cursor-pointer' onClick={() => openOrClose()}>
+                      <Arrow className="w-30 h-auto rotate-180"/>
                       <div className="font-nothingyoucoulddo text-40 font-400 text-slate pl-20">Return to home</div>
                     </div>
                   </div>

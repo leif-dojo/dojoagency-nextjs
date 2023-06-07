@@ -108,6 +108,7 @@ ul {
 .wysiwyg {
 	p {
 		line-height: inherit;
+		margin-bottom: 1em;
 	}
 
 	ul {
@@ -126,6 +127,7 @@ ul {
 
 			p {
 				display: inline-block;
+				margin-bottom: 0;
 			}
 		}
 	}

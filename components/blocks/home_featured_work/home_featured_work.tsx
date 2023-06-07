@@ -225,7 +225,7 @@ const HomeFeaturedWork = ({ block }: { block: any }) => {
       </div>
       <div className='w-full pt-20 text-right'>
         <a className=' text-white text-right inline-flex ml-auto mr-0' href={`/portfolio/`} aria-label="Dojo Agency">
-          <NextArrow /><span className={`font-nothingyoucoulddo text-40 font-300 pt-5 pl-10`}>View All</span></a>
+          <NextArrow /><span className={`font-nothingyoucoulddo text-40 font-300 pt-10 pl-10`}>View All</span></a>
       </div>
     </div>
   </section>

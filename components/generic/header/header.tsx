@@ -87,7 +87,7 @@ const HeaderBlock = ({ nav}: HeaderInterface) => {
               <div className="relative w-full">
                 <div className={`${styles.close} absolute top-30 right-0 flex items-center cursor-pointer`} role="none" onClick={() => openOrClose()}>
                   <div className="a11y hidden">Toggle Menu</div>
-                  <IconX />
+                  <div className={`font-lato text-orange text-80 font-300 leading-none`}>X</div>
                 </div>
                 <div className={`${styles.menulogo} text-left py-30`}>
                   <Link  href={'/'} as={''} className='' aria-label="Dojo Agency">

@@ -10,7 +10,7 @@ const HomeFeaturedWork = ({ block }: { block: any }) => {
   return(
     <section className={`${styles.root} w-full bg-white text-slate overflow-hidden`}>
     <div className="px-100 py-100">
-      <div className={`${styles.grid} grid grid-cols-2 md:grid-cols-3 gap-30 w-full `}>
+      <div className={`${styles.grid} grid grid-cols-2 md:grid-cols-3 gap-50 w-full `}>
 
         {block?.featured_projects?.map((block: any, index: any) => {
           //console.log('col: ', index, block)
@@ -68,8 +68,13 @@ const HomeFeaturedWork = ({ block }: { block: any }) => {
                     
                   </span>
                 )}
-                <span className={`${styles.hover} relative z-5 text-30 font-500 text-white`}>
-                  {block.headline}
+                <span className={`relative w-full flex justify-center items-center`}>
+                  <span className={`${styles.headline} absolute w-full z-5 text-60 leading-none font-500 text-white text-center`}>
+                    {block.headline}
+                  </span>
+                  <span className={`${styles.hover} absolute w-full z-5 text-40 leading-none font-500 text-white text-center`}>
+                    {block.headline_hover}
+                  </span>
                 </span>
               </span>
             </a>

@@ -6,7 +6,10 @@
     }
 
     .project {
-        border: 2rem solid theme('colors.lightgrey')
+        border: 3rem solid theme('colors.lightgrey');
+        .projectimage {
+          box-shadow: 0rem -5rem 10rem rgba(#000, 0.1);
+        }
     }
 
 

@@ -40,15 +40,15 @@ const TimelineBlock = ({ block }: { block: any }) => {
               )}
               <div className={`${styles.mid} relative bg-orange z-10`} style={{backgroundColor: block.color}}>
                   <div className='flex items-stretch px-10 py-10'>
-                    <div className={`${styles.year} w-full text-20 leading-none text-white text-center`}>{block.year}</div>
+                    <div className={`${styles.year} w-full text-24 leading-none font-400 text-white text-center`}>{block.year}</div>
                     <div className={`${styles.headlinewrap} overflow-hidden w-0 mx-0`}>
-                      <div className={`${styles.headline} relative text-20 leading-none text-white whitespace-nowrap text-right`}>{block.headline}</div>
+                      <div className={`${styles.headline} relative text-24 leading-none font-400 text-white whitespace-nowrap text-right`}>{block.headline}</div>
                     </div>
                   </div>
               </div>
               {block.logo && block.overview && (
                 <div className={`${styles.bottom} absolute top-0 w-full`}>
-                  <div className='w-full flex items-stretch flex-nowrap bg-white px-10 py-10'>
+                  <div className='w-full flex items-stretch flex-nowrap bg-white px-20 py-20'>
                       <div className='w-1/2 flex pr-20 items-center overflow-hidden'>
                         {block.logo && (
                           <Image

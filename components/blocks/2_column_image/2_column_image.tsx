@@ -9,20 +9,22 @@ console.log("Column2ImageBlock", block)
   <section className="w-full bg-white text-slate">
     <div className=" px-100 py-100">
       <div className="block md:flex">
-        <div className="w-full md:w-1/2 md:pr-30">
-          <div className="text-20 leading-none font-300 uppercase mb-10">
-            {block.eyebrow}
-          </div>
-          <div className="text-90 leading-120 font-300 mb-20">
-            {block.headline}
-          </div>
-          <div className="w-full">
-            <div className='wysiwyg text-30 leading-40 font-300' dangerouslySetInnerHTML={{ __html: block.wysiwyg }}></div>
+        <div className="w-full md:w-1/2 md:pr-30 flex items-center">
+          <div className='w-full'>
+            <div className="text-20 leading-none font-300 uppercase mb-10">
+              {block.eyebrow}
+            </div>
+            <div className="text-90 leading-120 font-300 mb-20">
+              {block.headline}
+            </div>
+            <div className="w-full">
+              <div className='wysiwyg text-30 leading-40 font-300' dangerouslySetInnerHTML={{ __html: block.wysiwyg }}></div>
+            </div>
           </div>
         </div>
         <div className="w-full md:w-1/2">
           {block.image && (
-            <div className='w-full'>
+            <div className='w-full pl-0 md:pl-100'>
               <Image
               src={block.image?.permalink}
               width={block.image?.width}
