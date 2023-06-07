@@ -49,19 +49,25 @@ const VideoBlock = ({ image_placeholder, video_placeholder, video }: { image_pla
       setHasWindow(true);
     }
   }, []);
-
+  //console.log("VIDEO PLAYER: ", image_placeholder, video, video_placeholder)
     return (
         <div className={`${styles.root} relative`}>
-            <div className='relative w-full h-400 aspect-video' onMouseEnter={() => onMouseEnter()} onMouseLeave={() => onMouseLeave()}>
+            <div className='relative w-full h-400 aspect-video overflow-hidden' onMouseEnter={() => onMouseEnter()} onMouseLeave={() => onMouseLeave()}>
 
                 {image_placeholder && (           
-                    <div className='w-full aspect-video opacity-0'>
+                    <div className='relative w-full h-full'>
+                        {!hovering && !active && (  
+                            <div className='absolute left-90 top-50 w-160 h-160 z-10 text-orange'>
+                            <IconPlay /> 
+                            <div className="pt-10 text-white text-20 leading-none font-300 whitespace-nowrap">Play Dojo Reel</div>
+                            </div>
+                        )}
                         <Image
                         src={image_placeholder?.permalink}
                         width={image_placeholder?.width}
                         height={image_placeholder?.height}
                         alt={image_placeholder?.alt ? image_placeholder.alt : ''}
-                        className='aspect-video'
+                        className='object-cover'
                         />
                     </div>
                 )}
@@ -78,7 +84,7 @@ const VideoBlock = ({ image_placeholder, video_placeholder, video }: { image_pla
                     <div className="video-inner absolute block w-full h-full aspect-video">
                         <ReactPlayer 
                             className={`${styles.player} react-player w-full h-auto aspect-video`}
-                            url={"https://player.vimeo.com/video/163721649"}
+                            url={video_placeholder}
                             playing={true}
                             loop={true}
                             controls={false}
@@ -102,7 +108,7 @@ const VideoBlock = ({ image_placeholder, video_placeholder, video }: { image_pla
                         <div className="video-inner absolute block w-full h-full">
                             <ReactPlayer 
                                 className={`${styles.player} react-player w-full h-auto aspect-video`}
-                                url={"https://player.vimeo.com/video/22439234"}
+                                url={video}
                                 playing={playing}
                                 loop={false}
                                 controls={true}

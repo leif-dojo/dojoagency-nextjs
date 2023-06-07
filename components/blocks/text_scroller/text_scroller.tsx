@@ -125,9 +125,38 @@ const TextScrollerBlock = ({ block }: { block: any }) => {
   return (
   <section ref={sectionRef} className={`${styles.root} relative w-full bg-black text-white overflow-hidden`}>
     <div className={`${styles.background} absolute h-full w-full left-0 top-0`}>
-      {block.background_image && (
+        {block.background_image && (
           <div className='w-full h-full opacity-30 fixed top-0'>
             <img src={block.background_image?.permalink} className='aspect-video'/>
+          </div>
+        )}
+        {block.video_embed && (
+          <div className="video fixed w-full h-full overflow-hidden top-0 opacity-30" >
+            <div className="video-inner absolute block w-full h-full">
+              <iframe src={`${block.video_embed}?autoplay=1&loop=1&autopause=0&background=1&muted=1`} 
+              title="Vimeo video player"
+              className="vimeo w-full h-full"
+              width="640" height="360"
+              allow="autoplay; fullscreen"></iframe>
+            </div>
+          </div>
+        )}
+
+        {block.video_local && (
+          <div className="video fixed w-full h-full overflow-hidden top-0 opacity-30" >
+            <div className="video-inner absolute block w-full h-full">
+              <video 
+                className="html-video aspect-video"
+                width="640" 
+                height="360"
+                autoPlay
+                controls
+                loop
+                muted
+                preload="auto">
+                <source src={`${block.video_local?.permalink}`} type="video/mp4"></source>
+              </video>
+            </div>
           </div>
         )}
     </div>

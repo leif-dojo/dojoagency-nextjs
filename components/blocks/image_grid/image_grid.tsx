@@ -40,8 +40,8 @@ const ImageGridBlock = ({ block }: { block: any }) => {
                     )}
 
                     {block.video_embed && (
-                          <div className="video absolute w-full h-full overflow-hidden top-0 z-1" >
-                            <div className="video-inner absolute block w-full h-full">
+                          <div className={`${styles.video} video absolute w-full h-full overflow-hidden top-0 z-1`} >
+                            <div className="video-inner absolute block w-auto h-full aspect-video">
                               <iframe src={`${block.video_embed}?autoplay=1&loop=1&autopause=0&background=1&muted=1`} 
                               title="Vimeo video player"
                               className="vimeo w-full h-full"
@@ -52,8 +52,8 @@ const ImageGridBlock = ({ block }: { block: any }) => {
                     )}
 
                     {block.video_local && (
-                          <div className="video absolute w-full h-full overflow-hidden top-0 z-1" >
-                            <div className="video-inner absolute block w-full h-full">
+                          <div className={`${styles.video} video absolute w-full h-full overflow-hidden top-0 z-1`} >
+                            <div className="video-inner absolute block w-auto h-full aspect-video">
                               <video 
                                 className="html-video aspect-video"
                                 width="640" 
@@ -71,8 +71,13 @@ const ImageGridBlock = ({ block }: { block: any }) => {
                     
                   </span>
                 )}
-                <span className={`${styles.hover} relative z-5 text-30 font-500 text-white`}>
-                  {block.image_headline}
+                <span className={`relative w-full`}>
+                  <span className={`${styles.headline} absolute w-full z-5 text-30 font-500 text-white text-center`}>
+                    {block.image_headline}
+                  </span>
+                  <span className={`${styles.hover} absolute w-full z-5 text-30 font-500 text-white text-center`}>
+                    {block.image_headline_hover}
+                  </span>
                 </span>
               </span>
             </a>

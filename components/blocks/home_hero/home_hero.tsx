@@ -55,6 +55,29 @@ const HomeHeroBlock = ({ block }: { block: any }) => {
         { duration: 1, autoAlpha: 1, y: 0 },0.6
       )
 
+      //stories
+      gsap
+      .timeline({
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "center 50%",
+          end: "center 0%",
+          scrub: true,
+          // end: "+=500",
+          //markers: true,
+          toggleActions: "play reverse play reverse",
+        },
+      })
+      .fromTo(
+        HeadlineRef.current,
+        {
+          fontSize: '110rem'
+          //autoAlpha: 0
+        }, {
+          fontSize: '150rem'
+          //autoAlpha: 1
+        },
+      )
 
       //rain
       // number of drops created.
@@ -104,14 +127,14 @@ const HomeHeroBlock = ({ block }: { block: any }) => {
       }
       // Make it rain
       //createRain();
-      makeitrain();
+      //makeitrain();
 
     }, sectionRef);
     return () => ctx.revert();
   }, []);
 
   const { cursorType, cursorChangeHandler} = useThemeContext();
-
+  //console.log("Home Hero: ", block)
   return (
   <section className={`${styles.root} w-full bg-slate pt-60 pb-0`} onMouseEnter={() => cursorChangeHandler("peace")} onMouseLeave={() => cursorChangeHandler("default")}>
     <div ref={RainRef} id="rain" className={`${styles.rain} absolute w-full h-full top-0 left-0 z-9`}></div>
@@ -132,8 +155,8 @@ const HomeHeroBlock = ({ block }: { block: any }) => {
         <div ref={VideoRef} className='relative px-160 z-10'>
           <VideoPlayer
             image_placeholder={block.image}
-            video_placeholder={block.video_embed}
-            video={block.video_popup_embed}
+            video_placeholder={block.video_embed ? block.video_embed : block.video_local?.permalink}
+            video={block.video_popup_embed ? block.video_popup_embed: block.video_popup_local?.permalink}
           />
         </div>
       </div>

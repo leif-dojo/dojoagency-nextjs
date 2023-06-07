@@ -9,7 +9,7 @@ console.log("Column2ImageBlock", block)
   <section className="w-full bg-white text-slate">
     <div className=" px-100 py-100">
       <div className="block md:flex">
-        <div className="w-full md:w-5/12 md:pr-30">
+        <div className="w-full md:w-1/2 md:pr-30">
           <div className="text-20 leading-none font-300 uppercase mb-10">
             {block.eyebrow}
           </div>
@@ -20,7 +20,7 @@ console.log("Column2ImageBlock", block)
             <div className='wysiwyg text-30 leading-40 font-300' dangerouslySetInnerHTML={{ __html: block.wysiwyg }}></div>
           </div>
         </div>
-        <div className="w-full md:w-7/12">
+        <div className="w-full md:w-1/2">
           {block.image && (
             <div className='w-full'>
               <Image

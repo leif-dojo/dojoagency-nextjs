@@ -1,12 +1,9 @@
 "use client"
 import React, { Fragment, useContext, useState, useRef } from 'react'
 import Link from 'next/link'
-import Logo from '@/public/icons/Dojo-Logo_Red_RGB.svg'
 import cn from 'classnames'
 import FooterInterface from './footer.interface'
 import styles from './footer.module.scss'
-import ContactForm from '../contact_form/contact_form'
-import IconX from '@/public/icons/icon-x.svg'
 import IconPin from '@/public/icons/icon-pin.svg'
 import { useThemeContext } from '@/context/theme'
 import Socials from '@/components/generic/social_icons/social_icons'

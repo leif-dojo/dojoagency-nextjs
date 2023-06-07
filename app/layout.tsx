@@ -60,7 +60,7 @@ export default async function RootLayout({
           <main>
             <ThemeContextProvider>
               <MouseCursor />
-              <ContactForm />
+              <ContactForm data={data.footer} />
               <Header nav={data.header_nav} />
               {children}
               <Footer footer={data.footer} footer_nav={data.footer_nav} />

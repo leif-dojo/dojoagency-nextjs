@@ -519,11 +519,23 @@ export default gql`
                 focus_css
               }
             }
+            video_embed
+            video_local {
+              ... on Asset_Assets {
+                id
+                permalink
+                is_video
+                width
+                height
+                extension
+              }
+            }
           }
           ... on Set_Components_ImageGrid {
             image_grid {
               link
               image_headline
+              image_headline_hover
               image {
                 id
                 ... on Asset_Assets {

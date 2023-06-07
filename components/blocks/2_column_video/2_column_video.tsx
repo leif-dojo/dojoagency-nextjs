@@ -29,8 +29,8 @@ const Column2VideoBlock = ({ block }: { block: any }) => {
         <div className="w-full md:w-7/12">
           <VideoPlayer
             image_placeholder={block.image}
-            video_placeholder={block.video_embed}
-            video={block.video_popup_embed}
+            video_placeholder={block.video_embed ? block.video_embed : block.video_local?.permalink}
+            video={block.video_popup_embed ? block.video_popup_embed : block.video_popup_local}
           />
         </div>
       </div>

@@ -183,52 +183,52 @@ const GalleryHorizontalBlock = ({ block }: { block: any }) => {
                 return (
                 <SwiperSlide className={`${styles.slide}`} key={index}>
                   <div className={`${styles.project} absolute flex justify-center items-center overflow-hidden`}>
-                    {item.image && (
-                      <div className='absolute w-full h-full top-0 left-0'>
 
-                        {item.image && (
-                          <Image
-                            src={item.image?.permalink}
-                            width={item.image?.width}
-                            height={item.image?.height}
-                            alt={item.image?.alt ? item.image.alt : ''}
-                            className={`${styles.image} relative w-full h-auto`}
-                          />
-                        )}
+                    <div className='absolute w-full h-full top-0 left-0'>
 
-                        {item.video_embed && (
-                              <div className="video absolute w-full h-full overflow-hidden top-0 z-1" >
-                                <div className="video-inner absolute block w-full h-full aspect-video">
-                                  <iframe src={`${item.video_embed}?autoplay=1&loop=1&autopause=0&background=1&muted=1`} 
-                                  title="Vimeo video player"
-                                  className="vimeo w-full h-full aspect-video"
-                                  width="640" height="360"
-                                  allow="autoplay; fullscreen"></iframe>
-                              </div>
-                          </div>
-                        )}
+                      {item.image && (
+                        <Image
+                          src={item.image?.permalink}
+                          width={item.image?.width}
+                          height={item.image?.height}
+                          alt={item.image?.alt ? item.image.alt : ''}
+                          className={`${styles.image} relative w-full h-auto`}
+                        />
+                      )}
 
-                        {item.video_local && (
-                              <div className="video absolute w-full h-full overflow-hidden top-0 z-1" >
-                                <div className="video-inner absolute block w-full h-full aspect-video">
-                                  <video 
-                                    className="html-video aspect-video"
-                                    width="640" 
-                                    height="360"
-                                    autoPlay
-                                    controls
-                                    loop
-                                    muted
-                                    preload="auto">
-                                    <source src={`${item.video_local?.permalink}`} type="video/mp4"></source>
-                                  </video>
-                              </div>
-                          </div>
-                        )}
-                        
-                        <div className='absolute flex w-full h-full z-10 left-0 top-0' onClick={() => openOrClose(index)}></div>
-                      </div>
-                    )}
+                      {item.video_embed && (
+                            <div className="video absolute w-full h-full overflow-hidden top-0 z-1" >
+                              <div className="video-inner absolute block w-full h-full aspect-video">
+                                <iframe src={`${item.video_embed}?autoplay=1&loop=1&autopause=0&background=1&muted=1`} 
+                                title="Vimeo video player"
+                                className="vimeo w-full h-full aspect-video"
+                                width="640" height="360"
+                                allow="autoplay; fullscreen"></iframe>
+                            </div>
+                        </div>
+                      )}
+
+                      {item.video_local && (
+                            <div className="video absolute w-full h-full overflow-hidden top-0 z-1" >
+                              <div className="video-inner absolute block w-full h-full aspect-video">
+                                <video 
+                                  className="html-video aspect-video"
+                                  width="640" 
+                                  height="360"
+                                  autoPlay
+                                  controls
+                                  loop
+                                  muted
+                                  preload="auto">
+                                  <source src={`${item.video_local?.permalink}`} type="video/mp4"></source>
+                                </video>
+                            </div>
+                        </div>
+                      )}
+                      
+                      <div className='absolute flex w-full h-full z-10 left-0 top-0' onClick={() => openOrClose(index)}></div>
+                    </div>
+
                     <div className={`${styles.hover} relative z-5 text-40 font-500 leading-none text-white opacity-0`}>
                       {item.headline}
                     </div>
@@ -244,52 +244,52 @@ const GalleryHorizontalBlock = ({ block }: { block: any }) => {
               return (
                 <div className={`${styles.project} project absolute flex items-center overflow-hidden bg-dark w-full`} key={index}>
                   <div className="flex justify-center items-center w-full h-full aspect-video">
-                    {item.image && (
-                      <div className='absolute w-full h-full top-0 left-0'>
 
-                        {item.image && (
-                          <Image
-                            src={item.image?.permalink}
-                            width={item.image?.width}
-                            height={item.image?.height}
-                            alt={item.image?.alt ? item.image.alt : ''}
-                            className={`${styles.image} relative w-full h-auto`}
-                          />
-                        )}
+                    <div className='absolute w-full h-full top-0 left-0'>
 
-                        {item.video_embed && (
-                              <div className="video absolute w-full h-full overflow-hidden top-0 z-1" >
-                                <div className="video-inner absolute block w-full h-full">
-                                  <iframe src={`${item.video_embed}?autoplay=1&loop=1&autopause=0&background=1&muted=1`} 
-                                  title="Vimeo video player"
-                                  className="vimeo w-full h-full"
-                                  width="640" height="360"
-                                  allow="autoplay; fullscreen"></iframe>
-                              </div>
-                          </div>
-                        )}
+                      {item.image && (
+                        <Image
+                          src={item.image?.permalink}
+                          width={item.image?.width}
+                          height={item.image?.height}
+                          alt={item.image?.alt ? item.image.alt : ''}
+                          className={`${styles.image} relative w-full h-auto`}
+                        />
+                      )}
 
-                        {item.video_local && (
-                              <div className="video absolute w-full h-full overflow-hidden top-0 z-1" >
-                                <div className="video-inner absolute block w-full h-full">
-                                  <video 
-                                    className="html-video aspect-video"
-                                    width="640" 
-                                    height="360"
-                                    autoPlay
-                                    controls
-                                    loop
-                                    muted
-                                    preload="auto">
-                                    <source src={`${item.video_local?.permalink}`} type="video/mp4"></source>
-                                  </video>
-                              </div>
-                          </div>
-                        )}
-                        
-                        <div className='absolute flex w-full h-full z-10 left-0 top-0' onClick={() => openOrClose(0)}></div>
-                      </div>
-                    )}
+                      {item.video_embed && (
+                            <div className="video absolute w-full h-full overflow-hidden top-0 z-1" >
+                              <div className="video-inner absolute block w-full h-full">
+                                <iframe src={`${item.video_embed}?autoplay=1&loop=1&autopause=0&background=1&muted=1`} 
+                                title="Vimeo video player"
+                                className="vimeo w-full h-full"
+                                width="640" height="360"
+                                allow="autoplay; fullscreen"></iframe>
+                            </div>
+                        </div>
+                      )}
+
+                      {item.video_local && (
+                            <div className="video absolute w-full h-full overflow-hidden top-0 z-1" >
+                              <div className="video-inner absolute block w-full h-full">
+                                <video 
+                                  className="html-video w-full aspect-video"
+                                  width="640" 
+                                  height="360"
+                                  autoPlay
+                                  controls
+                                  loop
+                                  muted
+                                  preload="auto">
+                                  <source src={`${item.video_local?.permalink}`} type="video/mp4"></source>
+                                </video>
+                            </div>
+                        </div>
+                      )}
+                      
+                      <div className='absolute flex w-full h-full z-10 left-0 top-0' onClick={() => openOrClose(0)}></div>
+                    </div>
+
                     <div className={`${styles.hover} relative z-5 text-40 font-500 leading-none text-white opacity-0`}>
                       {item.headline}
                     </div>
@@ -330,7 +330,7 @@ const GalleryHorizontalBlock = ({ block }: { block: any }) => {
                     <div className="video relative w-full h-full overflow-hidden aspect-video top-0 z-1" >
                       <div className="video-inner absolute block w-full h-full">
                         <video 
-                          className="html-video aspect-video"
+                          className="html-video w-full aspect-video"
                           width="640" 
                           height="360"
                           autoPlay

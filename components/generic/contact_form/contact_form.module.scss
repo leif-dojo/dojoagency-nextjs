@@ -7,13 +7,20 @@
 	animation: popfade 1000ms ease both;
 
   .bg{
+    transition: all 500ms ease-out 0ms;
+    -webkit-animation: popfade 500ms ease both;
+    animation: popfade 500ms ease both;
     img{
-      opacity: 0.1;
+      opacity: 0.5;
+      min-width: 100%;
+      min-height: 100%;
+      object-fit: cover;
+      transition: all 500ms ease-in-out;
     }
   }
 
-  .inputWrapper {
-    
+  .step {
+
   }
 
   .close {

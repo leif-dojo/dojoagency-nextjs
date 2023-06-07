@@ -18,6 +18,9 @@
             .hover {
                 opacity: 1;
             }
+            .headline {
+                opacity: 0;
+            }
         }
     }
 
@@ -36,8 +39,21 @@
         z-index: 50;
         opacity: 0;
     }
+    .headline {
+        opacity: 1;
+        z-index: 55;
+    }
     .hover {
         opacity: 0;
         z-index: 55;
+    }
+    .video {
+
+        iframe, 
+        video {
+            width: 100%!important;
+            height: auto!important;
+            aspect-ratio: 16/9;
+        }
     }
 }
