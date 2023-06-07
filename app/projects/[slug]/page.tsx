@@ -25,7 +25,7 @@ export default async function Page(context: { params: { slug: string } }) {
   }
 
   return (
-  <div className="page bg-white text-slate pt-120">
+  <div className="page bg-white text-slate pt-100">
     <Repeater blocks={data.entry?.components} />
 
     <div className='container w-full flex flex-nowrap mx-auto py-40'>

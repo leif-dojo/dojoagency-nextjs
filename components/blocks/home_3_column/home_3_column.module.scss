@@ -1,11 +1,16 @@
 @import '../../../styles/variables';
 
 .root {
+    .column {
+        width: 100%;
+        @screen md {
+            width: calc(33.333% - 20px);
+        }
+        .imagewrap {
+            aspect-ratio: 2/1;
+            .image {
 
-}
-.column {
-    width: 100%;
-    @screen md {
-        width: calc(33.333% - 20px);
+            }
+        }
     }
 }

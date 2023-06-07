@@ -58,8 +58,8 @@ const Home3Column = ({ block }: { block: any }) => {
   }, []);
   
   return (
-  <section ref={sectionRef} className="relative w-full bg-aqua text-white py-280 z-10">
-    <div className="px-50 md:px-100 block md:flex gap-30">
+  <section ref={sectionRef} className={`${styles.root} relative w-full bg-aqua text-white py-280 z-10`}>
+    <div className="px-50 md:px-100 block md:flex gap-100">
 
       {block?.columns?.map((block:any, index:any) => {
         //console.log('col: ', index, block)
@@ -68,15 +68,14 @@ const Home3Column = ({ block }: { block: any }) => {
             <a href={`${block?.link ? block?.link: null}`} className={``}>
             <div className='w-full pb-10'>
               {block.icon && (
-                <div className='inline-block w-80 mr-10'>
-                  <img src={block?.icon?.permalink} />
-                  {/*<Image
-                    src="/images/placeholder.jpg"
-                    alt="Picture of the author"
-                    width={500}
-                    height={500}
-                  />*/}
-                  
+                <div className={`${styles.imagewrap} w-full overflow-hidden`}>
+                  <Image
+                    src={block?.icon?.permalink}
+                    width={block?.icon?.width}
+                    height={block?.icon?.height}
+                    alt={block?.icon?.alt ? block?.icon.alt : ''}
+                    className={`${styles.image} f-full h-auto  object-contain`}
+                  />
                 </div>
               )}
               <div className='inline-block text-80 leading-90 font-200'>

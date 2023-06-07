@@ -105,12 +105,14 @@ const HomePartners = ({ block }: { block: any }) => {
               {step === index && (
                 <div className="block md:flex">
                   <div className="w-full md:w-1/2 text-center">
-                    <div className={`${styles.wrap} w-3/4 mx-auto relative pt-30 pb-50`}>
-                      <div ref={RecentRef} className="recent text-52 font-600">Recent Partners</div>
-                      <div ref={CircleRef} className={`${styles.oval} circle absolute left-0 top-0 w-full h-full`}><Oval /></div>
-                      <div className="w-full md:w-1/2 text-center mx-auto aspect-video">
+                    <div ref={RecentRef} className="recent text-52 font-600 pb-20">Recent Partners</div>
+
+                    <div className={`w-3/4 mx-auto relative`}>
+                      
+                      <div className={`${styles.wrap} relative w-full text-center mx-auto pt-20 pb-30 flex items-center`}>
+                        <div ref={CircleRef} className={`${styles.oval} circle absolute left-0 top-0 w-full h-full`}><Oval /></div>
                         {block.client[0].client_logo && (
-                          <div ref={LogoRef} className='logo relative block w-full mr-auto ml-auto z-10'>
+                          <div ref={LogoRef} className={`${styles.logo} logo relative block w-full mr-auto ml-auto z-10`}>
                             <Image
                               src={block.client[0].client_logo?.permalink}
                               width={block.client[0].client_logo?.width}
@@ -120,8 +122,8 @@ const HomePartners = ({ block }: { block: any }) => {
                           </div>
                         )}
                       </div>
-                      <div className="relative text-left mt-30">
-                        <div ref={ArrowRef} className={`${styles.ovalarrow} arrow absolute left-150 bottom-full w-[50rem]`}><OvalArrow /></div>
+                      <div className="relative text-left mt-80">
+                        <div ref={ArrowRef} className={`${styles.ovalarrow} arrow absolute left-150 bottom-full w-[55rem]`}><OvalArrow /></div>
                         <div ref={FactRef} className='fact font-nothingyoucoulddo text-40 font-300 text-blue'>{block.fact}</div>
                       </div>
                     </div>
@@ -131,7 +133,7 @@ const HomePartners = ({ block }: { block: any }) => {
                     <div ref={CopyRef} className='copy text-40 leading-60 font-300 text-white' dangerouslySetInnerHTML={{ __html: block.description }}></div>
                     <div ref={NextRef} className='next w-full flex text-left pt-20 text-blue'>
                       <NextArrow />
-                      <div className='font-nothingyoucoulddo text-40 font-400 text-blue ml-10 cursor-pointer' aria-label="Next" onClick={() => advance()}>Next</div>
+                      <div className='font-nothingyoucoulddo text-40 font-400 text-blue ml-10 mt-10 cursor-pointer' aria-label="Next" onClick={() => advance()}>Next</div>
                     </div>
                   </div>
                 </div>

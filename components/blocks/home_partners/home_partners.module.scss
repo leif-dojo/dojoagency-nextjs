@@ -1,23 +1,28 @@
 @import '../../../styles/variables';
 
 .root {
-
-}
-
-.oval {
-    svg{
-        position: relative;
-        width: 100%;
-        height: auto;
-        path{
+    .wrap {
+        aspect-ratio: 2.6/1;
+    }
+    .logo {
+        width: 70%;
+        max-height: 100%;
+    }
+    .oval {
+        svg{
             position: relative;
+            width: 100%;
+            height: auto;
+            path{
+                position: relative;
+            }
         }
     }
-}
-.ovalarrow{
-    svg{
-        position: relative;
-        width: 100%;
-        height: auto;
+    .ovalarrow{
+        svg{
+            position: relative;
+            width: 100%;
+            height: auto;
+        }
     }
 }

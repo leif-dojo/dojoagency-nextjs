@@ -83,7 +83,7 @@ const FooterBlock = ({
           )}
           {footer.video_local && (
               <div className="video-wrap absolute w-full h-full overflow-hidden top-0 right-0 z-0">
-                <div className={`${styles.video} absolute block w-full h-full opacity-50 aspect-video`}>
+                <div className={`${styles.video} absolute block w-full h-full opacity-70 aspect-video`}>
                   <video 
                     className="vimeo aspect-video w-full mr-0 ml-auto"
                     width="640" 

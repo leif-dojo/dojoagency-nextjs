@@ -52,7 +52,7 @@ console.log("PAGE: ", context.params)
   }
 
   return (
-  <div className="page bg-white pt-80">
+  <div className="page bg-white pt-100">
     <Repeater blocks={data.entry?.components} />
   </div>
   )

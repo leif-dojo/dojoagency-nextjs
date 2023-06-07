@@ -18,7 +18,7 @@ export default async function Page(context: { params: { slug: string } }) {
   //console.log("PAGE HOME: ", context.params)
   //console.log("page home HomeHeroBlock: ", HomeHeroBlock)
   return (
-    <div className={`page pt-80`}>
+    <div className={`page pt-100`}>
       <Repeater blocks={data.entry.components} />
     </div>
   )
