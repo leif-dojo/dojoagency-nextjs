@@ -4,6 +4,7 @@ import styles from './text_scroller.module.scss'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger'
 import ScrollText  from '@/utils/SplitText'
+import Arrow from 'public/icons/icon-arrow-down.svg'
 gsap.registerPlugin(ScrollTrigger)
 
 export const typename = 'Set_Components_TextScroller'
@@ -118,6 +119,7 @@ const TextScrollerBlock = ({ block }: { block: any }) => {
           ease: 'power3.out'
       },
       )*/
+
     }, sectionRef);
     return () => ctx.revert();
   }, []);
@@ -126,12 +128,12 @@ const TextScrollerBlock = ({ block }: { block: any }) => {
   <section ref={sectionRef} className={`${styles.root} relative w-full bg-black text-white overflow-hidden`}>
     <div className={`${styles.background} absolute h-full w-full left-0 top-0`}>
         {block.background_image && (
-          <div className='w-full h-full opacity-30 fixed top-0'>
+          <div className='w-full h-full opacity-50 fixed top-0'>
             <img src={block.background_image?.permalink} className='aspect-video'/>
           </div>
         )}
         {block.video_embed && (
-          <div className="video fixed w-full h-full overflow-hidden top-0 opacity-30" >
+          <div className="video fixed w-full h-full overflow-hidden top-0 opacity-50" >
             <div className="video-inner absolute block w-full h-full">
               <iframe src={`${block.video_embed}?autoplay=1&loop=1&autopause=0&background=1&muted=1`} 
               title="Vimeo video player"
@@ -143,7 +145,7 @@ const TextScrollerBlock = ({ block }: { block: any }) => {
         )}
 
         {block.video_local && (
-          <div className="video fixed w-full h-full overflow-hidden top-0 opacity-30" >
+          <div className="video fixed w-full h-full overflow-hidden top-0 opacity-50" >
             <div className="video-inner absolute block w-full h-full">
               <video 
                 className="html-video aspect-video"
@@ -166,6 +168,9 @@ const TextScrollerBlock = ({ block }: { block: any }) => {
           <div ref={TextRef} className='relative z-10 wysiwyg text-80 leading-100 font-500' dangerouslySetInnerHTML={{ __html: block.wysiwyg }}></div>
         </div>
       </div>
+    </div>
+    <div className={`${styles.arrow} fixed bottom-0 flex justify-center w-full text-center py-20`}>
+      <Arrow />
     </div>
   </section>
 )}

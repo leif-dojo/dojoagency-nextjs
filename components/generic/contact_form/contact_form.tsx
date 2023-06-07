@@ -3,6 +3,7 @@ import React, { useContext, useEffect, useState } from 'react'
 import Image from 'next/image'
 import { useThemeContext } from '@/context/theme'
 import styles from './contact_form.module.scss'
+import Arrow from '@/public/icons/icon-triangle.svg'
 
 const NavBlock = ({
   data,
@@ -56,15 +57,15 @@ const NavBlock = ({
               </div>
                 <div className="relative  w-full h-full flex items-center z-10 flex justify-items-end">
                   <div className={`w-1/2 ml-auto text-left`}>
-                    <div className='text-90 font-300 text-slate'>
+                    <div className='text-90 font-300 text-slate pb-40'>
                       Connect With Us
                     </div>
                     <div className={`${styles.inputWrapper} w-full`}>
-                      <label className="w-full text-left text-slate" htmlFor="name">Name*</label>
+                      <label className="w-full text-left text-20 leading-none font-300 pb-20 text-slate" htmlFor="name">Name*</label>
                       <input
                         id="name"
                         placeholder=""
-                        className="w-full"
+                        className="w-full text-20"
                         onChange={(e) =>
                           setDetailData({ ...detailData, ['name']: e.target.value })
                         }
@@ -98,15 +99,15 @@ const NavBlock = ({
               </div>
                   <div className="relative  w-full h-full flex items-center z-10 flex justify-items-end">
                   <div className={`w-1/2 ml-auto text-left`}>
-                    <div className='text-50 font-300 text-gold'>
+                    <div className='text-90 font-300 text-gold pb-40'>
                       Connect With Us
                     </div>
                     <div className={`${styles.inputWrapper} w-full`}>
-                      <label className="w-full text-left text-white" htmlFor="email">Email*</label>
+                      <label className="w-full text-left text-20 leading-none font-300 pb-20 text-white" htmlFor="email">Email*</label>
                       <input
                         id="email"
                         placeholder=""
-                        className="w-full"
+                        className="w-full text-20"
                         onChange={(e) =>
                           setDetailData({ ...detailData, ['email']: e.target.value })
                         }
@@ -140,15 +141,16 @@ const NavBlock = ({
               </div>
                   <div className="relative  w-full h-full flex items-center z-10 flex justify-items-end">
                   <div className={`w-1/2 ml-auto text-left`}>
-                    <div className='text-50 font-300 text-slate'>
+                    <div className='text-90 font-300 text-slate pb-40'>
                       Connect With Us
                     </div>
                     <div className={`${styles.inputWrapper} w-full`}>
-                      <label className="w-full text-slate" htmlFor="message">Message*</label>
+                      <label className="w-full text-left text-20 leading-none font-300 pb-20 text-slate" htmlFor="message">Message*</label>
                       <textarea
                         id="message"
                         placeholder=""
-                        className="w-full"
+                        className="w-full text-20"
+                        rows={6}
                         onChange={(e) =>
                           setDetailData({ ...detailData, ['message']: e.target.value })
                         }
@@ -182,14 +184,17 @@ const NavBlock = ({
               </div>
               <div className="relative  w-full h-full flex items-center z-10 flex justify-items-end">
                 <div className={`w-1/2 ml-auto text-left`}>
-                  <div className='text-70 font-300 text-slate'>
+                  <div className='text-90 font-300 text-slate pb-40'>
                     Thanks! We will <br /> be in touch soon.
                   </div>
                   <div className={`w-1/2`}>
 
                   </div>
                   <div className='w-full text-left pt-20'>
-                    <div className='font-nothingyoucoulddo text-30 font-400 text-slate' onClick={() => openOrClose()}>Return to home</div>
+                    <div className='font-nothingyoucoulddo text-30 font-400 text-slate inline-flex' onClick={() => openOrClose()}>
+                      <Arrow className="rotate-180"/>
+                      <div className="font-nothingyoucoulddo text-40 font-400 text-slate pl-20">Return to home</div>
+                    </div>
                   </div>
                 </div>
               </div>

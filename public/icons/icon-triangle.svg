@@ -1,9 +1,6 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!-- Generator: Adobe Illustrator 16.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
-<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 width="31.563px" height="37.813px" viewBox="-16.281 30.594 31.563 37.813" enable-background="new -16.281 30.594 31.563 37.813"
 	 xml:space="preserve">
 <title  id="playIconTitle">Play</title>
-<path fill="#FFFFFF" stroke="#00AEEF" stroke-linecap="square" d="M14.281,49.531l-30,18v-36L14.281,49.531z"/>
+<path fill="transparent" stroke="currentColor" stroke-linecap="square" d="M14.281,49.531l-30,18v-36L14.281,49.531z"/>
 </svg>
