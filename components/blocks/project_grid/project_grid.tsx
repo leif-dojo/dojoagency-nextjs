@@ -1,5 +1,5 @@
 "use client"
-import React, { useRef, useState, useLayoutEffect } from 'react'
+import React, { useContext, useEffect, useState, useRef, useLayoutEffect } from 'react'
 import Image from 'next/image'
 import styles from './project_grid.module.scss'
 import { useThemeContext } from '@/context/theme'
@@ -8,11 +8,12 @@ import Arrow from '@/public/icons/icon-triangle.svg'
 
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger'
+gsap.registerPlugin(ScrollTrigger)
 
 export const typename = 'Set_Components_ProjectGrid'
 
 const ProjectGridBlock = ({ block }: { block: any }) => {
-
+  const sectionRef = useRef<HTMLDivElement>(null)
   const [active, setActive] = useState(false)
   const [activeindex, setActiveIndex] = useState(1)
 
@@ -44,8 +45,32 @@ const ProjectGridBlock = ({ block }: { block: any }) => {
     setActiveIndex(prev)
   }
 
+  useLayoutEffect(() => {
+    let ctx = gsap.context(() => {
+
+      //fades
+      gsap
+      .timeline({
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: 'top bottom',
+          //end: 'bottom bottom',
+          //scrub: true,
+          toggleActions: "restart none none reverse",
+          //markers: true,
+        },
+      }).fromTo(
+        ".project",
+        { autoAlpha: 0, y: 50 },
+        { duration: 0.9, autoAlpha: 1, y: 0, stagger: 0.5 }
+      )
+
+    }, sectionRef);
+    return () => ctx.revert();
+  }, []);
+
   return (
-  <section className={`${styles.root} w-full bg-white text-slate overflow-hidden`}>
+  <section ref={sectionRef} className={`${styles.root} w-full bg-white text-slate overflow-hidden`}>
     <div className="px-50 md:px-100 py-100">
       <div className="w-full">
         <div className="w-full">
@@ -61,7 +86,7 @@ const ProjectGridBlock = ({ block }: { block: any }) => {
         {block?.project_grid?.map((block:any, index:any) => {
           //console.log('col: ', index, block)
           return (
-            <div className={`${styles.project} relative  overflow-hidden cursor-pointer`} onClick={() => openOrClose(index)} key={index}>
+            <div className={`${styles.project} project relative overflow-hidden cursor-pointer`} onClick={() => openOrClose(index)} key={index}>
               <div className="block w-full h-full">
                 <div className={`w-full px-30 py-20`}>
                   {block.project_title && (

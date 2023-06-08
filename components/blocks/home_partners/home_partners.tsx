@@ -107,7 +107,7 @@ const HomePartners = ({ block }: { block: any }) => {
                   <div className="w-full md:w-1/2 text-center">
                     <div ref={RecentRef} className="recent text-52 font-600 pb-20">{block.headline}</div>
 
-                    <div className={`w-3/4 mx-auto relative`}>
+                    <div className={`w-full md:w-3/4 mx-auto relative`}>
                       
                       <div className={`${styles.wrap} relative w-full text-center mx-auto pt-20 pb-30 flex items-center`}>
                         <div ref={CircleRef} className={`${styles.oval} circle absolute left-0 top-0 w-full h-full`}><Oval /></div>

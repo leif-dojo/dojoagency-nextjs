@@ -1,21 +1,72 @@
-//"use client"
-import React, { useContext, useEffect, useState } from 'react'
+"use client"
+import React, { useRef, useLayoutEffect } from 'react'
 import Image from 'next/image'
 import styles from './timeline.module.scss'
+import { gsap } from 'gsap'
+import { ScrollTrigger } from 'gsap/dist/ScrollTrigger'
+import { Power0 } from 'gsap-trial'
+gsap.registerPlugin(ScrollTrigger)
 
 export const typename = 'Set_Components_Timeline'
-
 const TimelineBlock = ({ block }: { block: any }) => {
+  const sectionRef = useRef<HTMLDivElement>(null)
+  const headlineRef = useRef<HTMLDivElement>(null)
+  const wysiwygRef = useRef<HTMLDivElement>(null)
+
+  useLayoutEffect(() => {
+    let ctx = gsap.context(() => {
+      gsap
+      .timeline({
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: 'top bottom',
+          //end: 'bottom bottom',
+          //scrub: true,
+          toggleActions: "restart none none reverse"
+          //markers: true,
+        },
+      })
+      .fromTo(
+        headlineRef.current,
+        { autoAlpha: 0, y: 50 },
+        { duration: 0.5, autoAlpha: 1, y: 0 },0.2
+      )
+      .fromTo(
+        wysiwygRef.current,
+        { autoAlpha: 0, y: 50 },
+        { duration: 0.5, autoAlpha: 1, y: 0 },0.2
+      )
+
+      //fades
+      gsap
+      .timeline({
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: 'center bottom',
+          //end: 'bottom bottom',
+          //scrub: true,
+          toggleActions: "restart none none reverse",
+          //markers: true,
+        },
+      }).fromTo(
+        ".item",
+        { autoAlpha: 0, y: 50 },
+        { duration: 0.9, autoAlpha: 1, y: 0, stagger: 0.25 }
+      )
+
+    }, sectionRef);
+    return () => ctx.revert();
+  }, []);
 
   return (
-  <section className={`${styles.root} w-full bg-white text-slate`}>
+  <section ref={sectionRef} className={`${styles.root} w-full bg-white text-slate`}>
     <div className="px-100 py-100">
       <div className="w-full">
         <div className="w-full">
-          <div className='wysiwyg text-90 leading-120 font-300' dangerouslySetInnerHTML={{ __html: block.headline }}></div>
+          <div ref={headlineRef} className='wysiwyg text-90 leading-120 font-300' dangerouslySetInnerHTML={{ __html: block.headline }}></div>
         </div>
         <div className="w-full">
-          <div className='wysiwyg text-30 leading-40 font-300' dangerouslySetInnerHTML={{ __html: block.wysiwyg }}></div>
+          <div ref={wysiwygRef} className='wysiwyg text-30 leading-40 font-300' dangerouslySetInnerHTML={{ __html: block.wysiwyg }}></div>
         </div>
       </div>
 
@@ -24,7 +75,7 @@ const TimelineBlock = ({ block }: { block: any }) => {
         {block?.timeline?.map((block:any, index:any) => {
           console.log('col: ', index, block)
           return (
-            <div className={`${styles.item} relative flex-1`} key={index}>
+            <div className={`${styles.item} item relative flex-1`} key={index}>
               {block.image && (
                 <div className={`${styles.top} absolute w-full h-150 bottom-0`}>
                     <div className='absolute w-full h-full top-0 left-0 overflow-hidden'>

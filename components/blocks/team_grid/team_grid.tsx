@@ -1,13 +1,17 @@
 "use client"
-import React from 'react'
+import React, { useContext, useEffect, useState, useRef, useLayoutEffect } from 'react'
 import Image from 'next/image'
 import styles from './team_grid.module.scss'
 import { useThemeContext } from '@/context/theme'
 import Socials from '@/components/generic/social_icons/social_icons'
+import { gsap } from 'gsap'
+import { ScrollTrigger } from 'gsap/dist/ScrollTrigger'
+gsap.registerPlugin(ScrollTrigger)
 
 export const typename = 'Set_Components_ImageGrid'
 
 const ImageGridBlock = ({ block }: { block: any }) => {
+  const sectionRef = useRef<HTMLDivElement>(null)
   const { cursorType, cursorChangeHandler} = useThemeContext();
 
   const onMouseEnter = () => {
@@ -18,9 +22,33 @@ const ImageGridBlock = ({ block }: { block: any }) => {
       cursorChangeHandler("default")
   }
 
+  useLayoutEffect(() => {
+    let ctx = gsap.context(() => {
+
+      //fades
+      gsap
+      .timeline({
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: 'top bottom',
+          //end: 'bottom bottom',
+          //scrub: true,
+          toggleActions: "restart none none reverse",
+          //markers: true,
+        },
+      }).fromTo(
+        ".profile",
+        { autoAlpha: 0, y: 50 },
+        { duration: 0.9, autoAlpha: 1, y: 0, stagger: 0.5 }
+      )
+
+    }, sectionRef);
+    return () => ctx.revert();
+  }, []);
+
   //console.log("ImageGridBlock", block);
   return (
-  <section className={`${styles.root} w-full bg-white text-slate overflow-hidden`}>
+  <section ref={sectionRef} className={`${styles.root} w-full bg-white text-slate overflow-hidden`}>
     <div className="px-50 md:px-100 py-100">
       <div className="w-full">
         <div className="w-full">
@@ -35,7 +63,7 @@ const ImageGridBlock = ({ block }: { block: any }) => {
         {block?.team_grid?.map((block:any, index:any) => {
           console.log('col: ', index, block)
           return (
-            <div className={`${styles.project} relative  overflow-hidden bg-grey w-full`} key={index}>
+            <div className={`${styles.project} profile relative  overflow-hidden bg-grey w-full`} key={index}>
               <div className="w-full h-auto">
                 <div className='relative w-full h-full top-0 left-0 aspect-square'>
                   {block.profile_image && (

@@ -1,24 +1,57 @@
 "use client"
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useRef, useLayoutEffect } from 'react'
 import styles from './headline_hero.module.scss'
 import Image from 'next/image'
 import ShareIcons from '@/components/generic/share_icons/share_icons'
 import IconLink from '@/public/icons/icon-link.svg'
+import { gsap } from 'gsap'
+import { ScrollTrigger } from 'gsap/dist/ScrollTrigger'
+gsap.registerPlugin(ScrollTrigger)
 
 export const typename = 'Set_Components_Wysiwyg'
-
 const WysiwygBlock = ({ block }: { block: any }) => {
-  //console.log("Headline client: ", block)
-  
+  const sectionRef = useRef<HTMLDivElement>(null)
+  const headlineRef = useRef<HTMLDivElement>(null)
+  const sideRef = useRef<HTMLDivElement>(null)
+
   const copyToClip = () => {
     navigator.clipboard.writeText(location.href);
   }
 
+  useLayoutEffect(() => {
+    let ctx = gsap.context(() => {
+
+      gsap
+      .timeline({
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: 'top bottom',
+          //end: 'bottom bottom',
+          //scrub: true,
+          toggleActions: "restart none none reverse"
+          //markers: true,
+        },
+      })
+      .fromTo(
+        headlineRef.current,
+        { autoAlpha: 0, y: 50 },
+        { duration: 0.5, autoAlpha: 1, y: 0 }
+      )
+      .fromTo(
+        sideRef.current,
+        { autoAlpha: 0, y: 50 },
+        { duration: 0.5, autoAlpha: 1, y: 0 }
+      )
+
+    }, sectionRef);
+    return () => ctx.revert();
+  }, []);
+
   return (
-    <section className={`${styles.root} w-full bg-white text-slate`}>
+    <section ref={sectionRef} className={`${styles.root} w-full bg-white text-slate`}>
       <div className="px-50 md:px-100 py-50">
         <div className="block md:flex">
-          <div className="w-full md:w-8/12">
+          <div ref={headlineRef} className="w-full md:w-8/12">
             {block.eyebrow && (
               <div className="text-20 leading-none font-300 uppercase mb-10">
                 {block.eyebrow}
@@ -27,7 +60,7 @@ const WysiwygBlock = ({ block }: { block: any }) => {
             <div className='wysiwyg text-110 leading-140 font-300' dangerouslySetInnerHTML={{ __html: block.headline }}></div>
           </div>
           <div className="w-full md:w-4/12 text-right">
-            <div className="w-full md:w-10/12 ml-auto mr-0 text-left pt-30">
+            <div ref={sideRef} className="w-full md:w-10/12 ml-auto mr-0 text-left pt-30">
               <div className="w-full text-25 leading-none font-300 pb-20">
                 {block.sharing_title}
               </div>

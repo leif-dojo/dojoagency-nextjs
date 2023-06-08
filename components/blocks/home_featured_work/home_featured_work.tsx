@@ -199,8 +199,8 @@ const HomeFeaturedWork = ({ block }: { block: any }) => {
 
   return (
   <section ref={sectionRef} className={`${styles.root} relative w-full bg-blue z-10`}>
-    <div className="px-100 py-100">
-      <div ref={HeadlineRef} className='w-full font-lato text-80 leading-90 font-300 text-white pb-20 pl-80'>
+    <div className="px-50 md:px-100 py-100">
+      <div ref={HeadlineRef} className='w-full font-lato text-80 leading-90 font-300 text-white pb-20 pl-0 md:pl-80'>
         {block?.headline}
       </div>
       <div className={`${styles.grid} block md:grid w-full `}>

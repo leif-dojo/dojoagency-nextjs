@@ -4,6 +4,7 @@ import styles from './home_hero.module.scss'
 import Logo from 'public/icons/Dojo-Logo_Horizontal_White_RGB.svg'
 import Arrow from 'public/icons/icon-arrow-down.svg'
 import { useThemeContext } from '@/context/theme'
+import { useIsMobile } from '@/utils/general'
 
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger'
@@ -22,8 +23,11 @@ const HomeHeroBlock = ({ block }: { block: any }) => {
   const DownRef = useRef<HTMLDivElement>(null)
   const RainRef = useRef<HTMLDivElement>(null)
 
+  const isMobile = useIsMobile(false, 'md')
+
   useLayoutEffect(() => {
     let ctx = gsap.context(() => {
+      console.log("ismobile: ", isMobile)
       gsap
       .timeline({
         scrollTrigger: {
@@ -61,7 +65,7 @@ const HomeHeroBlock = ({ block }: { block: any }) => {
       .timeline({
         scrollTrigger: {
           trigger: sectionRef.current,
-          start: "center 50%",
+          start: isMobile ? "center 50%" : "center 40%",
           end: "center 0%",
           scrub: true,
           // end: "+=500",

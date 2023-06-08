@@ -126,8 +126,8 @@ const HomeHeadlineBlock = ({ block }: { block: any }) => {
 
   return (
   <section ref={sectionRef} className={`${styles.root} relative w-full bg-white text-slate z-10`}>
-    <div className="px-20 py-160">
-      <div className="w-full px-100">
+    <div className="px-50 md:px-20 py-160">
+      <div className="w-full px-0 md:px-100">
         <div ref={TelegraphRef} className={`${styles.telegraph} w-100 mb-20`}>
           <Telegraph />
         </div>
@@ -137,7 +137,7 @@ const HomeHeadlineBlock = ({ block }: { block: any }) => {
           <CommunicationArts />
         </div>
       </div>
-      <div className="w-full px-100">
+      <div className="w-full px-0 md:px-100">
         <div className="w-full flex">
           <div ref={TypewriterRef} className={`${styles.typewriter} w-100 mb-20`}>
             <Typewriter />

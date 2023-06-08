@@ -1,21 +1,49 @@
 "use client"
-import React from 'react'
+import React, { useContext, useEffect, useState, useRef, useLayoutEffect } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import styles from './featured_work.module.scss'
 export const typename = 'Set_Components_FeaturedWork'
+import { gsap } from 'gsap'
+import { ScrollTrigger } from 'gsap/dist/ScrollTrigger'
+gsap.registerPlugin(ScrollTrigger)
 
 const HomeFeaturedWork = ({ block }: { block: any }) => {
+  const sectionRef = useRef<HTMLDivElement>(null)
+
+  useLayoutEffect(() => {
+    let ctx = gsap.context(() => {
+
+      //fades
+      gsap
+      .timeline({
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: 'top bottom',
+          //end: 'bottom bottom',
+          //scrub: true,
+          toggleActions: "restart none none reverse"
+          //markers: true,
+        },
+      }).fromTo(
+        ".item",
+        { autoAlpha: 0, y: 50 },
+        { duration: 0.9, autoAlpha: 1, y: 0, stagger: 0.5 }
+      )
+
+    }, sectionRef);
+    return () => ctx.revert();
+  }, []);
   
   return(
-    <section className={`${styles.root} w-full bg-white text-slate overflow-hidden`}>
+    <section ref={sectionRef} className={`${styles.root} w-full bg-white text-slate overflow-hidden`}>
     <div className="px-100 py-100">
       <div className={`${styles.grid} grid grid-cols-2 md:grid-cols-3 gap-50 w-full `}>
 
         {block?.featured_projects?.map((block: any, index: any) => {
           //console.log('col: ', index, block)
           return (
-            <a href={`${block?.link}`} className={`${styles.project} relative  overflow-hidden bg-dark f-full`} key={index}>
+            <a href={`${block?.link}`} className={`${styles.project} item relative overflow-hidden bg-dark f-full`} key={index}>
               <span className="flex justify-center items-center w-full h-full">
                 {block.image && (
                   <span className='absolute w-full h-full top-0 left-0'>
