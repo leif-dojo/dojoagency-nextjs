@@ -13,6 +13,7 @@ import useMousePosition from "@/hooks/useMousePosition";
 
 const HomeFeaturedWork = ({ block }: { block: any }) => {
   const sectionRef = useRef<HTMLDivElement>(null)
+  const HeadlineRef = useRef<HTMLDivElement>(null)
   const NextRef = useRef<HTMLDivElement>(null)
   const { x, y } = useMousePosition();
 
@@ -37,8 +38,34 @@ const HomeFeaturedWork = ({ block }: { block: any }) => {
       },
       )
 
-      //Add in elements
+            //fades
+      //tele
       gsap
+      .timeline({
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: 'top bottom',
+          //end: 'bottom bottom',
+          //scrub: true,
+          toggleActions: "restart none none reverse"
+          //markers: true,
+        },
+      }).fromTo(
+        HeadlineRef.current,
+        {alpha: 0, y: 50 }, 
+        {alpha: 1, y: 0, duration: 0.3}
+      ).fromTo(
+        ".project",
+        { autoAlpha: 0, y: 50 },
+        { duration: 0.9, autoAlpha: 1, y: 0, stagger: 0.5 }
+      ).fromTo(
+        NextRef.current,
+      {alpha: 0, y: -50 }, 
+      {alpha: 1, y: 0, duration: 0.3}
+    )
+
+      //Add in elements
+      /*gsap
         .timeline({
           scrollTrigger: {
             trigger: sectionRef.current,
@@ -52,7 +79,7 @@ const HomeFeaturedWork = ({ block }: { block: any }) => {
           NextRef.current,
         {alpha: 0, y: -50 }, 
         {alpha: 1, y: 0, duration: 0.3}
-      )
+      )*/
 
 
     }, sectionRef);
@@ -173,7 +200,7 @@ const HomeFeaturedWork = ({ block }: { block: any }) => {
   return (
   <section ref={sectionRef} className={`${styles.root} relative w-full bg-blue z-10`}>
     <div className="px-100 py-100">
-      <div className='w-full font-lato text-80 leading-90 font-300 text-white pb-20 pl-80'>
+      <div ref={HeadlineRef} className='w-full font-lato text-80 leading-90 font-300 text-white pb-20 pl-80'>
         {block?.headline}
       </div>
       <div className={`${styles.grid} block md:grid w-full `}>

@@ -162,7 +162,7 @@ const TextScrollerBlock = ({ block }: { block: any }) => {
           </div>
         )}
     </div>
-    <div className="px-150 py-100">
+    <div className="px-50 md:px-150 py-100">
       <div className="grid grid-cols-12">
         <div className="w-full col-start-2 col-span-10">
           <div ref={TextRef} className='relative z-10 wysiwyg text-80 leading-100 font-500' dangerouslySetInnerHTML={{ __html: block.wysiwyg }}></div>
