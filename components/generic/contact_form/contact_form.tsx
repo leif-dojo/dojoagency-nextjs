@@ -4,6 +4,7 @@ import Image from 'next/image'
 import { useThemeContext } from '@/context/theme'
 import styles from './contact_form.module.scss'
 import Arrow from '@/public/icons/icon-triangle.svg'
+import { validateEmail } from '@/utils/general'
 
 const NavBlock = ({
   data,
@@ -29,6 +30,77 @@ const NavBlock = ({
     message: '',
   }
   const [detailData, setDetailData] = useState(initDetailData)
+
+  const validate1 = () => {
+    //console.log("validate 1: ", detailData.name)
+    if (!detailData.name) {
+      return false
+    }
+    setStep(2)
+  }
+  const validate2 = () => {
+    //console.log("validate 2: ", detailData.email)
+    const email = detailData.email;
+    if (!detailData.email || !validateEmail(email)) {
+      return false
+    }
+    setStep(3)
+  }
+
+  const validate3 = () => {
+    //console.log("validate 3: ", detailData.message)
+    if (!detailData.message) {
+      return false
+    }
+    submit()
+  }
+
+
+  const submit = async () => {
+    const { name, email, message } = detailData
+    const res = await submitForm(
+      name,
+      email,
+      message,
+    )
+    //console.log("res: ", res)
+    if (res.status && res.status === 'error') {
+      // TODO: show error message
+      console.error(res)
+    } else {
+      //console.log("Success")
+      setStep(4)
+    }
+  }
+
+  const submitForm = async (
+    email: string,
+    name: string,
+    message: string,
+  ) => {
+    const url = process.env.NEXT_PUBLIC_CONTACT_FORM;
+    const data = {
+      name: name,
+      email: email,
+      message: message
+    }
+    if(url){
+      return await fetch(url, {
+        method: 'POST',
+        headers: {
+          'Access-Control-Allow-Origin': '*',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      }).then((response) => { return response.json()})
+      .catch((error) => {
+        console.log('Error:', error)
+      })
+    } else {
+      return {status:'error'}
+    }
+  }
+
   //console.log("Contact Form: ", data)
   return (
     <>
@@ -70,7 +142,7 @@ const NavBlock = ({
                     />
                   </div>
                   <div className='w-full text-right pt-20'>
-                    <button className='btn btn-outline' onClick={() => setStep(2)}>Next</button>
+                    <button className='btn btn-outline' onClick={() => validate1()}>Next</button>
                   </div>
                 </div>
               </div>
@@ -112,7 +184,7 @@ const NavBlock = ({
                     />
                   </div>
                   <div className='w-full text-right pt-20'>
-                    <button className='btn btn-outline-white' onClick={() => setStep(3)}>Next</button>
+                    <button className='btn btn-outline-white' onClick={() => validate2()}>Next</button>
                   </div>
                 </div>
               </div>
@@ -155,7 +227,7 @@ const NavBlock = ({
                     />
                   </div>
                   <div className='w-full text-right pt-20'>
-                    <button className='btn btn-outline' onClick={() => setStep(4)}>Next</button>
+                    <button className='btn btn-outline' onClick={() => validate3()}>Next</button>
                   </div>
                 </div>
               </div>
