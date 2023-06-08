@@ -15,6 +15,7 @@ export const typename = 'Set_Components_HomeHero'
 
 const HomeHeroBlock = ({ block }: { block: any }) => {
   const sectionRef = useRef<HTMLDivElement>(null)
+  const PanelRef = useRef<HTMLDivElement>(null)
   const LogoRef = useRef<HTMLDivElement>(null)
   const HeadlineRef = useRef<HTMLDivElement>(null)
   const VideoRef = useRef<HTMLDivElement>(null)
@@ -76,7 +77,15 @@ const HomeHeroBlock = ({ block }: { block: any }) => {
         }, {
           fontSize: '150rem'
           //autoAlpha: 1
-        },
+        },0
+      )
+      .fromTo(
+        PanelRef.current,
+        {
+          backgroundColor: "#304a5f"
+        }, {
+          backgroundColor: "#FFFFFF", 
+        },0
       )
 
       //rain
@@ -136,7 +145,7 @@ const HomeHeroBlock = ({ block }: { block: any }) => {
   const { cursorType, cursorChangeHandler} = useThemeContext();
   //console.log("Home Hero: ", block)
   return (
-  <section className={`${styles.root} w-full bg-slate pt-60 pb-0`} onMouseEnter={() => cursorChangeHandler("peace")} onMouseLeave={() => cursorChangeHandler("default")}>
+  <section ref={sectionRef} className={`${styles.root} w-full bg-slate pt-60 pb-0`} onMouseEnter={() => cursorChangeHandler("peace")} onMouseLeave={() => cursorChangeHandler("default")}>
     <div ref={RainRef} id="rain" className={`${styles.rain} absolute w-full h-full top-0 left-0 z-9`}></div>
 
     <div className='w-full'>
@@ -145,7 +154,7 @@ const HomeHeroBlock = ({ block }: { block: any }) => {
           <Logo />
         </div>
       </div>
-      <div className={`relative w-full bg-slate px-50 md:px-100 mt-250 pb-120 z-6`}>
+      <div ref={PanelRef} className={`relative w-full bg-slate px-50 md:px-100 mt-250 pb-120 z-6`}>
         <div ref={HeadlineRef} className='w-full text-white text-center font-lato text-113 font-300 leading-none py-20'>
           {block?.headline}
         </div>

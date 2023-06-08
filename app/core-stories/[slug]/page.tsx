@@ -17,7 +17,7 @@ import Image from 'next/image'
 export default async function Page(context: { params: { slug: string } }) {
   // const { color, setColor} = useThemeContext();
   const client = getClient();
-console.log("PAGE: ", context.params)
+  //console.log("PAGE: ", context.params)
   const { data } = await client.query({
     query: PageQuery, 
     variables: {

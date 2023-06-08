@@ -46,7 +46,7 @@ const ProjectGridBlock = ({ block }: { block: any }) => {
 
   return (
   <section className={`${styles.root} w-full bg-white text-slate overflow-hidden`}>
-    <div className="px-100 py-100">
+    <div className="px-50 md:px-100 py-100">
       <div className="w-full">
         <div className="w-full">
           <div className='wysiwyg text-50 leading-none font-700 pb-10' dangerouslySetInnerHTML={{ __html: block.headline }}></div>
@@ -56,7 +56,7 @@ const ProjectGridBlock = ({ block }: { block: any }) => {
         </div>
       </div>
 
-      <div className={`${styles.grid} grid grid-cols-2 md:grid-cols-3 gap-30 w-full pt-30`} onMouseEnter={() => onMouseEnter()} onMouseLeave={() => onMouseLeave()}>
+      <div className={`${styles.grid} grid grid-cols-1 md:grid-cols-3 gap-30 w-full pt-30`} onMouseEnter={() => onMouseEnter()} onMouseLeave={() => onMouseLeave()}>
 
         {block?.project_grid?.map((block:any, index:any) => {
           //console.log('col: ', index, block)
@@ -95,7 +95,7 @@ const ProjectGridBlock = ({ block }: { block: any }) => {
 
     {active && (
       <div className={`${styles.popup} fixed   w-screen h-screen left-0 top-0 z-10`}>
-        <div className="relative px-100 py-40 w-full h-full overflow-y-scroll">
+        <div className="relative px-50 md:px-100 py-40 w-full h-full overflow-y-scroll">
         <div className="relative bg-white w-full h-auto">
 
           <div className={`${styles.close} absolute top-50 right-50 flex items-center z-10 cursor-pointer`} role="none" onClick={() => openOrClose(0)}>
@@ -103,7 +103,7 @@ const ProjectGridBlock = ({ block }: { block: any }) => {
             <div className={`font-lato text-slate text-80 font-300 leading-none`}>X</div>
           </div>
 
-          <div className="relative w-full px-150 pt-200 pb-100">
+          <div className="relative w-full px-50 md:px-150 pt-200 pb-100">
 
             <div className="block md:flex">
               <div className="w-full md:w-6/12 md:pr-30 flex items-center">
@@ -122,7 +122,7 @@ const ProjectGridBlock = ({ block }: { block: any }) => {
               </div>
               <div className="w-full md:w-6/12">
                 {block?.project_grid[activeindex].popup_image && (
-                  <div className='relative w-full pl-50'>
+                  <div className='relative w-full md:pl-50'>
                     <Image
                       src={block?.project_grid[activeindex].popup_image?.permalink}
                       width={block?.project_grid[activeindex].popup_image?.width}
@@ -137,17 +137,17 @@ const ProjectGridBlock = ({ block }: { block: any }) => {
 
 
           </div>
-          <div className='container w-full flex flex-nowrap px-100 py-100'>
+          <div className='container w-full flex flex-nowrap px-50 md:px-100 py-100'>
             <div className='flex w-1/2 justify-items-start'>
-              <div className="inline-flex mr-auto" aria-label="Previous" onClick={() => onPrev()}>
-                  <Arrow className="rotate-180"/>
+              <div className="inline-flex mr-auto text-blue" aria-label="Previous" onClick={() => onPrev()}>
+                  <Arrow className="w-30 h-auto rotate-180"/>
                   <span className="font-nothingyoucoulddo text-40 font-400 text-blue pl-20 cursor-pointer">Previous</span>
                 </div>
             </div>
             <div className='flex w-1/2 justify-items-end'>
-              <div  className="inline-flex ml-auto" aria-label="Next" onClick={() => onNext()}>
+              <div  className="inline-flex ml-auto text-blue" aria-label="Next" onClick={() => onNext()}>
                   <span className="font-nothingyoucoulddo text-40 font-400 text-blue pr-20 cursor-pointer">Next</span> 
-                  <Arrow />
+                  <Arrow className="w-30 h-auto" />
                 </div>
             </div>
           </div>

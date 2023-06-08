@@ -2,6 +2,7 @@
 import React, { useRef, useEffect, useLayoutEffect } from 'react'
 import styles from './home_headline.module.scss'
 import Telegraph from '@/public/telegraph.svg'
+import Typewriter from '@/public/typewriter.svg'
 import CommunicationArts from '@/public/communication-arts.svg'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger'
@@ -13,6 +14,7 @@ export const typename = 'Set_Components_HomeHeadline'
 const HomeHeadlineBlock = ({ block }: { block: any }) => {
   const sectionRef = useRef<HTMLDivElement>(null)
   const TelegraphRef = useRef<HTMLDivElement>(null)
+  const TypewriterRef = useRef<HTMLDivElement>(null)
   const ComRef = useRef<HTMLDivElement>(null)
   const SubRef = useRef<HTMLDivElement>(null)
 
@@ -91,10 +93,22 @@ const HomeHeadlineBlock = ({ block }: { block: any }) => {
           ease: 'power3.out' },0.5
       )
       .fromTo(
+        ".telegraph",
+        { autoAlpha: 1 },
+        { duration: 0.2, autoAlpha: 0,
+          ease: 'power3.out' }
+      )
+      .fromTo(
         ".paint",
         { autoAlpha: 0, x: -1000 },
         { duration: 0.9, autoAlpha: 1, x: 0,
           stagger: 0.5,
+          ease: 'power3.out' }
+      )
+      .fromTo(
+        ".typewriter",
+        { autoAlpha: 0 },
+        { duration: 0.5, autoAlpha: 1,
           ease: 'power3.out' }
       )
       .fromTo(
@@ -124,8 +138,13 @@ const HomeHeadlineBlock = ({ block }: { block: any }) => {
         </div>
       </div>
       <div className="w-full px-100">
-        <div ref={SubRef} className="sub text-55 leading-none font-600">
-          {block.subheadline}
+        <div className="w-full flex">
+          <div ref={TypewriterRef} className={`${styles.typewriter} w-100 mb-20`}>
+            <Typewriter />
+          </div>
+          <div ref={SubRef} className="sub text-55 leading-none font-600">
+            {block.subheadline}
+          </div>
         </div>
       </div>
     </div>
