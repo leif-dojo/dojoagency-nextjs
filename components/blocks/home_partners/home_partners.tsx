@@ -111,16 +111,28 @@ const HomePartners = ({ block }: { block: any }) => {
                       
                       <div className={`${styles.wrap} relative w-full text-center mx-auto pt-20 pb-30 flex items-center`}>
                         <div ref={CircleRef} className={`${styles.oval} circle absolute left-0 top-0 w-full h-full`}><Oval /></div>
-                        {item.client[0].client_logo && (
-                          <div ref={LogoRef} className={`${styles.logo} logo relative block w-full mr-auto ml-auto z-10`}>
-                            <Image
-                              src={item.client[0].client_logo?.permalink}
-                              width={item.client[0].client_logo?.width}
-                              height={item.client[0].client_logo?.height}
-                              alt={item.client[0].client_logo?.alt ? item.client[0].client_logo.alt : ''}
-                            />
-                          </div>
-                        )}
+                        {item.client[0].client_logo_dark ? 
+                          item.client[0].client_logo_dark && (
+                            <div ref={LogoRef} className={`${styles.logo} logo relative block w-full mr-auto ml-auto z-10`}>
+                              <Image
+                                src={item.client[0].client_logo_dark?.permalink}
+                                width={item.client[0].client_logo_dark?.width}
+                                height={item.client[0].client_logo_dark?.height}
+                                alt={item.client[0].client_logo_dark?.alt ? item.client[0].client_logo_dark.alt : ''}
+                              />
+                            </div>
+                          ) : 
+                          item.client[0].client_logo && (
+                            <div ref={LogoRef} className={`${styles.logo} logo relative block w-full mr-auto ml-auto z-10`}>
+                              <Image
+                                src={item.client[0].client_logo?.permalink}
+                                width={item.client[0].client_logo?.width}
+                                height={item.client[0].client_logo?.height}
+                                alt={item.client[0].client_logo?.alt ? item.client[0].client_logo.alt : ''}
+                              />
+                            </div>
+                          )
+                        }
                       </div>
                       <div className="relative text-left mt-80">
                         <div ref={ArrowRef} className={`${styles.ovalarrow} arrow absolute left-150 bottom-full w-[55rem]`}><OvalArrow /></div>

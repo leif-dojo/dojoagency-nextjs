@@ -20,7 +20,7 @@ const ImageGridBlock = ({ block }: { block: any }) => {
   //console.log("ImageGridBlock", block);
   return (
   <section className={`${styles.root} w-full bg-white text-slate overflow-hidden`}>
-    <div className="px-100 py-100">
+    <div className="px-50 md:px-100 py-100">
       <div className={`${styles.grid} grid grid-cols-2 md:grid-cols-3 gap-50 w-full `}>
 
         {block?.image_grid?.map((block:any, index:any) => {

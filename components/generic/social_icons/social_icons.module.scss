@@ -1,15 +1,26 @@
 @import '../../../styles/variables';
 
 .root {
- .icon {
-  width: 40px;
-  height: 40px;
-  border: 2px solid theme('colors.blue');
-  border-radius: 10px;
+  .icon {
+    width: 60rem;
+    height: 60rem;
+    border: 3rem solid theme('colors.blue');
+    border-radius: 10rem;
 
-  svg {
-    width: 60%;
-    height: auto;
+    svg {
+      width: 60%;
+      height: auto;
+    }
   }
- }
+  .iconsimple {
+    width: 40rem;
+    height: 40rem;
+    border: 0rem solid theme('colors.blue');
+    border-radius: 0rem;
+
+    svg {
+      width: 80%;
+      height: auto;
+    }
+  }
 }

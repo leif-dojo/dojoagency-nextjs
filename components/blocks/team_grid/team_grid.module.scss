@@ -1,0 +1,30 @@
+@import '../../../styles/variables';
+
+.root {
+
+    .project {
+
+        &:hover {
+            .image {
+                transform: scale(1.05);
+                transition: all 500ms ease-in-out;
+            }
+            .bio {
+                opacity: 1;
+            }
+        }
+    }
+
+
+    .image {
+        min-width: 100%;
+        min-height: 100%;
+        object-fit: cover;
+        transition: all 500ms ease-in-out;
+    }
+    .bio {
+        background-color: rgba(#000, 0.5);
+        opacity: 0;
+        z-index: 55;
+    }
+}

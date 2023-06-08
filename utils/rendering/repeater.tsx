@@ -21,6 +21,7 @@ import HeadlineBlock from "@/components/blocks/headline/headline"
 import HeadlineHeroBlock from "@/components/blocks/headline_hero/headline_hero"
 import TextScrollerBlock from "@/components/blocks/text_scroller/text_scroller"
 import ImageGridBlock from "@/components/blocks/image_grid/image_grid"
+import TeamGridBlock from "@/components/blocks/team_grid/team_grid"
 import PostNavigationBlock from "@/components/blocks/post_navigation/post_navigation"
 import ProjectGridBlock from "@/components/blocks/project_grid/project_grid"
 
@@ -84,6 +85,8 @@ const Repeater = ({ blocks }: { blocks: BlockInterface[] }) => (
                 return <PostNavigationBlock block={block} ></PostNavigationBlock>;
               case 'Set_Components_ProjectGrid':
                 return <ProjectGridBlock block={block} ></ProjectGridBlock>;
+              case 'Set_Components_TeamGrid':
+                return <TeamGridBlock block={block} ></TeamGridBlock>;
             }
           })()
         )

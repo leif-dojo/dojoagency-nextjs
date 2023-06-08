@@ -95,6 +95,23 @@ export default gql`
                       focus_css
                     }
                   }
+                  client_logo_dark {
+                    id
+                    ... on Asset_Assets {
+                      id
+                      alt
+                      url
+                      width
+                      height
+                      path
+                      permalink
+                      extension
+                      is_image
+                      is_video
+                      is_audio
+                      focus_css
+                    }
+                  }
                   client_name
                 }
               }
@@ -624,6 +641,40 @@ export default gql`
                 }
               }
               project_title
+            }
+          }
+          ... on Set_Components_TeamGrid {
+            headline
+            wysiwyg
+            type
+            team_grid {
+              ... on Entry_Team_Team {
+                id
+                name
+                bio
+                job_title
+                profile_image {
+                  ... on Asset_Assets {
+                    id
+                    permalink
+                    is_video
+                    width
+                    height
+                    extension
+                  }
+                }
+                socials {
+                  ... on Set_Socials_Linkedin {
+                    url
+                    type
+                  }
+                  ... on Set_Socials_Instagram {
+                    url
+                    type
+                  }
+                }
+                title
+              }
             }
           }
         }
