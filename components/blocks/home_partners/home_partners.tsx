@@ -98,39 +98,39 @@ const HomePartners = ({ block }: { block: any }) => {
   return (
     <section ref={sectionRef} className={`${styles.root} relative w-full bg-darkgrey text-white z-10`}>
       <div className="px-100 py-190">
-        {block?.partners_grid?.map((block: any, index: any) => {
+        {block?.partners_grid?.map((item: any, index: any) => {
           //console.log('col: ', index, block)
           return (
             <div key={index}>
               {step === index && (
                 <div className="block md:flex">
                   <div className="w-full md:w-1/2 text-center">
-                    <div ref={RecentRef} className="recent text-52 font-600 pb-20">Recent Partners</div>
+                    <div ref={RecentRef} className="recent text-52 font-600 pb-20">{block.headline}</div>
 
                     <div className={`w-3/4 mx-auto relative`}>
                       
                       <div className={`${styles.wrap} relative w-full text-center mx-auto pt-20 pb-30 flex items-center`}>
                         <div ref={CircleRef} className={`${styles.oval} circle absolute left-0 top-0 w-full h-full`}><Oval /></div>
-                        {block.client[0].client_logo && (
+                        {item.client[0].client_logo && (
                           <div ref={LogoRef} className={`${styles.logo} logo relative block w-full mr-auto ml-auto z-10`}>
                             <Image
-                              src={block.client[0].client_logo?.permalink}
-                              width={block.client[0].client_logo?.width}
-                              height={block.client[0].client_logo?.height}
-                              alt={block.client[0].client_logo?.alt ? block.client[0].client_logo.alt : ''}
+                              src={item.client[0].client_logo?.permalink}
+                              width={item.client[0].client_logo?.width}
+                              height={item.client[0].client_logo?.height}
+                              alt={item.client[0].client_logo?.alt ? item.client[0].client_logo.alt : ''}
                             />
                           </div>
                         )}
                       </div>
                       <div className="relative text-left mt-80">
                         <div ref={ArrowRef} className={`${styles.ovalarrow} arrow absolute left-150 bottom-full w-[55rem]`}><OvalArrow /></div>
-                        <div ref={FactRef} className='fact font-nothingyoucoulddo text-40 font-300 text-blue'>{block.fact}</div>
+                        <div ref={FactRef} className='fact font-nothingyoucoulddo text-40 font-300 text-blue'>{item.fact}</div>
                       </div>
                     </div>
 
                   </div>
                   <div className="w-full md:w-1/2">
-                    <div ref={CopyRef} className='copy text-40 leading-60 font-300 text-white' dangerouslySetInnerHTML={{ __html: block.description }}></div>
+                    <div ref={CopyRef} className='copy text-40 leading-60 font-300 text-white' dangerouslySetInnerHTML={{ __html: item.description }}></div>
                     <div ref={NextRef} className='next w-full flex text-left pt-20 text-blue'>
                       <NextArrow />
                       <div className='font-nothingyoucoulddo text-40 font-400 text-blue ml-10 mt-10 cursor-pointer' aria-label="Next" onClick={() => advance()}>Next</div>

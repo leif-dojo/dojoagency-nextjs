@@ -42,7 +42,7 @@ const Repeater = ({ blocks }: { blocks: BlockInterface[] }) => (
       )
       //console.log("repeater loop: ", block.__typename)
       if (block) {
-        console.log("repeater block: ", block.__typename)
+        //console.log("repeater block: ", block.__typename)
         return (
           ( () => {
             switch(block.__typename) {
