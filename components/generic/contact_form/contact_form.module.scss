@@ -20,9 +20,13 @@
   }
 
   .step {
-
+    transition: all 500ms ease-out 0ms;
   }
-  
+  .active {
+    opacity: 1;
+    transition: all 500ms ease-out 0ms;
+  }
+
   .inputwrapper {
 
   }

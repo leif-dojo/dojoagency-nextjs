@@ -88,7 +88,7 @@ const HomePartners = ({ block }: { block: any }) => {
         {alpha: 1, y: 0, duration: 0.3}
       ).fromTo(
         ".next",
-        {alpha: 0, y: 50 }, 
+        {alpha: 0, y: -50 }, 
         {alpha: 1, y: 0, duration: 0.3}
       )
     }, sectionRef);

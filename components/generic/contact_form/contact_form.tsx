@@ -107,8 +107,8 @@ const NavBlock = ({
       {contactActive && (
         <div className={`${styles.root} fixed bg-black w-screen h-screen left-0 top-0 z-100`}>
 
-          {step === 1 && (
-            <div className={`${styles.step} step bg-gold w-full h-full px-50 md:px-100`}>
+          
+            <div className={`${styles.step} ${step === 1 ? styles.active:''} step absolute opacity-0 bg-gold w-full h-full px-50 md:px-100`}>
               <div className={`${styles.bg} bg absolute w-full h-full left-0 top-0`}>
                 {data.step_1_image && (
                   <Image
@@ -147,10 +147,8 @@ const NavBlock = ({
                 </div>
               </div>
             </div>
-          )}
 
-          {step === 2 && (
-            <div className={`${styles.step} step bg-slate w-full h-full px-50 md:px-100`}>
+            <div className={`${styles.step} ${step === 2 ? styles.active:''} step absolute opacity-0 bg-slate w-full h-full px-50 md:px-100`}>
               <div className={`${styles.bg} bg absolute w-full h-full left-0 top-0`}>
                 {data.step_2_image && (
                   <Image
@@ -189,10 +187,8 @@ const NavBlock = ({
                 </div>
               </div>
             </div>
-          )}
 
-          {step === 3 && (
-            <div className={`${styles.step} step bg-aqua w-full h-full px-50 md:px-100`}>
+            <div className={`${styles.step} ${step === 3 ? styles.active:''} step absolute opacity-0 bg-aqua w-full h-full px-50 md:px-100`}>
               <div className={`${styles.bg} bg absolute w-full h-full left-0 top-0`}>
                 {data.step_3_image && (
                   <Image
@@ -232,10 +228,8 @@ const NavBlock = ({
                 </div>
               </div>
             </div>
-          )}
 
-          {step === 4 && (
-            <div className={`${styles.step} step bg-bluelight w-full h-full px-50 md:px-100`}>
+            <div className={`${styles.step} ${step === 4 ? styles.active:''} step absolute opacity-0 bg-bluelight w-full h-full px-50 md:px-100`}>
               <div className={`${styles.bg} bg absolute w-full h-full left-0 top-0`}>
                 {data.step_4_image && (
                   <Image
@@ -269,7 +263,7 @@ const NavBlock = ({
                 </div>
               </div>
             </div>
-          )}
+
 
         </div>
       )}

@@ -65,9 +65,10 @@ const Home3Column = ({ block }: { block: any }) => {
         //console.log('col: ', index, block)
         return (
           <div className={`${styles.column} column w-full md:w-1/3`} key={index}>
-            <a href={`${block?.link ? block?.link: null}`} className={``}>
+            
             <div className='w-full pb-10'>
               {block.icon && (
+                <a href={`${block?.link ? block?.link: null}`} className={``}>
                 <div className={`${styles.imagewrap} w-full overflow-hidden`}>
                   <Image
                     src={block?.icon?.permalink}
@@ -77,6 +78,7 @@ const Home3Column = ({ block }: { block: any }) => {
                     className={`${styles.image} f-full h-auto  object-contain`}
                   />
                 </div>
+                </a>
               )}
               <div className='inline-block text-80 leading-90 font-200'>
                 {block.headline}
@@ -85,7 +87,6 @@ const Home3Column = ({ block }: { block: any }) => {
             <div className='text-30 leading-40 font-300'>
               {block.content}
             </div>
-            </a>
           </div>
         )
       })}

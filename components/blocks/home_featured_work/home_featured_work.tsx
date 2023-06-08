@@ -13,7 +13,7 @@ import useMousePosition from "@/hooks/useMousePosition";
 
 const HomeFeaturedWork = ({ block }: { block: any }) => {
   const sectionRef = useRef<HTMLDivElement>(null)
-  const CircleRef = useRef<HTMLDivElement>(null)
+  const NextRef = useRef<HTMLDivElement>(null)
   const { x, y } = useMousePosition();
 
   useLayoutEffect(() => {
@@ -36,9 +36,30 @@ const HomeFeaturedWork = ({ block }: { block: any }) => {
           backgroundColor: "#00aeef", 
       },
       )
+
+      //Add in elements
+      gsap
+        .timeline({
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: '100% bottom',
+            //end: 'bottom top',
+            //scrub: true,
+            //markers: true,
+            toggleActions: "restart none none reverse"
+          },
+        }).fromTo(
+          NextRef.current,
+        {alpha: 0, y: -50 }, 
+        {alpha: 1, y: 0, duration: 0.3}
+      )
+
+
     }, sectionRef);
     return () => ctx.revert();
   }, []);
+
+
   
   /*useEffect(() => {
     let xTo = gsap.quickTo(".project", "x", {duration: 0.6, ease: "power3"});
@@ -223,7 +244,7 @@ const HomeFeaturedWork = ({ block }: { block: any }) => {
           )
         })}
       </div>
-      <div className='w-full pt-20 text-right'>
+      <div ref={NextRef} className='w-full pt-20 text-right'>
         <a className=' text-white text-right inline-flex ml-auto mr-0' href={`/portfolio/`} aria-label="Dojo Agency">
           <NextArrow /><span className={`font-nothingyoucoulddo text-40 font-300 pt-10 pl-10`}>View All</span></a>
       </div>
