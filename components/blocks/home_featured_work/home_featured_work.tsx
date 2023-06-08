@@ -59,10 +59,10 @@ const HomeFeaturedWork = ({ block }: { block: any }) => {
         { autoAlpha: 0, y: 50 },
         { duration: 0.9, autoAlpha: 1, y: 0, stagger: 0.5 }
       ).fromTo(
-        NextRef.current,
-      {alpha: 0, y: -50 }, 
-      {alpha: 1, y: 0, duration: 0.3}
-    )
+          NextRef.current,
+        {alpha: 0, y: -50 }, 
+        {alpha: 1, y: 0, duration: 0.3}
+      )
 
       //Add in elements
       /*gsap
@@ -210,16 +210,18 @@ const HomeFeaturedWork = ({ block }: { block: any }) => {
           return (
             <a href={`${block?.link}`} className={`${styles.project} project relative  overflow-hidden bg-dark w-full md:w-1/3`} key={index}>
               <span className="flex justify-center items-center w-full h-full">
-                {block.image && (
+
                   <span className='absolute w-full h-full top-0 left-0'>
 
-                    <Image
-                      src={block.image?.permalink}
-                      width={block.image?.width}
-                      height={block.image?.height}
-                      alt={block.image?.alt ? block.image.alt : ''}
-                      className={`${styles.image} relative w-full h-auto`}
-                    />
+                    {block.image && (
+                      <Image
+                        src={block.image?.permalink}
+                        width={block.image?.width}
+                        height={block.image?.height}
+                        alt={block.image?.alt ? block.image.alt : ''}
+                        className={`${styles.image} relative w-full h-auto`}
+                      />
+                    )}
 
                     {block.image_hover && (
                       <Image
@@ -262,8 +264,8 @@ const HomeFeaturedWork = ({ block }: { block: any }) => {
                     )}
 
                   </span>
-                )}
-                <span className={`${styles.hover} relative z-5 text-30 font-500 text-white`}>
+                
+                <span className={`${styles.hover} px-20 relative z-5 text-30 font-500 text-white text-center`}>
                   {block.headline}
                 </span>
               </span>
