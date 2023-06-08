@@ -59,4 +59,21 @@
         opacity: 0;
         z-index: 55;
     }
+    .video {
+        object-fit: cover;
+        object-position: 50% 50%;
+        .videoinner {
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+        }
+        iframe, 
+        video {
+            width: 100%!important;
+            height: auto!important;
+            aspect-ratio: 16/9;
+            object-fit: cover;
+            object-position: 50% 50%;
+        }
+    }
 }

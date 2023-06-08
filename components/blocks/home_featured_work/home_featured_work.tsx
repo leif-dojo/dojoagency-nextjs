@@ -232,10 +232,9 @@ const HomeFeaturedWork = ({ block }: { block: any }) => {
                         className={`${styles.imagehover} absolute top-0 w-full h-auto`}
                       />
                     )}
-
                     {block.video_embed && (
-                      <div className="video absolute w-full h-full overflow-hidden top-0 z-1" >
-                          <div className="video-inner absolute block w-full h-full">
+                          <div className={`${styles.video} video absolute w-full h-full overflow-hidden top-0 z-1`} >
+                            <div className={`${styles.videoinner} absolute block w-auto h-full min-w-full min-h-full aspect-video`}>
                               <iframe src={`${block.video_embed}?autoplay=1&loop=1&autopause=0&background=1&muted=1`} 
                               title="Vimeo video player"
                               className="vimeo w-full h-full"
@@ -246,19 +245,19 @@ const HomeFeaturedWork = ({ block }: { block: any }) => {
                     )}
 
                     {block.video_local && (
-                      <div className="video absolute w-full h-full overflow-hidden top-0 z-1" >
-                          <div className="video-inner absolute block w-full h-full">
-                            <video 
-                              className="html-video aspect-video"
-                              width="640" 
-                              height="360"
-                              autoPlay
-                              controls
-                              loop
-                              muted
-                              preload="auto">
-                              <source src={`${block.video_local?.permalink}`} type="video/mp4"></source>
-                            </video>
+                          <div className={`${styles.video} video absolute w-full h-full overflow-hidden top-0 z-1`} >
+                            <div className={`${styles.videoinner} absolute block w-auto h-full min-w-full min-h-full aspect-video`}>
+                              <video 
+                                className="html-video aspect-video"
+                                width="640" 
+                                height="360"
+                                autoPlay
+                                controls
+                                loop
+                                muted
+                                preload="auto">
+                                <source src={`${block.video_local?.permalink}`} type="video/mp4"></source>
+                              </video>
                           </div>
                       </div>
                     )}
