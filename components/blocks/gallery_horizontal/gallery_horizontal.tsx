@@ -42,7 +42,7 @@ const GalleryHorizontalBlock = ({ block }: { block: any }) => {
   const openOrClose = (index:any) => {
     setActiveIndex(index)
     active ? setActive(false) : setActive(true)
-    //active ? document.body.classList.remove('body-lock') : document.body.classList.add('body-lock')
+    active ? document.body.classList.remove('body-lock') : document.body.classList.add('body-lock')
   }
 
   useLayoutEffect(() => {
