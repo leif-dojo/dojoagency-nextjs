@@ -72,7 +72,7 @@ const GalleryHorizontalBlock = ({ block }: { block: any }) => {
   //console.log("Gallery: ", block)
   return (
     <section ref={sectionRef} className={`${styles.root} w-full bg-white text-slate overflow-hidden`}>
-      <div className="px-100 py-100">
+      <div className="px-50 md:px-100 py-100">
         {block.headline && (
         <div className="w-full pb-20">
           <div className='wysiwyg text-90 leading-120 font-300' dangerouslySetInnerHTML={{ __html: block.headline }}></div>

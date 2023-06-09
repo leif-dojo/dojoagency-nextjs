@@ -76,4 +76,29 @@
             object-position: 50% 50%;
         }
     }
+    .draw {
+        .nextarrow {
+            path {
+                animation: dash 3000ms ease forwards;
+            }
+      }
+    }
+    .nextwrap {
+        position: relative;
+    }
+    .nextarrow {
+        path {
+            stroke-dasharray: 100;
+            stroke-dashoffset: 100;
+        }
+      }
+      
+      @keyframes dash {
+        from {
+          stroke-dashoffset: 100;
+        }
+        to {
+          stroke-dashoffset: 0;
+        }
+      }
 }

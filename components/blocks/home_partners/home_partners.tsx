@@ -100,7 +100,7 @@ const HomePartners = ({ block }: { block: any }) => {
 
   return (
     <section ref={sectionRef} className={`${styles.root} relative w-full bg-darkgrey text-white z-10`}>
-      <div className="px-100 py-190">
+      <div className="px-50 md:px-100 py-190">
         {block?.partners_grid?.map((item: any, index: any) => {
           //console.log('col: ', index, block)
           return (
@@ -148,7 +148,7 @@ const HomePartners = ({ block }: { block: any }) => {
                     <div ref={CopyRef} className='copy text-40 leading-60 font-300 text-white' dangerouslySetInnerHTML={{ __html: item.description }}></div>
                     <div className={`${styles.nextwrap} w-full flex text-left pt-20 text-blue`}>
                       <div ref={NextArrowRef}><NextArrow className={`${styles.nextarrow}`} /></div>
-                      <div ref={NextRef} className={`${styles.next} font-nothingyoucoulddo text-40 font-400 text-blue ml-10 mt-10 cursor-pointer`} aria-label="Next" onClick={() => advance()}>Next</div>
+                      <div ref={NextRef} className={`${styles.next} font-nothingyoucoulddo text-40 font-400 leading-none text-blue ml-10 mt-20 cursor-pointer`} aria-label="Next" onClick={() => advance()}>Next</div>
                     </div>
                   </div>
                 </div>

@@ -60,7 +60,7 @@ const TimelineBlock = ({ block }: { block: any }) => {
 
   return (
   <section ref={sectionRef} className={`${styles.root} w-full bg-white text-slate`}>
-    <div className="px-100 py-100">
+    <div className="px-50 md:px-100 py-100">
       <div className="w-full">
         <div className="w-full">
           <div ref={headlineRef} className='wysiwyg text-90 leading-120 font-300' dangerouslySetInnerHTML={{ __html: block.headline }}></div>

@@ -41,7 +41,7 @@ const Column2ImageBlock = ({ block }: { block: any }) => {
 
   return (
   <section ref={sectionRef} className="w-full bg-white text-slate">
-    <div className=" px-100 py-100">
+    <div className="px-50 md:px-100 py-100">
       <div className="block md:flex">
         <div ref={copyRef} className="w-full md:w-1/2 md:pr-30 flex items-center">
           <div className='w-full'>

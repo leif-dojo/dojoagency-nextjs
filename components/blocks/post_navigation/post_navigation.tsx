@@ -35,7 +35,7 @@ const PostNavigationBlock = ({ block }: { block: any }) => {
 
   return (
   <section ref={sectionRef} className="w-full bg-white text-slate">
-    <div className='w-full flex flex-nowrap px-100 py-100'>
+    <div className='w-full flex flex-nowrap px-50 md:px-100 py-100'>
       <div className='flex w-1/2 justify-items-start'>
         { block.back_link && (
           <a href={`${block.back_link}`} className="link inline-flex mr-auto text-blue" aria-label="Previous">

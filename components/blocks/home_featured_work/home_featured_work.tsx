@@ -15,6 +15,7 @@ const HomeFeaturedWork = ({ block }: { block: any }) => {
   const sectionRef = useRef<HTMLDivElement>(null)
   const HeadlineRef = useRef<HTMLDivElement>(null)
   const NextRef = useRef<HTMLDivElement>(null)
+  const NextArrowRef = useRef<HTMLDivElement>(null)
   const { x, y } = useMousePosition();
 
   useLayoutEffect(() => {
@@ -38,8 +39,7 @@ const HomeFeaturedWork = ({ block }: { block: any }) => {
       },
       )
 
-            //fades
-      //tele
+      //fades
       gsap
       .timeline({
         scrollTrigger: {
@@ -62,6 +62,12 @@ const HomeFeaturedWork = ({ block }: { block: any }) => {
           NextRef.current,
         {alpha: 0, y: -50 }, 
         {alpha: 1, y: 0, duration: 0.3}
+      ).set( NextArrowRef.current, {
+        className: styles.draw
+      }).fromTo(
+        NextRef.current,
+        {alpha: 0, }, 
+        {alpha: 1, delay: 1, duration: 0.3}
       )
 
       //Add in elements
@@ -272,9 +278,11 @@ const HomeFeaturedWork = ({ block }: { block: any }) => {
           )
         })}
       </div>
-      <div ref={NextRef} className='w-full pt-20 text-right'>
-        <a className=' text-white text-right inline-flex ml-auto mr-0' href={`/portfolio/`} aria-label="Dojo Agency">
-          <NextArrow /><span className={`font-nothingyoucoulddo text-40 font-300 pt-10 pl-10`}>View All</span></a>
+      <div className={`${styles.nextwrap} relative w-full pt-20 text-right`}>
+        <a ref={NextRef} className='relative text-white text-right inline-flex ml-auto mr-0' href={`/portfolio/`} aria-label="Dojo Agency">
+          <div ref={NextArrowRef}><NextArrow className={`${styles.nextarrow}`} /></div>
+          <span ref={NextRef} className={`${styles.next} relative font-nothingyoucoulddo text-40 font-300 leading-none pt-10 pl-10 mt-20`}>View All</span>
+        </a>
       </div>
     </div>
   </section>

@@ -34,10 +34,10 @@ const HomeFeaturedWork = ({ block }: { block: any }) => {
     }, sectionRef);
     return () => ctx.revert();
   }, []);
-  
+
   return(
     <section ref={sectionRef} className={`${styles.root} w-full bg-white text-slate overflow-hidden`}>
-    <div className="px-100 py-100">
+    <div className="px-50 md:px-100 py-100">
       <div className={`${styles.grid} grid grid-cols-2 md:grid-cols-3 gap-50 w-full `}>
 
         {block?.featured_projects?.map((block: any, index: any) => {
