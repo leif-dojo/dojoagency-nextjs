@@ -30,6 +30,7 @@ const HomePartners = ({ block }: { block: any }) => {
   const FactRef = useRef<HTMLDivElement>(null)
   const CopyRef = useRef<HTMLDivElement>(null)
   const NextRef = useRef<HTMLDivElement>(null)
+  const NextArrowRef = useRef<HTMLDivElement>(null)
 
   useLayoutEffect(() => {
     let ctx = gsap.context(() => {
@@ -86,10 +87,12 @@ const HomePartners = ({ block }: { block: any }) => {
         ".copy",
         {alpha: 0, y: 50 }, 
         {alpha: 1, y: 0, duration: 0.3}
-      ).fromTo(
-        ".next",
-        {alpha: 0, y: -50 }, 
-        {alpha: 1, y: 0, duration: 0.3}
+      ).set( NextArrowRef.current, {
+        className: styles.draw
+      }).fromTo(
+        NextRef.current,
+        {alpha: 0, x: -50 }, 
+        {alpha: 1, x: 0, delay: 1,duration: 0.3}
       )
     }, sectionRef);
     return () => ctx.revert();
@@ -143,9 +146,9 @@ const HomePartners = ({ block }: { block: any }) => {
                   </div>
                   <div className="w-full md:w-1/2">
                     <div ref={CopyRef} className='copy text-40 leading-60 font-300 text-white' dangerouslySetInnerHTML={{ __html: item.description }}></div>
-                    <div ref={NextRef} className='next w-full flex text-left pt-20 text-blue'>
-                      <NextArrow />
-                      <div className='font-nothingyoucoulddo text-40 font-400 text-blue ml-10 mt-10 cursor-pointer' aria-label="Next" onClick={() => advance()}>Next</div>
+                    <div className={`${styles.nextwrap} w-full flex text-left pt-20 text-blue`}>
+                      <div ref={NextArrowRef}><NextArrow className={`${styles.nextarrow}`} /></div>
+                      <div ref={NextRef} className={`${styles.next} font-nothingyoucoulddo text-40 font-400 text-blue ml-10 mt-10 cursor-pointer`} aria-label="Next" onClick={() => advance()}>Next</div>
                     </div>
                   </div>
                 </div>
