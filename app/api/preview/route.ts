@@ -21,21 +21,7 @@ export async function GET(request: Request) {
     return new Response('Invalid token', { status: 401 })
   }*/
  
-  // Fetch the headless CMS to check if the provided `slug` exists
-  // getPostBySlug would implement the required fetching logic to the headless CMS
-  //const post = await getPostBySlug(slug)
-  /*const client = getClient();
-  const { data } = await client.query({
-    query: PageQuery, 
-    variables: {
-      slug: slug,
-    }
-  });*/
- 
   // If the slug doesn't exist prevent draft mode from being enabled
-  /*if (!post) {
-    return new Response('Invalid slug', { status: 401 })
-  }*/
   if (!slug) {
     return new Response('Invalid slug', { status: 401 })
   }

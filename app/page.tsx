@@ -12,7 +12,12 @@ export default async function Page(context: { params: { slug: string } }) {
     query: PageQuery, 
     variables: {
       uri: '/',
-    }
+    },
+    context: {
+      fetchOptions: {
+        next: { revalidate: 5 },
+      },
+    },
   });
   //console.log("page home: ", context.params.slug, data.entry?.components)
   //console.log("PAGE HOME: ", context.params)
