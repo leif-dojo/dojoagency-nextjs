@@ -81,7 +81,7 @@ const ImageGridBlock = ({ block }: { block: any }) => {
 
                     {block.video_embed && (
                           <div className={`${styles.video} video absolute w-full h-full overflow-hidden top-0 z-1`} >
-                            <div className="video-inner absolute block w-auto h-full aspect-video">
+                            <div className={`${styles.videoinner} absolute block w-auto h-full min-w-full min-h-full aspect-video`}>
                               <iframe src={`${block.video_embed}?autoplay=1&loop=1&autopause=0&background=1&muted=1`} 
                               title="Vimeo video player"
                               className="vimeo w-full h-full"
@@ -93,7 +93,7 @@ const ImageGridBlock = ({ block }: { block: any }) => {
 
                     {block.video_local && (
                           <div className={`${styles.video} video absolute w-full h-full overflow-hidden top-0 z-1`} >
-                            <div className="video-inner absolute block w-auto h-full aspect-video">
+                            <div className={`${styles.videoinner} absolute block w-auto h-full min-w-full min-h-full aspect-video`}>
                               <video 
                                 className="html-video aspect-video"
                                 width="640" 
@@ -104,6 +104,36 @@ const ImageGridBlock = ({ block }: { block: any }) => {
                                 muted
                                 preload="auto">
                                 <source src={`${block.video_local?.permalink}`} type="video/mp4"></source>
+                              </video>
+                          </div>
+                      </div>
+                    )}
+
+                    {block.video_embed_hover && (
+                          <div className={`${styles.videohover} video absolute w-full h-full overflow-hidden top-0 z-1`} >
+                            <div className={`${styles.videoinner} absolute block w-auto h-full min-w-full min-h-full aspect-video`}>
+                              <iframe src={`${block.video_embed_hover}?autoplay=1&loop=1&autopause=0&background=1&muted=1`} 
+                              title="Vimeo video player"
+                              className="vimeo w-full h-full"
+                              width="640" height="360"
+                              allow="autoplay; fullscreen"></iframe>
+                          </div>
+                      </div>
+                    )}
+
+                    {block.video_local_hover && (
+                          <div className={`${styles.videohover} video absolute w-full h-full overflow-hidden top-0 z-1`} >
+                            <div className={`${styles.videoinner} absolute block w-auto h-full min-w-full min-h-full aspect-video`}>
+                              <video 
+                                className="html-video aspect-video"
+                                width="640" 
+                                height="360"
+                                autoPlay
+                                controls
+                                loop
+                                muted
+                                preload="auto">
+                                <source src={`${block.video_local_hover?.permalink}`} type="video/mp4"></source>
                               </video>
                           </div>
                       </div>
