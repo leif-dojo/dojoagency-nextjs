@@ -37,7 +37,28 @@ const TimelineBlock = ({ block }: { block: any }) => {
         { duration: 0.5, autoAlpha: 1, y: 0 },0.2
       )
 
-      //fades
+
+      const boxes = gsap.utils.toArray('.fade')
+      if (boxes.length) {
+          boxes.forEach((box:any, i:any) => {
+              const anim = gsap.fromTo(
+                  box,
+                  { autoAlpha: 0, y: "25%" },
+                  { duration: 1.6, autoAlpha: 1, y: "0%", stagger: 0.25, ease: "power4.out" }
+              )
+              ScrollTrigger.create({
+                  //scroller: page,
+                  trigger: box,
+                  animation: anim,
+                  start: 'top bottom',
+                  //end: 'bottom top',
+                  toggleActions: "restart none none reverse",
+                  //markers: true
+              })
+          })
+      }
+
+      //timeline
       gsap
       .timeline({
         scrollTrigger: {
@@ -51,7 +72,7 @@ const TimelineBlock = ({ block }: { block: any }) => {
       }).fromTo(
         ".item",
         { autoAlpha: 0, y: 50 },
-        { duration: 0.9, autoAlpha: 1, y: 0, stagger: 0.25 }
+        { duration: 0.5, autoAlpha: 1, y: 0, stagger: 0.15 }
       )
 
     }, sectionRef);
@@ -63,17 +84,17 @@ const TimelineBlock = ({ block }: { block: any }) => {
     <div className="px-50 md:px-100 py-100">
       <div className="w-full">
         <div className="w-full">
-          <div ref={headlineRef} className='wysiwyg text-90 leading-120 font-300' dangerouslySetInnerHTML={{ __html: block.headline }}></div>
+          <div ref={headlineRef} className='wysiwyg text-90 leading-120 font-300 fade' dangerouslySetInnerHTML={{ __html: block.headline }}></div>
         </div>
         <div className="w-full">
-          <div ref={wysiwygRef} className='wysiwyg text-30 leading-40 font-300' dangerouslySetInnerHTML={{ __html: block.wysiwyg }}></div>
+          <div ref={wysiwygRef} className='wysiwyg text-30 leading-40 font-300 fade' dangerouslySetInnerHTML={{ __html: block.wysiwyg }}></div>
         </div>
       </div>
 
       <div className={`${styles.timeline} relative flex flex-nowrap items-stretch w-full my-200`}>
 
         {block?.timeline?.map((block:any, index:any) => {
-          console.log('col: ', index, block)
+          //console.log('col: ', index, block)
           return (
             <div className={`${styles.item} item relative flex-1`} key={index}>
               {block.image && (
@@ -97,7 +118,7 @@ const TimelineBlock = ({ block }: { block: any }) => {
                     </div>
                   </div>
               </div>
-              {block.logo && block.overview && (
+              {block.logo || block.overview && (
                 <div className={`${styles.bottom} absolute top-0 w-full`}>
                   <div className='w-full flex items-stretch flex-nowrap bg-white px-20 py-20'>
                       <div className='w-1/2 flex pr-20 items-center overflow-hidden'>

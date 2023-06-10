@@ -13,21 +13,26 @@ const PostNavigationBlock = ({ block }: { block: any }) => {
   useLayoutEffect(() => {
     let ctx = gsap.context(() => {
 
-      gsap
-      .timeline({
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: 'top bottom',
-          //end: 'bottom bottom',
-          //scrub: true,
-          toggleActions: "restart none none reverse",
-          //markers: true,
-        },
-      }).fromTo(
-        ".link",
-        { autoAlpha: 0, y: 50 },
-        { duration: 0.9, autoAlpha: 1, y: 0 }
-      )
+      //fades
+      const boxes = gsap.utils.toArray('.fade')
+      if (boxes.length) {
+          boxes.forEach((box:any, i:any) => {
+              const anim = gsap.fromTo(
+                  box,
+                  { autoAlpha: 0, y: "25%" },
+                  { duration: 1.6, autoAlpha: 1, y: "0%", stagger: 0.25, ease: "power4.out" }
+              )
+              ScrollTrigger.create({
+                  //scroller: page,
+                  trigger: box,
+                  animation: anim,
+                  start: 'top bottom',
+                  //end: 'bottom top',
+                  toggleActions: "restart none none reverse",
+                  //markers: true
+              })
+          })
+      }
 
     }, sectionRef);
     return () => ctx.revert();
@@ -38,7 +43,7 @@ const PostNavigationBlock = ({ block }: { block: any }) => {
     <div className='w-full flex flex-nowrap px-50 md:px-100 py-100'>
       <div className='flex w-1/2 justify-items-start'>
         { block.back_link && (
-          <a href={`${block.back_link}`} className="link inline-flex mr-auto text-blue" aria-label="Previous">
+          <a href={`${block.back_link}`} className="link inline-flex mr-auto text-blue fade" aria-label="Previous">
             <Arrow className={`${styles.arrow} w-30 h-auto rotate-180`}/>
             <span className="font-nothingyoucoulddo text-40 font-400 text-blue pl-20">{block.back_link_copy ? block.back_link_copy : 'Previous'}</span>
           </a>
@@ -46,7 +51,7 @@ const PostNavigationBlock = ({ block }: { block: any }) => {
       </div>
       <div className='flex w-1/2 justify-items-end'>
         { block.forward_link && (
-          <a  href={`${block.forward_link}`} className="link inline-flex ml-auto text-blue" aria-label="Next">
+          <a  href={`${block.forward_link}`} className="link inline-flex ml-auto text-blue fade" aria-label="Next">
             <span className="font-nothingyoucoulddo text-40 font-400 text-blue pr-20">{block.forward_link_copy ? block.forward_link_copy : 'Next'}</span> 
             <Arrow className={`${styles.arrow} w-30 h-auto`}/>
           </a>

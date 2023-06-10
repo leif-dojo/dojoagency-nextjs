@@ -49,6 +49,27 @@ const GalleryHorizontalBlock = ({ block }: { block: any }) => {
     let ctx = gsap.context(() => {
 
       //fades
+      const boxes = gsap.utils.toArray('.fade')
+      if (boxes.length) {
+          boxes.forEach((box:any, i:any) => {
+              const anim = gsap.fromTo(
+                  box,
+                  { autoAlpha: 0, y: "25%" },
+                  { duration: 1.6, autoAlpha: 1, y: "0%", stagger: 0.25, ease: "power4.out" }
+              )
+              ScrollTrigger.create({
+                  //scroller: page,
+                  trigger: box,
+                  animation: anim,
+                  start: 'top bottom',
+                  //end: 'bottom top',
+                  toggleActions: "restart none none reverse",
+                  //markers: true
+              })
+          })
+      }
+
+      //projects
       gsap
       .timeline({
         scrollTrigger: {
@@ -75,7 +96,7 @@ const GalleryHorizontalBlock = ({ block }: { block: any }) => {
       <div className="px-50 md:px-100 py-100">
         {block.headline && (
         <div className="w-full pb-20">
-          <div className='wysiwyg text-90 leading-120 font-300' dangerouslySetInnerHTML={{ __html: block.headline }}></div>
+          <div className='wysiwyg text-90 leading-120 font-300 fade' dangerouslySetInnerHTML={{ __html: block.headline }}></div>
         </div>
         )}
         <div ref={GalleryRef} className={`${styles.grid} w-full`} onMouseEnter={() => onMouseEnter()} onMouseLeave={() => onMouseLeave()}>
@@ -182,7 +203,7 @@ const GalleryHorizontalBlock = ({ block }: { block: any }) => {
 
               {block?.gallery_grid[activeindex].video_embed && (
                 <div className="video relative w-full h-full overflow-hidden aspect-video top-0 z-1 object-contain" >
-                  <div className="video-inner absolute block w-full h-full flex flex-col items-center justify-center object-contain">
+                  <div className="video-inner absolute w-full h-full flex flex-col items-center justify-center object-contain">
                     <iframe src={`${block?.gallery_grid[activeindex].video_embed}`} 
                     title="Vimeo video player"
                     className="vimeo relative min-w-full min-h-full w-100 h-auto object-contain aspect-video"
@@ -194,7 +215,7 @@ const GalleryHorizontalBlock = ({ block }: { block: any }) => {
 
               {block?.gallery_grid[activeindex].video_local && (
                 <div className="video relative w-full h-full overflow-hidden aspect-video top-0 z-1 object-contain" >
-                  <div className="video-inner absolute block w-full h-full flex flex-col items-center justify-center object-contain">
+                  <div className="video-inner absolute w-full h-full flex flex-col items-center justify-center object-contain">
                     <video 
                       className="html-video relative min-w-full min-h-full w-100 h-auto  object-contain aspect-video"
                       width="640" 

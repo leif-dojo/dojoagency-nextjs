@@ -27,13 +27,123 @@ const HomeFeaturedWork = ({ block }: { block: any }) => {
         },
       }).fromTo(
         ".item",
-        { autoAlpha: 0, y: 50 },
-        { duration: 0.9, autoAlpha: 1, y: 0, stagger: 0.5 }
+        { autoAlpha: 0, y: "25%" },
+        { duration: 1.6, autoAlpha: 1, y: "0%", stagger: 0.3, ease: "power4.out" }
       )
+
+      
 
     }, sectionRef);
     return () => ctx.revert();
   }, []);
+
+
+    /*useEffect(() => {
+    let xTo = gsap.quickTo(".project", "x", {duration: 0.6, ease: "power3"});
+    let yTo = gsap.quickTo(".project", "y", {duration: 0.6, ease: "power3"});
+    
+    window.addEventListener("mousemove", (e) => {
+      // xTo(e.pageX);
+      // yTo(e.pageY);
+      //xTo(e.clientX);
+      //yTo(e.clientY);
+      xTo(x / 100);
+      yTo(y / 100);
+    });
+  }, [x,y]);*/
+  const [mouse, setMouse] = useState({x: 0, y: 0, moved: false})
+
+  function parallaxIt(target: any, movement: any) {
+    let rect = sectionRef?.current ? sectionRef?.current?.getBoundingClientRect() : {width:0,height:0};
+    gsap.to(target, {
+      duration: 0,
+      x: (mouse.x - rect.width / 2) / rect.width * movement,
+      y: (mouse.y - rect.height / 2) / rect.height * movement
+    });
+
+    //let xTo = gsap.quickTo(".project", "x", {duration: 0.6, ease: "power3"});
+    //let yTo = gsap.quickTo(".project", "y", {duration: 0.6, ease: "power3"});
+    //xTo((mouse.x - rect.width / 2) / rect.width * 100);
+    //yTo((mouse.y - rect.height / 2) / rect.height * 50);
+  }
+
+  /*useEffect(() => {
+    let rect = sectionRef.current.getBoundingClientRect();
+    let mouse = {x: 0, y: 0, moved: false};
+
+    sectionRef.current.addEventListener("mousemove", (e) => {
+      let positionX = e.clientX - rect.left;
+      let positionY = e.clientY - rect.top;
+      setMouse({x: positionX, y: positionY, moved: true})
+      //console.log("each: ", positionX, positionY)
+      //console.log("each: ", mouse)
+    });
+    gsap.ticker.add(() => {
+      parallaxIt(".project", -100);
+      //parallaxIt(".project img", -30);
+    });
+  }, [mouse]);*/
+
+  useLayoutEffect(() => {
+    let ctx = gsap.context(() => {
+
+    }, sectionRef);
+    return () => ctx.revert();
+  }, [mouse]);
+
+  /*useEffect(() => {
+    let rect = sectionRef.current.getBoundingClientRect();
+    const speed = 0.35;
+    const items = gsap.utils.toArray(".project").map(element => {
+      return {
+        element,
+        shiftValue: 20,
+        xSet: gsap.quickSetter(element, "x", "px"),
+        ySet: gsap.quickSetter(element, "y", "px"),
+      }
+    });
+
+    sectionRef.current.addEventListener("mousemove", (e) => {
+      let positionX = e.clientX - rect.left;
+      let positionY = e.clientY - rect.top;
+      setMouse({x: positionX, y: positionY, moved: true})
+      //console.log("each: ", positionX, positionY)
+      //console.log("each: ", mouse)
+    });
+
+    //console.log("ticker: ", x,y)
+    gsap.ticker.add(() => {
+      // adjust speed for higher refresh monitors
+      //const dt = 1.0 - Math.pow(1.0 - speed, gsap.ticker.deltaRatio());
+
+      //console.log("ticker: ", mouse.x)
+      items.forEach(item => {
+        item.xSet(((mouse.x - rect.width / 2) / rect.width * 100) );
+        item.ySet(((mouse.y - rect.height / 2) / rect.height * 50) );
+      });
+    });
+  }, [mouse]);*/
+
+  /*useEffect(() => {
+    const speed = 0.35;
+    const items = gsap.utils.toArray(".project").map(element => {
+      return {
+        element,
+        shiftValue: 20,
+        xSet: gsap.quickSetter(element, "x", "px"),
+        ySet: gsap.quickSetter(element, "y", "px"),
+      }
+    });
+    console.log("ticker: ", x,y)
+    gsap.ticker.add((x,y) => {
+      const dt = 1.0 - Math.pow(1.0 - speed, gsap.ticker.deltaRatio());
+      
+      items.forEach(item => {
+        item.xSet((x/10) * dt);
+        item.ySet((y/10) * dt);
+      });
+    });
+  }, [x,y]);*/
 
   return(
     <section ref={sectionRef} className={`${styles.root} w-full bg-white text-slate overflow-hidden`}>

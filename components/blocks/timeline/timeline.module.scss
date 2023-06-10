@@ -5,7 +5,7 @@
         transition: all 200ms ease-in-out;
         //box-shadow: 0px 0px 10px rgba(0,0,0,0.15);
         .item {
-            transition: all 200ms ease-in-out;
+            transition: width 500ms ease-in-out;
             border-right: 2px solid #FFF;
             .top {
                 opacity:0;

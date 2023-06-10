@@ -15,22 +15,27 @@ const VideoBlock = ({ block }: { block: any }) => {
 
   useLayoutEffect(() => {
     let ctx = gsap.context(() => {
-      gsap
-      .timeline({
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: 'top bottom',
-          //end: 'bottom bottom',
-          //scrub: true,
-          toggleActions: "restart none none reverse"
-          //markers: true,
-        },
-      })
-      .fromTo(
-        videoRef.current,
-        { autoAlpha: 0, y: 50 },
-        { duration: 0.5, autoAlpha: 1, y: 0 }
-      )
+
+    //fades
+    const boxes = gsap.utils.toArray('.fade')
+    if (boxes.length) {
+        boxes.forEach((box:any, i:any) => {
+            const anim = gsap.fromTo(
+                box,
+                { autoAlpha: 0, y: "25%" },
+                { duration: 1.6, autoAlpha: 1, y: "0%", stagger: 0.25, ease: "power4.out" }
+            )
+            ScrollTrigger.create({
+                //scroller: page,
+                trigger: box,
+                animation: anim,
+                start: 'top bottom',
+                //end: 'bottom top',
+                toggleActions: "restart none none reverse",
+                //markers: true
+            })
+        })
+    }
 
     }, sectionRef);
     return () => ctx.revert();
@@ -38,7 +43,7 @@ const VideoBlock = ({ block }: { block: any }) => {
 
   return (
   <section ref={sectionRef} className={`${styles.root} w-full bg-white text-slate`} onMouseEnter={() => cursorChangeHandler("default")} onMouseLeave={() => cursorChangeHandler("default")}>
-    <div ref={videoRef} className="px-50 md:px-200 py-100">
+    <div ref={videoRef} className="px-50 md:px-200 py-100 fade">
       <VideoPlayer
         image_placeholder={block.image}
         video_placeholder={block.video_embed ? block.video_embed : block.video_local?.permalink}

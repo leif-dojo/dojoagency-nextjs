@@ -15,25 +15,25 @@ const Column2ImageBlock = ({ block }: { block: any }) => {
     let ctx = gsap.context(() => {
 
       //fades
-      gsap
-      .timeline({
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: 'top bottom',
-          //end: 'bottom bottom',
-          //scrub: true,
-          toggleActions: "restart none none reverse"
-          //markers: true,
-        },
-      }).fromTo(
-        copyRef.current,
-        { autoAlpha: 0, y: 50 },
-        { duration: 0.9, autoAlpha: 1, y: 0, stagger: 0.5 }
-      ).fromTo(
-        mediaRef.current,
-        { autoAlpha: 0, y: 50 },
-        { duration: 0.9, autoAlpha: 1, y: 0, stagger: 0.5 }
-      )
+      const boxes = gsap.utils.toArray('.fade')
+      if (boxes.length) {
+          boxes.forEach((box:any, i:any) => {
+              const anim = gsap.fromTo(
+                  box,
+                  { autoAlpha: 0, y: "25%" },
+                  { duration: 1.6, autoAlpha: 1, y: "0%", stagger: 0.25, ease: "power4.out" }
+              )
+              ScrollTrigger.create({
+                  //scroller: page,
+                  trigger: box,
+                  animation: anim,
+                  start: 'top bottom',
+                  //end: 'bottom top',
+                  toggleActions: "restart none none reverse",
+                  //markers: true
+              })
+          })
+      }
 
     }, sectionRef);
     return () => ctx.revert();
@@ -45,20 +45,20 @@ const Column2ImageBlock = ({ block }: { block: any }) => {
       <div className="block md:flex">
         <div ref={copyRef} className="w-full md:w-1/2 md:pr-30 flex items-center">
           <div className='w-full'>
-            <div className="text-20 leading-none font-300 uppercase mb-10">
+            <div className="text-20 leading-none font-300 uppercase mb-10 fade">
               {block.eyebrow}
             </div>
-            <div className="text-90 leading-120 font-300 mb-20">
+            <div className="text-90 leading-120 font-300 mb-20 fade">
               {block.headline}
             </div>
             <div className="w-full">
-              <div className='wysiwyg text-30 leading-40 font-300' dangerouslySetInnerHTML={{ __html: block.wysiwyg }}></div>
+              <div className='wysiwyg text-30 leading-40 font-300 fade' dangerouslySetInnerHTML={{ __html: block.wysiwyg }}></div>
             </div>
           </div>
         </div>
         <div ref={mediaRef} className="w-full md:w-1/2">
           {block.image && (
-            <div className='w-full pl-0 md:pl-100'>
+            <div className='w-full pl-0 md:pl-100 fade'>
               <Image
               src={block.image?.permalink}
               width={block.image?.width}

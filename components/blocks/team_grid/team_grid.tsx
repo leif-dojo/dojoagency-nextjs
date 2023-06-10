@@ -26,6 +26,27 @@ const ImageGridBlock = ({ block }: { block: any }) => {
     let ctx = gsap.context(() => {
 
       //fades
+      const boxes = gsap.utils.toArray('.fade')
+      if (boxes.length) {
+          boxes.forEach((box:any, i:any) => {
+              const anim = gsap.fromTo(
+                  box,
+                  { autoAlpha: 0, y: "25%" },
+                  { duration: 1.6, autoAlpha: 1, y: "0%", stagger: 0.25, ease: "power4.out" }
+              )
+              ScrollTrigger.create({
+                  //scroller: page,
+                  trigger: box,
+                  animation: anim,
+                  start: 'top bottom',
+                  //end: 'bottom top',
+                  toggleActions: "restart none none reverse",
+                  //markers: true
+              })
+          })
+      }
+
+      //grid
       gsap
       .timeline({
         scrollTrigger: {
@@ -39,8 +60,9 @@ const ImageGridBlock = ({ block }: { block: any }) => {
       }).fromTo(
         ".profile",
         { autoAlpha: 0, y: 50 },
-        { duration: 0.9, autoAlpha: 1, y: 0, stagger: 0.5 }
+        { duration: 0.9, autoAlpha: 1, y: 0, stagger: 0.5, ease: "power4.out" }
       )
+      
 
     }, sectionRef);
     return () => ctx.revert();
@@ -52,16 +74,16 @@ const ImageGridBlock = ({ block }: { block: any }) => {
     <div className="px-50 md:px-100 py-100">
       <div className="w-full">
         <div className="w-full">
-          <div className='wysiwyg text-90 leading-120 font-300' dangerouslySetInnerHTML={{ __html: block.headline }}></div>
+          <div className='wysiwyg text-90 leading-120 font-300 fade' dangerouslySetInnerHTML={{ __html: block.headline }}></div>
         </div>
         <div className="w-full">
-          <div className='wysiwyg text-30 leading-40 font-300' dangerouslySetInnerHTML={{ __html: block.wysiwyg }}></div>
+          <div className='wysiwyg text-30 leading-40 font-300 fade' dangerouslySetInnerHTML={{ __html: block.wysiwyg }}></div>
         </div>
       </div>
       <div className={`${styles.grid} grid grid-cols-2 md:grid-cols-3 gap-30 w-full pt-50`}>
 
         {block?.team_grid?.map((block:any, index:any) => {
-          console.log('col: ', index, block)
+          //console.log('col: ', index, block)
           return (
             <div className={`${styles.project} profile relative  overflow-hidden bg-grey w-full`} key={index}>
               <div className="w-full h-auto">

@@ -1,12 +1,12 @@
 @import '../../../styles/variables';
 
 .root {
-    .grid {
-
-    }
 
     .project {
-        aspect-ratio: 1/1;
+        width: 100%;
+        aspect-ratio: 2/2;
+        transition: all 100ms ease-in-out;
+
         &:hover {
             .image {
                 transform: scale(1.05);

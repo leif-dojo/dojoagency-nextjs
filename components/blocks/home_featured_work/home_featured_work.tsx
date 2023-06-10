@@ -279,7 +279,7 @@ const HomeFeaturedWork = ({ block }: { block: any }) => {
         })}
       </div>
       <div className={`${styles.nextwrap} relative w-full pt-20 text-right`}>
-        <a ref={NextRef} className='relative text-white text-right inline-flex ml-auto mr-0' href={`/portfolio/`} aria-label="Dojo Agency">
+        <a className='relative text-white text-right inline-flex ml-auto mr-0' href={`/portfolio/`} aria-label="Dojo Agency">
           <div ref={NextArrowRef}><NextArrow className={`${styles.nextarrow}`} /></div>
           <span ref={NextRef} className={`${styles.next} relative font-nothingyoucoulddo text-40 font-300 leading-none pt-10 pl-10 mt-20`}>View All</span>
         </a>

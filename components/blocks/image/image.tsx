@@ -14,22 +14,25 @@ const ImageBlock = ({ block }: { block: any }) => {
   useLayoutEffect(() => {
     let ctx = gsap.context(() => {
 
-      gsap
-      .timeline({
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: 'top bottom',
-          //end: 'bottom bottom',
-          //scrub: true,
-          toggleActions: "restart none none reverse"
-          //markers: true,
-        },
-      })
-      .fromTo(
-        imageRef.current,
-        { autoAlpha: 0, y: 50 },
-        { duration: 0.5, autoAlpha: 1, y: 0 }
-      )
+      const boxes = gsap.utils.toArray('.fade')
+      if (boxes.length) {
+          boxes.forEach((box:any, i:any) => {
+              const anim = gsap.fromTo(
+                  box,
+                  { autoAlpha: 0, y: "25%" },
+                  { duration: 1.6, autoAlpha: 1, y: "0%", stagger: 0.25, ease: "power4.out" }
+              )
+              ScrollTrigger.create({
+                  //scroller: page,
+                  trigger: box,
+                  animation: anim,
+                  start: 'top bottom',
+                  //end: 'bottom top',
+                  toggleActions: "restart none none reverse",
+                  //markers: true
+              })
+          })
+      }
 
     }, sectionRef);
     return () => ctx.revert();
@@ -40,7 +43,7 @@ const ImageBlock = ({ block }: { block: any }) => {
     <div className="px-50 md:px-200 py-100">
       <div ref={imageRef} className="flex w-full">
         {block.image && (
-          <div className='w-full'>
+          <div className='w-full fade'>
               <Image
                 src={block.image?.permalink}
                 width={block.image?.width}

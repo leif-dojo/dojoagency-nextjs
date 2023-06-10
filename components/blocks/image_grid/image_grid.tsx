@@ -38,7 +38,7 @@ const ImageGridBlock = ({ block }: { block: any }) => {
       }).fromTo(
         ".item",
         { autoAlpha: 0, y: 50 },
-        { duration: 0.9, autoAlpha: 1, y: 0, stagger: 0.5 }
+        { duration: 0.9, autoAlpha: 1, y: 0, stagger: 0.5, ease: "power4.out" }
       )
 
     }, sectionRef);

@@ -12,27 +12,27 @@ const WysiwygBlock = ({ block }: { block: any }) => {
 
   useLayoutEffect(() => {
     let ctx = gsap.context(() => {
-      gsap
-      .timeline({
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: 'top bottom',
-          //end: 'bottom bottom',
-          //scrub: true,
-          toggleActions: "restart none none reverse"
-          //markers: true,
-        },
-      })
-      .fromTo(
-        headlineRef.current,
-        { autoAlpha: 0, y: 50 },
-        { duration: 0.5, autoAlpha: 1, y: 0 },0.2
-      )
-      .fromTo(
-        wysiwygRef.current,
-        { autoAlpha: 0, y: 50 },
-        { duration: 0.5, autoAlpha: 1, y: 0 },0.2
-      )
+
+      //fades
+      const boxes = gsap.utils.toArray('.fade')
+      if (boxes.length) {
+          boxes.forEach((box:any, i:any) => {
+              const anim = gsap.fromTo(
+                  box,
+                  { autoAlpha: 0, y: "25%" },
+                  { duration: 1.6, autoAlpha: 1, y: "0%", stagger: 0.25, ease: "power4.out" }
+              )
+              ScrollTrigger.create({
+                  //scroller: page,
+                  trigger: box,
+                  animation: anim,
+                  start: 'top bottom',
+                  //end: 'bottom top',
+                  toggleActions: "restart none none reverse",
+                  //markers: true
+              })
+          })
+      }
 
     }, sectionRef);
     return () => ctx.revert();
@@ -42,12 +42,16 @@ const WysiwygBlock = ({ block }: { block: any }) => {
   <section ref={sectionRef} className="w-full bg-white text-slate">
     <div className="px-50 md:px-150 py-50">
       <div className="w-full">
-        <div className="w-full">
-          <div ref={headlineRef} className='wysiwyg text-90 leading-120 font-300' dangerouslySetInnerHTML={{ __html: block.headline }}></div>
-        </div>
-        <div className="w-full">
-          <div ref={wysiwygRef} className='wysiwyg text-30 leading-40 font-300' dangerouslySetInnerHTML={{ __html: block.wysiwyg }}></div>
-        </div>
+        {block.headline && (
+          <div className="w-full">
+            <div ref={headlineRef} className='wysiwyg text-90 leading-120 font-300 fade' dangerouslySetInnerHTML={{ __html: block.headline }}></div>
+          </div>
+        )}
+        {block.wysiwyg && (
+          <div className="w-full">
+            <div ref={wysiwygRef} className='wysiwyg text-30 leading-40 font-300 fade' dangerouslySetInnerHTML={{ __html: block.wysiwyg }}></div>
+          </div>
+        )}
       </div>
     </div>
   </section>

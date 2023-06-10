@@ -21,27 +21,26 @@ const WysiwygBlock = ({ block }: { block: any }) => {
   useLayoutEffect(() => {
     let ctx = gsap.context(() => {
 
-      gsap
-      .timeline({
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: 'top bottom',
-          //end: 'bottom bottom',
-          //scrub: true,
-          toggleActions: "restart none none reverse"
-          //markers: true,
-        },
-      })
-      .fromTo(
-        headlineRef.current,
-        { autoAlpha: 0, y: -50 },
-        { duration: 0.5, autoAlpha: 1, y: 0 }
-      )
-      .fromTo(
-        sideRef.current,
-        { autoAlpha: 0, y: -50 },
-        { duration: 0.5, autoAlpha: 1, y: 0 }
-      )
+      //fades
+      const boxes = gsap.utils.toArray('.fade')
+      if (boxes.length) {
+          boxes.forEach((box:any, i:any) => {
+              const anim = gsap.fromTo(
+                  box,
+                  { autoAlpha: 0, y: "25%" },
+                  { duration: 1.6, autoAlpha: 1, y: "0%", stagger: 0.25, ease: "power4.out" }
+              )
+              ScrollTrigger.create({
+                  //scroller: page,
+                  trigger: box,
+                  animation: anim,
+                  start: 'top bottom',
+                  //end: 'bottom top',
+                  toggleActions: "restart none none reverse",
+                  //markers: true
+              })
+          })
+      }
 
     }, sectionRef);
     return () => ctx.revert();
@@ -53,19 +52,21 @@ const WysiwygBlock = ({ block }: { block: any }) => {
         <div className="block md:flex">
           <div ref={headlineRef} className="w-full md:w-8/12">
             {block.eyebrow && (
-              <div className="text-20 leading-none font-300 uppercase mb-10">
+              <div className="text-20 leading-none font-300 uppercase mb-10 fade">
                 {block.eyebrow}
               </div>
             )}
-            <div className='wysiwyg text-110 leading-140 font-300' dangerouslySetInnerHTML={{ __html: block.headline }}></div>
+            {block.headline && (
+            <div className='wysiwyg text-110 leading-140 font-300 fade' dangerouslySetInnerHTML={{ __html: block.headline }}></div>
+            )}
           </div>
           <div className="w-full md:w-4/12 text-right">
             <div ref={sideRef} className="w-full md:w-10/12 ml-auto mr-0 text-left pt-30">
-              <div className="w-full text-25 leading-none font-300 pb-20">
+              <div className="w-full text-25 leading-none font-300 pb-20 fade">
                 {block.sharing_title}
               </div>
               {block.client[0] && block.client[0].client_logo && (
-                <div className='logo relative block w-7/12 mr-auto ml-0 z-10'>
+                <div className='logo relative block w-7/12 mr-auto ml-0 z-10 fade'>
                   <Image
                     src={block.client[0].client_logo?.permalink}
                     width={block.client[0].client_logo?.width}
@@ -78,11 +79,11 @@ const WysiwygBlock = ({ block }: { block: any }) => {
                 <>
                 <div className="w-full bg-slate h-1 my-25 opacity-10"></div>
                 <div className="w-full flex flex-nowrap">
-                  <div className="w-full md:w-1/2">
+                  <div className="w-full md:w-1/2 fade">
                     <div className="text-25 leading-none font-300 pb-20">Share</div>
                     <ShareIcons />
                   </div>
-                  <div className="w-full md:w-1/2">
+                  <div className="w-full md:w-1/2 fade">
                     <div className="text-25 leading-none font-300 pb-20 cursor-pointer">Copy Link</div>
                     <div className="w-full">
                       <div className={`${styles.icon} flex items-center justify-center`}>

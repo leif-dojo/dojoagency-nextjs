@@ -35,23 +35,25 @@ const Home3Column = ({ block }: { block: any }) => {
       )
 
       //fades
-      //tele
-      gsap
-      .timeline({
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: 'top bottom',
-          //end: 'bottom bottom',
-          //scrub: true,
-          toggleActions: "restart none none reverse"
-          //markers: true,
-        },
-      })
-      .fromTo(
-        ".column",
-        { autoAlpha: 0, y: 50 },
-        { duration: 0.9, autoAlpha: 1, y: 0, stagger: 1 }
-      )
+      const boxes = gsap.utils.toArray('.fade')
+      if (boxes.length) {
+          boxes.forEach((box:any, i:any) => {
+              const anim = gsap.fromTo(
+                  box,
+                  { autoAlpha: 0, y: "25%" },
+                  { duration: 1.6, autoAlpha: 1, y: "0%", stagger: 0.25, ease: "power4.out" }
+              )
+              ScrollTrigger.create({
+                  //scroller: page,
+                  trigger: box,
+                  animation: anim,
+                  start: 'top bottom',
+                  //end: 'bottom top',
+                  toggleActions: "restart none none reverse",
+                  //markers: true
+              })
+          })
+      }
 
     }, sectionRef);
     return () => ctx.revert();
@@ -64,7 +66,7 @@ const Home3Column = ({ block }: { block: any }) => {
       {block?.columns?.map((block:any, index:any) => {
         //console.log('col: ', index, block)
         return (
-          <div className={`${styles.column} column w-full md:w-1/3`} key={index}>
+          <div className={`${styles.column} column w-full md:w-1/3 fade`} key={index}>
             
             <div className='w-full pb-10'>
               {block.icon && (
