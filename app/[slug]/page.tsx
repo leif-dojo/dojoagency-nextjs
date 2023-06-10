@@ -10,30 +10,26 @@ import { notFound } from "next/navigation"
 import Image from 'next/image'
 import { draftMode } from 'next/headers'
 
-/*const componentList = {
-  Set_Components_HomeHero: dynamic(() => import(`@/components/blocks/home_hero/home_hero`)),
-  Set_Components_HomeHeadline: dynamic(() => import(`@/components/blocks/home_headline/home_headline`))
-}*/
-
 export default async function Page(context: { params: { slug: string }, searchParams: { livepreview: string, token: string} }) {
-  // const { color, setColor} = useThemeContext();
-  const { isEnabled } = draftMode()
   const client = getClient();
-
+  const { isEnabled } = draftMode()
   const uri = new URL(process.env.NEXT_PUBLIC_GRAPHQL_URL)
   const token = context.searchParams.token
   const livepreview = context.searchParams.livepreview
-  //uri.searchParams.append('token', token )
+  if (token) {
+    uri.searchParams.append('token', token)
+    uri.searchParams.append('live-preview', livepreview)
+  }
 
-  //console.log("PAGE: ", isEnabled, context, uri.toString())
   const { data } = await client.query({
     query: PageQuery, 
     variables: {
       uri: '/'+context.params.slug,
     },
     context: {
+      uri: uri.toString(),
       fetchOptions: {
-        next: { revalidate: 30 },
+        next: { revalidate: 15 },
       },
     },
   });

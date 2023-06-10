@@ -5,10 +5,18 @@ import ProjectQuery from '@/queries/project'
 import Repeater from '@/utils/rendering/repeater'
 import { notFound } from "next/navigation"
 import Arrow from '@/public/icons/icon-triangle.svg'
+import { draftMode } from 'next/headers'
 
-export default async function Page(context: { params: { slug: string } }) {
-  // const { color, setColor} = useThemeContext();
+export default async function Page(context: { params: { slug: string }, searchParams: { livepreview: string, token: string} }) {
   const client = getClient();
+  const { isEnabled } = draftMode()
+  const uri = new URL(process.env.NEXT_PUBLIC_GRAPHQL_URL)
+  const token = context.searchParams.token
+  const livepreview = context.searchParams.livepreview
+  if (token) {
+    uri.searchParams.append('token', token)
+    uri.searchParams.append('live-preview', livepreview)
+  }
 
   const { data } = await client.query({
     query: ProjectQuery, 
@@ -16,8 +24,9 @@ export default async function Page(context: { params: { slug: string } }) {
       slug: context.params.slug,
     },
     context: {
+      uri: uri.toString(),
       fetchOptions: {
-        next: { revalidate: 30 },
+        next: { revalidate: 15 },
       },
     },
   });

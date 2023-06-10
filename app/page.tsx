@@ -3,19 +3,28 @@ import { getClient } from "@/lib/client"
 import React from 'react'
 import PageQuery from '@/queries/page'
 import Repeater from '@/utils/rendering/repeater'
-import Image from 'next/image'
-import HomeHeroBlock from "@/components/blocks/home_hero/home_hero"
+import { draftMode } from 'next/headers'
 
-export default async function Page(context: { params: { slug: string } }) {
+export default async function Page(context: { params: { slug: string }, searchParams: { livepreview: string, token: string} }) {
   const client = getClient();
+  const { isEnabled } = draftMode()
+  const uri = new URL(process.env.NEXT_PUBLIC_GRAPHQL_URL)
+  const token = context.searchParams.token
+  const livepreview = context.searchParams.livepreview
+  if (token) {
+    uri.searchParams.append('token', token)
+    uri.searchParams.append('live-preview', livepreview)
+  }
+
   const { data } = await client.query({
     query: PageQuery, 
     variables: {
       uri: '/',
     },
     context: {
+      uri: uri.toString(),
       fetchOptions: {
-        next: { revalidate: 30 },
+        next: { revalidate: 15 },
       },
     },
   });
