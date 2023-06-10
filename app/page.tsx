@@ -15,7 +15,7 @@ export default async function Page(context: { params: { slug: string } }) {
     },
     context: {
       fetchOptions: {
-        next: { revalidate: 5 },
+        next: { revalidate: 30 },
       },
     },
   });

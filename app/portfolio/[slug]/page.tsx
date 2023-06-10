@@ -23,7 +23,12 @@ export default async function Page(context: { params: { slug: string } }) {
     query: PageQuery, 
     variables: {
       uri: '/portfolio/'+context.params.slug,
-    }
+    },
+    context: {
+      fetchOptions: {
+        next: { revalidate: 30 },
+      },
+    },
   });
   //const { loading, error, data } = useQuery(GlobalQuery, { client });
   //console.log("page client data: ", context.params.slug, data.entry?.components)
