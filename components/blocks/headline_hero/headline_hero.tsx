@@ -34,12 +34,12 @@ const WysiwygBlock = ({ block }: { block: any }) => {
       })
       .fromTo(
         headlineRef.current,
-        { autoAlpha: 0, y: 50 },
+        { autoAlpha: 0, y: -50 },
         { duration: 0.5, autoAlpha: 1, y: 0 }
       )
       .fromTo(
         sideRef.current,
-        { autoAlpha: 0, y: 50 },
+        { autoAlpha: 0, y: -50 },
         { duration: 0.5, autoAlpha: 1, y: 0 }
       )
 

@@ -8,21 +8,30 @@ import dynamic from 'next/dynamic'
 import Repeater from '@/utils/rendering/repeater'
 import { notFound } from "next/navigation"
 import Image from 'next/image'
+import { draftMode } from 'next/headers'
 
 /*const componentList = {
   Set_Components_HomeHero: dynamic(() => import(`@/components/blocks/home_hero/home_hero`)),
   Set_Components_HomeHeadline: dynamic(() => import(`@/components/blocks/home_headline/home_headline`))
 }*/
 
-export default async function Page(context: { params: { slug: string } }) {
+export default async function Page(context: { params: { slug: string }, searchParams: { livepreview: string, token: string} }) {
   // const { color, setColor} = useThemeContext();
+  const { isEnabled } = draftMode()
   const client = getClient();
-console.log("PAGE: ", context.params)
+
+  const uri = new URL(process.env.NEXT_PUBLIC_GRAPHQL_URL)
+  const token = context.searchParams.token
+  const livepreview = context.searchParams.livepreview
+  //uri.searchParams.append('token', token )
+
+  //console.log("PAGE: ", isEnabled, context, uri.toString())
   const { data } = await client.query({
     query: PageQuery, 
     variables: {
       uri: '/'+context.params.slug,
-    }
+    },
+    //fetchPolicy: 'network-only'
   });
   //const { loading, error, data } = useQuery(GlobalQuery, { client });
   //console.log("page client data: ", context.params.slug, data.entry?.components)
