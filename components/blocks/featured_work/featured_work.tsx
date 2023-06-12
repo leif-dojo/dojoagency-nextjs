@@ -12,6 +12,10 @@ const HomeFeaturedWork = ({ block }: { block: any }) => {
   const sectionRef = useRef<HTMLDivElement>(null)
   const [mouse, setMouse] = useState({x: 0, y: 0, moved: false})
 
+  const isMobile = () => {
+    return window.innerWidth < 1024
+  }
+
   useLayoutEffect(() => {
     let ctx = gsap.context(() => {
 
@@ -44,18 +48,20 @@ const HomeFeaturedWork = ({ block }: { block: any }) => {
   useLayoutEffect(() => {
     let ctx = gsap.context(() => {
 
-      let rect = sectionRef.current.getBoundingClientRect();
-      const mouseMoveHandler = (e) => {
-        const { clientX, clientY } = e;
-        let positionX = clientX - rect.left;
-        let positionY = clientY - rect.top;
-        setMouse({x: positionX, y: positionY, moved: true})
-        parallaxIt(".project-wrap", -150, 1);
-      };
-      document.addEventListener("mousemove", mouseMoveHandler);
-      return () => {
-        document.removeEventListener("mousemove", mouseMoveHandler);
-      };
+      if(!isMobile()) {
+        let rect = sectionRef.current.getBoundingClientRect();
+        const mouseMoveHandler = (e) => {
+          const { clientX, clientY } = e;
+          let positionX = clientX - rect.left;
+          let positionY = clientY - rect.top;
+          setMouse({x: positionX, y: positionY, moved: true})
+          parallaxIt(".project-wrap", -150, 1);
+        };
+        document.addEventListener("mousemove", mouseMoveHandler);
+        return () => {
+          document.removeEventListener("mousemove", mouseMoveHandler);
+        };
+      }
 
     }, sectionRef);
     return () => ctx.revert();
