@@ -30,13 +30,17 @@ const VideoBlock = ({ image_placeholder, video_placeholder, video }: { image_pla
     const { cursorType, cursorChangeHandler} = useThemeContext();
 
     const onMouseEnter = () => {
-        setHovering(true)
-        playing ? cursorChangeHandler("pause") : cursorChangeHandler("play")
+        if(video) {
+            setHovering(true)
+            playing ? cursorChangeHandler("pause") : cursorChangeHandler("play")
+        }
     };
 
     const onMouseLeave = () => {
-        setHovering(false)
-        cursorChangeHandler("peace")
+        if(video) {
+            setHovering(false)
+            cursorChangeHandler("peace")
+        }
     };
 
     const toggleVideo = () => {
@@ -56,7 +60,7 @@ const VideoBlock = ({ image_placeholder, video_placeholder, video }: { image_pla
 
                 {image_placeholder && (           
                     <div className='relative w-full h-full'>
-                        {!hovering && !active && (  
+                        {!hovering && !active && video && (  
                             <div className='absolute left-90 top-50 w-80 md:w-160 h-80 md:h-160 z-10 text-orange'>
                             <IconPlay /> 
                             <div className="pt-10 text-white text-20 leading-none font-300 whitespace-nowrap">Play Dojo Reel</div>
@@ -74,7 +78,7 @@ const VideoBlock = ({ image_placeholder, video_placeholder, video }: { image_pla
 
                 {video_placeholder && (
                     <div className="video absolute w-full h-full top-0 z-1" >
-                        {!hovering && !active && (  
+                        {!hovering && !active && video && (  
                             <div className='absolute left-90 top-50 w-80 md:w-160 h-80 md:h-160 z-10 text-orange'>
                             <IconPlay /> 
                             <div className="pt-10 text-white text-20 leading-none font-300 whitespace-nowrap">Play Dojo Reel</div>

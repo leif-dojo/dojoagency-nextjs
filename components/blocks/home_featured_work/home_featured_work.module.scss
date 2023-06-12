@@ -6,8 +6,9 @@
         display: flex;
         flex-direction: column;
         flex-wrap: wrap;
-
         gap: 30px;
+
+        //transition: all 0ms ease-in-out;
         @screen md {
             max-height: 60vw;
         }
@@ -16,7 +17,7 @@
     .project {
         width: 100%;
         aspect-ratio: 2/2;
-        transition: all 100ms ease-in-out;
+        transition: all 0ms ease-in-out;
 
         &:nth-child(2),
         &:nth-child(3),
@@ -29,16 +30,20 @@
                 transform: scale(1.05);
                 transition: all 500ms ease-in-out;
             }
+
             .imagehover {
                 opacity: 1;
             }
+
             .hover {
                 opacity: 1;
             }
+
             .videohover {
                 opacity: 1;
             }
         }
+
         @screen md {
             width: calc(33.333% - 20px);
         }
@@ -50,6 +55,7 @@
         object-fit: cover;
         transition: all 500ms ease-in-out;
     }
+
     .imagehover {
         min-width: 100%;
         min-height: 100%;
@@ -58,71 +64,82 @@
         z-index: 50;
         opacity: 0;
     }
+
     .hover {
         opacity: 0;
         z-index: 55;
     }
+
     .video {
         object-fit: cover;
         object-position: 50% 50%;
         transition: all 500ms ease-in-out;
+
         .videoinner {
             left: 50%;
             top: 50%;
             transform: translate(-50%, -50%);
         }
-        iframe, 
+
+        iframe,
         video {
-            width: 100%!important;
-            height: auto!important;
+            width: 100% !important;
+            height: auto !important;
             aspect-ratio: 16/9;
             object-fit: cover;
             object-position: 50% 50%;
         }
     }
+
     .videohover {
         opacity: 0;
         z-index: 55;
         object-fit: cover;
         object-position: 50% 50%;
         transition: all 500ms ease-in-out;
+
         .videoinner {
             left: 50%;
             top: 50%;
             transform: translate(-50%, -50%);
         }
-        iframe, 
+
+        iframe,
         video {
-            width: 100%!important;
-            height: auto!important;
+            width: 100% !important;
+            height: auto !important;
             aspect-ratio: 16/9;
             object-fit: cover;
             object-position: 50% 50%;
         }
     }
+
     .draw {
         .nextarrow {
             path {
                 animation: dash 3000ms ease forwards;
             }
-      }
+        }
     }
+
     .nextwrap {
         position: relative;
     }
+
     .nextarrow {
         path {
             stroke-dasharray: 100;
             stroke-dashoffset: 100;
         }
-      }
-      
-      @keyframes dash {
+    }
+
+    @keyframes dash {
         from {
-          stroke-dashoffset: 100;
+            stroke-dashoffset: 100;
         }
+
         to {
-          stroke-dashoffset: 0;
+            stroke-dashoffset: 0;
         }
-      }
+    }
 }

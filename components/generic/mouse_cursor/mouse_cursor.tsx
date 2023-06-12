@@ -1,5 +1,5 @@
 "use client"
-import React, { useContext } from "react";
+import React, { useLayoutEffect } from "react";
 import styles from './mouse_cursor.module.scss'
 import useMousePosition from "@/hooks/useMousePosition";
 import { useThemeContext } from '@/context/theme'
@@ -33,6 +33,12 @@ const Cursor = () => {
         return <div className={`${styles.view} flex`}><div className="w-full font-lato text-20 leading-none font-500 text-orange text-center pb-10 mt-auto mb-0">Next »</div></div>;
     }
   }
+
+  useLayoutEffect(() => {
+    //TODO reset cursor if no movement
+    //let timeout: NodeJS.Timeout | number | null = null;
+    //timeout = window.setTimeout(() => console.log("Timeout"), 5000);
+  }, []);
 
   return (
     <>
