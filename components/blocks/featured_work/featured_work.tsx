@@ -15,23 +15,25 @@ const HomeFeaturedWork = ({ block }: { block: any }) => {
     let ctx = gsap.context(() => {
 
       //fades
-      gsap
-      .timeline({
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: 'top bottom',
-          //end: 'bottom bottom',
-          //scrub: true,
-          toggleActions: "restart none none reverse"
-          //markers: true,
-        },
-      }).fromTo(
-        ".item",
-        { autoAlpha: 0, y: "25%" },
-        { duration: 1.6, autoAlpha: 1, y: "0%", stagger: 0.3, ease: "power4.out" }
-      )
-
-      
+      const boxes = gsap.utils.toArray('.fade')
+      if (boxes.length) {
+          boxes.forEach((box:any, i:any) => {
+              const anim = gsap.fromTo(
+                  box,
+                  { autoAlpha: 0, y: "25%" },
+                  { duration: 1.6, autoAlpha: 1, y: "0%", stagger: 0.25, ease: "power4.out" }
+              )
+              ScrollTrigger.create({
+                  //scroller: page,
+                  trigger: box,
+                  animation: anim,
+                  start: 'top bottom',
+                  //end: 'bottom top',
+                  toggleActions: "restart none none reverse",
+                  //markers: true
+              })
+          })
+      }
 
     }, sectionRef);
     return () => ctx.revert();
@@ -153,7 +155,7 @@ const HomeFeaturedWork = ({ block }: { block: any }) => {
         {block?.featured_projects?.map((block: any, index: any) => {
           //console.log('col: ', index, block)
           return (
-            <a href={`${block?.link}`} className={`${styles.project} item relative overflow-hidden bg-dark f-full`} key={index}>
+            <Link href={`${block?.link}`} className={`${styles.project} item relative overflow-hidden bg-dark f-full fade`} key={index}>
               <span className="flex justify-center items-center w-full h-full">
                 {block.image && (
                   <span className='absolute w-full h-full top-0 left-0'>
@@ -245,7 +247,7 @@ const HomeFeaturedWork = ({ block }: { block: any }) => {
                   </span>
                 </span>
               </span>
-            </a>
+            </Link>
           )
         })}
         </div>

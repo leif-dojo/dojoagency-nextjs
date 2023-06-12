@@ -1,6 +1,7 @@
 "use client"
 import React, { useContext, useEffect, useState, useRef, useLayoutEffect } from 'react'
 import Image from 'next/image'
+import Link from 'next/link'
 import styles from './image_grid.module.scss'
 import { useThemeContext } from '@/context/theme'
 import { gsap } from 'gsap'
@@ -54,7 +55,7 @@ const ImageGridBlock = ({ block }: { block: any }) => {
         {block?.image_grid?.map((block:any, index:any) => {
           //console.log('col: ', index, block)
           return (
-            <a href={`${block?.link}`} className={`${styles.project} item relative overflow-hidden bg-dark f-full`} key={index} onMouseEnter={() => onMouseEnter()} onMouseLeave={() => onMouseLeave()}>
+            <Link href={`${block?.link}`} className={`${styles.project} item relative overflow-hidden bg-dark f-full`} key={index} onMouseEnter={() => onMouseEnter()} onMouseLeave={() => onMouseLeave()}>
               <span className="flex justify-center items-center w-full h-full">
                 {block.image && (
                   <span className='absolute w-full h-full top-0 left-0'>
@@ -150,7 +151,7 @@ const ImageGridBlock = ({ block }: { block: any }) => {
                   </span>
                 </span>
               </span>
-            </a>
+            </Link>
           )
         })}
         </div>

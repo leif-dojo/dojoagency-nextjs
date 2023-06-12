@@ -113,7 +113,7 @@ const HomePartners = ({ block }: { block: any }) => {
       }).fromTo(
         NextRef.current,
         {alpha: 0, x: -50 }, 
-        {alpha: 1, x: 0, delay: 1,duration: 0.3}
+        {alpha: 1, x: 0, delay: 0.5,duration: 0.2}
       )
     }, sectionRef);
     return () => ctx.revert();
@@ -128,7 +128,7 @@ const HomePartners = ({ block }: { block: any }) => {
             <div key={index}>
               {step === index && (
                 <div className="block md:flex">
-                  <div className="w-full md:w-1/2 text-center">
+                  <div className="w-full md:w-1/2 text-center pb-100 md:pb-0">
                     <div ref={RecentRef} className="recent text-52 font-600 pb-20">{block.headline}</div>
 
                     <div className={`w-full md:w-3/4 mx-auto relative`}>
@@ -168,7 +168,7 @@ const HomePartners = ({ block }: { block: any }) => {
                   <div className="w-full md:w-1/2">
                     <div ref={CopyRef} className='copy text-40 leading-60 font-300 text-white' dangerouslySetInnerHTML={{ __html: item.description }}></div>
                     <div className={`${styles.nextwrap} w-full flex text-left pt-20 text-blue`}>
-                      <div ref={NextArrowRef}><NextArrow className={`${styles.nextarrow}`} /></div>
+                      <div ref={NextArrowRef}><NextArrow className={`${styles.nextarrow} w-40 h-auto`} /></div>
                       <div ref={NextRef} className={`${styles.next} font-nothingyoucoulddo text-40 font-400 leading-none text-blue ml-10 mt-20 cursor-pointer`} aria-label="Next" onClick={() => advance()}>Next</div>
                     </div>
                   </div>

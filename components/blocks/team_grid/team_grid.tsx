@@ -45,23 +45,6 @@ const ImageGridBlock = ({ block }: { block: any }) => {
               })
           })
       }
-
-      //grid
-      gsap
-      .timeline({
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: 'top bottom',
-          //end: 'bottom bottom',
-          //scrub: true,
-          toggleActions: "restart none none reverse",
-          //markers: true,
-        },
-      }).fromTo(
-        ".profile",
-        { autoAlpha: 0, y: 50 },
-        { duration: 0.9, autoAlpha: 1, y: 0, stagger: 0.5, ease: "power4.out" }
-      )
       
 
     }, sectionRef);
@@ -85,7 +68,7 @@ const ImageGridBlock = ({ block }: { block: any }) => {
         {block?.team_grid?.map((block:any, index:any) => {
           //console.log('col: ', index, block)
           return (
-            <div className={`${styles.project} profile relative  overflow-hidden bg-grey w-full`} key={index}>
+            <div className={`${styles.project} profile relative  overflow-hidden bg-grey w-full fade`} key={index}>
               <div className="w-full h-auto">
                 <div className='relative w-full h-full top-0 left-0 aspect-square'>
                   {block.profile_image && (

@@ -4,7 +4,7 @@ import React from 'react'
 import PageQuery from '@/queries/page'
 import Repeater from '@/utils/rendering/repeater'
 import { notFound } from "next/navigation"
-import Image from 'next/image'
+import Link from 'next/link'
 import Arrow from '@/public/icons/icon-triangle.svg'
 import { draftMode } from 'next/headers'
 
@@ -43,9 +43,9 @@ export default async function Page(context: { params: { slug: string }, searchPa
 
     <div className='w-full flex flex-nowrap px-50 md:px-100 py-100'>
       <div className='flex w-1/2 justify-items-start'>
-        <a href={`/portfolio/`} className="inline-flex mr-auto text-blue" aria-label="Previous">
+        <Link href={`/portfolio/`} className="inline-flex mr-auto text-blue" aria-label="Previous">
           <Arrow className={`w-30 h-auto rotate-180`}/>
-          <span className="font-nothingyoucoulddo text-40 font-400 text-blue pl-20">Back to Portfolio</span></a>
+          <span className="font-nothingyoucoulddo text-40 font-400 text-blue pl-20">Back to Portfolio</span></Link>
       </div>
       <div className='flex w-1/2 justify-items-end'>
         

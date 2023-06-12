@@ -23,11 +23,12 @@ const HomeHeroBlock = ({ block }: { block: any }) => {
   const DownRef = useRef<HTMLDivElement>(null)
   const RainRef = useRef<HTMLDivElement>(null)
 
-  const isMobile = useIsMobile(false, 'md')
+  const isMobile = () => {
+    return window.innerWidth < 1024
+  }
 
   useLayoutEffect(() => {
     let ctx = gsap.context(() => {
-      console.log("ismobile: ", isMobile)
       gsap
       .timeline({
         scrollTrigger: {
@@ -46,26 +47,26 @@ const HomeHeroBlock = ({ block }: { block: any }) => {
       )
       .fromTo(
         HeadlineRef.current,
-        { autoAlpha: 0, y: 50 },
-        { duration: 0.5, autoAlpha: 1, y: 0 },0.2
+        { autoAlpha: 0, y: "20%" },
+        { duration: 0.5, autoAlpha: 1, y: "0%" },0.2
       )
       .fromTo(
         DownRef.current,
-        { autoAlpha: 0, y: 50 },
-        { duration: 0.5, autoAlpha: 1, y: 0 },0.4
+        { autoAlpha: 0, y: "20%" },
+        { duration: 0.5, autoAlpha: 1, y: "0%" },0.4
       )
       .fromTo(
         VideoRef.current,
-        { autoAlpha: 0, y: 50 },
-        { duration: 1, autoAlpha: 1, y: 0 },0.6
+        { autoAlpha: 0, y: "20%" },
+        { duration: 1, autoAlpha: 1, y: "0%" },0.6
       )
 
       //stories
       gsap
       .timeline({
         scrollTrigger: {
-          trigger: sectionRef.current,
-          start: isMobile ? "center 50%" : "center 40%",
+          trigger: PanelRef.current,
+          start: isMobile() ? "top 180rem" : "top 300rem",
           end: "center 0%",
           scrub: true,
           // end: "+=500",
@@ -76,10 +77,10 @@ const HomeHeroBlock = ({ block }: { block: any }) => {
       .fromTo(
         HeadlineRef.current,
         {
-          fontSize: '110rem'
+          fontSize: isMobile() ? "90rem" : "110rem"
           //autoAlpha: 0
         }, {
-          fontSize: '150rem'
+          fontSize: isMobile() ? "120rem" : "150rem"
           //autoAlpha: 1
         },0
       )
@@ -159,11 +160,13 @@ const HomeHeroBlock = ({ block }: { block: any }) => {
         </div>
       </div>
       <div ref={PanelRef} className={`relative w-full bg-slate px-50 md:px-100 mt-250 pb-120 z-6`}>
-        <div ref={HeadlineRef} className='w-full text-white text-center font-lato text-113 font-300 leading-none py-20'>
+        <div ref={HeadlineRef} className='w-full text-white text-center font-lato text-90 md:text-113 font-300 leading-none py-20'>
           {block?.headline}
         </div>
-        <div ref={DownRef} className={`${styles.arrow} flex justify-center w-full text-center py-20`}>
-          <Arrow />
+        <div className={`flex justify-center w-full text-center py-20`}>
+          <div ref={DownRef} className={`${styles.arrow} text-center w-40 h-auto`}>
+            <Arrow />
+          </div>
         </div>
         <div ref={VideoRef} className='relative px-40 md:px-160 z-10'>
           <VideoPlayer

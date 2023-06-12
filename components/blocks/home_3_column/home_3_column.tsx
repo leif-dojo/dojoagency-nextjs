@@ -2,8 +2,7 @@
 import React, { useContext, useEffect, useState, useRef, useLayoutEffect } from 'react'
 import Image from 'next/image'
 import styles from './home_3_column.module.scss'
-//import mountains from '@/public/images/placeholder.jpg'
-//import Image from '@/utils/rendering/image'
+import Link from 'next/link'
 export const typename = 'Set_Components_Home3Column'
 
 import { gsap } from 'gsap'
@@ -70,7 +69,7 @@ const Home3Column = ({ block }: { block: any }) => {
             
             <div className='w-full pb-10'>
               {block.icon && (
-                <a href={`${block?.link ? block?.link: null}`} className={``}>
+                <Link href={`${block?.link ? block?.link: null}`} className={``}>
                 <div className={`${styles.imagewrap} w-full overflow-hidden`}>
                   <Image
                     src={block?.icon?.permalink}
@@ -80,7 +79,7 @@ const Home3Column = ({ block }: { block: any }) => {
                     className={`${styles.image} f-full h-auto  object-contain`}
                   />
                 </div>
-                </a>
+                </Link>
               )}
               <div className='inline-block text-80 leading-90 font-200'>
                 {block.headline}

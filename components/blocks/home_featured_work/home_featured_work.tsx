@@ -40,7 +40,28 @@ const HomeFeaturedWork = ({ block }: { block: any }) => {
       )
 
       //fades
-      gsap
+      const boxes = gsap.utils.toArray('.fade')
+      if (boxes.length) {
+          boxes.forEach((box:any, i:any) => {
+              const anim = gsap.fromTo(
+                  box,
+                  { autoAlpha: 0, y: "25%" },
+                  { duration: 1.6, autoAlpha: 1, y: "0%", stagger: 0.25, ease: "power4.out" }
+              )
+              ScrollTrigger.create({
+                  //scroller: page,
+                  trigger: box,
+                  animation: anim,
+                  start: 'top bottom',
+                  //end: 'bottom top',
+                  toggleActions: "restart none none reverse",
+                  //markers: true
+              })
+          })
+      }
+
+      //fade timeline option
+      /*gsap
       .timeline({
         scrollTrigger: {
           trigger: sectionRef.current,
@@ -68,23 +89,6 @@ const HomeFeaturedWork = ({ block }: { block: any }) => {
         NextRef.current,
         {alpha: 0, }, 
         {alpha: 1, delay: 1, duration: 0.3}
-      )
-
-      //Add in elements
-      /*gsap
-        .timeline({
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: '100% bottom',
-            //end: 'bottom top',
-            //scrub: true,
-            //markers: true,
-            toggleActions: "restart none none reverse"
-          },
-        }).fromTo(
-          NextRef.current,
-        {alpha: 0, y: -50 }, 
-        {alpha: 1, y: 0, duration: 0.3}
       )*/
 
 
@@ -206,7 +210,7 @@ const HomeFeaturedWork = ({ block }: { block: any }) => {
   return (
   <section ref={sectionRef} className={`${styles.root} relative w-full bg-blue z-10`}>
     <div className="px-50 md:px-100 py-100">
-      <div ref={HeadlineRef} className='w-full font-lato text-80 leading-90 font-300 text-white pb-20 pl-0 md:pl-80'>
+      <div ref={HeadlineRef} className='w-full font-lato text-80 leading-90 font-300 text-white pb-20 pl-0 md:pl-80 fade'>
         {block?.headline}
       </div>
       <div className={`${styles.grid} block md:grid w-full `}>
@@ -214,7 +218,7 @@ const HomeFeaturedWork = ({ block }: { block: any }) => {
         {block?.featured_projects?.map((block: any, index: any) => {
           //console.log('home featured col: ', index, block)
           return (
-            <a href={`${block?.link}`} className={`${styles.project} project relative  overflow-hidden bg-dark w-full md:w-1/3`} key={index}>
+            <Link href={`${block?.link}`} className={`${styles.project} project relative  overflow-hidden bg-dark w-full md:w-1/3 fade`} key={index}>
               <span className="flex justify-center items-center w-full h-full">
 
                   <span className='absolute w-full h-full top-0 left-0'>
@@ -300,19 +304,19 @@ const HomeFeaturedWork = ({ block }: { block: any }) => {
 
                   </span>
                 
-                <span className={`${styles.hover} px-20 relative z-5 text-30 font-500 text-white text-center`}>
+                <span className={`${styles.hover} px-20 relative z-5 text-30 font-500 text-white text-center fade`}>
                   {block.headline}
                 </span>
               </span>
-            </a>
+            </Link>
           )
         })}
       </div>
       <div className={`${styles.nextwrap} relative w-full pt-20 text-right`}>
-        <a className='relative text-white text-right inline-flex ml-auto mr-0' href={`/portfolio/`} aria-label="Dojo Agency">
-          <div ref={NextArrowRef}><NextArrow className={`${styles.nextarrow}`} /></div>
-          <span ref={NextRef} className={`${styles.next} relative font-nothingyoucoulddo text-40 font-300 leading-none pt-10 pl-10 mt-20`}>View All</span>
-        </a>
+        <Link className='relative text-white text-right inline-flex ml-auto mr-0' href={`/portfolio/`} aria-label="Dojo Agency fade">
+          <div ref={NextArrowRef} className='text-white'><NextArrow className={`${styles.nextarrow} w-40 h-auto`} /></div>
+          <span ref={NextRef} className={`${styles.next} relative font-nothingyoucoulddo text-40 font-300 leading-none pt-10 pl-10 mt-20 `}>View All</span>
+        </Link>
       </div>
     </div>
   </section>

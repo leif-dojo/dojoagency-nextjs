@@ -142,7 +142,7 @@ const HomeHeadlineBlock = ({ block }: { block: any }) => {
           <div ref={TypewriterRef} className={`${styles.typewriter} w-100 mb-20`}>
             <Typewriter />
           </div>
-          <div ref={SubRef} className="sub text-55 leading-none font-600">
+          <div ref={SubRef} className="sub text-40 md:text-55 leading-none font-600">
             {block.subheadline}
           </div>
         </div>

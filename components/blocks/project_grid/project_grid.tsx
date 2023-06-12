@@ -69,22 +69,6 @@ const ProjectGridBlock = ({ block }: { block: any }) => {
           })
       }
 
-      //projects
-      gsap
-      .timeline({
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: 'top bottom',
-          //end: 'bottom bottom',
-          //scrub: true,
-          toggleActions: "restart none none reverse",
-          //markers: true,
-        },
-      }).fromTo(
-        ".project",
-        { autoAlpha: 0, y: 50 },
-        { duration: 0.9, autoAlpha: 1, y: 0, stagger: 0.5, ease: "power4.out" }
-      )
 
     }, sectionRef);
     return () => ctx.revert();
@@ -107,7 +91,7 @@ const ProjectGridBlock = ({ block }: { block: any }) => {
         {block?.project_grid?.map((block:any, index:any) => {
           //console.log('col: ', index, block)
           return (
-            <div className={`${styles.project} project relative overflow-hidden cursor-pointer`} onClick={() => openOrClose(index)} key={index}>
+            <div className={`${styles.project} project relative overflow-hidden cursor-pointer fade`} onClick={() => openOrClose(index)} key={index}>
               <div className="block w-full h-full">
                 <div className={`w-full px-30 py-20`}>
                   {block.project_title && (

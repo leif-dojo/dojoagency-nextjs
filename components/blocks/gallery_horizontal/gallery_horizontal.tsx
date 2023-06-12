@@ -69,23 +69,6 @@ const GalleryHorizontalBlock = ({ block }: { block: any }) => {
           })
       }
 
-      //projects
-      gsap
-      .timeline({
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: 'top bottom',
-          //end: 'bottom bottom',
-          //scrub: true,
-          toggleActions: "restart none none reverse"
-          //markers: true,
-        },
-      }).fromTo(
-        ".project",
-        { autoAlpha: 0, y: 50 },
-        { duration: 0.9, autoAlpha: 1, y: 0, stagger: 0.5 }
-      )
-
     }, sectionRef);
     return () => ctx.revert();
   }, []);
@@ -124,7 +107,7 @@ const GalleryHorizontalBlock = ({ block }: { block: any }) => {
                 {block?.gallery_grid?.map((item:any, index:any) => {
                 return (
                 <SwiperSlide className={`${styles.slide}`} key={index}>
-                  <div className={`${styles.project} project absolute flex justify-center items-center overflow-hidden`}>
+                  <div className={`${styles.project} project absolute flex justify-center items-center overflow-hidden fade`}>
 
                     <div className='absolute w-full h-full top-0 left-0'>
 

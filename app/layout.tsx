@@ -1,7 +1,6 @@
 import './globals.css'
 import '@/styles/globals.scss'
 import React from 'react'
-import dynamic from 'next/dynamic'
 import localFont from 'next/font/local'
 import { Lato } from 'next/font/google'
 import { getClient } from "@/lib/client";
@@ -10,17 +9,9 @@ import { ThemeContextProvider } from '@/context/theme'
 import Header from '@/components/generic/header/header'
 import Footer from '@/components/generic/footer/footer'
 import ContactForm from '@/components/generic/contact_form/contact_form'
-
-import { useContext } from "react";
 import MouseCursor from "@/components/generic/mouse_cursor/mouse_cursor";
-
-/*const ContactForm = dynamic(
-  () => import('@/components/generic/contact_form/contact_form'),
-)*/
-//const Header = dynamic(() => import('@/components/generic/header/header'))
-//const Footer = dynamic(() => import('@/components/generic/footer/footer'))
-
-// import '@/styles/globals.scss'
+import { PageTransition } from '@/components/generic/page_transition/page_transition'
+import { motion } from "framer-motion";
 
 const lato = Lato({
   weight: ['100','300','400','700','900'],
@@ -52,7 +43,6 @@ export default async function RootLayout({
 }) {
   const client = getClient();
   const { data } = await client.query({query: GlobalQuery});
-  //console.log("layout: ", data.global, data.global.copyright)
   return (
       <html lang="en">
         <head />
@@ -62,7 +52,9 @@ export default async function RootLayout({
               <MouseCursor />
               <ContactForm data={data.footer} />
               <Header nav={data.header_nav} />
-              {children}
+              <PageTransition >
+                {children}
+              </PageTransition>
               <Footer footer={data.footer} footer_nav={data.footer_nav} />
             </ThemeContextProvider>
           </main>
