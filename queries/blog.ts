@@ -1,8 +1,8 @@
 import { gql } from '@apollo/client'
 
 export default gql`
-  query project($slug: String) {
-    entry(collection: "projects", slug: $slug) {
+  query blog($slug: String) {
+    entry(collection: "blog", slug: $slug) {
       id
       __typename
       title
@@ -10,7 +10,7 @@ export default gql`
       uri
       permalink
       published
-      ... on Entry_Projects_Project {
+      ... on Entry_Blog_Blog {
         id
         published
         slug
@@ -19,17 +19,7 @@ export default gql`
         title
         uri
         url
-        project_name
         permalink
-        client {
-          ... on Entry_Clients_Client {
-            id
-            client_name
-            client_logo {
-              id
-            }
-          }
-        }
         components {
           ... on Set_Components_HomeHero {
             __typename
@@ -287,6 +277,7 @@ export default gql`
             headline
             type
             image {
+              id
               ... on Asset_Assets {
                 id
                 alt

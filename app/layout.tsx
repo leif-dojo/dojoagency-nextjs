@@ -1,6 +1,6 @@
 import './globals.css'
 import '@/styles/globals.scss'
-import React from 'react'
+import React, { Suspense } from "react";
 import localFont from 'next/font/local'
 import { Lato } from 'next/font/google'
 import { getClient } from "@/lib/client";
@@ -11,7 +11,7 @@ import Footer from '@/components/generic/footer/footer'
 import ContactForm from '@/components/generic/contact_form/contact_form'
 import MouseCursor from "@/components/generic/mouse_cursor/mouse_cursor";
 import { PageTransition } from '@/components/generic/page_transition/page_transition'
-import { motion } from "framer-motion";
+import Loading from "./loading";
 
 const lato = Lato({
   weight: ['100','300','400','700','900'],
@@ -48,13 +48,12 @@ export default async function RootLayout({
         <head />
         <body className={`${lato.variable} ${nothingyoucoulddo.variable} font-lato`}>
           <main>
+          
             <ThemeContextProvider>
               <MouseCursor />
               <ContactForm data={data.footer} />
               <Header nav={data.header_nav} />
-              <PageTransition >
-                {children}
-              </PageTransition>
+              <Suspense fallback={<Loading />}><PageTransition>{children}</PageTransition></Suspense>
               <Footer footer={data.footer} footer_nav={data.footer_nav} />
             </ThemeContextProvider>
           </main>

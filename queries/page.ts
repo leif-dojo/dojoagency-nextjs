@@ -1,7 +1,4 @@
 import { gql } from '@apollo/client'
-import asset from './helper/asset'
-import Components from './helper/components'
-
 
 export default gql`
   query page($uri: String) {

@@ -85,7 +85,7 @@ const VideoBlock = ({ image_placeholder, video_placeholder, video }: { image_pla
                             </div>
                         )}
 
-                    <div className="video-inner absolute block w-full h-full aspect-video">
+                    <div className="video-inner absolute block w-full h-full aspect-video ">
                         <ReactPlayer 
                             className={`${styles.player} react-player w-full h-auto aspect-video`}
                             url={video_placeholder}
@@ -97,6 +97,8 @@ const VideoBlock = ({ image_placeholder, video_placeholder, video }: { image_pla
                             //width='1920px'
                             //height='1080px'
                             playsinline={true}
+                            onReady={() => console.log('onReady')}
+                            onStart={() => console.log('onStart')}
                             config={{
                                 vimeo: {
                                     //controls: false
@@ -121,6 +123,8 @@ const VideoBlock = ({ image_placeholder, video_placeholder, video }: { image_pla
                                 //width='1920px'
                                 //height='1080px'
                                 playsinline={true}
+                                onReady={() => console.log('onReady')}
+                                onStart={() => console.log('onStart')}
                                 config={{
                                     vimeo: {
                                         //controls: false
