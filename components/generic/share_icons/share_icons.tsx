@@ -39,7 +39,7 @@ const SocialIconsBlock = () => {
     <div className={`${styles.root}`}>
       <div className="flex items-left gap-20 relative w-auto">
           {socials.map((t:any) => (
-            <div key={`${t.type}`} className={`${styles.icon} flex items-center justify-center`}>
+            <div key={`${t.type}`} className={`${styles.icon} share-icon-wrap flex items-center justify-center`}>
               <a href={t.url} className={`relative flex items-center justify-center text-blue cursor-pointer`} aria-label={`${t.type}`} target='_blank'>
               {getSocialIcon(t)}
               </a>
