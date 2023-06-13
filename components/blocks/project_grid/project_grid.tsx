@@ -78,6 +78,11 @@ const ProjectGridBlock = ({ block }: { block: any }) => {
   <section ref={sectionRef} className={`${styles.root} w-full bg-white text-slate overflow-hidden`}>
     <div className="px-50 md:px-100 py-100">
       <div className="w-full">
+        {block.eyebrow && (
+            <div className="text-20 leading-none font-300 uppercase mb-10 fade">
+              {block.eyebrow}
+            </div>
+          )}
         <div className="w-full">
           <div className='wysiwyg text-50 leading-none font-700 pb-10 fade' dangerouslySetInnerHTML={{ __html: block.headline }}></div>
         </div>

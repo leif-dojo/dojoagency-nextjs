@@ -42,6 +42,11 @@ const WysiwygBlock = ({ block }: { block: any }) => {
   <section ref={sectionRef} className="w-full bg-white text-slate">
     <div className="px-50 md:px-150 py-50">
       <div className="w-full">
+        {block.eyebrow && (
+          <div className="text-20 leading-none font-300 uppercase mb-10 fade">
+            {block.eyebrow}
+          </div>
+        )}
         {block.headline && (
           <div className="w-full">
             <div ref={headlineRef} className='wysiwyg text-90 leading-120 font-300 fade' dangerouslySetInnerHTML={{ __html: block.headline }}></div>

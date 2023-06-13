@@ -131,11 +131,11 @@ const NavBlock = ({
                     Connect With Us
                   </div>
                   <div className={`${styles.inputwrapper} w-full`}>
-                    <label className="w-full text-left text-20 leading-none font-300 pb-20 text-slate" htmlFor="name">Name*</label>
+                    <label className="w-full text-left text-22 leading-none font-300 pb-20 text-slate" htmlFor="name">Name*</label>
                     <input
                       id="name"
                       placeholder=""
-                      className="w-full text-20"
+                      className="w-full text-22"
                       onChange={(e) =>
                         setDetailData({ ...detailData, ['name']: e.target.value })
                       }
@@ -171,11 +171,11 @@ const NavBlock = ({
                     Connect With Us
                   </div>
                   <div className={`${styles.inputwrapper} w-full`}>
-                    <label className="w-full text-left text-20 leading-none font-300 pb-20 text-white" htmlFor="email">Email*</label>
+                    <label className="w-full text-left text-22 leading-none font-300 pb-20 text-white" htmlFor="email">Email*</label>
                     <input
                       id="email"
                       placeholder=""
-                      className="w-full text-20"
+                      className="w-full text-22"
                       onChange={(e) =>
                         setDetailData({ ...detailData, ['email']: e.target.value })
                       }
@@ -211,11 +211,11 @@ const NavBlock = ({
                     Connect With Us
                   </div>
                   <div className={`${styles.inputwrapper} w-full`}>
-                    <label className="w-full text-left text-20 leading-none font-300 pb-20 text-slate" htmlFor="message">Message*</label>
+                    <label className="w-full text-left text-22 leading-none font-300 pb-20 text-slate" htmlFor="message">Message*</label>
                     <textarea
                       id="message"
                       placeholder=""
-                      className="w-full text-20"
+                      className="w-full text-22"
                       rows={6}
                       onChange={(e) =>
                         setDetailData({ ...detailData, ['message']: e.target.value })

@@ -362,6 +362,7 @@ export default gql`
             }
           }
           ... on Set_Components_Timeline {
+            eyebrow
             headline
             wysiwyg
             type
@@ -449,6 +450,7 @@ export default gql`
           ... on Set_Components_Wysiwyg {
             wysiwyg
             type
+            eyebrow
             headline
           }
           ... on Set_Components_Image {
@@ -472,6 +474,7 @@ export default gql`
             }
           }
           ... on Set_Components_Headline {
+            eyebrow
             headline
             type
           }
@@ -610,6 +613,7 @@ export default gql`
           ... on Set_Components_ProjectGrid {
             type
             wysiwyg
+            eyebrow
             headline
             project_grid {
               popup_headline
@@ -644,6 +648,7 @@ export default gql`
             }
           }
           ... on Set_Components_TeamGrid {
+            eyebrow
             headline
             wysiwyg
             type

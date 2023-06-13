@@ -48,9 +48,11 @@ const Column2VideoBlock = ({ block }: { block: any }) => {
     <div className="px-50 md:px-100 py-100">
       <div className="block md:flex">
         <div ref={copyRef} className="w-full md:w-5/12 md:pr-30">
-          <div className="text-20 leading-none font-300 uppercase mb-10 fade">
-            {block.eyebrow}
-          </div>
+          {block.eyebrow && (
+            <div className="text-20 leading-none font-300 uppercase mb-10 fade">
+              {block.eyebrow}
+            </div>
+          )}
           <div className="text-90 leading-120 font-300 mb-20 fade">
             {block.headline}
           </div>

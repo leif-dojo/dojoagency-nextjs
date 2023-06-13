@@ -45,9 +45,11 @@ const Column2ImageBlock = ({ block }: { block: any }) => {
       <div className="block md:flex">
         <div ref={copyRef} className="w-full md:w-1/2 md:pr-30 flex items-center">
           <div className='w-full'>
-            <div className="text-20 leading-none font-300 uppercase mb-10 fade">
-              {block.eyebrow}
-            </div>
+            {block.eyebrow && (
+              <div className="text-20 leading-none font-300 uppercase mb-10 fade">
+                {block.eyebrow}
+              </div>
+            )}
             <div className="text-90 leading-120 font-300 mb-20 fade">
               {block.headline}
             </div>

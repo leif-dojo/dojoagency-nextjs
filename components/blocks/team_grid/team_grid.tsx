@@ -56,6 +56,11 @@ const ImageGridBlock = ({ block }: { block: any }) => {
   <section ref={sectionRef} className={`${styles.root} w-full bg-white text-slate overflow-hidden`}>
     <div className="px-50 md:px-100 py-100">
       <div className="w-full">
+        {block.eyebrow && (
+          <div className="text-20 leading-none font-300 uppercase mb-10 fade">
+            {block.eyebrow}
+          </div>
+        )}
         <div className="w-full">
           <div className='wysiwyg text-90 leading-120 font-300 fade' dangerouslySetInnerHTML={{ __html: block.headline }}></div>
         </div>
@@ -63,7 +68,7 @@ const ImageGridBlock = ({ block }: { block: any }) => {
           <div className='wysiwyg text-30 leading-40 font-300 fade' dangerouslySetInnerHTML={{ __html: block.wysiwyg }}></div>
         </div>
       </div>
-      <div className={`${styles.grid} grid grid-cols-2 md:grid-cols-3 gap-30 w-full pt-50`}>
+      <div className={`${styles.grid} grid grid-cols-1 md:grid-cols-3 gap-30 w-full pt-50`}>
 
         {block?.team_grid?.map((block:any, index:any) => {
           //console.log('col: ', index, block)

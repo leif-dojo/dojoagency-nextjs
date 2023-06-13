@@ -83,7 +83,7 @@ const HomeFeaturedWork = ({ block }: { block: any }) => {
   return(
     <section ref={sectionRef} className={`${styles.root} w-full bg-white text-slate overflow-hidden`}>
     <div className="px-50 md:px-100 py-100">
-      <div className={`${styles.grid} project-wrap grid grid-cols-2 md:grid-cols-3 gap-50 w-full `}>
+      <div className={`${styles.grid} project-wrap grid grid-cols-1 md:grid-cols-3 gap-50 w-full `}>
 
         {block?.featured_projects?.map((block: any, index: any) => {
           //console.log('col: ', index, block)
@@ -172,10 +172,10 @@ const HomeFeaturedWork = ({ block }: { block: any }) => {
                   </span>
                 )}
                 <span className={`relative w-full flex justify-center items-center`}>
-                  <span className={`${styles.headline} absolute w-full z-5 text-60 leading-none font-500 text-white text-center`}>
+                  <span className={`${styles.headline} absolute w-full px-40 py-40 z-5 text-60 leading-none font-500 text-white text-center`}>
                     {block.headline}
                   </span>
-                  <span className={`${styles.hover} absolute w-full z-5 text-40 leading-none font-500 text-white text-center`}>
+                  <span className={`${styles.hover} absolute w-full px-40 py-40 z-5 text-40 leading-none font-500 text-white text-center`}>
                     {block.headline_hover}
                   </span>
                 </span>
