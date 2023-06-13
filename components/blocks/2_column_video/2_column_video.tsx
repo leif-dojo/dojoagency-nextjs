@@ -59,6 +59,11 @@ const Column2VideoBlock = ({ block }: { block: any }) => {
           <div className="w-full">
             <div className='wysiwyg font-lato text-30 leading-40 font-300 fade' dangerouslySetInnerHTML={{ __html: block.wysiwyg }}></div>
           </div>
+          {block.wysiwyg_sub && (
+          <div className="w-full">
+            <div className='wysiwyg text-30 leading-40 font-300 fade' dangerouslySetInnerHTML={{ __html: block.wysiwyg_sub }}></div>
+          </div>
+          )}
         </div>
         <div ref={mediaRef} className="w-full md:w-7/12 fade">
 

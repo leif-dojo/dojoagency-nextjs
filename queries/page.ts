@@ -294,6 +294,7 @@ export default gql`
               }
             }
             wysiwyg
+            wysiwyg_sub
           }
           ... on Set_Components_2ColumnVideo {
             eyebrow
@@ -301,8 +302,22 @@ export default gql`
             video_embed
             type
             wysiwyg
+            wysiwyg_sub
             image {
-              id
+              ... on Asset_Assets {
+                id
+                alt
+                url
+                width
+                height
+                path
+                permalink
+                extension
+                is_image
+                is_video
+                is_audio
+                focus_css
+              }
             }
             video_popup_embed
             video_local_popup {
