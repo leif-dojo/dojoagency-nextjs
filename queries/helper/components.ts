@@ -1,6 +1,6 @@
 import { gql } from '@apollo/client'
 
-export const PAGE_COMPONENTS = gql`
+export default gql`
 fragment Components on components {
   ... on Set_Components_HomeHero {
     __typename
