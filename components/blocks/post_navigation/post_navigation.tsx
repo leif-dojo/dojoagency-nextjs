@@ -2,7 +2,8 @@
 import React, { useRef, useLayoutEffect } from 'react'
 import Link from 'next/link'
 import styles from './post_navigation.module.scss'
-import Arrow from '@/public/icons/icon-triangle.svg'
+import NextIcon from '@/public/icons/icon-next.svg'
+import PrevIcon from '@/public/icons/icon-prev.svg'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger'
 gsap.registerPlugin(ScrollTrigger)
@@ -45,7 +46,7 @@ const PostNavigationBlock = ({ block }: { block: any }) => {
       <div className='flex w-1/2 justify-items-start'>
         { block.back_link && (
           <Link href={`${block.back_link}`} className="link inline-flex mr-auto text-blue fade" aria-label="Previous">
-            <Arrow className={`${styles.arrow} w-30 h-auto rotate-180`}/>
+            <PrevIcon className={`${styles.arrow} w-30 h-auto`}/>
             <span className="font-nothingyoucoulddo text-40 font-400 text-blue pl-20">{block.back_link_copy ? block.back_link_copy : 'Previous'}</span>
           </Link>
         )}
@@ -54,7 +55,7 @@ const PostNavigationBlock = ({ block }: { block: any }) => {
         { block.forward_link && (
           <Link href={`${block.forward_link}`} className="link inline-flex ml-auto text-blue fade" aria-label="Next">
             <span className="font-nothingyoucoulddo text-40 font-400 text-blue pr-20">{block.forward_link_copy ? block.forward_link_copy : 'Next'}</span> 
-            <Arrow className={`${styles.arrow} w-30 h-auto`}/>
+            <NextIcon className={`${styles.arrow} w-30 h-auto`}/>
           </Link>
         )}
       </div>

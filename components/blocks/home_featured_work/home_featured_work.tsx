@@ -4,7 +4,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import styles from './home_featured_work.module.scss'
 export const typename = 'Set_Components_HomeFeaturedWork'
-import NextArrow from '@/public/icons/icon-arrow-next.svg'
+import NextArrow from '@/public/icons/icon-arrow-next-style.svg'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger'
 gsap.registerPlugin(ScrollTrigger)

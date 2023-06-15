@@ -460,10 +460,53 @@ export default gql`
             }
           }
           ... on Set_Components_Wysiwyg {
-            wysiwyg
             type
             eyebrow
             headline
+            wysiwyg_set: wysiwyg {
+              ... on BardText {
+                text
+                type
+              }
+              ... on Set_Wysiwyg_2Column {
+                wysiwyg
+                type
+                image {
+                  ... on Asset_Assets {
+                    id
+                    alt
+                    url
+                    width
+                    height
+                    path
+                    permalink
+                    extension
+                    is_image
+                    is_video
+                    is_audio
+                    focus_css
+                  }
+                }
+              }
+              ... on Set_Wysiwyg_Image {
+                image {
+                  ... on Asset_Assets {
+                    id
+                    alt
+                    url
+                    width
+                    height
+                    path
+                    permalink
+                    extension
+                    is_image
+                    is_video
+                    is_audio
+                    focus_css
+                  }
+                }
+              }
+            }
           }
           ... on Set_Components_Image {
             type

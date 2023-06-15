@@ -42,15 +42,6 @@ export default async function Page(context: { params: { slug: string }, searchPa
   return (
   <div className="page bg-white text-slate pt-100">
     <Repeater blocks={data.entry?.components} />
-
-    <div className='container w-full flex flex-nowrap mx-auto py-40'>
-      <div className='flex w-1/2 justify-items-start'>
-        <Link href={`/portfolio/`} className="inline-flex mr-auto text-blue" aria-label="Previous"><Arrow className={`w-30 h-auto rotate-180`}/><span className="font-nothingyoucoulddo text-40 font-400 text-blue pl-20">Previous</span></Link>
-      </div>
-      <div className='flex w-1/2 justify-items-end'>
-        <Link  href={`/portfolio/`} className="inline-flex ml-auto text-blue" aria-label="Next"> <span className="font-nothingyoucoulddo text-40 font-400 text-blue pr-20">Next</span> <Arrow className={`w-30 h-auto`}/></Link>
-      </div>
-    </div>
   </div>
   )
 }
