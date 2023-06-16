@@ -4,49 +4,95 @@
     .wrap {
         aspect-ratio: 2.6/1;
     }
+
     .logo {
         width: 70%;
         max-height: 100%;
     }
+
     .oval {
-        svg{
+        svg {
             position: relative;
             width: 100%;
             height: auto;
-            path{
+
+            path {
                 position: relative;
             }
         }
     }
-    .ovalarrow{
-        svg{
-            position: relative;
-            width: 100%;
-            height: auto;
+    .ovalarrowwrap {
+        position: relative;
+    }
+
+    .ovalarrow {
+        path {
+            stroke-dasharray: 200;
+            stroke-dashoffset: 200;
         }
     }
+
+    .nexttext {
+        path {
+            opacity: 0;
+            animation-timing-function: linear;
+            animation-fill-mode: forwards;
+            //animation-name: line;
+          }
+    }
+
     .draw {
+        .ovalarrow {
+            path {
+                animation: dash 1000ms ease forwards;
+            }
+        }
+
         .nextarrow {
             path {
                 animation: dash 1000ms ease forwards;
             }
-      }
+        }
+
+        .nexttext {
+            path {
+                opacity: 1;
+                animation-name: line;
+              }
+              
+        }
     }
+
     .nextwrap {
         position: relative;
     }
+
     .nextarrow {
         path {
-            stroke-dasharray: 100;
-            stroke-dashoffset: 100;
+            stroke-dasharray: 200;
+            stroke-dashoffset: 200;
         }
-      }
-      
-      @keyframes dash {
+    }
+    .nexttext {
+        path {
+            //stroke-dasharray: 100;
+            //stroke-dashoffset: 100;
+            //animation: dash 1000ms ease infinite;
+        }
+    }
+
+    @keyframes dash {
         from {
-          stroke-dashoffset: 100;
+            stroke-dashoffset: 200;
         }
+
         to {
+            stroke-dashoffset: 0;
+        }
+    }
+
+    @keyframes line {
+        100% {
           stroke-dashoffset: 0;
         }
       }

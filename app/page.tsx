@@ -1,9 +1,14 @@
 //"use-client"
 import { getClient } from "@/lib/client"
 import React from 'react'
+import { Metadata } from 'next'
 import PageQuery from '@/queries/page'
 import Repeater from '@/utils/rendering/repeater'
 import { draftMode } from 'next/headers'
+
+export const metadata: Metadata = {
+  title: 'Dojo Agency',
+}
 
 export default async function Page(context: { params: { slug: string }, searchParams: { livepreview: string, token: string} }) {
   const client = getClient();
@@ -32,8 +37,10 @@ export default async function Page(context: { params: { slug: string }, searchPa
   //console.log("PAGE HOME: ", context.params)
   //console.log("page home HomeHeroBlock: ", HomeHeroBlock)
   return (
-    <div className={`page pt-100`}>
-      <Repeater blocks={data.entry.components} />
-    </div>
+    <>
+      <div className={`page pt-100`}>
+        <Repeater blocks={data.entry.components} />
+      </div>
+    </>
   )
 }

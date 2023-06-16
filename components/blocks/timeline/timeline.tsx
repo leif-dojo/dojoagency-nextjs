@@ -123,7 +123,7 @@ const TimelineBlock = ({ block }: { block: any }) => {
                     </div>
                   </div>
               </div>
-              {block.logo || block.overview && (
+              {block.logo && (
                 <div className={`${styles.bottom} absolute top-0 w-full`}>
                   <div className='w-full flex items-stretch flex-nowrap bg-white px-20 py-20'>
                       <div className='w-1/2 flex pr-20 items-center overflow-hidden'>
@@ -138,10 +138,10 @@ const TimelineBlock = ({ block }: { block: any }) => {
                         )}
                       </div>
                       <div className='w-1/2 text-right'>
-                        {block?.overview?.map((item:any, index:any) => {
+                        {block?.overview?.map((item:any, index2:any) => {
                           //console.log('col: ', index, block)
                           return (
-                            <div className='text-20 font-300 leading-none text-slate text-left py-5' key={index}>{item}</div>
+                            <div className='text-20 font-300 leading-none text-slate text-left py-5' key={index2}>{item}</div>
                           )
                         })}
                       </div>

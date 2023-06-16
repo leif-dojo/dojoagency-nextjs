@@ -12,8 +12,13 @@ import IconBridge from "@/public/icons/cursor-bridge.svg"
 const Cursor = () => {
   const { cursorType, cursorChangeHandler} = useThemeContext();
   const { x, y } = useMousePosition();
+  let timeout: any;
 
   const getCursorIcon = () => {
+    //update cursor if set
+    //console.log("update cursor state",cursorType)
+    (cursorType == 'default' || cursorType == '') ? document.body.classList.remove('no-cursor') : document.body.classList.add('no-cursor')
+    //change cursor
     switch(cursorType) {
       case 'peace':
         return <div className={`${styles.peace}`}><IconPeace /></div>;
@@ -35,10 +40,14 @@ const Cursor = () => {
   }
 
   useLayoutEffect(() => {
+    //console.log("update cursor state")
     //TODO reset cursor if no movement
-    //let timeout: NodeJS.Timeout | number | null = null;
-    //timeout = window.setTimeout(() => console.log("Timeout"), 5000);
-  }, []);
+    clearTimeout(timeout)
+    timeout = window.setTimeout(() => {
+      cursorChangeHandler('default')
+    }, 30000);
+    
+  }, [cursorType]);
 
   return (
     <>

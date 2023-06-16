@@ -38,6 +38,15 @@ body {
 	margin: 0;
 }
 
+body {
+	&.no-cursor {
+		* {
+			cursor: none !important;
+		}
+	}
+}
+
+
 //  ---------------------------------------------------------------------------
 //  Global Links
 //  ---------------------------------------------------------------------------
@@ -51,17 +60,14 @@ a:active {
 }
 
 a:link {
-
 	text-decoration: none;
 }
 
 a:visited {
-
 	text-decoration: none;
 }
 
 a:hover {
-
 	text-decoration: none;
 }
 
@@ -118,6 +124,10 @@ ul {
 		}
 		a{
 			text-decoration: underline;
+			color: theme('colors.blue');
+			&:visited {
+				color: theme('colors.orange');
+			}
 		}
 	}
 	h2 {

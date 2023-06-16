@@ -5,6 +5,7 @@ import styles from './home_partners.module.scss'
 import Oval from '@/public/icons/icon-oval.svg'
 import OvalArrow from '@/public/icons/icon-oval-arrow.svg'
 import NextArrow from '@/public/icons/icon-arrow-next-style.svg'
+import TextNext from '@/public/text-next.svg'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger'
 gsap.registerPlugin(ScrollTrigger)
@@ -31,6 +32,7 @@ const HomePartners = ({ block }: { block: any }) => {
   const CopyRef = useRef<HTMLDivElement>(null)
   const NextRef = useRef<HTMLDivElement>(null)
   const NextArrowRef = useRef<HTMLDivElement>(null)
+  const NextTextRef = useRef<HTMLDivElement>(null)
 
   useLayoutEffect(() => {
     let ctx = gsap.context(() => {
@@ -92,11 +94,13 @@ const HomePartners = ({ block }: { block: any }) => {
         ".fact",
         {alpha: 0, y: 50 }, 
         {alpha: 1, y: 0, duration: 0.1}
-      ).fromTo(
+      )/*.fromTo(
         ".arrow svg",
         {alpha: 0, y: 50 }, 
         {alpha: 1, y: 0, duration: 0.3}
-      ).fromTo(
+      )*/.set( ArrowRef.current, {
+        className: styles.draw
+      }).fromTo(
         ".logo",
         {alpha: 0, }, 
         {alpha: 1, duration: 0.2}
@@ -108,17 +112,22 @@ const HomePartners = ({ block }: { block: any }) => {
         ".copy",
         {alpha: 0, y: 50 }, 
         {alpha: 1, y: 0, duration: 0.3}
-      )/*.set( NextArrowRef.current, {
+      ).set( NextArrowRef.current, {
         className: styles.draw
-      })*/.fromTo(
+      })
+      .set(
+        NextRef.current, {
+          className: styles.draw
+        }
+      )/*.fromTo(
         NextArrowRef.current,
         {alpha: 0, y: -50 }, 
         {alpha: 1, y: 0, duration: 0.2}
-      ).fromTo(
+      )*//*.fromTo(
         NextRef.current,
         {alpha: 0, x: -50 }, 
         {alpha: 1, x: 0, delay: 0.5,duration: 0.2}
-      )
+      )*/
 
       /*const shape1 = 'M469.539032,263.986786H-0.000001L0,229.890961c310.649475,58.156982,255.61113-98.5,469.539032-65.062302V263.986786z'
       const shape2 = 'M0.908,0.363C0.83,4.822-1.056,9.736,1.706,13.777C4,17.131,8.043,18.5,11.931,18.785 c2.567,0.188,5.148,0.027,7.708-0.195c-0.063-0.232-0.126-0.465-0.188-0.697c-2.238,1.016-4.477,2.033-6.713,3.053 c-0.383,0.172-0.104,0.85,0.289,0.684c3.273-1.379,6.617-2.58,10.022-3.596c-0.066-0.242-0.133-0.482-0.199-0.723 c-1.991,0.67-4.08,0.064-5.976-0.643c-1.908-0.713-3.715-1.662-5.404-2.797c-0.4-0.27-0.776,0.379-0.378,0.646 c1.804,1.215,3.746,2.209,5.79,2.949c1.963,0.715,4.119,1.256,6.167,0.566c0.453-0.154,0.268-0.863-0.199-0.723 c-3.404,1.016-6.75,2.217-10.023,3.596c0.097,0.229,0.192,0.457,0.289,0.686c2.237-1.018,4.476-2.035,6.713-3.053 c0.335-0.152,0.173-0.73-0.189-0.699c-4.012,0.348-8.401,0.713-12.253-0.717c-1.78-0.66-3.454-1.734-4.656-3.219 c-1.363-1.684-1.834-3.766-1.788-5.9c0.055-2.563,0.672-5.076,0.717-7.641C1.666-0.12,0.916-0.12,0.908,0.363'
@@ -137,6 +146,60 @@ const HomePartners = ({ block }: { block: any }) => {
         {attr: { d: shape1 } }, 
         {attr: { d: shape2 }, duration: 2}
       )*/
+
+
+      function calcPaths() {
+        let totalDur = 1
+        // unset 'animated' class to body which will reset the animation
+        document.body.classList.remove('animated')
+
+        // get all SVG elements - lines and dots
+        const paths = document.querySelectorAll('.autograph__path')
+        // prepare path length variable
+        let len = 0
+        // prepare animation delay length variable
+        let delay = 0
+
+        // escape if no elements found
+        if (!paths.length) {
+          return false
+        }
+
+        // set duration in seconds of animation to default if not set
+        const totalDuration = totalDur || 5
+
+        // calculate the full path length
+        paths.forEach((path) => {
+          const totalLen = path.getTotalLength()
+          len += totalLen
+        })
+        console.log("each: ", paths.length)
+        paths.forEach((path) => {
+          const pathElem = path
+          // get current path length
+          const totalLen = path.getTotalLength()
+          // calculate current animation duration
+          const duration = totalLen / len * totalDuration
+
+          // set animation duration and delay
+          pathElem.style.animationDuration = `${duration < 0.1 ? 0.1 : duration}s`
+          pathElem.style.animationDelay = `${delay}s`
+
+          // set dash array and offset to path length - this is how you hide the line
+          pathElem.setAttribute('stroke-dasharray', totalLen)
+          pathElem.setAttribute('stroke-dashoffset', totalLen)
+
+          // set delay for the next path - added .5 seconds to make it more realistic
+          delay += duration + 0.1
+        })
+
+        // set 'animated' class to body which will start the animation
+        document.body.classList.add('animated')
+
+        return true
+      }
+
+      calcPaths()
 
     }, sectionRef);
     return () => ctx.revert();
@@ -181,18 +244,20 @@ const HomePartners = ({ block }: { block: any }) => {
                           )
                         }
                       </div>
-                      <div className="relative text-left mt-80">
-                        <div ref={ArrowRef} className={`${styles.ovalarrow} arrow absolute left-150 bottom-full w-[55rem]`}><OvalArrow /></div>
+                      <div className="relative mt-[-50rem] text-center">
+                        <div className={`${styles.ovalarrowwrap} arrow absolute -left-50 bottom-full w-[55rem] mx-auto`}><div ref={ArrowRef}><OvalArrow className={`${styles.ovalarrow} next w-full h-auto`} /></div></div>
                         <div ref={FactRef} className='fact font-nothingyoucoulddo text-40 font-300 text-blue'>{item.fact}</div>
                       </div>
                     </div>
 
                   </div>
-                  <div className="w-full md:w-1/2">
-                    <div ref={CopyRef} className='copy text-40 leading-60 font-300 text-white' dangerouslySetInnerHTML={{ __html: item.description }}></div>
-                    <div className={`${styles.nextwrap} w-full flex text-left pt-20 text-blue`}>
-                      <div ref={NextArrowRef}><NextArrow className={`${styles.nextarrow} next w-40 h-auto`} /></div>
-                      <div ref={NextRef} className={`${styles.next} font-nothingyoucoulddo text-40 font-400 leading-none text-blue ml-10 mt-20 cursor-pointer`} aria-label="Next" onClick={() => advance()}>Next</div>
+                  <div className="w-full md:w-1/2 flex items-center">
+                    <div className="w-full">
+                      <div ref={CopyRef} className='copy text-40 leading-60 font-300 text-white' dangerouslySetInnerHTML={{ __html: item.description }}></div>
+                      <div className={`${styles.nextwrap} w-full flex text-left pt-20 text-blue`}>
+                        <div ref={NextArrowRef}><NextArrow className={`${styles.nextarrow} next w-40 h-auto`} /></div>
+                        <div className={`${styles.next} font-nothingyoucoulddo text-40 font-400 leading-none text-blue ml-10 mt-15 cursor-pointer`} aria-label="Next" onClick={() => advance()}><div ref={NextRef}><TextNext className={`${styles.nexttext} w-100 h-auto`} /></div></div>
+                      </div>
                     </div>
                   </div>
                 </div>
