@@ -2,7 +2,7 @@
 import React, { useContext, useEffect, useState, useRef, useLayoutEffect } from 'react'
 import Image from 'next/image'
 import styles from './home_partners.module.scss'
-import Oval from '@/public/icons/icon-oval.svg'
+import Oval from '@/public/icons/icon-oval-single.svg'
 import OvalArrow from '@/public/icons/icon-oval-arrow.svg'
 import NextArrow from '@/public/icons/icon-arrow-next-style.svg'
 import TextNext from '@/public/text-next.svg'
@@ -94,24 +94,21 @@ const HomePartners = ({ block }: { block: any }) => {
         ".fact",
         {alpha: 0, y: 50 }, 
         {alpha: 1, y: 0, duration: 0.1}
-      )/*.fromTo(
-        ".arrow svg",
-        {alpha: 0, y: 50 }, 
-        {alpha: 1, y: 0, duration: 0.3}
-      )*/.set( ArrowRef.current, {
+      ).set( ArrowRef.current, {
         className: styles.draw
       }).fromTo(
         ".logo",
         {alpha: 0, }, 
         {alpha: 1, duration: 0.2}
-      ).fromTo(
-        ".circle path",
-        {alpha: 0,}, 
-        {alpha: 1, duration: 1, stagger: 0.05}
-      ).fromTo(
+      ).add( function(){
+        if(process.browser){
+          document.getElementById("ovalobject")?.contentDocument?.getElementById("maskanimate")?.beginElement();
+        }
+       } ).fromTo(
         ".copy",
         {alpha: 0, y: 50 }, 
-        {alpha: 1, y: 0, duration: 0.3}
+        {alpha: 1, y: 0, duration: 0.3},
+        1.5
       ).set( NextArrowRef.current, {
         className: styles.draw
       })
@@ -119,33 +116,7 @@ const HomePartners = ({ block }: { block: any }) => {
         NextRef.current, {
           className: styles.draw
         }
-      )/*.fromTo(
-        NextArrowRef.current,
-        {alpha: 0, y: -50 }, 
-        {alpha: 1, y: 0, duration: 0.2}
-      )*//*.fromTo(
-        NextRef.current,
-        {alpha: 0, x: -50 }, 
-        {alpha: 1, x: 0, delay: 0.5,duration: 0.2}
-      )*/
-
-      /*const shape1 = 'M469.539032,263.986786H-0.000001L0,229.890961c310.649475,58.156982,255.61113-98.5,469.539032-65.062302V263.986786z'
-      const shape2 = 'M0.908,0.363C0.83,4.822-1.056,9.736,1.706,13.777C4,17.131,8.043,18.5,11.931,18.785 c2.567,0.188,5.148,0.027,7.708-0.195c-0.063-0.232-0.126-0.465-0.188-0.697c-2.238,1.016-4.477,2.033-6.713,3.053 c-0.383,0.172-0.104,0.85,0.289,0.684c3.273-1.379,6.617-2.58,10.022-3.596c-0.066-0.242-0.133-0.482-0.199-0.723 c-1.991,0.67-4.08,0.064-5.976-0.643c-1.908-0.713-3.715-1.662-5.404-2.797c-0.4-0.27-0.776,0.379-0.378,0.646 c1.804,1.215,3.746,2.209,5.79,2.949c1.963,0.715,4.119,1.256,6.167,0.566c0.453-0.154,0.268-0.863-0.199-0.723 c-3.404,1.016-6.75,2.217-10.023,3.596c0.097,0.229,0.192,0.457,0.289,0.686c2.237-1.018,4.476-2.035,6.713-3.053 c0.335-0.152,0.173-0.73-0.189-0.699c-4.012,0.348-8.401,0.713-12.253-0.717c-1.78-0.66-3.454-1.734-4.656-3.219 c-1.363-1.684-1.834-3.766-1.788-5.9c0.055-2.563,0.672-5.076,0.717-7.641C1.666-0.12,0.916-0.12,0.908,0.363'
-      gsap
-      .timeline({
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: '100% bottom',
-          //end: 'bottom top',
-          //scrub: true,
-          markers: true,
-          toggleActions: "restart none none reverse"
-        },
-      }).fromTo(
-        ".next-path",
-        {attr: { d: shape1 } }, 
-        {attr: { d: shape2 }, duration: 2}
-      )*/
+      )
 
 
       function calcPaths() {
@@ -216,11 +187,14 @@ const HomePartners = ({ block }: { block: any }) => {
                 <div className="block md:flex">
                   <div className="w-full md:w-1/2 text-center pb-100 md:pb-0">
                     <div ref={RecentRef} className="recent text-52 font-600 pb-20">{block.headline}</div>
-
                     <div className={`w-full md:w-3/4 mx-auto relative`}>
                       
                       <div className={`${styles.wrap} relative w-full text-center mx-auto pt-20 pb-30 flex items-center`}>
-                        <div ref={CircleRef} className={`${styles.oval} circle absolute left-0 top-0 w-full h-full`}><Oval /></div>
+                        <div className={`${styles.ovalwrap} circle absolute left-0 top-0 w-full h-full`}>
+                          <div ref={CircleRef}>
+                              <object id="ovalobject" type="image/svg+xml" data="/icons/icon-oval-single.svg" className={`${styles.oval} oval w-full h-auto`}></object>
+                          </div>
+                        </div>
                         {item.client[0].client_logo_dark ? 
                           item.client[0].client_logo_dark && (
                             <div ref={LogoRef} className={`${styles.logo} logo relative block w-full mr-auto ml-auto z-10`}>
