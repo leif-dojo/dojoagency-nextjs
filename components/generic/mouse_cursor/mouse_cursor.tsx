@@ -17,7 +17,7 @@ const Cursor = () => {
   const getCursorIcon = () => {
     //update cursor if set
     //console.log("update cursor state",cursorType)
-    if(document){
+    if(process.browser){
       (cursorType == 'default' || cursorType == '') ? document.body.classList.remove('no-cursor') : document.body.classList.add('no-cursor')
     }
     //change cursor
