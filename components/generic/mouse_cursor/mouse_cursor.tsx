@@ -17,7 +17,9 @@ const Cursor = () => {
   const getCursorIcon = () => {
     //update cursor if set
     //console.log("update cursor state",cursorType)
-    (cursorType == 'default' || cursorType == '') ? document.body.classList.remove('no-cursor') : document.body.classList.add('no-cursor')
+    if(document){
+      (cursorType == 'default' || cursorType == '') ? document.body.classList.remove('no-cursor') : document.body.classList.add('no-cursor')
+    }
     //change cursor
     switch(cursorType) {
       case 'peace':
