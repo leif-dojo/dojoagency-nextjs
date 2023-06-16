@@ -24,6 +24,7 @@ import ImageGridBlock from "@/components/blocks/image_grid/image_grid"
 import TeamGridBlock from "@/components/blocks/team_grid/team_grid"
 import PostNavigationBlock from "@/components/blocks/post_navigation/post_navigation"
 import ProjectGridBlock from "@/components/blocks/project_grid/project_grid"
+import ScrollDownBlock from "@/components/blocks/scroll_down/scroll_down"
 
 //TODO OPTIMIZE 
 //const HomeHeroBlock = dynamic(() => import(`@/components/blocks/home_hero/home_hero`)),
@@ -87,6 +88,8 @@ const Repeater = ({ blocks }: { blocks: BlockInterface[] }) => (
                 return <ProjectGridBlock block={block} ></ProjectGridBlock>;
               case 'Set_Components_TeamGrid':
                 return <TeamGridBlock block={block} ></TeamGridBlock>;
+              case 'Set_Components_ScrollDown':
+                return <ScrollDownBlock block={block} ></ScrollDownBlock>;
             }
           })()
         )

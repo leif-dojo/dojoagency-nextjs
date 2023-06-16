@@ -3,7 +3,6 @@ import React, { useContext, useEffect, useState, useRef, useLayoutEffect } from 
 import Image from 'next/image'
 import { useThemeContext } from '@/context/theme'
 import VideoPlayer from '../../generic/video_player/video_player'
-
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger'
 gsap.registerPlugin(ScrollTrigger)

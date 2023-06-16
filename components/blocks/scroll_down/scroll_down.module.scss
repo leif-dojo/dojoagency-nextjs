@@ -1,0 +1,54 @@
+@import '../../../styles/variables';
+
+.root {
+
+    .arrowwrap {}
+    .arrow {
+        path {
+            stroke-dasharray: 300;
+            stroke-dashoffset: 300;
+        }
+    }
+
+    .textwrap {
+        left: 45%;
+        top: 32%;
+        transform: translate(-50%, -50%);
+    }
+
+    .draw {
+        .arrow {
+            path {
+                animation: dash 1000ms ease forwards;
+            }
+        }
+    }
+
+    .drawrev {
+        .arrow {
+            path {
+                animation: dashrev 1000ms ease forwards;
+            }
+        }
+    }
+
+    @keyframes dash {
+        from {
+            stroke-dashoffset: 300;
+        }
+
+        to {
+            stroke-dashoffset: 0;
+        }
+    }
+    @keyframes dashrev {
+        from {
+            stroke-dashoffset: 0;
+        }
+
+        to {
+            stroke-dashoffset: -300;
+        }
+    }
+
+}

@@ -740,6 +740,9 @@ export default gql`
               }
             }
           }
+          ... on Set_Components_ScrollDown {
+            type
+          }
         }
       }
     }
