@@ -41,7 +41,7 @@ const WysiwygBlock = ({ block }: { block: any }) => {
   }, []);
   //console.log("test: ", block)
   return (
-  <section ref={sectionRef} className="w-full bg-white text-slate">
+  <section ref={sectionRef} className="w-full ">
     <div className="px-50 md:px-150 py-50">
       <div className="w-full">
         {block.eyebrow && (

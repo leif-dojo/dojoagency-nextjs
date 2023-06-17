@@ -12,7 +12,7 @@ export const typename = 'Set_Components_ImageGrid'
 
 const ImageGridBlock = ({ block }: { block: any }) => {
   const sectionRef = useRef<HTMLDivElement>(null)
-  const { cursorType, cursorChangeHandler} = useThemeContext();
+  const { cursorType, cursorChangeHandler, colorChangeHandler, backgroundChangeHandler} = useThemeContext();
 
   const onMouseEnter = () => {
     cursorChangeHandler("next")
@@ -24,6 +24,31 @@ const ImageGridBlock = ({ block }: { block: any }) => {
 
   useLayoutEffect(() => {
     let ctx = gsap.context(() => {
+
+            //Theme Colors
+            const TextColor = `rgb('35, 31, 32')`;
+            const BackgroundColor = `rgb('255,255,255')`;
+            const element = document.querySelector("body");
+            const getter = gsap.getProperty(element);
+            gsap
+            .timeline({
+              scrollTrigger: {
+                trigger: sectionRef.current,
+                start: "top 50%",
+                end: "top 10%",
+                scrub: true,
+                // markers: true,
+              },
+            })
+            .to(element, {
+              color: TextColor,
+              backgroundColor: BackgroundColor,
+              ease: "none",
+              onUpdate: (e) => {
+                colorChangeHandler(getter("color"))
+                backgroundChangeHandler(getter("backgroundColor"))
+              }
+            })
 
       //fades
       const boxes = gsap.utils.toArray('.fade')
@@ -53,7 +78,7 @@ const ImageGridBlock = ({ block }: { block: any }) => {
 
   //console.log("ImageGridBlock", block);
   return (
-  <section ref={sectionRef} className={`${styles.root} w-full bg-white text-slate overflow-hidden`}>
+  <section ref={sectionRef} className={`${styles.root} w-full overflow-hidden`}>
     <div className="px-50 md:px-100 py-100">
       <div className="w-full">
         {block.eyebrow && (

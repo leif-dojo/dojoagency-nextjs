@@ -68,7 +68,7 @@ const Home3Column = ({ block }: { block: any }) => {
   }, []);
   
   return (
-  <section ref={sectionRef} className={`${styles.root} relative w-full bg-aqua text-white py-280 z-10`}>
+  <section ref={sectionRef} className={`${styles.root} relative w-full  py-280 z-10`}>
     <div className="px-50 md:px-100 block md:flex gap-100">
 
       {block?.columns?.map((block:any, index:any) => {

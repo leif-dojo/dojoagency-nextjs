@@ -122,7 +122,7 @@ const WysiwygBlock = ({ block }: { block: any }) => {
   }, []);
 
   return (
-    <section ref={sectionRef} className={`${styles.root} w-full bg-white text-slate`}>
+    <section ref={sectionRef} className={`${styles.root} w-full `}>
       <div className="px-50 md:px-100 py-50">
         <div className="block md:flex">
           <div className="w-full md:w-8/12">

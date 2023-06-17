@@ -42,7 +42,7 @@ const VideoBlock = ({ block }: { block: any }) => {
   }, []);
 
   return (
-  <section ref={sectionRef} className={`${styles.root} w-full bg-white text-slate`} onMouseEnter={() => cursorChangeHandler("default")} onMouseLeave={() => cursorChangeHandler("default")}>
+  <section ref={sectionRef} className={`${styles.root} w-full `} onMouseEnter={() => cursorChangeHandler("default")} onMouseLeave={() => cursorChangeHandler("default")}>
     <div ref={videoRef} className="px-50 md:px-200 py-100 fade">
       <VideoPlayer
         image_placeholder={block.image}

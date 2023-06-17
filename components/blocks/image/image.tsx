@@ -39,7 +39,7 @@ const ImageBlock = ({ block }: { block: any }) => {
   }, []);
 
   return (
-  <section ref={sectionRef} className="w-full bg-white text-slate">
+  <section ref={sectionRef} className="w-full ">
     <div className="px-50 md:px-200 py-100">
       <div ref={imageRef} className="flex w-full">
         {block.image && (
