@@ -40,7 +40,7 @@ const HomeFeaturedWork = ({ block }: { block: any }) => {
           start: "top 50%",
           end: "top 10%",
           scrub: true,
-          // markers: true,
+          //markers: true,
         },
       })
       .to(element, {

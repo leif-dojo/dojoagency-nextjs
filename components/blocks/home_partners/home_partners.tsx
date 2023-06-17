@@ -15,6 +15,8 @@ export const typename = 'Set_Components_HomePartners'
 const HomePartners = ({ block }: { block: any }) => {
   const { cursorType, cursorChangeHandler, colorChangeHandler, backgroundChangeHandler} = useThemeContext();
   const [step, setStep] = useState(0)
+  const [colorlocal, setColorLocal] = useState('');
+  const [backgroundColorlocal, setBackgroundColorLocal] = useState('');
   const advance = () => {
     let next = step + 1;
     const total = block?.partners_grid.length - 1;
@@ -38,6 +40,14 @@ const HomePartners = ({ block }: { block: any }) => {
   useLayoutEffect(() => {
     let ctx = gsap.context(() => {
 
+      //set iniital if avail
+      if(colorlocal != ''){
+        var r = document.querySelector('body');
+        r.style.color = '#FFF';
+        r.style.backgroundColor = '#231f20';
+        colorChangeHandler('rgb(255,255,255)')
+        backgroundChangeHandler('rgb(35, 31, 32)')
+      }
       //Theme Colors
       const TextColor = `rgb('255,255,255')`;
       const BackgroundColor = `rgb('35, 31, 32')`;
@@ -60,6 +70,8 @@ const HomePartners = ({ block }: { block: any }) => {
         onUpdate: (e) => {
           colorChangeHandler(getter("color"))
           backgroundChangeHandler(getter("backgroundColor"))
+          setColorLocal(getter("color"))
+          setBackgroundColorLocal(getter("backgroundColor"))
         }
       })
 
