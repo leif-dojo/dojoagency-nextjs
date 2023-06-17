@@ -18,24 +18,24 @@ const HomePartners = ({ block }: { block: any }) => {
   useLayoutEffect(() => {
     let ctx = gsap.context(() => {
 
-      gsap
-      .timeline({
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: 'center bottom',
-          //end: '100% bottom',
-          //scrub: true,
-          //markers: true,
-          toggleActions: "restart none none reverse"
-        },
+        gsap
+        .timeline({
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: 'top bottom',
+            //end: '100% bottom',
+            //scrub: true,
+            //markers: true,
+            toggleActions: "restart none none reverse"
+          },
+        })
+      .fromTo(
+        TextRef.current,
+        {alpha: 0 }, 
+        {alpha: 1}
+      ).set( ArrowRef.current, {
+        className: styles.draw
       })
-    .fromTo(
-      TextRef.current,
-      {alpha: 0 }, 
-      {alpha: 1}
-    ).set( ArrowRef.current, {
-      className: styles.draw
-    })
 
       gsap
         .timeline({

@@ -1,5 +1,6 @@
 "use client"
 import React, { useContext, useEffect, useState, useRef, useLayoutEffect } from 'react'
+import { useThemeContext } from '@/context/theme'
 import Image from 'next/image'
 import styles from './home_3_column.module.scss'
 import Link from 'next/link'
@@ -10,28 +11,36 @@ import { ScrollTrigger } from 'gsap/dist/ScrollTrigger'
 gsap.registerPlugin(ScrollTrigger)
 
 const Home3Column = ({ block }: { block: any }) => {
+  const { cursorType, cursorChangeHandler, colorChangeHandler, backgroundChangeHandler} = useThemeContext();
   const sectionRef = useRef<HTMLDivElement>(null)
 
   useLayoutEffect(() => {
     let ctx = gsap.context(() => {
+
+      //Theme Colors
+      const TextColor = `rgb('255,255,255')`;
+      const BackgroundColor = `rgb('0, 186, 156')`;
+      const element = document.querySelector("body");
+      const getter = gsap.getProperty(element);
       gsap
       .timeline({
         scrollTrigger: {
           trigger: sectionRef.current,
-          start: 'top bottom',
-          end: 'bottom bottom',
+          start: "top 50%",
+          end: "top 10%",
           scrub: true,
-          //markers: true,
+          // markers: true,
         },
       })
-      .fromTo(
-        sectionRef.current,
-        {
-          backgroundColor: "#00aeef"
-      }, {
-          backgroundColor: "#00ba9c", 
-      },
-      )
+      .to(element, {
+        color: TextColor,
+        backgroundColor: BackgroundColor,
+        ease: "none",
+        onUpdate: (e) => {
+          colorChangeHandler(getter("color"))
+          backgroundChangeHandler(getter("backgroundColor"))
+        }
+      })
 
       //fades
       const boxes = gsap.utils.toArray('.fade')

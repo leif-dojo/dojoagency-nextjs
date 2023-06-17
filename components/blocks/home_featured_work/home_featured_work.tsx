@@ -1,5 +1,6 @@
 "use client"
 import React, { useContext, useEffect, useState, useRef, useLayoutEffect } from 'react'
+import { useThemeContext } from '@/context/theme'
 import Image from 'next/image'
 import Link from 'next/link'
 import styles from './home_featured_work.module.scss'
@@ -12,6 +13,7 @@ gsap.registerPlugin(ScrollTrigger)
 import useMousePosition from "@/hooks/useMousePosition";
 
 const HomeFeaturedWork = ({ block }: { block: any }) => {
+  const { cursorType, cursorChangeHandler, colorChangeHandler, backgroundChangeHandler} = useThemeContext();
   const sectionRef = useRef<HTMLDivElement>(null)
   const HeadlineRef = useRef<HTMLDivElement>(null)
   const NextRef = useRef<HTMLDivElement>(null)
@@ -25,24 +27,31 @@ const HomeFeaturedWork = ({ block }: { block: any }) => {
 
   useLayoutEffect(() => {
     let ctx = gsap.context(() => {
+
+      //Theme Colors
+      const TextColor = `rgb('255,255,255')`;
+      const BackgroundColor = `rgb('0, 174, 239')`;
+      const element = document.querySelector("body");
+      const getter = gsap.getProperty(element);
       gsap
       .timeline({
         scrollTrigger: {
           trigger: sectionRef.current,
-          start: 'top bottom',
-          end: 'bottom bottom',
+          start: "top 50%",
+          end: "top 10%",
           scrub: true,
-         // markers: true,
+          // markers: true,
         },
       })
-      .fromTo(
-        sectionRef.current,
-        {
-          backgroundColor: "#231f20"
-      }, {
-          backgroundColor: "#00aeef", 
-      },
-      )
+      .to(element, {
+        color: TextColor,
+        backgroundColor: BackgroundColor,
+        ease: "none",
+        onUpdate: (e) => {
+          colorChangeHandler(getter("color"))
+          backgroundChangeHandler(getter("backgroundColor"))
+        }
+      })
 
       //fades
       const boxes = gsap.utils.toArray('.fade')
@@ -158,7 +167,7 @@ const HomeFeaturedWork = ({ block }: { block: any }) => {
           let positionX = clientX - rect.left;
           let positionY = clientY - rect.top;
           setMouse({x: positionX, y: positionY, moved: true})
-          parallaxIt(".project-wrap", -150, 1);
+          parallaxIt(".project-wrap", -80, 1);
         };
         document.addEventListener("mousemove", mouseMoveHandler);
         return () => {
@@ -304,7 +313,7 @@ const HomeFeaturedWork = ({ block }: { block: any }) => {
 
 
   return (
-  <section ref={sectionRef} className={`${styles.root} relative w-full bg-blue z-10`}>
+  <section ref={sectionRef} className={`${styles.root} relative w-full  z-10`}>
     <div className="px-50 md:px-100 py-100">
       <div ref={HeadlineRef} className='relative w-full font-lato text-80 leading-90 font-300 text-white pb-20 pl-0 md:pl-80 z-10 fade'>
         {block?.headline}
@@ -399,9 +408,13 @@ const HomeFeaturedWork = ({ block }: { block: any }) => {
                     )}
 
                   </span>
-                
-                <span className={`${styles.hover} px-40 py-40 relative z-5 text-30 font-500 text-white text-center fade`}>
-                  {block.headline}
+                <span className={`relative w-full flex justify-center items-center`}>
+                  <span className={`${styles.headline} absolute w-full px-40 py-40 z-5 text-60 leading-none font-500 text-white text-center`}>
+                    {block.headline}
+                  </span>
+                  <span className={`${styles.hover} absolute w-full px-40 py-40 z-5 text-40 leading-none font-500 text-white text-center`}>
+                    {block.headline_hover}
+                  </span>
                 </span>
               </span>
             </Link>

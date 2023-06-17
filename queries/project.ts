@@ -134,6 +134,7 @@ export default gql`
             type
             featured_projects {
               headline
+              headline_hover
               image {
                 id
                 ... on Asset_Assets {
@@ -223,6 +224,7 @@ export default gql`
             type
             featured_projects {
               headline
+              headline_hover
               image {
                 id
                 ... on Asset_Assets {
@@ -287,6 +289,7 @@ export default gql`
             headline
             type
             image {
+              id
               ... on Asset_Assets {
                 id
                 alt

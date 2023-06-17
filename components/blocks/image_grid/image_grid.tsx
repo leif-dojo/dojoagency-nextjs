@@ -12,7 +12,7 @@ export const typename = 'Set_Components_ImageGrid'
 
 const ImageGridBlock = ({ block }: { block: any }) => {
   const sectionRef = useRef<HTMLDivElement>(null)
-  const { cursorType, cursorChangeHandler} = useThemeContext();
+  const { cursorType, cursorChangeHandler, colorChangeHandler, backgroundChangeHandler} = useThemeContext();
 
   const onMouseEnter = () => {
     cursorChangeHandler("next")
@@ -24,6 +24,21 @@ const ImageGridBlock = ({ block }: { block: any }) => {
 
   useLayoutEffect(() => {
     let ctx = gsap.context(() => {
+
+      //Theme Colors
+      gsap
+      .timeline({
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          scrub: !0,
+          start: "top 50%",
+          end: "top 10%",
+          onUpdate: () => {
+              colorChangeHandler('48, 74, 95')
+              backgroundChangeHandler('255,255,255')
+          }
+        },
+      })
 
       //fades
       gsap
@@ -48,7 +63,7 @@ const ImageGridBlock = ({ block }: { block: any }) => {
 
   //console.log("ImageGridBlock", block);
   return (
-  <section ref={sectionRef} className={`${styles.root} w-full bg-white text-slate overflow-hidden`}>
+  <section ref={sectionRef} className={`${styles.root} w-full overflow-hidden`}>
     <div className="px-50 md:px-100 py-100">
       <div className={`${styles.grid} grid grid-cols-1 md:grid-cols-3 gap-50 w-full `}>
 

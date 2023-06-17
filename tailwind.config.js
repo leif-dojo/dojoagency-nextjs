@@ -169,6 +169,8 @@ module.exports = {
       ]),
     },
     colors: {
+      themecolor: 'var(--foreground-rgb)',
+      themebackground: 'var(--background-rgb)',
       white: '#fff',
       dark: '#423E3A',
       navy: '#000040',

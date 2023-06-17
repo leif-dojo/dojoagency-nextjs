@@ -1,6 +1,5 @@
 "use client"
 import React, { useContext, useEffect, useState, useRef, useLayoutEffect } from 'react'
-import Image from 'next/image'
 import { useThemeContext } from '@/context/theme'
 import VideoPlayer from '../../generic/video_player/video_player'
 import { gsap } from 'gsap'
@@ -9,13 +8,38 @@ gsap.registerPlugin(ScrollTrigger)
 
 export const typename = 'Set_Components_2ColumnVideo'
 const Column2VideoBlock = ({ block }: { block: any }) => {
+  const { cursorType, cursorChangeHandler, colorChangeHandler, backgroundChangeHandler} = useThemeContext();
   const sectionRef = useRef<HTMLDivElement>(null)
   const copyRef = useRef<HTMLDivElement>(null)
   const mediaRef = useRef<HTMLDivElement>(null)
-  const { cursorType, cursorChangeHandler} = useThemeContext();
 
   useLayoutEffect(() => {
     let ctx = gsap.context(() => {
+
+      //Theme Colors
+      const TextColor = `rgb('48, 74, 95')`;
+      const BackgroundColor = `rgb('255,255,255')`;
+      const element = document.querySelector("body");
+      const getter = gsap.getProperty(element);
+      gsap
+      .timeline({
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top 50%",
+          end: "top 10%",
+          scrub: true,
+          // markers: true,
+        },
+      })
+      .to(element, {
+        color: TextColor,
+        backgroundColor: BackgroundColor,
+        ease: "none",
+        onUpdate: (e) => {
+          colorChangeHandler(getter("color"))
+          backgroundChangeHandler(getter("backgroundColor"))
+        }
+      })
 
       //fades
       const boxes = gsap.utils.toArray('.fade')
@@ -43,7 +67,7 @@ const Column2VideoBlock = ({ block }: { block: any }) => {
   }, []);
 
   return (
-  <section ref={sectionRef} className="w-full bg-white text-slate" onMouseEnter={() => cursorChangeHandler("default")} onMouseLeave={() => cursorChangeHandler("default")}>
+  <section ref={sectionRef} className="w-full " onMouseEnter={() => cursorChangeHandler("default")} onMouseLeave={() => cursorChangeHandler("default")}>
     <div className="px-50 md:px-100 py-100">
       <div className="block md:flex">
         <div ref={copyRef} className="w-full md:w-5/12 md:pr-30">

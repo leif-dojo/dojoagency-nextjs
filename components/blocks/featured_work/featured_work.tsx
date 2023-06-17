@@ -55,7 +55,7 @@ const HomeFeaturedWork = ({ block }: { block: any }) => {
           let positionX = clientX - rect.left;
           let positionY = clientY - rect.top;
           setMouse({x: positionX, y: positionY, moved: true})
-          parallaxIt(".project-wrap", -150, 1);
+          parallaxIt(".project-wrap", -80, 1);
         };
         document.addEventListener("mousemove", mouseMoveHandler);
         return () => {

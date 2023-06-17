@@ -1,6 +1,7 @@
 "use client"
 import React, { useRef, useEffect, useLayoutEffect } from 'react'
 import styles from './home_headline.module.scss'
+import { useThemeContext } from '@/context/theme'
 import Telegraph from '@/public/telegraph.svg'
 import Typewriter from '@/public/typewriter.svg'
 import CommunicationArts from '@/public/communication-arts.svg'
@@ -12,6 +13,7 @@ import ScrollText  from '@/utils/SplitText'
 export const typename = 'Set_Components_HomeHeadline'
 
 const HomeHeadlineBlock = ({ block }: { block: any }) => {
+  const { cursorType, cursorChangeHandler, colorChangeHandler, backgroundChangeHandler} = useThemeContext();
   const sectionRef = useRef<HTMLDivElement>(null)
   const TelegraphRef = useRef<HTMLDivElement>(null)
   const TypewriterRef = useRef<HTMLDivElement>(null)
@@ -20,24 +22,31 @@ const HomeHeadlineBlock = ({ block }: { block: any }) => {
 
   useLayoutEffect(() => {
     let ctx = gsap.context(() => {
-      /*gsap
+
+      //Theme Colors
+      const TextColor = `rgb('48, 74, 95')`;
+      const BackgroundColor = `rgb('255,255,255')`;
+      const element = document.querySelector("body");
+      const getter = gsap.getProperty(element);
+      gsap
       .timeline({
         scrollTrigger: {
           trigger: sectionRef.current,
-          start: 'top bottom',
-          end: 'bottom bottom',
+          start: "top 50%",
+          end: "top 10%",
           scrub: true,
-          //markers: true,
+          // markers: true,
         },
       })
-      .fromTo(
-        sectionRef.current,
-        {
-          backgroundColor: "#304a5f"
-      }, {
-          backgroundColor: "#ffffff", 
-      },
-      )*/
+      .to(element, {
+        color: TextColor,
+        backgroundColor: BackgroundColor,
+        ease: "none",
+        onUpdate: (e) => {
+          colorChangeHandler(getter("color"))
+          backgroundChangeHandler(getter("backgroundColor"))
+        }
+      })
 
       //tele
       gsap
@@ -99,6 +108,12 @@ const HomeHeadlineBlock = ({ block }: { block: any }) => {
           ease: 'power3.out' }
       )
       .fromTo(
+        ".text2",
+        { autoAlpha: 0 },
+        { duration: 0, autoAlpha: 1,
+          ease: 'power3.out' }
+      )
+      .fromTo(
         ".paint",
         { autoAlpha: 0, x: -1000 },
         { duration: 0.5, autoAlpha: 1, x: 0,
@@ -125,7 +140,7 @@ const HomeHeadlineBlock = ({ block }: { block: any }) => {
   }, []);
 
   return (
-  <section ref={sectionRef} className={`${styles.root} relative w-full bg-white text-slate z-10`}>
+  <section ref={sectionRef} className={`${styles.root} relative w-full z-10`}>
     <div className="px-50 md:px-20 py-160">
       <div className="w-full px-0 md:px-100">
         <div ref={TelegraphRef} className={`${styles.telegraph} w-100 mb-20`}>

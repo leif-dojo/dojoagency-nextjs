@@ -15,6 +15,7 @@ import VideoPlayer from '../../generic/video_player/video_player'
 export const typename = 'Set_Components_HomeHero'
 
 const HomeHeroBlock = ({ block }: { block: any }) => {
+  const { cursorType, cursorChangeHandler, color, colorChangeHandler, backgroundColor, backgroundChangeHandler} = useThemeContext();
   const sectionRef = useRef<HTMLDivElement>(null)
   const PanelRef = useRef<HTMLDivElement>(null)
   const LogoRef = useRef<HTMLDivElement>(null)
@@ -29,6 +30,32 @@ const HomeHeroBlock = ({ block }: { block: any }) => {
 
   useLayoutEffect(() => {
     let ctx = gsap.context(() => {
+
+      //Theme Colors
+      const TextColor = `rgb('255,255,255')`;
+      const BackgroundColor = `rgb('48, 74, 95')`;
+      const element = document.querySelector("body");
+      const getter = gsap.getProperty(element);
+      gsap
+      .timeline({
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top 50%",
+          end: "top 10%",
+          scrub: true,
+          // markers: true,
+        },
+      })
+      .to(element, {
+        color: TextColor,
+        backgroundColor: BackgroundColor,
+        ease: "none",
+        onUpdate: (e) => {
+          colorChangeHandler(getter("color"))
+          backgroundChangeHandler(getter("backgroundColor"))
+        }
+      })
+
       gsap
       .timeline({
         scrollTrigger: {
@@ -73,8 +100,14 @@ const HomeHeroBlock = ({ block }: { block: any }) => {
           //markers: true,
           toggleActions: "play reverse play reverse",
         },
-      })
-      .fromTo(
+      }).fromTo(
+        LogoRef.current,
+        {
+          autoAlpha: 1
+        }, {
+          autoAlpha: 0
+        },0
+      ).fromTo(
         HeadlineRef.current,
         {
           fontSize: isMobile() ? "90rem" : "110rem"
@@ -84,14 +117,16 @@ const HomeHeroBlock = ({ block }: { block: any }) => {
           //autoAlpha: 1
         },0
       )
-      .fromTo(
+      /*.fromTo(
         PanelRef.current,
         {
-          backgroundColor: "#304a5f"
+          backgroundColor: `rgb(${backgroundColor})`,
         }, {
-          backgroundColor: "#FFFFFF", 
+          backgroundColor: `rgb(${backgroundColor})`,
         },0
-      )
+      )*//*.set( LogoRef.current, {
+        autoAlpha: 0,
+      })*/
 
       //rain
       // number of drops created.
@@ -147,10 +182,10 @@ const HomeHeroBlock = ({ block }: { block: any }) => {
     return () => ctx.revert();
   }, []);
 
-  const { cursorType, cursorChangeHandler} = useThemeContext();
+
   //console.log("Home Hero: ", block)
   return (
-  <section ref={sectionRef} className={`${styles.root} w-full bg-slate pt-60 pb-0`} onMouseEnter={() => cursorChangeHandler("peace")} onMouseLeave={() => cursorChangeHandler("default")}>
+  <section ref={sectionRef} className={`${styles.root} bg-themebackground w-full pt-60 pb-0`} onMouseEnter={() => cursorChangeHandler("peace")} onMouseLeave={() => cursorChangeHandler("default")}>
     <div ref={RainRef} id="rain" className={`${styles.rain} absolute w-full h-full top-0 left-0 z-9`}></div>
 
     <div className='w-full'>
@@ -159,8 +194,8 @@ const HomeHeroBlock = ({ block }: { block: any }) => {
           <Logo />
         </div>
       </div>
-      <div ref={PanelRef} className={`relative w-full bg-slate px-50 md:px-100 mt-250 pb-120 z-6`}>
-        <div ref={HeadlineRef} className='w-full text-white text-center font-lato text-90 md:text-113 font-300 leading-none py-20'>
+      <div ref={PanelRef} className={`relative w-full bg-themebackground px-50 md:px-100 mt-250 pb-120 z-6`}>
+        <div ref={HeadlineRef} className='w-full  text-center font-lato text-90 md:text-113 font-300 leading-none py-20'>
           {block?.headline}
         </div>
         <div className={`flex justify-center w-full text-center py-20`}>

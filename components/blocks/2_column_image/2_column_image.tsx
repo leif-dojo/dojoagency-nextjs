@@ -1,5 +1,6 @@
 "use client"
 import React, { useContext, useEffect, useState, useRef, useLayoutEffect } from 'react'
+import { useThemeContext } from '@/context/theme'
 import Image from 'next/image'
 export const typename = 'Set_Components_2ColumnImage'
 import { gsap } from 'gsap'
@@ -7,12 +8,38 @@ import { ScrollTrigger } from 'gsap/dist/ScrollTrigger'
 gsap.registerPlugin(ScrollTrigger)
 
 const Column2ImageBlock = ({ block }: { block: any }) => {
+  const { cursorType, cursorChangeHandler, colorChangeHandler, backgroundChangeHandler} = useThemeContext();
   const sectionRef = useRef<HTMLDivElement>(null)
   const copyRef = useRef<HTMLDivElement>(null)
   const mediaRef = useRef<HTMLDivElement>(null)
 
   useLayoutEffect(() => {
     let ctx = gsap.context(() => {
+
+      //Theme Colors
+      const TextColor = `rgb('48, 74, 95')`;
+      const BackgroundColor = `rgb('255,255,255')`;
+      const element = document.querySelector("body");
+      const getter = gsap.getProperty(element);
+      gsap
+      .timeline({
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top 50%",
+          end: "top 10%",
+          scrub: true,
+          // markers: true,
+        },
+      })
+      .to(element, {
+        color: TextColor,
+        backgroundColor: BackgroundColor,
+        ease: "none",
+        onUpdate: (e) => {
+          colorChangeHandler(getter("color"))
+          backgroundChangeHandler(getter("backgroundColor"))
+        }
+      })
 
       //fades
       const boxes = gsap.utils.toArray('.fade')
