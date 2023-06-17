@@ -144,7 +144,7 @@ const ProjectGridBlock = ({ block }: { block: any }) => {
               <div className="w-full md:w-6/12 md:pr-30 flex items-center">
                 <div className='w-full'>
                   {block?.project_grid[activeindex].popup_headline && (
-                    <div className="text-90 leading-120 font-300 mb-20">
+                    <div className="text-90 leading-120 font-300 text-slate mb-20">
                       {block?.project_grid[activeindex].popup_headline}
                     </div>
                   )}
