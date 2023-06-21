@@ -110,17 +110,52 @@ const ProjectGridBlock = ({ block }: { block: any }) => {
                     </div>
                   )}
                 </div>
-                {block.project_image && (
-                  <div className={`${styles.projectimage} relative w-full h-300 top-0 left-0`}>
-                    <Image
-                      src={block.project_image?.permalink}
-                      width={block.project_image?.width}
-                      height={block.project_image?.height}
-                      alt={block.project_image?.alt ? block.project_image.alt : ''}
-                      className={`${styles.image} relative w-full h-auto`}
-                    />
-                  </div>
-                )}
+                <div className={`${styles.projectimage} relative w-full h-300 top-0 left-0`}>
+                  {block.project_image && (
+                    <div className={`absolute w-full h-full top-0 left-0`}>
+                      <Image
+                        src={block.project_image?.permalink}
+                        width={block.project_image?.width}
+                        height={block.project_image?.height}
+                        alt={block.project_image?.alt ? block.project_image.alt : ''}
+                        className={`${styles.image} relative w-full h-auto`}
+                      />
+                    </div>
+                  )}
+
+                  {block.project_video_embed && (
+                        <div className={`${styles.video} video absolute w-full h-full top-0 left-0`} >
+                          <div className={`${styles.videoinner} absolute block w-auto h-full min-w-full min-h-full aspect-video`}>
+                            <iframe src={`${block.project_video_embed}?autoplay=1&loop=1&autopause=0&background=1&muted=1`} 
+                            title="Vimeo video player"
+                            className="vimeo w-full h-full"
+                            width="640" height="360"
+                            allow="autoplay; fullscreen"></iframe>
+                        </div>
+                    </div>
+                  )}
+
+                  {block.project_video_local && (
+                        <div className={`${styles.video} video absolute w-full h-full top-0 left-0`} >
+                          <div className={`${styles.videoinner} absolute block w-auto h-full min-w-full min-h-full aspect-video`}>
+                            <video 
+                              className="html-video aspect-video"
+                              width="640" 
+                              height="360"
+                              autoPlay
+                              controls
+                              loop
+                              muted
+                              preload="auto">
+                              <source src={`${block.project_video_local?.permalink}`} type="video/mp4"></source>
+                            </video>
+                        </div>
+                    </div>
+                  )}
+                </div>
+
+
+
               </div>
             </div>
           )
@@ -155,18 +190,48 @@ const ProjectGridBlock = ({ block }: { block: any }) => {
                   )}
                 </div>
               </div>
-              <div className="w-full md:w-6/12">
-                {block?.project_grid[activeindex].popup_image && (
-                  <div className='relative w-full md:pl-50'>
-                    <Image
-                      src={block?.project_grid[activeindex].popup_image?.permalink}
-                      width={block?.project_grid[activeindex].popup_image?.width}
-                      height={block?.project_grid[activeindex].popup_image?.height}
-                      alt={block?.project_grid[activeindex].popup_image?.alt ? block?.project_grid[activeindex].popup_image.alt : ''}
-                      className={`${styles.image} relative w-full h-auto`}
-                    />
-                  </div>
-                )}
+              <div className="w-full md:w-6/12 flex items-center">
+                <div className='w-full'>
+                  {block?.project_grid[activeindex].popup_image && (
+                    <div className='relative w-full md:pl-50 mb-40'>
+                      <Image
+                        src={block?.project_grid[activeindex].popup_image?.permalink}
+                        width={block?.project_grid[activeindex].popup_image?.width}
+                        height={block?.project_grid[activeindex].popup_image?.height}
+                        alt={block?.project_grid[activeindex].popup_image?.alt ? block?.project_grid[activeindex].popup_image.alt : ''}
+                        className={`${styles.image} relative w-full h-auto`}
+                      />
+                    </div>
+                  )}
+                  {block?.project_grid[activeindex].popup_video_embed && (
+                        <div className={`${styles.video} video relative w-full md:ml-50 aspect-video mb-40`} >
+                          <div className={`${styles.videoinner} absolute block w-auto h-full min-w-full min-h-full aspect-video`}>
+                            <iframe src={`${block?.project_grid[activeindex].popup_video_embed}?autoplay=1&loop=1&autopause=0&background=1&muted=1`} 
+                            title="Vimeo video player"
+                            className="vimeo w-full h-full"
+                            width="640" height="360"
+                            allow="autoplay; fullscreen"></iframe>
+                        </div>
+                    </div>
+                  )}
+                  {block?.project_grid[activeindex].project_video_local && (
+                        <div className={`${styles.video} video relative w-full md:ml-50 aspect-video mb-40`} >
+                          <div className={`${styles.videoinner} absolute block w-auto h-full min-w-full min-h-full aspect-video`}>
+                            <video 
+                              className="html-video aspect-video"
+                              width="640" 
+                              height="360"
+                              autoPlay
+                              controls
+                              loop
+                              muted
+                              preload="auto">
+                              <source src={`${block?.project_grid[activeindex].popup_video_local?.permalink}`} type="video/mp4"></source>
+                            </video>
+                        </div>
+                    </div>
+                  )}
+                </div>
               </div>
             </div>
 

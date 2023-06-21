@@ -715,6 +715,28 @@ export default gql`
                 }
               }
               project_title
+              popup_video_embed
+              popup_video_local {
+                ... on Asset_Assets {
+                  id
+                  permalink
+                  is_video
+                  width
+                  height
+                  extension
+                }
+              }
+              project_video_embed
+              project_video_local {
+                ... on Asset_Assets {
+                  id
+                  permalink
+                  is_video
+                  width
+                  height
+                  extension
+                }
+              }
             }
           }
           ... on Set_Components_TeamGrid {

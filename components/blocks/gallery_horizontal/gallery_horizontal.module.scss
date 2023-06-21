@@ -15,7 +15,7 @@
         grid-auto-flow: column;
 
         .slide {
-           // border: 2px solid orange;
+            //border: 2px solid orange;
             //aspect-ratio: 3/2;
            // background-color: pink;
 
@@ -81,7 +81,7 @@
                 .project {
                     top: -60rem;
                     left: auto;
-                    right: -200rem;
+                    right: -150rem;
                 }
             }
 
@@ -91,6 +91,15 @@
                     bottom: -50rem;
                     right: 0rem;
                     left: auto;
+                }
+            }
+
+            &:nth-child(6n) {
+                .project {
+                    top: auto;
+                    bottom: 0rem;
+                    right: auto;
+                    left: 170rem;
                 }
             }
 
