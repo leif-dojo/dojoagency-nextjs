@@ -101,8 +101,8 @@ const GalleryHorizontalBlock = ({ block }: { block: any }) => {
                 {block?.gallery_grid?.map((item:any, index:any) => {
                   //console.log('col: ', index, item)
                     return (
-                      <div className={`${styles.slide}`}>
-                        <div className={`${styles.project} project relative flex items-center overflow-hidden bg-dark w-full cursor-pointer`} key={index}>
+                      <div className={`${styles.slide}`} key={index}>
+                        <div className={`${styles.project} project relative flex items-center overflow-hidden bg-dark w-full cursor-pointer`}>
                           <div className="flex justify-center items-center w-full h-full aspect-video">
                             {item.image && (
                               <div className='absolute w-full h-full top-0 left-0'>
