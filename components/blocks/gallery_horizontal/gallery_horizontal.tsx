@@ -2,8 +2,6 @@
 import React, { useRef, useState, useLayoutEffect } from 'react'
 import Image from 'next/image'
 import styles from './gallery_horizontal.module.scss'
-import IconX from '@/public/icons/icon-x.svg'
-
 import { useThemeContext } from '@/context/theme'
 
 import { gsap } from 'gsap'
@@ -11,19 +9,14 @@ import { ScrollTrigger } from 'gsap/dist/ScrollTrigger'
 import { Draggable } from 'gsap/dist/Draggable'
 gsap.registerPlugin(ScrollTrigger,Draggable)
 
-import { Navigation, Pagination, Scrollbar, A11y, Grid, FreeMode } from 'swiper';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import 'swiper/css';
-//import 'swiper/css/navigation';
-//import 'swiper/css/pagination';
-//import 'swiper/css/scrollbar';
-import 'swiper/css/grid';
 
 export const typename = 'Set_Components_GalleryHorizontal'
 
 const GalleryHorizontalBlock = ({ block }: { block: any }) => {
   const sectionRef = useRef<HTMLDivElement>(null)
+  const ContainerInnerRef = useRef<HTMLDivElement>(null)
   const GalleryRef = useRef<HTMLDivElement>(null)
+  const ScrollerTriggerRef = useRef<HTMLDivElement>(null)
   const ScrollerRef = useRef<HTMLDivElement>(null)
 
   const [active, setActive] = useState(false)
@@ -69,102 +62,109 @@ const GalleryHorizontalBlock = ({ block }: { block: any }) => {
           })
       }
 
+      //horizontal scroller
+      let sections = gsap.utils.toArray(ScrollerRef.current);
+      let container_width = gsap.getProperty(ContainerInnerRef.current, "width");
+      let gallery_width = gsap.getProperty(ScrollerRef.current, "width");
+      let diff = (gallery_width - container_width);
+      gsap.to(sections, {
+        //xPercent: -100 * 1,
+        x: diff * -1,
+        ease: "none",
+        scrollTrigger: {
+          trigger: ScrollerTriggerRef.current,
+          pin: true,
+          scrub: 1,
+          //snap: 1 / (sections.length - 1),
+          // base vertical scrolling on how wide the container is so it feels more natural.
+          //end: "+=3500",
+          end: "+=" + (diff).toString(),
+        }
+      });
+
     }, sectionRef);
     return () => ctx.revert();
   }, []);
 
-  //console.log("Gallery: ", block)
   return (
     <section ref={sectionRef} className={`${styles.root} w-full  overflow-hidden`}>
-      <div className="px-50 md:px-100 py-100">
-        {block.headline && (
-        <div className="w-full pb-20">
-          <div className='wysiwyg text-90 leading-120 font-300 fade' dangerouslySetInnerHTML={{ __html: block.headline }}></div>
-        </div>
-        )}
-        <div ref={GalleryRef} className={`${styles.grid} w-full`} onMouseEnter={() => onMouseEnter()} onMouseLeave={() => onMouseLeave()}>
-          <div className=''>
-            <Swiper
-              className={`${styles.slider}`}
-                modules={[Grid,FreeMode]}
-                loop={false}//not compatible with grid rows
-                spaceBetween={0}
-                slidesPerView={2}
-                //slidesPerGroup={4}
-                freeMode={{
-                  enabled: true,
-                  momentum: true,
-                  momentumBounce: true,
-                  momentumBounceRatio: 1,
-                  momentumRatio: 1,
-                  momentumVelocityRatio: 1,
-                  sticky: false,
-                }}
-                grid={{rows:2, fill: "column"}}
-                onSlideChange={() => console.log('slide change')}
-                onSwiper={(swiper) => console.log(swiper)}
-              >
+      <div ref={ScrollerTriggerRef} className="px-50 md:px-100 py-100">
+        <div ref={ContainerInnerRef} className="w-full">
+          {block.headline && (
+            <div className="w-full pb-20">
+              <div className='wysiwyg text-90 leading-120 font-300 fade' dangerouslySetInnerHTML={{ __html: block.headline }}></div>
+            </div>
+          )}
+          <div className="w-[10000rem]">
+            <div className="relative flex w-auto h-auto">
+              <div ref={ScrollerRef} className={`${styles.gallery} gallery w-auto h-auto grid`}>
                 {block?.gallery_grid?.map((item:any, index:any) => {
-                return (
-                <SwiperSlide className={`${styles.slide}`} key={index}>
-                  <div className={`${styles.project} project absolute flex justify-center items-center overflow-hidden fade`}>
+                  //console.log('col: ', index, item)
+                    return (
+                      <div className={`${styles.slide}`}>
+                        <div className={`${styles.project} project relative flex items-center overflow-hidden bg-dark w-full cursor-pointer`} key={index}>
+                          <div className="flex justify-center items-center w-full h-full aspect-video">
+                            {item.image && (
+                              <div className='absolute w-full h-full top-0 left-0'>
 
-                    <div className='absolute w-full h-full top-0 left-0'>
+                                {item.image && (
+                                  <Image
+                                    src={item.image?.permalink}
+                                    width={item.image?.width}
+                                    height={item.image?.height}
+                                    alt={item.image?.alt ? item.image.alt : ''}
+                                    className={`${styles.image} relative w-full h-auto`}
+                                  />
+                                )}
 
-                      {item.image && (
-                        <Image
-                          src={item.image?.permalink}
-                          width={item.image?.width}
-                          height={item.image?.height}
-                          alt={item.image?.alt ? item.image.alt : ''}
-                          className={`${styles.image} relative w-full h-auto`}
-                        />
-                      )}
+                                {item.video_embed && (
+                                      <div className="video absolute w-full h-full overflow-hidden top-0 z-1" >
+                                        <div className="video-inner absolute block w-full h-full">
+                                          <iframe src={`${item.video_embed}?autoplay=1&loop=1&autopause=0&background=1&muted=1`} 
+                                          title="Vimeo video player"
+                                          className="vimeo w-full h-full"
+                                          width="640" height="360"
+                                          allow="autoplay; fullscreen"></iframe>
+                                      </div>
+                                  </div>
+                                )}
 
-                      {item.video_embed && (
-                            <div className="video absolute w-full h-full overflow-hidden top-0 z-1" >
-                              <div className="video-inner absolute block w-full h-full aspect-video">
-                                <iframe src={`${item.video_embed}?autoplay=1&loop=1&autopause=0&background=1&muted=1`} 
-                                title="Vimeo video player"
-                                className="vimeo w-full h-full aspect-video"
-                                width="640" height="360"
-                                allow="autoplay; fullscreen"></iframe>
+                                {item.video_local && (
+                                      <div className="video absolute w-full h-full overflow-hidden top-0 z-1" >
+                                        <div className="video-inner absolute block w-full h-full">
+                                          <video 
+                                            className="html-video aspect-video"
+                                            width="640" 
+                                            height="360"
+                                            autoPlay
+                                            controls
+                                            loop
+                                            muted
+                                            preload="auto">
+                                            <source src={`${item.video_local?.permalink}`} type="video/mp4"></source>
+                                          </video>
+                                      </div>
+                                  </div>
+                                )}
+
+                                <div className='absolute flex w-full h-full z-10 left-0 top-0' onClick={() => openOrClose(index)}></div>
+                              </div>
+                            )}
+                            <div className={`${styles.hover} relative z-5 text-40 font-500 leading-none text-white opacity-0`}>
+                              {item.headline}
                             </div>
+                          </div>
                         </div>
-                      )}
-
-                      {item.video_local && (
-                            <div className="video absolute w-full h-full overflow-hidden top-0 z-1" >
-                              <div className="video-inner absolute block w-full h-full aspect-video">
-                                <video 
-                                  className="html-video aspect-video"
-                                  width="640" 
-                                  height="360"
-                                  autoPlay
-                                  controls
-                                  loop
-                                  muted
-                                  preload="auto">
-                                  <source src={`${item.video_local?.permalink}`} type="video/mp4"></source>
-                                </video>
-                            </div>
-                        </div>
-                      )}
-                      
-                      <div className='absolute flex w-full h-full z-10 left-0 top-0' onClick={() => openOrClose(index)}></div>
-                    </div>
-
-                    <div className={`${styles.hover} relative z-5 text-40 font-500 leading-none text-white opacity-0`}>
-                      {item.headline}
-                    </div>
-                  </div>
-                </SwiperSlide>
-                )
-              })}
-              </Swiper>
-          </div>
+                      </div>
+                    )
+                  })}
+              </div>
+            </div>
           </div>
         </div>
+      </div>
+
+
         {active && (
         <div className={`${styles.popup} fixed  bg-white w-screen h-screen left-0 top-0 z-10`}>
           <div className={`${styles.close} absolute top-50 right-50 flex items-center cursor-pointer z-10`} role="none" onClick={() => openOrClose(0)}>
@@ -184,7 +184,7 @@ const GalleryHorizontalBlock = ({ block }: { block: any }) => {
                 />
               )}
 
-              {block?.gallery_grid[activeindex].video_embed && (
+              {block?.gallery_grid[activeindex]?.video_embed && (
                 <div className="video relative w-full h-full overflow-hidden aspect-video top-0 z-1 object-contain" >
                   <div className="video-inner absolute w-full h-full flex flex-col items-center justify-center object-contain">
                     <iframe src={`${block?.gallery_grid[activeindex].video_embed}`} 
@@ -196,7 +196,7 @@ const GalleryHorizontalBlock = ({ block }: { block: any }) => {
                 </div>
               )}
 
-              {block?.gallery_grid[activeindex].video_local && (
+              {block?.gallery_grid[activeindex]?.video_local && (
                 <div className="video relative w-full h-full overflow-hidden aspect-video top-0 z-1 object-contain" >
                   <div className="video-inner absolute w-full h-full flex flex-col items-center justify-center object-contain">
                     <video 
@@ -218,7 +218,7 @@ const GalleryHorizontalBlock = ({ block }: { block: any }) => {
           </div>
         </div>
         )}
-      </section>
+    </section>
 )}
 
 export default GalleryHorizontalBlock

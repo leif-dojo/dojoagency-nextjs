@@ -141,7 +141,7 @@ const HomePartners = ({ block }: { block: any }) => {
       function setSignaturePaths() {
         let totalDur = 1
         // get all SVG elements - lines and dots
-        const paths = document.querySelectorAll('.autograph__path')
+        const paths = sectionRef.current.querySelectorAll('.autograph__path')
         // prepare path length variable
         let len = 0
         // prepare animation delay length variable

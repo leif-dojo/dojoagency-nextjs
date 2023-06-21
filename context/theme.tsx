@@ -1,5 +1,6 @@
 "use client"
 import { createContext, useContext, useState, useLayoutEffect } from "react";
+import { usePathname } from "next/navigation";
 const ThemeContext = createContext({} as any)
 const GlobalContextProvider = ThemeContext.Provider
 
@@ -12,6 +13,7 @@ export const ThemeContextProvider = ( {children}:{children: any} ) => {
     const [backgroundColor, setBackgroundColor] = useState('255,255,255');
     const [contactActive, setContactActive] = useState(false);
     const [cursorType, setCursorType] = useState("");
+    const pathname = usePathname();
 
     const cursorChangeHandler = (cursorType:any) => {
       setCursorType(cursorType);
@@ -50,6 +52,20 @@ export const ThemeContextProvider = ( {children}:{children: any} ) => {
       }
       
     }, [color, backgroundColor]);
+
+    useLayoutEffect(() => {
+      //reset theme on path change
+      //console.log("updated theme: ", color, backgroundColor)
+      if(process.browser){
+        var rb = document.querySelector('body');
+        rb.style.color = '#231f20';
+        rb.style.backgroundColor = '#FFFFFF';
+        //reset theme on route change
+        setColor('0,0,0')
+        setBackgroundColor('255,255,255')
+      }
+      
+    }, [pathname]);
 
     return (
         <GlobalContextProvider value={{

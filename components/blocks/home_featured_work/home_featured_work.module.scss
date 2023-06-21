@@ -114,22 +114,44 @@
         }
     }
 
-    .draw {
-        .nextarrow {
-            path {
-                animation: dash 3000ms ease forwards;
-            }
-        }
-    }
-
     .nextwrap {
         position: relative;
     }
 
     .nextarrow {
         path {
-            stroke-dasharray: 100;
-            stroke-dashoffset: 100;
+            stroke-dasharray: 200;
+            stroke-dashoffset: 200;
+        }
+    }
+
+    .viewalltext {
+        svg {
+            position: relative;
+            width: 100%;
+            height: auto;
+        }
+        path {
+            opacity: 0;
+            animation-timing-function: linear;
+            animation-fill-mode: forwards;
+            //animation-name: line;
+          }
+    }
+
+    .draw {
+        .nextarrow {
+            path {
+                animation: dash 3000ms ease forwards;
+            }
+        }
+
+        .viewalltext {
+            path {
+                opacity: 1;
+                animation-name: line;
+              }
+              
         }
     }
 
@@ -139,6 +161,12 @@
         }
 
         to {
+            stroke-dashoffset: 0;
+        }
+    }
+
+    @keyframes line {
+        100% {
             stroke-dashoffset: 0;
         }
     }

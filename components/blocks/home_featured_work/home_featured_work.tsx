@@ -6,6 +6,7 @@ import Link from 'next/link'
 import styles from './home_featured_work.module.scss'
 export const typename = 'Set_Components_HomeFeaturedWork'
 import NextArrow from '@/public/icons/icon-arrow-next-style.svg'
+import TextViewAll from '@/public/text-view-all.svg'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger'
 gsap.registerPlugin(ScrollTrigger)
@@ -17,6 +18,7 @@ const HomeFeaturedWork = ({ block }: { block: any }) => {
   const sectionRef = useRef<HTMLDivElement>(null)
   const HeadlineRef = useRef<HTMLDivElement>(null)
   const NextRef = useRef<HTMLDivElement>(null)
+  const ViewAllRef = useRef<HTMLDivElement>(null)
   const NextArrowRef = useRef<HTMLDivElement>(null)
   const GridRef = useRef<HTMLDivElement>(null)
   const { x, y } = useMousePosition();
@@ -78,20 +80,18 @@ const HomeFeaturedWork = ({ block }: { block: any }) => {
       .timeline({
         scrollTrigger: {
           trigger: sectionRef.current,
-          start: 'top bottom',
+          start: 'bottom bottom',
           //end: 'bottom bottom',
           //scrub: true,
-          toggleActions: "restart none none reverse"
+          toggleActions: "restart none none reverse",
           //markers: true,
         },
       }).set( NextArrowRef.current, {
         className: styles.draw
-      }).fromTo(
-        NextRef.current,
-        {alpha: 0, }, 
-        {alpha: 1, delay: 1, duration: 0.3}
-      )
-
+      }).set( ViewAllRef.current, {
+        className: styles.draw
+      })
+      
       //fade timeline option
       /*gsap
       .timeline({
@@ -122,6 +122,53 @@ const HomeFeaturedWork = ({ block }: { block: any }) => {
         {alpha: 0, }, 
         {alpha: 1, delay: 1, duration: 0.3}
       )*/
+
+      function setSignaturePaths() {
+        let totalDur = 1
+        // get all SVG elements - lines and dots
+        const paths = sectionRef.current.querySelectorAll('.autograph__path')
+        // prepare path length variable
+        let len = 0
+        // prepare animation delay length variable
+        let delay = 0
+
+        // escape if no elements found
+        if (!paths.length) {
+          return false
+        }
+
+        // set duration in seconds of animation to default if not set
+        const totalDuration = totalDur || 5
+
+        // calculate the full path length
+        paths.forEach((path) => {
+          const totalLen = path.getTotalLength()
+          len += totalLen
+        })
+
+        paths.forEach((path) => {
+          const pathElem = path
+          // get current path length
+          const totalLen = path.getTotalLength()
+          // calculate current animation duration
+          const duration = totalLen / len * totalDuration
+
+          // set animation duration and delay
+          pathElem.style.animationDuration = `${duration < 0.1 ? 0.1 : duration}s`
+          pathElem.style.animationDelay = `${delay}s`
+
+          // set dash array and offset to path length - this is how you hide the line
+          pathElem.setAttribute('stroke-dasharray', totalLen)
+          pathElem.setAttribute('stroke-dashoffset', totalLen)
+
+          // set delay for the next path - added .5 seconds to make it more realistic
+          delay += duration + 0.1
+        })
+
+        return true
+      }
+
+      setSignaturePaths()
 
 
     }, sectionRef);
@@ -424,7 +471,7 @@ const HomeFeaturedWork = ({ block }: { block: any }) => {
       <div className={`${styles.nextwrap} relative w-full pt-20 text-right`}>
         <Link className='relative text-white text-right inline-flex ml-auto mr-0' href={`/portfolio/`} aria-label="Dojo Agency fade">
           <div ref={NextArrowRef} className='text-white'><NextArrow className={`${styles.nextarrow} w-40 h-auto`} /></div>
-          <span ref={NextRef} className={`${styles.next} relative font-nothingyoucoulddo text-40 font-300 leading-none pt-10 pl-10`}>View All</span>
+          <span ref={NextRef} className={`${styles.next} relative pt-20 pl-10`}><div ref={ViewAllRef}><TextViewAll className={`${styles.viewalltext} w-100 h-auto text-white`} /></div></span>
         </Link>
       </div>
     </div>
