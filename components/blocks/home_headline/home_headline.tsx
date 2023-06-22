@@ -2,6 +2,7 @@
 import React, { useRef, useEffect, useLayoutEffect } from 'react'
 import styles from './home_headline.module.scss'
 import { useThemeContext } from '@/context/theme'
+import { useIsMobile, hexToRgb, rgbToHex } from '@/utils/general'
 import Telegraph from '@/public/telegraph.svg'
 import Typewriter from '@/public/typewriter.svg'
 import CommunicationArts from '@/public/communication-arts.svg'
@@ -24,8 +25,8 @@ const HomeHeadlineBlock = ({ block }: { block: any }) => {
     let ctx = gsap.context(() => {
 
       //Theme Colors
-      const TextColor = `rgb('48, 74, 95')`;
-      const BackgroundColor = `rgb('255,255,255')`;
+      const TextColor = '#304A5F';
+      const BackgroundColor = '#FFFFFF';
       const element = document.querySelector("body");
       const getter = gsap.getProperty(element);
       gsap
@@ -39,8 +40,8 @@ const HomeHeadlineBlock = ({ block }: { block: any }) => {
         },
       })
       .to(element, {
-        color: TextColor,
-        backgroundColor: BackgroundColor,
+        color: `rgb(${hexToRgb(TextColor)})`,
+        backgroundColor: `rgb(${hexToRgb(BackgroundColor)})`,
         ease: "none",
         onUpdate: (e) => {
           colorChangeHandler(getter("color"))

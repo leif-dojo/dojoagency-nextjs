@@ -10,7 +10,7 @@ gsap.registerPlugin(ScrollTrigger)
 
 const HomeFeaturedWork = ({ block }: { block: any }) => {
   const sectionRef = useRef<HTMLDivElement>(null)
-  const [mouse, setMouse] = useState({x: 0, y: 0, moved: false})
+  //const [mouse, setMouse] = useState({x: 0, y: 0, moved: false})
 
   const isMobile = () => {
     return window.innerWidth < 1024
@@ -48,36 +48,38 @@ const HomeFeaturedWork = ({ block }: { block: any }) => {
   useLayoutEffect(() => {
     let ctx = gsap.context(() => {
 
+      const items = gsap.utils.toArray(".project")
+
       if(!isMobile()) {
-        let rect = sectionRef.current.getBoundingClientRect();
         const mouseMoveHandler = (e) => {
           const { clientX, clientY } = e;
-          let positionX = clientX - rect.left;
-          let positionY = clientY - rect.top;
-          setMouse({x: positionX, y: positionY, moved: true})
-          parallaxIt(".project-wrap", -80, 1);
+          items.forEach((item:any) => {
+            let rect = item.getBoundingClientRect();
+            let positionX = clientX - rect.left;
+            let positionY = clientY - rect.top;
+            parallaxIt(item, positionX, positionY, item.dataset.x, item.dataset.y, item.dataset.dur, 1);
+          })
         };
-        document.addEventListener("mousemove", mouseMoveHandler);
+        sectionRef.current.addEventListener("mousemove", mouseMoveHandler);
         return () => {
-          document.removeEventListener("mousemove", mouseMoveHandler);
+          sectionRef.current.removeEventListener("mousemove", mouseMoveHandler);
         };
       }
 
     }, sectionRef);
     return () => ctx.revert();
-  }, [mouse]);
+  }, []);
 
-  const parallaxIt = (target: any, movement: any, dt: any) => {
-    let rect = sectionRef?.current?.getBoundingClientRect();
+  const parallaxIt = (target: any, mousex: any, mousey: any, xmovement: any, ymovement: any, dur:any, dt: any) => {
+    let rect = target?.getBoundingClientRect();
     //console.log("gsap TO:", mouse.x, mouse.y)
     gsap.to(target, {
-      duration: 0,
-      x: (mouse.x - rect.width / 2) / rect.width * movement * dt,
-      y: (mouse.y - rect.height / 2) / rect.height * movement* dt, 
+      duration: dur,
+      x: (mousex - rect.width / 2) / rect.width * xmovement * dt,
+      y: (mousey - rect.height / 2) / rect.height * ymovement* dt, 
       ease: "sine"
     });
-  }
-
+  };
 
 
   return(
@@ -87,8 +89,11 @@ const HomeFeaturedWork = ({ block }: { block: any }) => {
 
         {block?.featured_projects?.map((block: any, index: any) => {
           //console.log('col: ', index, block)
+          const randomx = Math.floor(Math.random() * (-20 - -60 + 1)) + -60;
+          const randomy = Math.floor(Math.random() * (-20 - -60 + 1)) + -60;
+          const randomdur = Math.floor(Math.random() * (3 - 1 + 1)) + 1;
           return (
-            <Link href={`${block?.link}`} className={`${styles.project} item relative overflow-hidden bg-dark f-full fade`} key={index}>
+            <Link href={`${block?.link}`} className={`${styles.project} project relative overflow-hidden bg-dark f-full fade`} key={index} data-x={randomx} data-y={randomy} data-dur={randomdur}>
               <span className="flex justify-center items-center w-full h-full">
                 {block.image && (
                   <span className='absolute w-full h-full top-0 left-0'>

@@ -102,3 +102,25 @@ export const useIsIOS = () => {
 
   return isIOS
 }
+
+/**
+ * Converts Hex to RGB value
+ * @returns rgb string
+ */
+export const hexToRgb = (hex:any) => {
+  if(hex){
+    const hexarray =  hex.replace(/^#?([a-f\d])([a-f\d])([a-f\d])$/i,(m:any, r:any, g:any, b:any) => '#' + r + r + g + g + b + b).substring(1).match(/.{2}/g).map((x:any) => parseInt(x, 16))
+    return `${hexarray[0]},${hexarray[1]},${hexarray[2]}`
+  }
+}
+
+/**
+ * Converts RGB to Hex value
+ * @returns rgb string
+ */
+export const rgbToHex = (r:any,g:any,b:any) => {
+  return (r:any, g:any, b:any) => '#' + [r, g, b].map(x => {
+    const hex = x.toString(16)
+    return hex.length === 1 ? '0' + hex : hex
+  }).join('')
+}

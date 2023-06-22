@@ -1,6 +1,7 @@
 "use client"
 import React, { useContext, useEffect, useState, useRef, useLayoutEffect } from 'react'
 import { useThemeContext } from '@/context/theme'
+import { useIsMobile, hexToRgb, rgbToHex } from '@/utils/general'
 import Image from 'next/image'
 import styles from './home_3_column.module.scss'
 import Link from 'next/link'

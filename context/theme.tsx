@@ -37,6 +37,7 @@ export const ThemeContextProvider = ( {children}:{children: any} ) => {
         const getter = gsap.getProperty(element);
         r.style.setProperty('--foreground-rgb', getter("color"));
         r.style.setProperty('--background-rgb', getter("backgroundColor"));
+        //console.log("updated theme: ", getter("color"), getter("backgroundColor"))
 
         /*gsap.to(".main", {
           color: `rgb(${color})`,
@@ -53,6 +54,8 @@ export const ThemeContextProvider = ( {children}:{children: any} ) => {
       
     }, [color, backgroundColor]);
 
+    /*
+    //reset theme on path change
     useLayoutEffect(() => {
       //reset theme on path change
       //console.log("updated theme: ", color, backgroundColor)
@@ -63,9 +66,10 @@ export const ThemeContextProvider = ( {children}:{children: any} ) => {
         //reset theme on route change
         setColor('0,0,0')
         setBackgroundColor('255,255,255')
+        console.log("set layout")
       }
       
-    }, [pathname]);
+    }, [pathname]);*/
 
     return (
         <GlobalContextProvider value={{

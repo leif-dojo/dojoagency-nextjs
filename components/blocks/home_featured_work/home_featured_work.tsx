@@ -1,6 +1,7 @@
 "use client"
 import React, { useContext, useEffect, useState, useRef, useLayoutEffect } from 'react'
 import { useThemeContext } from '@/context/theme'
+import { useIsMobile, hexToRgb, rgbToHex } from '@/utils/general'
 import Image from 'next/image'
 import Link from 'next/link'
 import styles from './home_featured_work.module.scss'
@@ -11,7 +12,7 @@ import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger'
 gsap.registerPlugin(ScrollTrigger)
 
-import useMousePosition from "@/hooks/useMousePosition";
+//import useMousePosition from "@/hooks/useMousePosition";
 
 const HomeFeaturedWork = ({ block }: { block: any }) => {
   const { cursorType, cursorChangeHandler, colorChangeHandler, backgroundChangeHandler} = useThemeContext();
@@ -21,7 +22,7 @@ const HomeFeaturedWork = ({ block }: { block: any }) => {
   const ViewAllRef = useRef<HTMLDivElement>(null)
   const NextArrowRef = useRef<HTMLDivElement>(null)
   const GridRef = useRef<HTMLDivElement>(null)
-  const { x, y } = useMousePosition();
+  //const { x, y } = useMousePosition();
 
   const isMobile = () => {
     return window.innerWidth < 1024
@@ -31,8 +32,8 @@ const HomeFeaturedWork = ({ block }: { block: any }) => {
     let ctx = gsap.context(() => {
 
       //Theme Colors
-      const TextColor = `rgb('255,255,255')`;
-      const BackgroundColor = `rgb('0, 174, 239')`;
+      const TextColor = '#FFFFFF';
+      const BackgroundColor = '#304A5F';
       const element = document.querySelector("body");
       const getter = gsap.getProperty(element);
       gsap
@@ -42,12 +43,12 @@ const HomeFeaturedWork = ({ block }: { block: any }) => {
           start: "top 50%",
           end: "top 10%",
           scrub: true,
-          //markers: true,
+          // markers: true,
         },
       })
       .to(element, {
-        color: TextColor,
-        backgroundColor: BackgroundColor,
+        color: `rgb(${hexToRgb(TextColor)})`,
+        backgroundColor: `rgb(${hexToRgb(BackgroundColor)})`,
         ease: "none",
         onUpdate: (e) => {
           colorChangeHandler(getter("color"))
@@ -92,36 +93,6 @@ const HomeFeaturedWork = ({ block }: { block: any }) => {
         className: styles.draw
       })
       
-      //fade timeline option
-      /*gsap
-      .timeline({
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: 'top bottom',
-          //end: 'bottom bottom',
-          //scrub: true,
-          toggleActions: "restart none none reverse"
-          //markers: true,
-        },
-      }).fromTo(
-        HeadlineRef.current,
-        {alpha: 0, y: 50 }, 
-        {alpha: 1, y: 0, duration: 0.3}
-      ).fromTo(
-        ".project",
-        { autoAlpha: 0, y: 50 },
-        { duration: 0.9, autoAlpha: 1, y: 0, stagger: 0.5 }
-      ).fromTo(
-          NextRef.current,
-        {alpha: 0, y: -50 }, 
-        {alpha: 1, y: 0, duration: 0.3}
-      ).set( NextArrowRef.current, {
-        className: styles.draw
-      }).fromTo(
-        NextRef.current,
-        {alpha: 0, }, 
-        {alpha: 1, delay: 1, duration: 0.3}
-      )*/
 
       function setSignaturePaths() {
         let totalDur = 1
@@ -175,192 +146,55 @@ const HomeFeaturedWork = ({ block }: { block: any }) => {
     return () => ctx.revert();
   }, []);
 
-  const [mouse, setMouse] = useState({x: 0, y: 0, moved: false})
-  const [canvas, setCanvas] = useState({x: 0, y: 0})
 
-  /*useLayoutEffect(() => {
-    let ctx = gsap.context(() => {
-
-      let rect = sectionRef.current.getBoundingClientRect();
-      let mouse = {x: 0, y: 0, moved: false};
-      const speed = 1;
-  
-      sectionRef.current.addEventListener("mousemove", (e) => {
-        let positionX = e.clientX - rect.left;
-        let positionY = e.clientY - rect.top;
-        setMouse({x: positionX, y: positionY, moved: true})
-      });
-      gsap.ticker.add(() => {
-        // adjust speed for higher refresh monitors
-        const dt = 1.0 - Math.pow(1.0 - speed, gsap.ticker.deltaRatio()); 
-
-        parallaxIt(".project-wrap", -150, dt);
-        //parallaxIt(".project img", -30);
-      });
-      gsap.ticker.fps(30);
-      gsap.ticker.lagSmoothing(1000, 16);
-
-    }, sectionRef);
-    return () => ctx.revert();
-  }, [x,y]);*/
 
   useLayoutEffect(() => {
     let ctx = gsap.context(() => {
 
+      const items = gsap.utils.toArray(".project")
+
       if(!isMobile()) {
-        let rect = sectionRef.current.getBoundingClientRect();
+        //let rect = sectionRef.current.getBoundingClientRect();
         const mouseMoveHandler = (e) => {
           const { clientX, clientY } = e;
-          let positionX = clientX - rect.left;
-          let positionY = clientY - rect.top;
-          setMouse({x: positionX, y: positionY, moved: true})
-          parallaxIt(".project-wrap", -80, 1);
+          //let positionX = clientX - rect.left;
+          //let positionY = clientY - rect.top;
+          //setMouse({x: positionX, y: positionY, moved: true})
+          //parallaxIt(".project-wrap", -80, 1);
+          items.forEach((item:any) => {
+            let rect = item.getBoundingClientRect();
+            let positionX = clientX - rect.left;
+            let positionY = clientY - rect.top;
+
+            //const random = Math.floor(Math.random() * (40 - -80 + 1)) + -80;
+            //console.log("rando:", item.dataset.x, item.dataset.y)
+            parallaxIt(item, positionX, positionY, item.dataset.x, item.dataset.y, item.dataset.dur, 1);
+          })
         };
-        document.addEventListener("mousemove", mouseMoveHandler);
+        sectionRef.current.addEventListener("mousemove", mouseMoveHandler);
         return () => {
-          document.removeEventListener("mousemove", mouseMoveHandler);
+          sectionRef.current.removeEventListener("mousemove", mouseMoveHandler);
         };
       }
 
     }, sectionRef);
     return () => ctx.revert();
-  }, [mouse]);
+  }, []);
 
-  const parallaxIt = (target: any, movement: any, dt: any) => {
-    let rect = sectionRef?.current?.getBoundingClientRect();
+  const parallaxIt = (target: any, mousex: any, mousey: any, xmovement: any, ymovement: any, dur:any, dt: any) => {
+    let rect = target?.getBoundingClientRect();
     //console.log("gsap TO:", mouse.x, mouse.y)
     gsap.to(target, {
-      duration: 0,
-      x: (mouse.x - rect.width / 2) / rect.width * movement * dt,
-      y: (mouse.y - rect.height / 2) / rect.height * movement* dt, 
+      duration: dur,
+      x: (mousex - rect.width / 2) / rect.width * xmovement * dt,
+      y: (mousey - rect.height / 2) / rect.height * ymovement* dt, 
       ease: "sine"
     });
-  }
-  
-
-  /*useEffect(() => {
-    let rect = sectionRef.current.getBoundingClientRect();
-    let mouse = {x: 0, y: 0, moved: false};
-
-    sectionRef.current.addEventListener("mousemove", (e) => {
-      let positionX = e.clientX - rect.left;
-      let positionY = e.clientY - rect.top;
-      setMouse({x: positionX, y: positionY, moved: true})
-      //console.log("each: ", positionX, positionY)
-      //console.log("each: ", mouse)
-    });
-    gsap.ticker.add(() => {
-      parallaxIt(".project", -100);
-      //parallaxIt(".project img", -30);
-    });
-  }, [mouse]);*/
-
-  /*useLayoutEffect(() => {
-    let ctx = gsap.context(() => {
-
-      let rect = sectionRef.current.getBoundingClientRect();
-      const speed = 0.01;
-      const items = gsap.utils.toArray(".project-wrap").map(element => {
-        return {
-          element,
-          shiftValue: 100,
-          xSet: gsap.quickSetter(element, "x", "px"),
-          ySet: gsap.quickSetter(element, "y", "px"),
-        }
-      });
-
-      let positionX = 0
-      let positionY = 0
-  
-      sectionRef.current.addEventListener("mousemove", (e) => {
-        positionX = e.clientX - rect.left;
-        positionY = e.clientY - rect.top;
-        //setMouse({x: positionX, y: positionY, moved: true})
-        //console.log("each: ", positionX, positionY)
-        //console.log("each: ", mouse)
-      });
-  
-      //console.log("ticker: ", x,y)
-      gsap.ticker.add((time, deltaTime, frame) => {
-        gsap.ticker.fps(30);
-        gsap.ticker.lagSmoothing(1000, 16);
-        // adjust speed for higher refresh monitors
-        const dt = 1.0 - Math.pow(1.0 - speed, gsap.ticker.deltaRatio()); 
-  
-        //console.log("ticker: ", mouse.x)
-        items.forEach(item => {
-          const xset = (((positionX - rect.width / 2) / rect.width * 100) * item.shiftValue * dt  )
-          const yset = (((positionY - rect.height / 2) / rect.height * 50) * item.shiftValue * dt )
-          //console.log("each: ", xset, yset)
-          item.xSet(xset);
-          item.ySet(yset);
-        });
-        //gsap.quickSetter("project-wrap", "x", "px")
-        //gsap.quickSetter("project-wrap", "y", "px")
-      });
-
-    }, sectionRef);
-    return () => ctx.revert();
-  }, []);*/
-
-  /*useEffect(() => {
-    let rect = sectionRef.current.getBoundingClientRect();
-    const speed = 0.35;
-    const items = gsap.utils.toArray(".project").map(element => {
-      return {
-        element,
-        shiftValue: 20,
-        xSet: gsap.quickSetter(element, "x", "px"),
-        ySet: gsap.quickSetter(element, "y", "px"),
-      }
-    });
-
-    sectionRef.current.addEventListener("mousemove", (e) => {
-      let positionX = e.clientX - rect.left;
-      let positionY = e.clientY - rect.top;
-      setMouse({x: positionX, y: positionY, moved: true})
-      //console.log("each: ", positionX, positionY)
-      //console.log("each: ", mouse)
-    });
-
-    //console.log("ticker: ", x,y)
-    gsap.ticker.add(() => {
-      // adjust speed for higher refresh monitors
-      //const dt = 1.0 - Math.pow(1.0 - speed, gsap.ticker.deltaRatio());
-
-      //console.log("ticker: ", mouse.x)
-      items.forEach(item => {
-        item.xSet(((mouse.x - rect.width / 2) / rect.width * 100) );
-        item.ySet(((mouse.y - rect.height / 2) / rect.height * 50) );
-      });
-    });
-  }, [mouse]);*/
-
-  /*useEffect(() => {
-    const speed = 0.35;
-    const items = gsap.utils.toArray(".project").map(element => {
-      return {
-        element,
-        shiftValue: 20,
-        xSet: gsap.quickSetter(element, "x", "px"),
-        ySet: gsap.quickSetter(element, "y", "px"),
-      }
-    });
-    console.log("ticker: ", x,y)
-    gsap.ticker.add((x,y) => {
-      const dt = 1.0 - Math.pow(1.0 - speed, gsap.ticker.deltaRatio());
-      
-      items.forEach(item => {
-        item.xSet((x/10) * dt);
-        item.ySet((y/10) * dt);
-      });
-    });
-  }, [x,y]);*/
-
+  };
 
 
   return (
-  <section ref={sectionRef} className={`${styles.root} relative w-full  z-10`}>
+  <section ref={sectionRef} className={`${styles.root} relative w-full overflow-hidden z-10`}>
     <div className="px-50 md:px-100 py-100">
       <div ref={HeadlineRef} className='relative w-full font-lato text-80 leading-90 font-300 text-white pb-20 pl-0 md:pl-80 z-10 fade'>
         {block?.headline}
@@ -368,9 +202,12 @@ const HomeFeaturedWork = ({ block }: { block: any }) => {
       <div ref={GridRef} className={`${styles.grid} project-wrap block md:grid w-full `}>
 
         {block?.featured_projects?.map((block: any, index: any) => {
+          const randomx = Math.floor(Math.random() * (-20 - -80 + 1)) + -80;
+          const randomy = Math.floor(Math.random() * (-10 - -40 + 1)) + -40;
+          const randomdur = Math.floor(Math.random() * (3 - 1 + 1)) + 1;
           //console.log('home featured col: ', index, block)
           return (
-            <Link href={`${block?.link}`} className={`${styles.project} project relative  overflow-hidden bg-dark w-full md:w-1/3 fade`} key={index}>
+            <Link href={`${block?.link}`} className={`${styles.project} project relative  overflow-hidden bg-dark w-full md:w-1/3 fade`} key={index} data-x={randomx} data-y={randomy} data-dur={randomdur}>
               <span className="flex justify-center items-center w-full h-full">
 
                   <span className='absolute w-full h-full top-0 left-0'>
@@ -468,7 +305,7 @@ const HomeFeaturedWork = ({ block }: { block: any }) => {
           )
         })}
       </div>
-      <div className={`${styles.nextwrap} relative w-full pt-20 text-right`}>
+      <div className={`${styles.nextwrap} relative w-full pt-80 text-right`}>
         <Link className='relative text-white text-right inline-flex ml-auto mr-0' href={`/portfolio/`} aria-label="Dojo Agency fade">
           <div ref={NextArrowRef} className='text-white'><NextArrow className={`${styles.nextarrow} w-40 h-auto`} /></div>
           <span ref={NextRef} className={`${styles.next} relative pt-20 pl-10`}><div ref={ViewAllRef}><TextViewAll className={`${styles.viewalltext} w-100 h-auto text-white`} /></div></span>

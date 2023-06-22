@@ -61,7 +61,7 @@ export default async function Page(context: { params: { slug: string }, searchPa
   }
 
   return (
-  <div className="page  pt-100">
+  <div className="page ">
     <Repeater blocks={data.entry?.components} />
   </div>
   )

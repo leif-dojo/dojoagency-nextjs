@@ -4,7 +4,7 @@ import styles from './home_hero.module.scss'
 import Logo from 'public/icons/Dojo-Logo_Horizontal_White_RGB.svg'
 import Arrow from 'public/icons/icon-arrow-down.svg'
 import { useThemeContext } from '@/context/theme'
-import { useIsMobile } from '@/utils/general'
+import { useIsMobile, hexToRgb, rgbToHex } from '@/utils/general'
 
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger'
@@ -31,9 +31,16 @@ const HomeHeroBlock = ({ block }: { block: any }) => {
   useLayoutEffect(() => {
     let ctx = gsap.context(() => {
 
+      //set initial colors
+      const TextColor = '#FFFFFF';
+      const BackgroundColor = '#304A5F';
+      var rb = document.querySelector('body');
+      rb.style.color = TextColor;
+      rb.style.backgroundColor = backgroundColor;
+      colorChangeHandler(hexToRgb(TextColor))
+      backgroundChangeHandler(hexToRgb(backgroundColor))
+
       //Theme Colors
-      const TextColor = `rgb('255,255,255')`;
-      const BackgroundColor = `rgb('48, 74, 95')`;
       const element = document.querySelector("body");
       const getter = gsap.getProperty(element);
       gsap
@@ -47,14 +54,15 @@ const HomeHeroBlock = ({ block }: { block: any }) => {
         },
       })
       .to(element, {
-        color: TextColor,
-        backgroundColor: BackgroundColor,
+        color: `rgb(${hexToRgb(TextColor)})`,
+        backgroundColor: `rgb(${hexToRgb(BackgroundColor)})`,
         ease: "none",
         onUpdate: (e) => {
           colorChangeHandler(getter("color"))
           backgroundChangeHandler(getter("backgroundColor"))
         }
       })
+      
 
       gsap
       .timeline({
@@ -93,10 +101,10 @@ const HomeHeroBlock = ({ block }: { block: any }) => {
       .timeline({
         scrollTrigger: {
           trigger: PanelRef.current,
-          start: isMobile() ? "top 180rem" : "top 300rem",
-          end: "center 0%",
+          start: isMobile() ? "top 180rem" : "top 340rem",
+          end: "20% 0%",
           scrub: true,
-          // end: "+=500",
+          //end: "+=500",
           //markers: true,
           toggleActions: "play reverse play reverse",
         },
@@ -105,7 +113,7 @@ const HomeHeroBlock = ({ block }: { block: any }) => {
         {
           autoAlpha: 1
         }, {
-          autoAlpha: 0
+          autoAlpha: 0,
         },0
       ).fromTo(
         HeadlineRef.current,
@@ -113,7 +121,7 @@ const HomeHeroBlock = ({ block }: { block: any }) => {
           fontSize: isMobile() ? "90rem" : "110rem"
           //autoAlpha: 0
         }, {
-          fontSize: isMobile() ? "120rem" : "150rem"
+          fontSize: isMobile() ? "100rem" : "150rem"
           //autoAlpha: 1
         },0
       )
@@ -185,7 +193,7 @@ const HomeHeroBlock = ({ block }: { block: any }) => {
 
   //console.log("Home Hero: ", block)
   return (
-  <section ref={sectionRef} className={`${styles.root} bg-themebackground w-full pt-60 pb-0`} onMouseEnter={() => cursorChangeHandler("peace")} onMouseLeave={() => cursorChangeHandler("default")}>
+  <section ref={sectionRef} className={`${styles.root} bg-themebackground-off w-full pt-60 pb-0`} onMouseEnter={() => cursorChangeHandler("peace")} onMouseLeave={() => cursorChangeHandler("default")}>
     <div ref={RainRef} id="rain" className={`${styles.rain} absolute w-full h-full top-0 left-0 z-9`}></div>
 
     <div className='w-full'>
@@ -194,7 +202,7 @@ const HomeHeroBlock = ({ block }: { block: any }) => {
           <Logo />
         </div>
       </div>
-      <div ref={PanelRef} className={`relative w-full bg-themebackground px-50 md:px-100 mt-250 pb-120 z-6`}>
+      <div ref={PanelRef} className={`${styles.panel} relative w-full bg-themebackground-ff px-50 md:px-100 mt-250 pb-120 z-6`}>
         <div ref={HeadlineRef} className='w-full  text-center font-lato text-90 md:text-113 font-300 leading-none py-20'>
           {block?.headline}
         </div>

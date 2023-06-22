@@ -1,7 +1,7 @@
 export default function NotFound() {
     return (
       <>
-        <div className={`page pt-100`}>
+        <div className={`page`}>
           <section className="w-full bg-white text-slate">
             <div className="px-50 md:px-150 py-50">
               <div className="w-full">

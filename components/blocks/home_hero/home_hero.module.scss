@@ -4,6 +4,10 @@
     display: block;
     margin: 0 auto;
 
+    .panel {
+        transition: all 0ms ease-in-out;
+    }
+
     .rain {
         z-index: 9;
         transform: rotate('30deg');

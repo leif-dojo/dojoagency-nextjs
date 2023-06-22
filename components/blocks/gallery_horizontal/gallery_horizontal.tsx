@@ -67,9 +67,10 @@ const GalleryHorizontalBlock = ({ block }: { block: any }) => {
       let container_width = gsap.getProperty(ContainerInnerRef.current, "width");
       let gallery_width = gsap.getProperty(ScrollerRef.current, "width");
       let diff = (gallery_width - container_width);
+      console.log("diff: ", diff)
       gsap.to(sections, {
         //xPercent: -100 * 1,
-        x: diff * -1,
+        x: diff < 0 ? 0 : diff * -1,
         ease: "none",
         scrollTrigger: {
           trigger: ScrollerTriggerRef.current,

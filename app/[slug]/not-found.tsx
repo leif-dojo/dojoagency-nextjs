@@ -5,7 +5,7 @@ import React from 'react'
 export default async function PostNotFound(context: { params: { slug: string } }) {
 
   return (
-    <div className={`page pt-100`}>
+    <div className={`page`}>
       <section className="w-full bg-white text-slate">
         <div className="px-50 md:px-150 py-200">
           <div className="w-full py-200">

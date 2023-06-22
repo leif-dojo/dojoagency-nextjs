@@ -2,6 +2,7 @@
 import React, { useContext, useEffect, useState, useRef, useLayoutEffect } from 'react'
 import { useThemeContext } from '@/context/theme'
 import Image from 'next/image'
+import { useIsMobile, hexToRgb, rgbToHex } from '@/utils/general'
 export const typename = 'Set_Components_2ColumnImage'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger'
@@ -16,9 +17,10 @@ const Column2ImageBlock = ({ block }: { block: any }) => {
   useLayoutEffect(() => {
     let ctx = gsap.context(() => {
 
+
       //Theme Colors
-      const TextColor = `rgb('48, 74, 95')`;
-      const BackgroundColor = `rgb('255,255,255')`;
+      const TextColor = '#304A5F';
+      const BackgroundColor = '#FFFFFF';
       const element = document.querySelector("body");
       const getter = gsap.getProperty(element);
       gsap
@@ -32,8 +34,8 @@ const Column2ImageBlock = ({ block }: { block: any }) => {
         },
       })
       .to(element, {
-        color: TextColor,
-        backgroundColor: BackgroundColor,
+        color: `rgb(${hexToRgb(TextColor)})`,
+        backgroundColor: `rgb(${hexToRgb(BackgroundColor)})`,
         ease: "none",
         onUpdate: (e) => {
           colorChangeHandler(getter("color"))
@@ -67,7 +69,7 @@ const Column2ImageBlock = ({ block }: { block: any }) => {
   }, []);
 
   return (
-  <section ref={sectionRef} className="w-full bg-white text-slate">
+  <section ref={sectionRef} className="w-full">
     <div className="px-50 md:px-100 py-100">
       <div className="block md:flex">
         <div ref={copyRef} className="w-full md:w-1/2 md:pr-30 flex items-center">

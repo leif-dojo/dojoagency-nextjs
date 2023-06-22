@@ -49,7 +49,7 @@ export default async function RootLayout({
       <html lang="en">
         <head />
         <body className={`${lato.variable} ${nothingyoucoulddo.variable} font-lato`}>
-          <main className='main'>
+          <main className='main pt-100'>
             <ThemeContextProvider>
               <MouseCursor />
               <ContactForm data={data.footer} />

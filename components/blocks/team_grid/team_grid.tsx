@@ -3,6 +3,7 @@ import React, { useContext, useEffect, useState, useRef, useLayoutEffect } from 
 import Image from 'next/image'
 import styles from './team_grid.module.scss'
 import { useThemeContext } from '@/context/theme'
+import { useIsMobile, hexToRgb, rgbToHex } from '@/utils/general'
 import Socials from '@/components/generic/social_icons/social_icons'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger'
@@ -25,30 +26,30 @@ const ImageGridBlock = ({ block }: { block: any }) => {
   useLayoutEffect(() => {
     let ctx = gsap.context(() => {
 
-            //Theme Colors
-            const TextColor = `rgb('35, 31, 32')`;
-            const BackgroundColor = `rgb('255,255,255')`;
-            const element = document.querySelector("body");
-            const getter = gsap.getProperty(element);
-            gsap
-            .timeline({
-              scrollTrigger: {
-                trigger: sectionRef.current,
-                start: "top 50%",
-                end: "top 10%",
-                scrub: true,
-                // markers: true,
-              },
-            })
-            .to(element, {
-              color: TextColor,
-              backgroundColor: BackgroundColor,
-              ease: "none",
-              onUpdate: (e) => {
-                colorChangeHandler(getter("color"))
-                backgroundChangeHandler(getter("backgroundColor"))
-              }
-            })
+      //Theme Colors
+      const TextColor = '#304A5F';
+      const BackgroundColor = '#FFFFFF';
+      const element = document.querySelector("body");
+      const getter = gsap.getProperty(element);
+      gsap
+      .timeline({
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top 50%",
+          end: "top 10%",
+          scrub: true,
+          // markers: true,
+        },
+      })
+      .to(element, {
+        color: `rgb(${hexToRgb(TextColor)})`,
+        backgroundColor: `rgb(${hexToRgb(BackgroundColor)})`,
+        ease: "none",
+        onUpdate: (e) => {
+          colorChangeHandler(getter("color"))
+          backgroundChangeHandler(getter("backgroundColor"))
+        }
+      })
 
       //fades
       const boxes = gsap.utils.toArray('.fade')

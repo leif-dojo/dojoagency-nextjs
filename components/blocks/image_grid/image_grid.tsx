@@ -4,6 +4,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import styles from './image_grid.module.scss'
 import { useThemeContext } from '@/context/theme'
+import { useIsMobile, hexToRgb, rgbToHex } from '@/utils/general'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger'
 gsap.registerPlugin(ScrollTrigger)
@@ -41,21 +42,25 @@ const ImageGridBlock = ({ block }: { block: any }) => {
       })
 
       //fades
-      gsap
-      .timeline({
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: 'top bottom',
-          //end: 'bottom bottom',
-          //scrub: true,
-          toggleActions: "restart none none reverse"
-          //markers: true,
-        },
-      }).fromTo(
-        ".item",
-        { autoAlpha: 0, y: 50 },
-        { duration: 0.9, autoAlpha: 1, y: 0, stagger: 0.5, ease: "power4.out" }
-      )
+      const boxes = gsap.utils.toArray('.fade')
+      if (boxes.length) {
+          boxes.forEach((box:any, i:any) => {
+              const anim = gsap.fromTo(
+                  box,
+                  { autoAlpha: 0, y: "25%" },
+                  { duration: 1.6, autoAlpha: 1, y: "0%", stagger: 0.25, ease: "power4.out" }
+              )
+              ScrollTrigger.create({
+                  //scroller: page,
+                  trigger: box,
+                  animation: anim,
+                  start: 'top bottom',
+                  //end: 'bottom top',
+                  toggleActions: "restart none none reverse",
+                  //markers: true
+              })
+          })
+      }
 
     }, sectionRef);
     return () => ctx.revert();
@@ -70,7 +75,7 @@ const ImageGridBlock = ({ block }: { block: any }) => {
         {block?.image_grid?.map((block:any, index:any) => {
           //console.log('col: ', index, block)
           return (
-            <Link href={`${block?.link}`} className={`${styles.project} item relative overflow-hidden bg-dark f-full`} key={index} onMouseEnter={() => onMouseEnter()} onMouseLeave={() => onMouseLeave()}>
+            <Link href={`${block?.link}`} className={`${styles.project} item relative overflow-hidden bg-dark f-full fade`} key={index} onMouseEnter={() => onMouseEnter()} onMouseLeave={() => onMouseLeave()}>
               <span className="flex justify-center items-center w-full h-full">
                 {block.image && (
                   <span className='absolute w-full h-full top-0 left-0'>

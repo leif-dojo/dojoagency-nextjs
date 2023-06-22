@@ -1,15 +1,18 @@
 "use client"
 import React, { useRef, useLayoutEffect } from 'react'
+import { useThemeContext } from '@/context/theme'
 import styles from './headline_hero.module.scss'
 import Image from 'next/image'
 import ShareIcons from '@/components/generic/share_icons/share_icons'
 import IconLink from '@/public/icons/icon-link.svg'
+import { useIsMobile, hexToRgb, rgbToHex } from '@/utils/general'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger'
 gsap.registerPlugin(ScrollTrigger)
 
 export const typename = 'Set_Components_Wysiwyg'
 const WysiwygBlock = ({ block }: { block: any }) => {
+  const { cursorType, cursorChangeHandler, colorChangeHandler, backgroundChangeHandler} = useThemeContext();
   const sectionRef = useRef<HTMLDivElement>(null)
   const eyebrowRef = useRef<HTMLDivElement>(null)
   const headlineRef = useRef<HTMLDivElement>(null)
@@ -28,7 +31,32 @@ const WysiwygBlock = ({ block }: { block: any }) => {
   useLayoutEffect(() => {
     let ctx = gsap.context(() => {
 
-      //s
+      //Theme Colors
+      const TextColor = '#304A5F';
+      const BackgroundColor = '#FFFFFF';
+      const element = document.querySelector("body");
+      const getter = gsap.getProperty(element);
+      gsap
+      .timeline({
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top 50%",
+          end: "top 10%",
+          scrub: true,
+          //markers: true,
+        },
+      })
+      .to(element, {
+        color: `rgb(${hexToRgb(TextColor)})`,
+        backgroundColor: `rgb(${hexToRgb(BackgroundColor)})`,
+        ease: "none",
+        onUpdate: (e) => {
+          colorChangeHandler(getter("color"))
+          backgroundChangeHandler(getter("backgroundColor"))
+        }
+      })
+
+      //fades
       const boxes = gsap.utils.toArray('.fade')
       if (boxes.length) {
           boxes.forEach((box:any, i:any) => {
@@ -41,7 +69,7 @@ const WysiwygBlock = ({ block }: { block: any }) => {
                   //scroller: page,
                   trigger: box,
                   animation: anim,
-                  start: 'top bottom',
+                  //start: 'top bottom',
                   //end: 'bottom top',
                   toggleActions: "restart none none reverse",
                   //markers: true

@@ -38,7 +38,7 @@ export default async function Page(context: { params: { slug: string }, searchPa
   //console.log("page home HomeHeroBlock: ", HomeHeroBlock)
   return (
     <>
-      <div className={`page pt-100`}>
+      <div className={`page`}>
         <Repeater blocks={data.entry.components} />
       </div>
     </>

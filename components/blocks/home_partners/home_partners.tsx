@@ -3,6 +3,7 @@ import React, { useContext, useEffect, useState, useRef, useLayoutEffect } from 
 import Image from 'next/image'
 import styles from './home_partners.module.scss'
 import { useThemeContext } from '@/context/theme'
+import { useIsMobile, hexToRgb, rgbToHex } from '@/utils/general'
 import OvalArrow from '@/public/icons/icon-oval-arrow.svg'
 import NextArrow from '@/public/icons/icon-arrow-next-style.svg'
 import TextNext from '@/public/text-next.svg'
@@ -48,9 +49,10 @@ const HomePartners = ({ block }: { block: any }) => {
         colorChangeHandler('rgb(255,255,255)')
         backgroundChangeHandler('rgb(35, 31, 32)')
       }
+
       //Theme Colors
-      const TextColor = `rgb('255,255,255')`;
-      const BackgroundColor = `rgb('35, 31, 32')`;
+      const TextColor = '#FFFFFF';
+      const BackgroundColor = '#231f20';
       const element = document.querySelector("body");
       const getter = gsap.getProperty(element);
       gsap
@@ -64,8 +66,8 @@ const HomePartners = ({ block }: { block: any }) => {
         },
       })
       .to(element, {
-        color: TextColor,
-        backgroundColor: BackgroundColor,
+        color: `rgb(${hexToRgb(TextColor)})`,
+        backgroundColor: `rgb(${hexToRgb(BackgroundColor)})`,
         ease: "none",
         onUpdate: (e) => {
           colorChangeHandler(getter("color"))

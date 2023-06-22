@@ -27,4 +27,5 @@ html {
     )
     rgb(var(--background-start-rgb));*/
     background: rgb(var(--background-rgb));
+
 }
