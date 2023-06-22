@@ -22,103 +22,51 @@ const TextScrollerBlock = ({ block }: { block: any }) => {
           chars: 0,
           spacing: "0.33em"
         }).split(TextRef?.current)
-        //console.log("split: ", split)
       }
 
       const items = gsap.utils.toArray(".wysiwyg div")
       //console.log("items: ",items)
       items.forEach((item:any, index:any) => {
-        //const p = gsap.utils.selector(item);
-        //console.log("each: ", p)
-        /*gsap
-        .timeline({
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: "center 70%",
-            end: "center 30%",
-            scrub: true,
-            // end: "+=500",
-            markers: true,
-            toggleActions: "play reverse play reverse",
-            //toggleActions: 'play none none reverse', // onEnter, onLeave, onEnterBack, and onLeaveBack
-          },
-        }).fromTo(
-          item,
-          //".wysiwyg div div",
-          {
-            autoAlpha: 0,
-        }, {
-            duration: 1.5,
-            autoAlpha: 1,
-            //stagger: 0.25,
-            ease: 'power3.out'
-        },
-        )*/
 
         gsap
         .timeline({
           scrollTrigger: {
             trigger: item,
-            start: "center 75%",
-            end: "center 10%",
-            //scrub: true,
-            // end: "+=500",
+            start: "center 95%",
+            end: "center 55%",
+            scrub: true,
             //markers: true,
-            toggleActions: "play reverse play reverse",
-            //toggleActions: 'play none none reverse', // onEnter, onLeave, onEnterBack, and onLeaveBack
           },
         }).fromTo(
           item,
-          //".wysiwyg div div",
           {
             autoAlpha: 0,
           }, {
-              duration: 0.25,
               autoAlpha: 1,
               stagger: 0,
               ease: 'power3.out'
           },0
         )
 
-        /*gsap.to(item, {
-          opacity: 1, 
-          ease: "none",
+        gsap
+        .timeline({
           scrollTrigger: {
             trigger: item,
-            start: "center 70%",
-            end: "center 30%",
-            markers: true,
-            toggleActions: "play reverse play reverse"
-          }
-        })*/
+            start: "center 35%",
+            end: "center 10%",
+            scrub: true,
+            //markers: true,
+          },
+        }).to(
+          item,
+          {
+              autoAlpha: 0,
+              stagger: 0,
+              ease: 'power3.out'
+          },0
+        )
 
       })
-
-
-      /*gsap
-      .timeline({
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "center 80%",
-          end: "center 20%",
-          scrub: true,
-          // end: "+=500",
-          markers: true,
-          toggleActions: "play reverse play reverse",
-          //toggleActions: 'play none none reverse', // onEnter, onLeave, onEnterBack, and onLeaveBack
-        },
-      })
-      .fromTo(
-        `.wysiwyg div`,
-        {
-          autoAlpha: 0,
-      }, {
-          //duration: 1.5,
-          autoAlpha: 1,
-          stagger: 0.25,
-          ease: 'power3.out'
-      },
-      )*/
 
     }, sectionRef);
     return () => ctx.revert();
@@ -170,7 +118,7 @@ const TextScrollerBlock = ({ block }: { block: any }) => {
       </div>
     </div>
     <div className={`${styles.arrow} fixed bottom-0 flex justify-center w-full text-center py-20`}>
-      <Arrow />
+      <Arrow  className="w-30 h-auto"/>
     </div>
   </section>
 )}

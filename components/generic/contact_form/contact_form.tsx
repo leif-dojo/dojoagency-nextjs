@@ -14,9 +14,18 @@ const NavBlock = ({
   const [step, setStep] = useState(1)
   const { contactActive, setContactActive } = useThemeContext();
 
+  const [valid1, setvalid1] = useState(true)
+  const [valid2, setvalid2] = useState(true)
+  const [valid3, setvalid3] = useState(true)
+
   const openOrClose = () => {
     if (contactActive) {
       setContactActive(false)
+      //reset fields on close
+      setDetailData(initDetailData)
+      setvalid1(true);
+      setvalid2(true);
+      setvalid3(true);
     } else {
       setContactActive(true)
     }
@@ -34,25 +43,31 @@ const NavBlock = ({
   const validate1 = () => {
     //console.log("validate 1: ", detailData.name)
     if (!detailData.name) {
+      setvalid1(false);
       return false
     }
     setStep(2)
+    setvalid1(true);
   }
   const validate2 = () => {
     //console.log("validate 2: ", detailData.email)
     const email = detailData.email;
     if (!detailData.email || !validateEmail(email)) {
+      setvalid2(false);
       return false
     }
     setStep(3)
+    setvalid2(true);
   }
 
   const validate3 = () => {
     //console.log("validate 3: ", detailData.message)
     if (!detailData.message) {
+      setvalid3(false);
       return false
     }
     submit()
+    setvalid3(true);
   }
 
 
@@ -130,7 +145,7 @@ const NavBlock = ({
                   <div className='text-90 font-300 text-slate pb-40'>
                     Connect With Us
                   </div>
-                  <div className={`${styles.inputwrapper} w-full`}>
+                  <div className={`${styles.inputwrapper} ${valid1 ? '':  styles.error} w-full`}>
                     <label className="w-full text-left text-22 leading-none font-300 pb-20 text-slate" htmlFor="name">Name*</label>
                     <input
                       id="name"
@@ -170,7 +185,7 @@ const NavBlock = ({
                   <div className='text-90 font-300 text-gold pb-40'>
                     Connect With Us
                   </div>
-                  <div className={`${styles.inputwrapper} w-full`}>
+                  <div className={`${styles.inputwrapper} ${valid2 ? '':  styles.error} w-full`}>
                     <label className="w-full text-left text-22 leading-none font-300 pb-20 text-white" htmlFor="email">Email*</label>
                     <input
                       id="email"
@@ -210,7 +225,7 @@ const NavBlock = ({
                   <div className='text-90 font-300 text-slate pb-40'>
                     Connect With Us
                   </div>
-                  <div className={`${styles.inputwrapper} w-full`}>
+                  <div className={`${styles.inputwrapper} ${valid3 ? '':  styles.error} w-full`}>
                     <label className="w-full text-left text-22 leading-none font-300 pb-20 text-slate" htmlFor="message">Message*</label>
                     <textarea
                       id="message"

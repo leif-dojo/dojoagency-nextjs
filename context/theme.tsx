@@ -54,6 +54,15 @@ export const ThemeContextProvider = ( {children}:{children: any} ) => {
       
     }, [color, backgroundColor]);
 
+    //scroll top on path change
+    useLayoutEffect(() => {
+      //reset theme on path change
+      //console.log("updated theme: ", color, backgroundColor)
+      if(process.browser){
+        document.body.scrollTop = document.documentElement.scrollTop = 0;
+      }
+      
+    }, [pathname]);
     /*
     //reset theme on path change
     useLayoutEffect(() => {
