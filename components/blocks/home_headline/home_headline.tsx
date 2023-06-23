@@ -149,7 +149,7 @@ const HomeHeadlineBlock = ({ block }: { block: any }) => {
         </div>
       </div>
       <div className="w-full">
-        <div ref={ComRef} className={`${styles.communication} mb-20`}>
+        <div ref={ComRef} className={`${styles.communication} text-themebackground mb-20`}>
           <CommunicationArts />
         </div>
       </div>
