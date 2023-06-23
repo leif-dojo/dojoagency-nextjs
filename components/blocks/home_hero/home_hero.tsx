@@ -1,7 +1,7 @@
 "use client"
 import React, { useLayoutEffect, useState, useRef } from 'react'
 import styles from './home_hero.module.scss'
-import Logo from 'public/icons/Dojo-Logo_Horizontal_White_RGB.svg'
+import Logo from 'public/dojo_animated.svg'
 import Arrow from 'public/icons/icon-arrow-down.svg'
 import { useThemeContext } from '@/context/theme'
 import { useIsMobile, hexToRgb, rgbToHex } from '@/utils/general'
@@ -18,6 +18,7 @@ const HomeHeroBlock = ({ block }: { block: any }) => {
   const { cursorType, cursorChangeHandler, color, colorChangeHandler, backgroundColor, backgroundChangeHandler} = useThemeContext();
   const sectionRef = useRef<HTMLDivElement>(null)
   const PanelRef = useRef<HTMLDivElement>(null)
+  const LogoWrapRef = useRef<HTMLDivElement>(null)
   const LogoRef = useRef<HTMLDivElement>(null)
   const HeadlineRef = useRef<HTMLDivElement>(null)
   const VideoRef = useRef<HTMLDivElement>(null)
@@ -76,7 +77,7 @@ const HomeHeroBlock = ({ block }: { block: any }) => {
         },
       })
       .fromTo(
-        LogoRef.current,
+        LogoWrapRef.current,
         { autoAlpha: 0 },
         { duration: 1, autoAlpha: 1 },0
       )
@@ -109,7 +110,7 @@ const HomeHeroBlock = ({ block }: { block: any }) => {
           toggleActions: "play reverse play reverse",
         },
       }).fromTo(
-        LogoRef.current,
+        LogoWrapRef.current,
         {
           autoAlpha: 1
         }, {
@@ -186,6 +187,242 @@ const HomeHeroBlock = ({ block }: { block: any }) => {
       //createRain();
       //makeitrain();
 
+      function setSignaturePaths() {
+        let totalDur = 7
+        // get all SVG elements - lines and dots
+        const paths = sectionRef.current.querySelectorAll('.autograph__path')
+        // prepare path length variable
+        let len = 0
+        // prepare animation delay length variable
+        let delay = 0
+
+        // escape if no elements found
+        if (!paths.length) {
+          return false
+        }
+
+        // set duration in seconds of animation to default if not set
+        const totalDuration = totalDur || 5
+
+        // calculate the full path length
+        paths.forEach((path) => {
+          const totalLen = path.getTotalLength()
+          len += totalLen
+        })
+
+        paths.forEach((path) => {
+          const pathElem = path
+          // get current path length
+          const totalLen = path.getTotalLength()
+          // calculate current animation duration
+          const duration = totalLen / len * totalDuration
+
+          // set animation duration and delay
+          pathElem.style.animationDuration = `${duration < 0.1 ? 0.1 : duration}s`
+          pathElem.style.animationDelay = `${delay}s`
+          pathElem.setAttribute('data-duration', `${duration < 0.1 ? 0.1 : duration}`);
+
+          // set dash array and offset to path length - this is how you hide the line
+          pathElem.setAttribute('stroke-dasharray', totalLen)
+          pathElem.setAttribute('stroke-dashoffset', totalLen)
+
+          // set delay for the next path - added .5 seconds to make it more realistic
+          delay += duration + 0.1
+        })
+
+        return true
+      }
+
+      setSignaturePaths()
+
+      //Main Dojo logo animation
+      const sign_1 = document.getElementsByClassName("signature-1")[0]
+      const sign_2 = document.getElementsByClassName("signature-2")[0]
+      const sign_3 = document.getElementsByClassName("signature-3")[0]
+      const sign_4 = document.getElementsByClassName("signature-4")[0]
+      const sign_5 = document.getElementsByClassName("signature-5")[0]
+      const sign_6 = document.getElementsByClassName("signature-6")[0]
+      gsap
+      .timeline({
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: 'top bottom',
+          //end: 'bottom bottom',
+          //scrub: true,
+          toggleActions: "restart none none reverse"
+          //markers: true,
+        },
+      })
+      .fromTo(
+        ".letter-d",
+        { autoAlpha: 0, },
+        { duration: 0.3, autoAlpha: 1 },
+      )
+      .fromTo(
+        ".letter-o-1",
+        { autoAlpha: 0, },
+        { duration: 0.3, autoAlpha: 1 },
+      )
+      .fromTo(
+        ".letter-j",
+        { autoAlpha: 0, },
+        { duration: 0.3, autoAlpha: 1 },
+      )
+      .fromTo(
+        ".letter-o-2",
+        { autoAlpha: 0, },
+        { duration: 0.3, autoAlpha: 1 },
+      )
+      .to(
+        ".signature-1",
+        { strokeDashoffset: 0,
+          duration: sign_1.dataset.duration, },0.6
+      )
+      .to(
+        ".signature-2",
+        { strokeDashoffset: 0,
+          duration: sign_2.dataset.duration, },sign_1.dataset.duration+0.6
+      )
+      .to(
+        ".signature-3",
+        { strokeDashoffset: 0,
+          duration: sign_3.dataset.duration, },sign_2.dataset.duration+sign_1.dataset.duration+0.6
+      )
+      .to(
+        ".signature-4",
+        { strokeDashoffset: 0,
+          duration: sign_4.dataset.duration, },sign_3.dataset.duration+sign_2.dataset.duration+sign_1.dataset.duration+0.6
+      )
+      .to(
+        ".signature-5",
+        { strokeDashoffset: 0,
+          duration: sign_5.dataset.duration, },sign_4.dataset.duration+sign_3.dataset.duration+sign_2.dataset.duration+sign_1.dataset.duration+0.6
+      )
+      .to(
+        ".signature-6",
+        { strokeDashoffset: 0,
+          duration: sign_6.dataset.duration, },sign_5.dataset.duration+sign_4.dataset.duration+sign_3.dataset.duration+sign_2.dataset.duration+sign_1.dataset.duration+0.6
+      )
+      .to(
+        ".signature-1",
+        { strokeDashoffset: -1 * sign_1.getTotalLength(),//2.3
+          duration: sign_1.dataset.duration, },2
+      )
+      .to(
+        ".signature-2",
+        { strokeDashoffset: -1 * sign_2.getTotalLength(),//.2
+          duration: sign_2.dataset.duration, },4.3
+      )
+      .to(
+        ".signature-3",
+        { strokeDashoffset: -1 * sign_3.getTotalLength(),//.6
+          duration: sign_3.dataset.duration, },4.5
+      )
+      .to(
+        ".signature-4",
+        { strokeDashoffset: -1 * sign_4.getTotalLength(),//.27
+          duration: sign_4.dataset.duration, },5
+      )
+      .to(
+        ".signature-5",
+        { strokeDashoffset: -1 * sign_5.getTotalLength(),//.59
+          duration: sign_5.dataset.duration, },5.27
+      )
+      .to(
+        ".signature-6",
+        { strokeDashoffset: -1 * sign_6.getTotalLength(),//2.9
+          duration: sign_6.dataset.duration, },5
+      )
+
+      .fromTo(
+        ".tree",
+        { autoAlpha: 0, },
+        { duration: 0.7, autoAlpha: 1 },1.2
+      )
+      .fromTo(
+        ".letter-a",
+        { autoAlpha: 0},
+        { duration: 0.3, autoAlpha: 1 },4
+      )
+      .fromTo(
+        ".letter-g",
+        { autoAlpha: 0, },
+        { duration: 0.3, autoAlpha: 1 },4.4
+      )
+      .fromTo(
+        ".letter-e",
+        { autoAlpha: 0, },
+        { duration: 0.3, autoAlpha: 1 },4.9
+      )
+      .fromTo(
+        ".letter-n",
+        { autoAlpha: 0, },
+        { duration: 0.3, autoAlpha: 1 },5.3
+      )
+      .fromTo(
+        ".letter-c",
+        { autoAlpha: 0, },
+        { duration: 0.3, autoAlpha: 1 },5.7
+      )
+      .fromTo(
+        ".letter-y",
+        { autoAlpha: 0, },
+        { duration: 0.3, autoAlpha: 1 },6.1
+      )
+      .to(
+        ".letter-y",
+        { keyframes: [
+          {y:"0%",fill: "rgba(255,255,255,0)",duration: 0}, 
+          {y:"-20%",fill: "rgba(255,255,255,1)",duration: 0.2},
+          {y:"0%"}
+        ] },6
+      )
+      .to(
+        ".letter-c",
+        { keyframes: [
+          {y:"0%",fill: "rgba(255,255,255,0)",duration: 0}, 
+          {y:"-20%",fill: "rgba(255,255,255,1)",duration: 0.2},
+          {y:"0%"}
+        ] },6.1
+      )
+      .to(
+        ".letter-n",
+        { keyframes: [
+          {y:"0%",fill: "rgba(255,255,255,0)",duration: 0}, 
+          {y:"-20%",fill: "rgba(255,255,255,1)",duration: 0.2},
+          {y:"0%"}
+        ] },6.2
+      )
+      .to(
+        ".letter-e",
+        { keyframes: [
+          {y:"0%",fill: "rgba(255,255,255,0)",duration: 0}, 
+          {y:"-20%",fill: "rgba(255,255,255,1)",duration: 0.2},
+          {y:"0%"}
+        ] },6.3
+      )
+      .to(
+        ".letter-g",
+        { keyframes: [
+          {y:"0%",fill: "rgba(255,255,255,0)",duration: 0}, 
+          {y:"-20%",fill: "rgba(255,255,255,1)",duration: 0.2},
+          {y:"0%"}
+        ] },6.4
+      )
+      .to(
+        ".letter-a",
+        { keyframes: [
+          {y:"0%",fill: "rgba(255,255,255,0)",duration: 0}, 
+          {y:"-20%",fill: "rgba(255,255,255,1)",duration: 0.2},
+          {y:"0%"}
+        ] },6.5
+      )
+      .to(
+        ".tree",
+        { duration: 0.3, autoAlpha: 0 },7
+      )
+
+
     }, sectionRef);
     return () => ctx.revert();
   }, []);
@@ -197,9 +434,9 @@ const HomeHeroBlock = ({ block }: { block: any }) => {
     <div ref={RainRef} id="rain" className={`${styles.rain} absolute w-full h-full top-0 left-0 z-9`}></div>
 
     <div className='w-full'>
-      <div className={`fixed top-190 w-full px-50 md:px-100 z-5`}>
-        <div ref={LogoRef} className={`${styles.logo} logo flex justify-center w-full text-center px-0 md:px-80 pb-40`}>
-          <Logo />
+      <div className={`fixed top-180 md:top-80 w-full z-5`}>
+        <div ref={LogoWrapRef} className={`${styles.logo} logo w-full text-center px-0 pb-40`}>
+          <div ref={LogoRef} className='w-full'><Logo className={`${styles.logosvg} w-full h-auto`} /></div>
         </div>
       </div>
       <div ref={PanelRef} className={`${styles.panel} relative w-full bg-themebackground-ff px-50 md:px-100 mt-250 pb-120 z-6`}>

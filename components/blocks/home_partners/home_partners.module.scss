@@ -23,6 +23,7 @@
             }
         }
     }
+
     .ovalarrowwrap {
         position: relative;
     }
@@ -40,7 +41,7 @@
             animation-timing-function: linear;
             animation-fill-mode: forwards;
             //animation-name: line;
-          }
+        }
     }
 
     .draw {
@@ -66,8 +67,8 @@
             path {
                 opacity: 1;
                 animation-name: line;
-              }
-              
+            }
+
         }
     }
 
@@ -81,6 +82,7 @@
             stroke-dashoffset: 200;
         }
     }
+
     .nexttext {
         path {
             //stroke-dasharray: 100;
@@ -101,7 +103,7 @@
 
     @keyframes line {
         100% {
-          stroke-dashoffset: 0;
+            stroke-dashoffset: 0;
         }
-      }
+    }
 }

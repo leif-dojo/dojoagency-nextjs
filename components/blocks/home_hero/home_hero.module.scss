@@ -8,6 +8,23 @@
         transition: all 0ms ease-in-out;
     }
 
+    .logosvg {
+        path {
+            //opacity: 0;
+            animation-timing-function: linear;
+            animation-fill-mode: forwards;
+          }
+    }
+    .draw {
+        .logosvg {
+            path {
+                opacity: 1;
+                animation-name: line;
+              }
+              
+        }
+    }
+
     .rain {
         z-index: 9;
         transform: rotate('30deg');
@@ -96,6 +113,12 @@
             transform: scale(1.5);
         }
     }
+
+    @keyframes line {
+        100% {
+          stroke-dashoffset: 0;
+        }
+      }
 }
 
 .logo {
