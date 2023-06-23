@@ -13,15 +13,16 @@
             //opacity: 0;
             animation-timing-function: linear;
             animation-fill-mode: forwards;
-          }
+        }
     }
+
     .draw {
         .logosvg {
             path {
                 opacity: 1;
                 animation-name: line;
-              }
-              
+            }
+
         }
     }
 
@@ -32,31 +33,167 @@
         .drop {
             position: absolute;
             bottom: 100%;
-            width: 15px;
-            height: 120px;
+            width: 15rem;
+            height: 120rem;
             pointer-events: none;
             animation: drop 0.5s linear infinite;
         }
 
         .stem {
-            width: 1px;
+            width: 1rem;
             height: 60%;
-            margin-left: 7px;
+            margin-left: 7rem;
             //background: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.95));
             background: #FFF;
             animation: stem 0.5s linear infinite;
         }
 
         .splat {
-            width: 15px;
-            height: 10px;
-            border-top: 2px dotted rgba(255, 255, 255, 0.5);
+            width: 15rem;
+            height: 10rem;
+            border-top: 2rem dotted rgba(255, 255, 255, 0.5);
             border-radius: 50%;
             opacity: 1;
             transform: scale(0);
             animation: splat 0.5s linear infinite;
             display: none;
         }
+    }
+
+    .splat-v1 {
+        width: 25rem;
+        height: 20rem;
+        border-top: 4rem dotted rgba(255, 255, 255, 0.5);
+        border-radius: 50%;
+        opacity: 1;
+        transform: scale(0);
+        animation: splat 0.75s linear infinite;
+        //display: none;
+        //background-color: pink;
+    }
+
+    .splat {
+        //background-color: pink;
+        //width: 5rem;
+        //height: 5rem;
+        div {
+            position: absolute;
+            border-radius: 100%;
+            background-color: white;
+            //animation-duration: var(--duration);
+            //animation-delay: var(--delay);
+            animation-iteration-count: infinite;
+            animation-timing-function: ease;
+            animation-fill-mode: backwards;
+
+            &:nth-child(1) {
+                animation-duration:  1.3s;
+                animation-delay: 0.3s;
+                width: 7rem;
+                height: 7rem;
+                top: 50%;
+                left: 50%;
+                animation-name: jumpLeft;
+                opacity: 0.5;
+            }
+
+            &:nth-child(2) {
+                animation-duration: 0.7s;
+                width: 5rem;
+                height: 5rem;
+                top: 30%;
+                left: 50%;
+                animation-name: jumpLeft;
+                animation-delay: calc(0.7s + 0.1s);
+                opacity: 0.2;
+            }
+
+            &:nth-child(3) {
+                animation-duration: 1.0s;
+                animation-delay: 1.2s;
+                width: 3rem;
+                height: 3rem;
+                top: 20%;
+                left: 70%;
+                animation-name: jumpRight;
+                animation-delay: calc(1.2s + 0.15s);
+                opacity: 0.3;
+            }
+
+            &:nth-child(4) {
+                animation-duration: 0.7s;
+                animation-delay: 2.5s;
+                width: 5rem;
+                height: 5rem;
+                top: 30%;
+                left: 50%;
+                animation-name: jumpRight;
+                animation-delay: calc(2.5s + 0.3s);
+                opacity: 0.6;
+            }
+        }
+    }
+    //dojo splash
+    .splatd {
+        position: absolute;
+        left: 12%;
+        top: 29%;
+    }
+
+    .splato {
+        position: absolute;
+        left: 25%;
+        top: 30%;
+    }
+
+    .splatj {
+        position: absolute;
+        left: 29%;
+        top: 57%;
+    }
+
+    .splato2 {
+        position: absolute;
+        left: 38%;
+        top: 29%;
+    }
+    //stories splash
+    .splats {
+        position: absolute;
+        left: 50%;
+        top: 27%;
+    }
+
+    .splate {
+        position: absolute;
+        left: 50%;
+        top: 40%;
+    }
+    //video splash
+    .splatv1 {
+        position: absolute;
+        left: 2%;
+        top: 0;
+    }
+    .splatv2 {
+        position: absolute;
+        left: 15%;
+        top: 0;
+    }
+    .splatv3 {
+        position: absolute;
+        left: 50%;
+        top: 0;
+    }
+    .splatv4 {
+        position: absolute;
+        left: 65%;
+        top: 0;
+    }
+    .splatv5 {
+        position: absolute;
+        left: 99%;
+        top: 0;
     }
 
     /* animate the drops*/
@@ -116,9 +253,46 @@
 
     @keyframes line {
         100% {
-          stroke-dashoffset: 0;
+            stroke-dashoffset: 0;
+        }
+    }
+
+    @keyframes jumpLeft{
+        0%{
+          transform: translate(0,0) scale(0);
+        }
+      
+        45%{
+          transform: translate(0,0) scale(0);
+        }
+      
+        60%{
+          transform: translate(-10rem, -15rem) scale(1);
+        }
+      
+        100%{
+          transform: translate(-20rem, 0rem) scale(0.1);
         }
       }
+      @keyframes jumpRight{
+        0%{
+          transform: translate(0,0) scale(0);
+        }
+      
+        45%{
+          transform: translate(0,0) scale(0);
+        }
+      
+        60%{
+          transform: translate(5rem, -15rem) scale(1);
+        }
+      
+        100%{
+          transform: translate(10rem, 0rem) scale(0.1);
+        }
+      }
+
+
 }
 
 .logo {
@@ -131,6 +305,7 @@
         margin: 0 auto;
     }
 }
+
 .arrow {
     svg {
         width: 100%;

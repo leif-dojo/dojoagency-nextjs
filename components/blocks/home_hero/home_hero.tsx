@@ -316,6 +316,11 @@ const HomeHeroBlock = ({ block }: { block: any }) => {
         { strokeDashoffset: 0,
           duration: sign_3.dataset.duration, },sign_2.dataset.duration+sign_1.dataset.duration+0.6
       )
+      .fromTo(
+        ".splat",
+        { autoAlpha: 0, },
+        { duration: 0.3, autoAlpha: 1 }
+      )
       .to(
         ".signature-4",
         { strokeDashoffset: 0,
@@ -458,6 +463,15 @@ const HomeHeroBlock = ({ block }: { block: any }) => {
         { strokeDashoffset: -1 * document.getElementsByClassName("tree")[0].getTotalLength(),
           duration: 2, },7
       )
+      .add( function(){
+        if(process.browser){
+          stoprain();
+        }
+      })
+      .to(
+        ".splat",
+        { duration: 0.3, autoAlpha: 0 },10
+      )
       .to(".tree",
         { keyframes: [
           {attr: { d: treeend },duration: 0}, 
@@ -465,11 +479,6 @@ const HomeHeroBlock = ({ block }: { block: any }) => {
           {attr: { d: treeend },duration: 3}
         ] },10
       )
-      .add( function(){
-        if(process.browser){
-          stoprain();
-        }
-      })
 
 
     }, sectionRef);
@@ -482,22 +491,34 @@ const HomeHeroBlock = ({ block }: { block: any }) => {
   <section ref={sectionRef} className={`${styles.root} bg-themebackground-off w-full pt-60 pb-0`} onMouseEnter={() => cursorChangeHandler("peace")} onMouseLeave={() => cursorChangeHandler("default")}>
     <div ref={RainRef} id="rain" className={`${styles.rain} absolute w-full h-full top-0 left-0 z-9`}></div>
 
-    <div className='w-full'>
-      <div className={`fixed top-180 md:top-80 w-full z-5`}>
+    <div className='relative w-full'>
+      <div className={`fixed top-180 md:top-100 w-full z-5`}>
         <div ref={LogoWrapRef} className={`${styles.logo} logo w-full text-center px-0 pb-40`}>
-          <div ref={LogoRef} className='w-full'><Logo className={`${styles.logosvg} w-full h-auto`} /></div>
+          <div ref={LogoRef} className='w-full'>
+            <Logo className={`${styles.logosvg} w-full h-auto`} />
+            <div className={`${styles.splat} splat ${styles.splatd}`}><div></div><div></div><div></div><div></div></div>
+            <div className={`${styles.splat} splat ${styles.splato}`}><div></div><div></div><div></div><div></div></div>
+            <div className={`${styles.splat} splat ${styles.splatj}`}><div></div><div></div><div></div><div></div></div>
+            <div className={`${styles.splat} splat ${styles.splato2}`}><div></div><div></div><div></div><div></div></div>
+          </div>
         </div>
       </div>
+
       <div ref={PanelRef} className={`${styles.panel} relative w-full bg-themebackground-ff px-50 md:px-100 mt-250 pb-120 z-6`}>
-        <div ref={HeadlineRef} className='w-full  text-center font-lato text-90 md:text-113 font-300 leading-none py-20'>
-          {block?.headline}
+        <div ref={HeadlineRef} className='relative w-full text-center font-lato text-90 md:text-113 font-300 leading-none py-20'>
+          <span className='relative'>S<div className={`${styles.splat} splat ${styles.splats}`}><div></div><div></div><div></div><div></div></div></span>tori<span className='relative'>e<div className={`${styles.splat} splat ${styles.splate}`}><div></div><div></div><div></div><div></div></div></span>s at work
         </div>
         <div className={`flex justify-center w-full text-center py-20`}>
           <div ref={DownRef} className={`${styles.arrow} text-center w-40 h-auto`}>
             <Arrow />
           </div>
         </div>
-        <div ref={VideoRef} className='relative px-40 md:px-160 z-10'>
+        <div ref={VideoRef} className='relative mx-40 md:mx-160 z-10'>
+          <div className={`${styles.splat} splat ${styles.splatv1}`}><div></div><div></div><div></div><div></div></div>
+          <div className={`${styles.splat} splat ${styles.splatv2}`}><div></div><div></div><div></div><div></div></div>
+          <div className={`${styles.splat} splat ${styles.splatv3}`}><div></div><div></div><div></div><div></div></div>
+          <div className={`${styles.splat} splat ${styles.splatv4}`}><div></div><div></div><div></div><div></div></div>
+          <div className={`${styles.splat} splat ${styles.splatv5}`}><div></div><div></div><div></div><div></div></div>
           <VideoPlayer
             image_placeholder={block.image}
             video_placeholder={block.video_embed ? block.video_embed : block.video_local?.permalink}
