@@ -127,22 +127,12 @@ const HomeHeroBlock = ({ block }: { block: any }) => {
           //autoAlpha: 1
         },0
       )
-      /*.fromTo(
-        PanelRef.current,
-        {
-          backgroundColor: `rgb(${backgroundColor})`,
-        }, {
-          backgroundColor: `rgb(${backgroundColor})`,
-        },0
-      )*//*.set( LogoRef.current, {
-        autoAlpha: 0,
-      })*/
 
       // function to generate drops
       function makeitrain() {
         const rainSection = document.getElementById('rain');
         var increment = 0;
-        var interval = 35;
+        var interval = 30;
         while (increment < 100) {
           loop(increment);
           increment++
@@ -178,12 +168,12 @@ const HomeHeroBlock = ({ block }: { block: any }) => {
         drops.sort((a,b) => 0.5 - Math.random()).forEach((drop:any,i:any) => {
           setTimeout(() => {
             drop.remove()
-          }, i * 15);
+          }, i * 5);
         });
       };
 
       function setSignaturePaths() {
-        let totalDur = 7
+        let totalDur = 6
         // get all SVG elements - lines and dots
         const paths = sectionRef.current.querySelectorAll('.autograph__path')
         // prepare path length variable
@@ -231,7 +221,6 @@ const HomeHeroBlock = ({ block }: { block: any }) => {
       setSignaturePaths()
 
       function setTreePaths() {
-        let totalDur = 7
         // get all SVG elements - lines and dots
         const paths = sectionRef.current.querySelectorAll('.tree__path')
         // prepare path length variable
@@ -279,22 +268,22 @@ const HomeHeroBlock = ({ block }: { block: any }) => {
       .fromTo(
         ".letter-d",
         { autoAlpha: 0, },
-        { duration: 0.3, autoAlpha: 1 },
+        { duration: 0.2, autoAlpha: 1 },
       )
       .fromTo(
         ".letter-o-1",
         { autoAlpha: 0, },
-        { duration: 0.3, autoAlpha: 1 },
+        { duration: 0.2, autoAlpha: 1 },
       )
       .fromTo(
         ".letter-j",
         { autoAlpha: 0, },
-        { duration: 0.3, autoAlpha: 1 },
+        { duration: 0.2, autoAlpha: 1 },
       )
       .fromTo(
         ".letter-o-2",
         { autoAlpha: 0, },
-        { duration: 0.3, autoAlpha: 1 },
+        { duration: 0.2, autoAlpha: 1 },
       )
       .add( function(){
         if(process.browser){
@@ -304,37 +293,37 @@ const HomeHeroBlock = ({ block }: { block: any }) => {
       .to(
         ".signature-1",
         { strokeDashoffset: 0,
-          duration: sign_1.dataset.duration, },0.6
+          duration: sign_1.dataset.duration, },0.3
       )
       .to(
         ".signature-2",
         { strokeDashoffset: 0,
-          duration: sign_2.dataset.duration, },sign_1.dataset.duration+0.6
+          duration: sign_2.dataset.duration, },sign_1.dataset.duration+0.3
       )
       .to(
         ".signature-3",
         { strokeDashoffset: 0,
-          duration: sign_3.dataset.duration, },sign_2.dataset.duration+sign_1.dataset.duration+0.6
+          duration: sign_3.dataset.duration, },sign_2.dataset.duration+sign_1.dataset.duration+0.3
       )
       .fromTo(
         ".splat",
         { autoAlpha: 0, },
-        { duration: 0.3, autoAlpha: 1 }
+        { duration: 0.2, autoAlpha: 1 }
       )
       .to(
         ".signature-4",
         { strokeDashoffset: 0,
-          duration: sign_4.dataset.duration, },sign_3.dataset.duration+sign_2.dataset.duration+sign_1.dataset.duration+0.6
+          duration: sign_4.dataset.duration, },sign_3.dataset.duration+sign_2.dataset.duration+sign_1.dataset.duration+0.3
       )
       .to(
         ".signature-5",
         { strokeDashoffset: 0,
-          duration: sign_5.dataset.duration, },sign_4.dataset.duration+sign_3.dataset.duration+sign_2.dataset.duration+sign_1.dataset.duration+0.6
+          duration: sign_5.dataset.duration, },sign_4.dataset.duration+sign_3.dataset.duration+sign_2.dataset.duration+sign_1.dataset.duration+0.3
       )
       .to(
         ".signature-6",
         { strokeDashoffset: 0,
-          duration: sign_6.dataset.duration, },sign_5.dataset.duration+sign_4.dataset.duration+sign_3.dataset.duration+sign_2.dataset.duration+sign_1.dataset.duration+0.6
+          duration: sign_6.dataset.duration, },sign_5.dataset.duration+sign_4.dataset.duration+sign_3.dataset.duration+sign_2.dataset.duration+sign_1.dataset.duration+0.3
       )
       .to(
         ".signature-1",
@@ -374,37 +363,37 @@ const HomeHeroBlock = ({ block }: { block: any }) => {
       .to(
         ".tree",
         { strokeDashoffset: 0,
-          duration: 2, },1.2
+          duration: 1.5, },0.7
       )
       .fromTo(
         ".letter-a",
         { autoAlpha: 0},
-        { duration: 0.3, autoAlpha: 1 },4
+        { duration: 0.2, autoAlpha: 1 },4
       )
       .fromTo(
         ".letter-g",
         { autoAlpha: 0, },
-        { duration: 0.3, autoAlpha: 1 },4.4
+        { duration: 0.2, autoAlpha: 1 },4.4
       )
       .fromTo(
         ".letter-e",
         { autoAlpha: 0, },
-        { duration: 0.3, autoAlpha: 1 },4.9
+        { duration: 0.2, autoAlpha: 1 },4.9
       )
       .fromTo(
         ".letter-n",
         { autoAlpha: 0, },
-        { duration: 0.3, autoAlpha: 1 },5.3
+        { duration: 0.2, autoAlpha: 1 },5.3
       )
       .fromTo(
         ".letter-c",
         { autoAlpha: 0, },
-        { duration: 0.3, autoAlpha: 1 },5.7
+        { duration: 0.2, autoAlpha: 1 },5.7
       )
       .fromTo(
         ".letter-y",
         { autoAlpha: 0, },
-        { duration: 0.3, autoAlpha: 1 },6.1
+        { duration: 0.2, autoAlpha: 1 },6.1
       )
       .to(
         ".letter-y",
@@ -454,14 +443,10 @@ const HomeHeroBlock = ({ block }: { block: any }) => {
           {y:"0%"}
         ] },6.5
       )
-      /*.to(
-        ".tree",
-        { duration: 0.3, autoAlpha: 0 },7
-      )*/
       .to(
         ".tree",
         { strokeDashoffset: -1 * document.getElementsByClassName("tree")[0].getTotalLength(),
-          duration: 2, },7
+          duration: 1.5, },7
       )
       .add( function(){
         if(process.browser){
@@ -470,16 +455,15 @@ const HomeHeroBlock = ({ block }: { block: any }) => {
       })
       .to(
         ".splat",
-        { duration: 0.3, autoAlpha: 0 },10
+        { duration: 0.2, autoAlpha: 0 },8
       )
       .to(".tree",
         { keyframes: [
           {attr: { d: treeend },duration: 0}, 
           {attr: { d: treestart },strokeDashoffset: 0,fill: '#FFF',duration: 0},
-          {attr: { d: treeend },duration: 3}
-        ] },10
+          {attr: { d: treeend },duration: 1.5}
+        ] },8
       )
-
 
     }, sectionRef);
     return () => ctx.revert();

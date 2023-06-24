@@ -56,69 +56,48 @@ const WysiwygBlock = ({ block }: { block: any }) => {
         }
       })
 
-      //fades
-      const boxes = gsap.utils.toArray('.fade')
-      if (boxes.length) {
-          boxes.forEach((box:any, i:any) => {
-              const anim = gsap.fromTo(
-                  box,
-                  { autoAlpha: 0, y: "25%" },
-                  { duration: 1.6, autoAlpha: 1, y: "0%", stagger: 0.25, ease: "power4.out" }
-              )
-              ScrollTrigger.create({
-                  //scroller: page,
-                  trigger: box,
-                  animation: anim,
-                  //start: 'top bottom',
-                  //end: 'bottom top',
-                  toggleActions: "restart none none reverse",
-                  //markers: true
-              })
-          })
-      }
-
       //main
       gsap
       .timeline()
       .fromTo(
         eyebrowRef.current,
         { autoAlpha: 0, y: "-200rem" },
-        { duration: 1.2, autoAlpha: 1, y: "0rem",
+        { duration: 1, autoAlpha: 1, y: "0rem",
           ease: 'power3.out'
         }
       )
       .fromTo(
         headlineRef.current,
-        { autoAlpha: 0, y: "-20%" },
-        { duration: 1.4, autoAlpha: 1, y: "0%",
+        { autoAlpha: 0, y: "-200rem" },
+        { duration: 1.2, autoAlpha: 1, y: "0rem",
           ease: 'power3.out'
         },0
       )
       .fromTo(
         sideTitleRef.current,
         { autoAlpha: 0, y: "-20%" },
-        { duration: 0.15, autoAlpha: 1, y: "0%",
+        { duration: 0.1, autoAlpha: 1, y: "0%",
           ease: 'power3.out'
         }
       )
       .fromTo(
         logoRef.current,
         { autoAlpha: 0, y: "-20%" },
-        { duration: 0.25, autoAlpha: 1, y: "0%",
+        { duration: 0.15, autoAlpha: 1, y: "0%",
           ease: 'power3.out'
         }
       )
       .fromTo(
         brRef.current,
         { autoAlpha: 0, },
-        { duration: 0.3, autoAlpha: 1,
+        { duration: 0.15, autoAlpha: 1,
           ease: 'Bounce.easeOut'
         }
       )
       .fromTo(
         shareTitleRef.current,
         { autoAlpha: 0, y: "-20%" },
-        { duration: 0.15, autoAlpha: 1, y: "0%",
+        { duration: 0.1, autoAlpha: 1, y: "0%",
           ease: 'power3.out'
         }
       )
@@ -133,14 +112,14 @@ const WysiwygBlock = ({ block }: { block: any }) => {
       .fromTo(
         copyRef.current,
         { autoAlpha: 0, y: "-20%" },
-        { duration: 0.25, autoAlpha: 1, y: "0%",
+        { duration: 0.1, autoAlpha: 1, y: "0%",
           ease: 'power3.out'
         }
       )
       .fromTo(
         copyIconRef.current,
         { autoAlpha: 0, y: "150%" },
-        { duration: 0.3, autoAlpha: 1, y: "0%",
+        { duration: 0.2, autoAlpha: 1, y: "0%",
           ease: 'Bounce.easeOut'
         }
       )

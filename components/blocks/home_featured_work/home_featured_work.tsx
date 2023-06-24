@@ -33,7 +33,7 @@ const HomeFeaturedWork = ({ block }: { block: any }) => {
 
       //Theme Colors
       const TextColor = '#FFFFFF';
-      const BackgroundColor = '#304A5F';
+      const BackgroundColor = '#00aeef';
       const element = document.querySelector("body");
       const getter = gsap.getProperty(element);
       gsap

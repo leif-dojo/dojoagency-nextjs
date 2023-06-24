@@ -128,7 +128,7 @@ const HomePartners = ({ block }: { block: any }) => {
        } ).fromTo(
         ".copy",
         {alpha: 0, y: 50 }, 
-        {alpha: 1, y: 0, duration: 0.3},
+        {alpha: 1, y: 0, duration: 0.25},
         1.5
       ).set( NextArrowRef.current, {
         className: styles.draw

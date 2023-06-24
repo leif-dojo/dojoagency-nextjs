@@ -24,7 +24,6 @@ export async function generateMetadata(
       uri: '/',
     }
   });
-  console.log("home", data.entry)
   return {
     title: data.entry.meta_title,
     description: data.entry.meta_description,
