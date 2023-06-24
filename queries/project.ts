@@ -1,5 +1,32 @@
 import { gql } from '@apollo/client'
 
+export const ProjectMetaQuery = gql`
+  query pagemeta($slug: String) {
+    entry(collection: "projects", slug: $slug) {
+      ... on Entry_Projects_Project {
+        id
+        published
+        slug
+        status
+        private
+        title
+        uri
+        url
+        meta_title
+        meta_description
+        open_graph_image {
+          ... on Asset_Assets {
+            permalink
+            width
+            height
+            extension
+          }
+        }
+      }
+    }
+  }
+`
+
 export default gql`
   query project($slug: String) {
     entry(collection: "projects", slug: $slug) {

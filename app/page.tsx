@@ -1,13 +1,49 @@
 //"use-client"
 import { getClient } from "@/lib/client"
 import React from 'react'
-import { Metadata } from 'next'
+import { Metadata, ResolvingMetadata } from 'next'
 import PageQuery from '@/queries/page'
+import {PageMetaQuery} from '@/queries/page'
 import Repeater from '@/utils/rendering/repeater'
 import { draftMode } from 'next/headers'
 
-export const metadata: Metadata = {
-  title: 'Dojo Agency',
+type Props = {
+  params: { id: string }
+  searchParams: { [key: string]: string | string[] | undefined }
+}
+ 
+export async function generateMetadata(
+  { params, searchParams }: Props,
+  parent?: ResolvingMetadata
+): Promise<Metadata> {
+  const client = getClient();
+  const uri = new URL(process.env.NEXT_PUBLIC_GRAPHQL_URL)
+  const { data } = await client.query({
+    query: PageMetaQuery, 
+    variables: {
+      uri: '/',
+    }
+  });
+  console.log("home", data.entry)
+  return {
+    title: data.entry.meta_title,
+    description: data.entry.meta_description,
+    openGraph: {
+      siteName: 'Dojo Agency',
+      url: 'https://wwww.dojoagency.com',
+      title: data.entry.meta_title,
+      description: data.entry.meta_description,
+      images: [
+        {
+          url: data.entry.open_graph_image?.permalink,
+          width: data.entry.open_graph_image?.width,
+          height: data.entry.open_graph_image?.height
+        }
+      ],
+      locale: 'en_US',
+      type: 'website',
+    }
+  }
 }
 
 export default async function Page(context: { params: { slug: string }, searchParams: { livepreview: string, token: string} }) {

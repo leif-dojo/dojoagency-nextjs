@@ -1,5 +1,32 @@
 import { gql } from '@apollo/client'
 
+export const BlogMetaQuery = gql`
+  query pagemeta($slug: String) {
+    entry(collection: "blog", slug: $slug) {
+      ... on Entry_Blog_Blog {
+        id
+        published
+        slug
+        status
+        private
+        title
+        uri
+        url
+        meta_title
+        meta_description
+        open_graph_image {
+          ... on Asset_Assets {
+            permalink
+            width
+            height
+            extension
+          }
+        }
+      }
+    }
+  }
+`
+
 export default gql`
   query blog($slug: String) {
     entry(collection: "blog", slug: $slug) {

@@ -1,6 +1,10 @@
 //'use client'
-import { getClient } from "@/lib/client"
+import { Metadata } from 'next'
 import React from 'react'
+
+export const metadata: Metadata = {
+  title: 'Not Found'
+}
 
 export default async function PostNotFound(context: { params: { slug: string } }) {
 

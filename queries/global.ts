@@ -1,12 +1,30 @@
 import { gql } from '@apollo/client'
 
-export default gql`
+export const GlobalMetaQuery = gql`
 query GlobalQuery {
-  global: globalSet(handle: "global") {
+  globalmeta: globalSet(handle: "global") {
     ... on GlobalSet_Global {
-      google_analytics_id
+      handle
+      facebook_url
+      instagram_url
+      linkedin_url
+      meta_description
+      meta_title
+      open_graph_image {
+        ... on Asset_Assets {
+          permalink
+          width
+          height
+          extension
+        }
+      }
     }
   }
+}
+`
+
+export default gql`
+query GlobalQuery {
   footer: globalSet(handle: "footer") {
     ... on GlobalSet_Footer {
       address

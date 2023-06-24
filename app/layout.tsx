@@ -1,11 +1,12 @@
 import './globals.css'
 import '@/styles/globals.scss'
 import React, { Suspense } from "react";
-import { Metadata } from 'next'
+import { Metadata, ResolvingMetadata } from 'next'
 import localFont from 'next/font/local'
 import { Lato } from 'next/font/google'
 import { getClient } from "@/lib/client";
 import GlobalQuery from '@/queries/global'
+import {GlobalMetaQuery} from '@/queries/global'
 import { ThemeContextProvider } from '@/context/theme'
 import Header from '@/components/generic/header/header'
 import Footer from '@/components/generic/footer/footer'
@@ -32,10 +33,43 @@ const nothingyoucoulddo = localFont({
   variable: '--font-nothingyoucoulddo'
 });
 
-export const metadata: Metadata = {
+/*export const metadata: Metadata = {
   title: 'Dojo Agency',
   description: 'Brand marketing and health care advertising specialists based in Portland, Oregon.',
   viewport: 'width=device-width, initial-scale=1',
+}*/
+
+type Props = {
+  params: { id: string }
+  searchParams: { [key: string]: string | string[] | undefined }
+}
+ 
+export async function generateMetadata(
+  { params, searchParams }: Props,
+  parent?: ResolvingMetadata
+): Promise<Metadata> {
+  const client = getClient();
+  const { data } = await client.query({query: GlobalMetaQuery});
+  return {
+    title: data.globalmeta.meta_title,
+    description: data.globalmeta.meta_description,
+    metadataBase: new URL('https://www.dojoagency.com'),
+    openGraph: {
+      siteName: 'Dojo Agency',
+      url: 'https://www.dojoagency.com',
+      title: data.globalmeta.meta_title,
+      description: data.globalmeta.meta_description,
+      images: [
+        {
+          url: data.globalmeta.open_graph_image?.permalink,
+          width: data.globalmeta.open_graph_image?.width,
+          height: data.globalmeta.open_graph_image?.height
+        }
+      ],
+      locale: 'en_US',
+      type: 'website',
+    }
+  }
 }
 
 export default async function RootLayout({
