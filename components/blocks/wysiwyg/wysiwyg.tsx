@@ -66,9 +66,9 @@ const WysiwygBlock = ({ block }: { block: any }) => {
                 ( () => {
                   switch(item.__typename) {
                     case 'BardText':
-                      return <div ref={wysiwygRef} className='wysiwyg text-30 leading-40 font-300 fade' dangerouslySetInnerHTML={{ __html: item.text }}></div>;
+                      return <div ref={wysiwygRef} className='wysiwyg text-30 leading-40 font-300 fade' dangerouslySetInnerHTML={{ __html: item.text }} key={index}></div>;
                     case 'Set_Wysiwyg_Image':
-                      return <div className='w-full'>
+                      return <div className='w-full' key={index}>
                         {item.image && (
                           <div className='w-full fade'>
                               <Image
@@ -82,7 +82,7 @@ const WysiwygBlock = ({ block }: { block: any }) => {
                         )}
                       </div>;
                     case 'Set_Wysiwyg_2Column':
-                      return <div className="block md:flex">
+                      return <div className="block md:flex" key={index}>
                         <div className="w-full md:w-1/2 md:pr-30 flex items-center">
                           <div className='w-full'>
                             <div className="w-full">
