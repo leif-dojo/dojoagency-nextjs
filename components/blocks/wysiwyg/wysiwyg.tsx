@@ -39,7 +39,7 @@ const WysiwygBlock = ({ block }: { block: any }) => {
     }, sectionRef);
     return () => ctx.revert();
   }, []);
-  console.log("test: ", block)
+  //console.log("test: ", block)
   return (
   <section ref={sectionRef} className="w-full ">
     <div className="px-50 md:px-150 py-50">
@@ -56,59 +56,6 @@ const WysiwygBlock = ({ block }: { block: any }) => {
         )}
         {block.wysiwyg_set && (
           <div className="w-full">
-            
-            {typeof block.wysiwyg_set === 'string' && (
-              <div ref={wysiwygRef} className='wysiwyg text-30 leading-40 font-300 fade' dangerouslySetInnerHTML={{ __html: block.wysiwyg_set }}></div>
-            )}
-
-            {typeof block.wysiwyg_set === 'object' && block?.wysiwyg_set?.map((item:any, index:any) => {
-              return (
-                ( () => {
-                  switch(item.__typename) {
-                    case 'BardText':
-                      return <div ref={wysiwygRef} className='wysiwyg text-30 leading-40 font-300 fade' dangerouslySetInnerHTML={{ __html: item.text }} key={index}></div>;
-                    case 'Set_Wysiwyg_Image':
-                      return <div className='w-full' key={index}>
-                        {item.image && (
-                          <div className='w-full fade'>
-                              <Image
-                                src={item.image?.permalink}
-                                width={item.image?.width}
-                                height={item.image?.height}
-                                alt={item.image?.alt ? item.image.alt : ''}
-                                className={`w-full h-auto`}
-                              />
-                          </div>
-                        )}
-                      </div>;
-                    case 'Set_Wysiwyg_2Column':
-                      return <div className="block md:flex" key={index}>
-                        <div className="w-full md:w-1/2 md:pr-30 flex items-center">
-                          <div className='w-full'>
-                            <div className="w-full">
-                              <div className='wysiwyg text-30 leading-40 font-300 fade' dangerouslySetInnerHTML={{ __html: item.wysiwyg }}></div>
-                            </div>
-                          </div>
-                        </div>
-                        <div  className="w-full md:w-1/2">
-                          {item.image && (
-                            <div className='w-full pl-0 md:pl-100 fade'>
-                              <Image
-                              src={item.image?.permalink}
-                              width={item.image?.width}
-                              height={item.image?.height}
-                              alt={item.image?.alt ? item.image.alt : ''}
-                              className='w-full h-auto'
-                            />
-                            </div>
-                          )}
-                        </div>
-                      </div>;
-                  }
-                })()
-              )
-
-            })}
 
           </div>
         )}
