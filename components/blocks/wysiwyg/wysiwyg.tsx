@@ -39,7 +39,7 @@ const WysiwygBlock = ({ block }: { block: any }) => {
     }, sectionRef);
     return () => ctx.revert();
   }, []);
-  //console.log("test: ", block)
+  console.log("test: ", block)
   return (
   <section ref={sectionRef} className="w-full ">
     <div className="px-50 md:px-150 py-50">
@@ -61,7 +61,7 @@ const WysiwygBlock = ({ block }: { block: any }) => {
               <div ref={wysiwygRef} className='wysiwyg text-30 leading-40 font-300 fade' dangerouslySetInnerHTML={{ __html: block.wysiwyg_set }}></div>
             )}
 
-            {block?.wysiwyg_set?.map((item:any, index:any) => {
+            {typeof block.wysiwyg_set === 'object' && block?.wysiwyg_set?.map((item:any, index:any) => {
               return (
                 ( () => {
                   switch(item.__typename) {
@@ -109,6 +109,7 @@ const WysiwygBlock = ({ block }: { block: any }) => {
               )
 
             })}
+
           </div>
         )}
       </div>
