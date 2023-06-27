@@ -97,8 +97,8 @@ const VideoBlock = ({ image_placeholder, video_placeholder, video }: { image_pla
                             //width='1920px'
                             //height='1080px'
                             playsinline={true}
-                            onReady={() => console.log('onReady')}
-                            onStart={() => console.log('onStart')}
+                            //onReady={() => console.log('onReady')}
+                            //onStart={() => console.log('onStart')}
                             config={{
                                 vimeo: {
                                     //controls: false
