@@ -38,9 +38,9 @@ const HomeHeroBlock = ({ block }: { block: any }) => {
       const BackgroundColor = '#304A5F';
       var rb = document.querySelector('body');
       rb.style.color = TextColor;
-      rb.style.backgroundColor = backgroundColor;
+      rb.style.backgroundColor = BackgroundColor;
       colorChangeHandler(hexToRgb(TextColor))
-      backgroundChangeHandler(hexToRgb(backgroundColor))
+      backgroundChangeHandler(hexToRgb(BackgroundColor))
 
       //Theme Colors
       const element = document.querySelector("body");
@@ -52,7 +52,7 @@ const HomeHeroBlock = ({ block }: { block: any }) => {
           start: "top 50%",
           end: "top 10%",
           scrub: true,
-          // markers: true,
+          //markers: true,
         },
       })
       .to(element, {
@@ -168,12 +168,12 @@ const HomeHeroBlock = ({ block }: { block: any }) => {
         drops.sort((a,b) => 0.5 - Math.random()).forEach((drop:any,i:any) => {
           setTimeout(() => {
             drop.remove()
-          }, i * 5);
+          }, i * 3);
         });
       };
 
       function setSignaturePaths() {
-        let totalDur = 6
+        let totalDur = 3
         // get all SVG elements - lines and dots
         const paths = sectionRef.current.querySelectorAll('.autograph__path')
         // prepare path length variable
@@ -203,16 +203,16 @@ const HomeHeroBlock = ({ block }: { block: any }) => {
           const duration = totalLen / len * totalDuration
 
           // set animation duration and delay
-          pathElem.style.animationDuration = `${duration < 0.1 ? 0.1 : duration}s`
+          pathElem.style.animationDuration = `${duration < 0.05 ? 0.05 : duration}s`
           pathElem.style.animationDelay = `${delay}s`
-          pathElem.setAttribute('data-duration', `${duration < 0.1 ? 0.1 : duration}`);
+          pathElem.setAttribute('data-duration', `${duration < 0.05 ? 0.05 : duration}`);
 
           // set dash array and offset to path length - this is how you hide the line
           pathElem.setAttribute('stroke-dasharray', totalLen)
           pathElem.setAttribute('stroke-dashoffset', totalLen)
 
           // set delay for the next path - added .5 seconds to make it more realistic
-          delay += duration + 0.1
+          delay += duration + 0.0
         })
 
         return true
@@ -268,42 +268,42 @@ const HomeHeroBlock = ({ block }: { block: any }) => {
       .fromTo(
         ".letter-d",
         { autoAlpha: 0, },
-        { duration: 0.2, autoAlpha: 1 },
+        { duration: 0.15, autoAlpha: 1 },
       )
       .fromTo(
         ".letter-o-1",
         { autoAlpha: 0, },
-        { duration: 0.2, autoAlpha: 1 },
+        { duration: 0.15, autoAlpha: 1 },
       )
       .fromTo(
         ".letter-j",
         { autoAlpha: 0, },
-        { duration: 0.2, autoAlpha: 1 },
+        { duration: 0.15, autoAlpha: 1 },
       )
       .fromTo(
         ".letter-o-2",
         { autoAlpha: 0, },
-        { duration: 0.2, autoAlpha: 1 },
+        { duration: 0.15, autoAlpha: 1 },
       )
       .add( function(){
         if(process.browser){
           makeitrain();
         }
-       },2 )
+       },1.3 )
       .to(
         ".signature-1",
         { strokeDashoffset: 0,
-          duration: sign_1.dataset.duration, },0.3
+          duration: sign_1.dataset.duration, },1
       )
       .to(
         ".signature-2",
         { strokeDashoffset: 0,
-          duration: sign_2.dataset.duration, },sign_1.dataset.duration+0.3
+          duration: sign_2.dataset.duration, },sign_1.dataset.duration+1
       )
       .to(
         ".signature-3",
         { strokeDashoffset: 0,
-          duration: sign_3.dataset.duration, },sign_2.dataset.duration+sign_1.dataset.duration+0.3
+          duration: sign_3.dataset.duration, },sign_2.dataset.duration+sign_1.dataset.duration+1
       )
       .fromTo(
         ".splat",
@@ -313,47 +313,47 @@ const HomeHeroBlock = ({ block }: { block: any }) => {
       .to(
         ".signature-4",
         { strokeDashoffset: 0,
-          duration: sign_4.dataset.duration, },sign_3.dataset.duration+sign_2.dataset.duration+sign_1.dataset.duration+0.3
+          duration: sign_4.dataset.duration, },sign_3.dataset.duration+sign_2.dataset.duration+sign_1.dataset.duration+1
       )
       .to(
         ".signature-5",
         { strokeDashoffset: 0,
-          duration: sign_5.dataset.duration, },sign_4.dataset.duration+sign_3.dataset.duration+sign_2.dataset.duration+sign_1.dataset.duration+0.3
+          duration: sign_5.dataset.duration, },sign_4.dataset.duration+sign_3.dataset.duration+sign_2.dataset.duration+sign_1.dataset.duration+1
       )
       .to(
         ".signature-6",
         { strokeDashoffset: 0,
-          duration: sign_6.dataset.duration, },sign_5.dataset.duration+sign_4.dataset.duration+sign_3.dataset.duration+sign_2.dataset.duration+sign_1.dataset.duration+0.3
+          duration: sign_6.dataset.duration, },sign_5.dataset.duration+sign_4.dataset.duration+sign_3.dataset.duration+sign_2.dataset.duration+sign_1.dataset.duration+1
       )
       .to(
         ".signature-1",
-        { strokeDashoffset: -1 * sign_1.getTotalLength(),//2.3
-          duration: sign_1.dataset.duration, },2
+        { strokeDashoffset: -1 * sign_1.getTotalLength(),//.98
+          duration: sign_1.dataset.duration, },1
       )
       .to(
         ".signature-2",
-        { strokeDashoffset: -1 * sign_2.getTotalLength(),//.2
-          duration: sign_2.dataset.duration, },4.3
+        { strokeDashoffset: -1 * sign_2.getTotalLength(),//.09
+          duration: sign_2.dataset.duration, },2
       )
       .to(
         ".signature-3",
-        { strokeDashoffset: -1 * sign_3.getTotalLength(),//.6
-          duration: sign_3.dataset.duration, },4.5
+        { strokeDashoffset: -1 * sign_3.getTotalLength(),//.26
+          duration: sign_3.dataset.duration, },2.1
       )
       .to(
         ".signature-4",
-        { strokeDashoffset: -1 * sign_4.getTotalLength(),//.27
-          duration: sign_4.dataset.duration, },5
+        { strokeDashoffset: -1 * sign_4.getTotalLength(),//.11
+          duration: sign_4.dataset.duration, },2.5
       )
       .to(
         ".signature-5",
-        { strokeDashoffset: -1 * sign_5.getTotalLength(),//.59
-          duration: sign_5.dataset.duration, },5.27
+        { strokeDashoffset: -1 * sign_5.getTotalLength(),//.26
+          duration: sign_5.dataset.duration, },3
       )
       .to(
         ".signature-6",
-        { strokeDashoffset: -1 * sign_6.getTotalLength(),//2.9
-          duration: sign_6.dataset.duration, },5
+        { strokeDashoffset: -1 * sign_6.getTotalLength(),//1.2
+          duration: sign_6.dataset.duration, },4.2
       )
       /*.fromTo(
         ".tree",
@@ -363,37 +363,37 @@ const HomeHeroBlock = ({ block }: { block: any }) => {
       .to(
         ".tree",
         { strokeDashoffset: 0,
-          duration: 1.5, },0.7
+          duration: 1.4, },1.23
       )
       .fromTo(
         ".letter-a",
         { autoAlpha: 0},
-        { duration: 0.2, autoAlpha: 1 },4
+        { duration: 0.2, autoAlpha: 1 },2.4
       )
       .fromTo(
         ".letter-g",
         { autoAlpha: 0, },
-        { duration: 0.2, autoAlpha: 1 },4.4
+        { duration: 0.2, autoAlpha: 1 },2.7
       )
       .fromTo(
         ".letter-e",
         { autoAlpha: 0, },
-        { duration: 0.2, autoAlpha: 1 },4.9
+        { duration: 0.2, autoAlpha: 1 },3.0
       )
       .fromTo(
         ".letter-n",
         { autoAlpha: 0, },
-        { duration: 0.2, autoAlpha: 1 },5.3
+        { duration: 0.2, autoAlpha: 1 },3.3
       )
       .fromTo(
         ".letter-c",
         { autoAlpha: 0, },
-        { duration: 0.2, autoAlpha: 1 },5.7
+        { duration: 0.2, autoAlpha: 1 },3.6
       )
       .fromTo(
         ".letter-y",
         { autoAlpha: 0, },
-        { duration: 0.2, autoAlpha: 1 },6.1
+        { duration: 0.2, autoAlpha: 1 },3.9
       )
       .to(
         ".letter-y",
@@ -401,7 +401,7 @@ const HomeHeroBlock = ({ block }: { block: any }) => {
           {y:"0%",fill: "rgba(255,255,255,0)",duration: 0}, 
           {y:"-20%",fill: "rgba(255,255,255,1)",duration: 0.2},
           {y:"0%"}
-        ] },6
+        ] },4
       )
       .to(
         ".letter-c",
@@ -409,7 +409,7 @@ const HomeHeroBlock = ({ block }: { block: any }) => {
           {y:"0%",fill: "rgba(255,255,255,0)",duration: 0}, 
           {y:"-20%",fill: "rgba(255,255,255,1)",duration: 0.2},
           {y:"0%"}
-        ] },6.1
+        ] },4.1
       )
       .to(
         ".letter-n",
@@ -417,7 +417,7 @@ const HomeHeroBlock = ({ block }: { block: any }) => {
           {y:"0%",fill: "rgba(255,255,255,0)",duration: 0}, 
           {y:"-20%",fill: "rgba(255,255,255,1)",duration: 0.2},
           {y:"0%"}
-        ] },6.2
+        ] },4.2
       )
       .to(
         ".letter-e",
@@ -425,7 +425,7 @@ const HomeHeroBlock = ({ block }: { block: any }) => {
           {y:"0%",fill: "rgba(255,255,255,0)",duration: 0}, 
           {y:"-20%",fill: "rgba(255,255,255,1)",duration: 0.2},
           {y:"0%"}
-        ] },6.3
+        ] },4.3
       )
       .to(
         ".letter-g",
@@ -433,7 +433,7 @@ const HomeHeroBlock = ({ block }: { block: any }) => {
           {y:"0%",fill: "rgba(255,255,255,0)",duration: 0}, 
           {y:"-20%",fill: "rgba(255,255,255,1)",duration: 0.2},
           {y:"0%"}
-        ] },6.4
+        ] },4.4
       )
       .to(
         ".letter-a",
@@ -441,12 +441,12 @@ const HomeHeroBlock = ({ block }: { block: any }) => {
           {y:"0%",fill: "rgba(255,255,255,0)",duration: 0}, 
           {y:"-20%",fill: "rgba(255,255,255,1)",duration: 0.2},
           {y:"0%"}
-        ] },6.5
+        ] },4.5
       )
       .to(
         ".tree",
         { strokeDashoffset: -1 * document.getElementsByClassName("tree")[0].getTotalLength(),
-          duration: 1.5, },7
+          duration: 1, },5
       )
       .add( function(){
         if(process.browser){
@@ -455,14 +455,14 @@ const HomeHeroBlock = ({ block }: { block: any }) => {
       })
       .to(
         ".splat",
-        { duration: 0.2, autoAlpha: 0 },8
+        { duration: 0.25, autoAlpha: 0 },5.5
       )
       .to(".tree",
         { keyframes: [
           {attr: { d: treeend },duration: 0}, 
           {attr: { d: treestart },strokeDashoffset: 0,fill: '#FFF',duration: 0},
-          {attr: { d: treeend },duration: 1.5}
-        ] },8
+          {attr: { d: treeend },duration: 0.8}
+        ] },6
       )
 
     }, sectionRef);
@@ -472,11 +472,11 @@ const HomeHeroBlock = ({ block }: { block: any }) => {
 
   //console.log("Home Hero: ", block)
   return (
-  <section ref={sectionRef} className={`${styles.root} bg-themebackground-off w-full pt-60 pb-0`} onMouseEnter={() => cursorChangeHandler("peace")} onMouseLeave={() => cursorChangeHandler("default")}>
+  <section ref={sectionRef} className={`${styles.root} bg-themebackground-off w-full pb-0`} onMouseEnter={() => cursorChangeHandler("peace")} onMouseLeave={() => cursorChangeHandler("default")}>
     <div ref={RainRef} id="rain" className={`${styles.rain} absolute w-full h-full top-0 left-0 z-9`}></div>
 
     <div className='relative w-full'>
-      <div className={`fixed top-180 md:top-100 w-full z-5`}>
+      <div className={`fixed top-220 md:top-60 w-full z-5`}>
         <div ref={LogoWrapRef} className={`${styles.logo} logo w-full text-center px-0 pb-40`}>
           <div ref={LogoRef} className='w-full'>
             <Logo className={`${styles.logosvg} w-full h-auto`} />
@@ -488,7 +488,7 @@ const HomeHeroBlock = ({ block }: { block: any }) => {
         </div>
       </div>
 
-      <div ref={PanelRef} className={`${styles.panel} relative w-full bg-themebackground-ff px-50 md:px-100 mt-250 pb-120 z-6`}>
+      <div ref={PanelRef} className={`${styles.panel} relative w-full bg-themebackground-ff px-50 md:px-100 mt-360 md:mt-320 pb-180 md:pb-120 z-6`}>
         <div ref={HeadlineRef} className='relative w-full text-center font-lato text-90 md:text-113 font-300 leading-none py-20'>
           <span className='relative'>S<div className={`${styles.splat} splat ${styles.splats}`}><div></div><div></div><div></div><div></div></div></span>tori<span className='relative'>e<div className={`${styles.splat} splat ${styles.splate}`}><div></div><div></div><div></div><div></div></div></span>s at work
         </div>
@@ -497,7 +497,7 @@ const HomeHeroBlock = ({ block }: { block: any }) => {
             <Arrow />
           </div>
         </div>
-        <div ref={VideoRef} className='relative mx-40 md:mx-160 z-10'>
+        <div ref={VideoRef} className='relative mx-0 md:mx-160 z-10'>
           <div className={`${styles.splat} splat ${styles.splatv1}`}><div></div><div></div><div></div><div></div></div>
           <div className={`${styles.splat} splat ${styles.splatv2}`}><div></div><div></div><div></div><div></div></div>
           <div className={`${styles.splat} splat ${styles.splatv3}`}><div></div><div></div><div></div><div></div></div>

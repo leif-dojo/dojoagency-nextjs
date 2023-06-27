@@ -91,21 +91,21 @@ const HomeHeadlineBlock = ({ block }: { block: any }) => {
       .fromTo(
         ".morse",
         { autoAlpha: 0, fill: "rgb(241,90,36)" },
-        { duration: 0.6, autoAlpha: 1, fill: "rgb(255,255,255)",
-          stagger: 0.08,
+        { duration: 0.5, autoAlpha: 1, fill: "rgb(255,255,255)",
+          stagger: 0.06,
           ease: 'power3.out' },0
       )
       .fromTo(
         ".text1",
         { autoAlpha: 0 },
-        { duration: 0.50, autoAlpha: 1,
-          stagger: 0.2,
+        { duration: 0.45, autoAlpha: 1,
+          stagger: 0.14,
           ease: 'power3.out' },0.2
       )
       .fromTo(
         ".telegraph",
         { autoAlpha: 1 },
-        { duration: 0.15, autoAlpha: 0,
+        { duration: 0.1, autoAlpha: 0,
           ease: 'power3.out' }
       )
       .fromTo(
@@ -117,21 +117,21 @@ const HomeHeadlineBlock = ({ block }: { block: any }) => {
       .fromTo(
         ".paint",
         { autoAlpha: 0, x: -1000 },
-        { duration: 0.4, autoAlpha: 1, x: 0,
-          stagger: 0.2,
+        { duration: 0.2, autoAlpha: 1, x: 0,
+          stagger: 0.1,
           ease: 'power3.out' }
       )
       .fromTo(
         ".typewriter",
         { autoAlpha: 0 },
-        { duration: 0.2, autoAlpha: 1,
+        { duration: 0.1, autoAlpha: 1,
           ease: 'power3.out' }
       )
       .fromTo(
         ".sub div",
         { autoAlpha: 0, y: 5 },
         { duration: 0.2, autoAlpha: 1, y: 0,
-          stagger: 0.04,
+          stagger: 0.03,
           ease: 'power3.out'
         }
       )
@@ -142,8 +142,8 @@ const HomeHeadlineBlock = ({ block }: { block: any }) => {
 
   return (
   <section ref={sectionRef} className={`${styles.root} relative w-full z-10`}>
-    <div className="px-50 md:px-20 py-160">
-      <div className="w-full px-0 md:px-100">
+    <div className="px-0 md:px-20 py-160">
+      <div className="w-full px-40 md:px-100">
         <div ref={TelegraphRef} className={`${styles.telegraph} w-100 mb-20`}>
           <Telegraph />
         </div>
@@ -153,12 +153,12 @@ const HomeHeadlineBlock = ({ block }: { block: any }) => {
           <CommunicationArts />
         </div>
       </div>
-      <div className="w-full px-0 md:px-100">
+      <div className="w-full px-40 md:px-100">
         <div className="w-full flex">
           <div ref={TypewriterRef} className={`${styles.typewriter} w-100 mb-20`}>
             <Typewriter />
           </div>
-          <div ref={SubRef} className="sub text-40 md:text-55 leading-none font-600">
+          <div ref={SubRef} className="sub text-40 md:text-55 leading-none font-600 pl-20">
             {block.subheadline}
           </div>
         </div>

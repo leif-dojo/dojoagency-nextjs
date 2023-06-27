@@ -55,8 +55,8 @@ const VideoBlock = ({ image_placeholder, video_placeholder, video }: { image_pla
   }, []);
   //console.log("VIDEO PLAYER: ", image_placeholder, video, video_placeholder)
     return (
-        <div className={`${styles.root} relative`}>
-            <div className='relative w-full h-400 aspect-video overflow-hidden' onMouseEnter={() => onMouseEnter()} onMouseLeave={() => onMouseLeave()}>
+        <div className={`${styles.root} relative aspect-video`}>
+            <div className='relative w-full h-full aspect-video overflow-hidden' onMouseEnter={() => onMouseEnter()} onMouseLeave={() => onMouseLeave()}>
 
                 {image_placeholder && (           
                     <div className='relative w-full h-full'>

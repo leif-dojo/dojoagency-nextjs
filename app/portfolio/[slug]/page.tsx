@@ -26,19 +26,13 @@ export async function generateMetadata(
     }
   });
   return {
-    title: data.entry.meta_title,
-    description: data.entry.meta_description,
+    title: data.entry.meta_title ? data.entry.meta_title : data.entry.title,
+    description: data.entry.meta_description ? data.entry.meta_description : '',
     openGraph: {
       url: '/portfolio/'+params.slug,
-      title: data.entry.meta_title,
-      description: data.entry.meta_description,
-      images: [
-        {
-          url: data.entry.open_graph_image?.permalink,
-          width: data.entry.open_graph_image?.width,
-          height: data.entry.open_graph_image?.height
-        }
-      ],
+      title: data.entry.meta_title ? data.entry.meta_title : data.entry.title,
+      description: data.entry.meta_description ? data.entry.meta_description : '',
+      images: data.entry.open_graph_image?.permalink ? [{url: data.entry.open_graph_image?.permalink,width: data.entry.open_graph_image?.width,height: data.entry.open_graph_image?.height}] : [],
       locale: 'en_US',
       type: 'website',
     }

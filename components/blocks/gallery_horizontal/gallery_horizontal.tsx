@@ -103,10 +103,10 @@ const GalleryHorizontalBlock = ({ block }: { block: any }) => {
                   //console.log('col: ', index, item)
                     return (
                       <div className={`${styles.slide}`} key={index}>
-                        <div className={`${styles.project} project relative flex items-center overflow-hidden bg-dark w-full cursor-pointer`}>
-                          <div className="flex justify-center items-center w-full h-full aspect-video">
+                        <div className={`${styles.project} project relative flex items-center overflow-hidden  w-full cursor-pointer`}>
+                          <div className="flex justify-center items-center w-full h-full ">
                             {item.image && (
-                              <div className='absolute w-full h-full top-0 left-0'>
+                              <div className='relative w-full h-full top-0 left-0'>
 
                                 {item.image && (
                                   <Image
