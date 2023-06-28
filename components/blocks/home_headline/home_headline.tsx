@@ -6,6 +6,7 @@ import { useIsMobile, hexToRgb, rgbToHex } from '@/utils/general'
 import Telegraph from '@/public/telegraph.svg'
 import Typewriter from '@/public/typewriter.svg'
 import CommunicationArts from '@/public/communication-arts.svg'
+import Paintbrush from '@/public/paint-brush.svg'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger'
 gsap.registerPlugin(ScrollTrigger)
@@ -18,6 +19,7 @@ const HomeHeadlineBlock = ({ block }: { block: any }) => {
   const sectionRef = useRef<HTMLDivElement>(null)
   const TelegraphRef = useRef<HTMLDivElement>(null)
   const TypewriterRef = useRef<HTMLDivElement>(null)
+  const PaintbrushRef = useRef<HTMLDivElement>(null)
   const ComRef = useRef<HTMLDivElement>(null)
   const SubRef = useRef<HTMLDivElement>(null)
 
@@ -91,21 +93,21 @@ const HomeHeadlineBlock = ({ block }: { block: any }) => {
       .fromTo(
         ".morse",
         { autoAlpha: 0, fill: "rgb(241,90,36)" },
-        { duration: 0.5, autoAlpha: 1, fill: "rgb(255,255,255)",
-          stagger: 0.06,
+        { duration: 0.25, autoAlpha: 1, fill: "rgb(255,255,255)",
+          stagger: 0.03,
           ease: 'power3.out' },0
       )
       .fromTo(
         ".text1",
         { autoAlpha: 0 },
-        { duration: 0.45, autoAlpha: 1,
-          stagger: 0.14,
-          ease: 'power3.out' },0.2
+        { duration: 0.23, autoAlpha: 1,
+          stagger: 0.07,
+          ease: 'power3.out' },0.1
       )
       .fromTo(
         ".telegraph",
         { autoAlpha: 1 },
-        { duration: 0.1, autoAlpha: 0,
+        { duration: 0.05, autoAlpha: 0,
           ease: 'power3.out' }
       )
       .fromTo(
@@ -117,9 +119,17 @@ const HomeHeadlineBlock = ({ block }: { block: any }) => {
       .fromTo(
         ".paint",
         { autoAlpha: 0, x: -1000 },
-        { duration: 0.2, autoAlpha: 1, x: 0,
-          stagger: 0.1,
+        { duration: 0.1, autoAlpha: 1, x: 0,
           ease: 'power3.out' }
+      )
+      .to(
+        ".paintbrush",
+        { keyframes: [
+          {x:"0%",autoAlpha:0,duration: 0}, 
+          {x:"500%",autoAlpha:1,duration: 0.5,ease: 'power3.out'},
+          {autoAlpha:1,duration: 0},
+          {autoAlpha:0,duration: 0}
+        ] },1.4
       )
       .fromTo(
         ".typewriter",
@@ -131,9 +141,56 @@ const HomeHeadlineBlock = ({ block }: { block: any }) => {
         ".sub div",
         { autoAlpha: 0, y: 5 },
         { duration: 0.2, autoAlpha: 1, y: 0,
-          stagger: 0.03,
+          stagger: 0.02,
           ease: 'power3.out'
         }
+      )      
+      .to(
+        ".typewriter-carriage",
+        { keyframes: [
+          {x:"0%",duration: 0.3,ease: 'power3.out'}, 
+          {x:"-15%",duration: 0.3,ease: 'power3.out'},
+          {x:"-40%",duration: 0.3,ease: 'power3.out'},
+          {x:"-70%",duration: 0.3,ease: 'power3.out'},
+          {x:"0%",duration: 0.3,ease: 'power3.out'}
+        ] },1.5
+      )
+      .to(
+        ".typewriter-key-1",
+        { keyframes: [
+          {y:"0%",duration: 0}, 
+          {y:"90%",duration: 0.3,ease: 'power3.out'},
+          {y:"0%",duration: 0.3},
+        ] },1.5
+      )
+      .to(
+        ".typewriter-key-2",
+        { keyframes: [
+          {y:"0%",duration: 0}, 
+          {y:"90%",duration: 0.3,ease: 'power3.out'},
+          {y:"0%",duration: 0.3},
+        ] },1.7
+      )
+      .to(
+        ".typewriter-key-3",
+        { keyframes: [
+          {y:"0%",duration: 0}, 
+          {y:"90%",duration: 0.3,ease: 'power3.out'},
+          {y:"0%",duration: 0.3},
+        ] },1.9
+      )
+      .to(
+        ".typewriter-key-4",
+        { keyframes: [
+          {y:"0%",duration: 0}, 
+          {y:"90%",duration: 0.3,ease: 'power3.out'},
+          {y:"0%",duration: 0.3},
+        ] },2
+      )
+      .to(
+        ".typewriter",
+        { duration: 0.2, autoAlpha: 0,
+          ease: 'power3.out' }
       )
 
     }, sectionRef);
@@ -149,17 +206,20 @@ const HomeHeadlineBlock = ({ block }: { block: any }) => {
         </div>
       </div>
       <div className="w-full">
-        <div ref={ComRef} className={`${styles.communication} text-themebackground mb-20`}>
+        <div ref={ComRef} className={`${styles.communication} relative text-themebackground mb-40`}>
           <CommunicationArts />
+          <div ref={PaintbrushRef} className={`${styles.paintbrush} paintbrush absolute opacity-0 w-400 mb-20 text-slate`}>
+            <Paintbrush />
+          </div>
         </div>
       </div>
       <div className="w-full px-40 md:px-100">
-        <div className="w-full flex">
-          <div ref={TypewriterRef} className={`${styles.typewriter} w-100 mb-20`}>
-            <Typewriter />
-          </div>
-          <div ref={SubRef} className="sub text-40 md:text-55 leading-none font-600 pl-20">
+        <div className="w-full text-left">
+          <div ref={SubRef} className="sub text-40 md:text-55 leading-none font-600 pl-20 pb-40">
             {block.subheadline}
+          </div>
+          <div ref={TypewriterRef} className={`${styles.typewriter} typewriter w-140 mb-20 text-slate`}>
+            <Typewriter />
           </div>
         </div>
       </div>
