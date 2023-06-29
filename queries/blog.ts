@@ -538,6 +538,42 @@ export default gql`
                   }
                 }
               }
+              ... on Set_Wysiwyg_Quote {
+                quote
+                quote_author
+                type
+              }
+              ... on Set_Wysiwyg_VideoEmbed {
+                video_embed
+                type
+              }
+              ... on Set_Wysiwyg_PdfDownload {
+                type
+                pdf_text
+                pdf {
+                  ... on Asset_Assets {
+                    id
+                    alt
+                    url
+                    path
+                    permalink
+                    extension
+                  }
+                }
+              }
+              ... on Set_Wysiwyg_AudioFile {
+                type
+                audio_file {
+                  ... on Asset_Assets {
+                    id
+                    alt
+                    url
+                    path
+                    permalink
+                    extension
+                  }
+                }
+              }
             }
           }
           ... on Set_Components_Image {

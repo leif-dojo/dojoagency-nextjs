@@ -1,5 +1,7 @@
 "use client"
 import React, { useRef, useLayoutEffect } from 'react'
+import styles from './wysiwyg.module.scss'
+import PdfIcon from '@/public/icons/icon-pdf.svg'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger'
 gsap.registerPlugin(ScrollTrigger)
@@ -41,7 +43,7 @@ const WysiwygBlock = ({ block }: { block: any }) => {
   }, []);
   //console.log("test: ", block)
   return (
-  <section ref={sectionRef} className="w-full ">
+  <section ref={sectionRef} className={`${styles.root} w-full`}>
     <div className="px-50 md:px-150 py-50">
       <div className="w-full">
         {block.eyebrow && (
@@ -103,6 +105,33 @@ const WysiwygBlock = ({ block }: { block: any }) => {
                             </div>
                           )}
                         </div>
+                      </div>;
+                    case 'Set_Wysiwyg_Quote':
+                      return <div className='blockquote py-20 fade'key={index}>
+                        <blockquote className='text-30 leading-40 font-300 fade' dangerouslySetInnerHTML={{ __html: item.quote }}></blockquote>
+                        <div className='text-30 leading-40 font-300'>— {item.quote_author}</div>
+                      </div>;
+                    case 'Set_Wysiwyg_VideoEmbed':
+                      return <div className='py-20 fade' key={index}>
+                        <div className="relative w-full aspect-video">
+                          <iframe src={item.video_embed} width="640" height="360" frameborder="0" title="" webkitallowfullscreen mozallowfullscreen allowfullscreen className='w-full h-full'></iframe>
+                        </div>
+                      </div>;
+                    case 'Set_Wysiwyg_AudioFile':
+                      return <div className='py-20 fade' key={index}>
+                        <audio controls>
+                          <source src={item.audio_file?.permalink} type="audio/mpeg" />
+                          Your browser does not support the audio element.
+                        </audio>
+                      </div>;
+                    case 'Set_Wysiwyg_PdfDownload':
+                      return <div className='flex items-center py-20 fade' key={index}>
+                          <div className='relative pr-20'>
+                            <a href={item.pdf?.permalink} target="_blank" className='text-blue'><PdfIcon className='w-100 h-auto'/></a>
+                          </div>
+                          <div className='text-30 leading-40 font-300'>
+                             {item.pdf_text}
+                          </div>
                       </div>;
                   }
                 })()

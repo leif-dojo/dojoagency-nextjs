@@ -1,17 +1,14 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!-- Generator: Adobe Illustrator 16.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
-<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	 width="320px" height="427px" viewBox="0 0 320 427" enable-background="new 0 0 320 427" xml:space="preserve">
-<path fill="none" stroke="#5A5A5A" stroke-width="7" stroke-miterlimit="10" d="M313.75,419.8h-306V6.7h183.6L313.75,129.1V419.8z"
+	viewBox="0 0 320 427" enable-background="new 0 0 320 427" xml:space="preserve">
+<path fill="none" stroke="currentColor" stroke-width="7" stroke-miterlimit="10" d="M313.75,419.8h-306V6.7h183.6L313.75,129.1V419.8z"
 	/>
-<path fill="#5A5A5A" d="M69.715,329.866v32.544H55.287v-85.682h31.074c19.078,0,31.44,7.646,31.44,26.18
+<path fill="currentColor" d="M69.715,329.866v32.544H55.287v-85.682h31.074c19.078,0,31.44,7.646,31.44,26.18
 	s-12.974,26.896-31.44,26.896L69.715,329.866z M84.158,288.648H69.715v29.479h14.443c12.729,0,18.957-4.591,18.957-15.163
 	C103.115,292.396,97.01,288.648,84.158,288.648z"/>
-<path fill="#5A5A5A" d="M131.42,276.791h30.34c21.083-1.332,39.254,14.679,40.586,35.763c0.149,2.359,0.079,4.729-0.209,7.077
+<path fill="currentColor" d="M131.42,276.791h30.34c21.083-1.332,39.254,14.679,40.586,35.763c0.149,2.359,0.079,4.729-0.209,7.077
 	c2.577,20.968-12.33,40.055-33.299,42.632c-2.348,0.287-4.717,0.357-7.078,0.209h-30.34V276.791L131.42,276.791z M160.658,288.648
 	H145.97v61.898h14.688c18.467,0,26.546-12.357,26.546-30.967C187.204,300.979,179.109,288.648,160.658,288.648z"/>
-<path fill="#5A5A5A" d="M217.957,362.41v-85.685h54.482v11.856h-40.183v23.729h37.194v11.872H232.26v38.156L217.957,362.41z"/>
-<polyline fill="none" stroke="#5A5A5A" stroke-width="7" stroke-miterlimit="10" points="313.75,129.101 191.35,129.101 191.35,6.7 
+<path fill="currentColor" d="M217.957,362.41v-85.685h54.482v11.856h-40.183v23.729h37.194v11.872H232.26v38.156L217.957,362.41z"/>
+<polyline fill="none" stroke="currentColor" stroke-width="7" stroke-miterlimit="10" points="313.75,129.101 191.35,129.101 191.35,6.7 
 	"/>
 </svg>

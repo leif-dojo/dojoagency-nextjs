@@ -20,7 +20,7 @@ export async function generateMetadata(
   const client = getClient();
   const uri = new URL(process.env.NEXT_PUBLIC_GRAPHQL_URL)
   const { data } = await client.query({
-    query: PageMetaQuery, 
+    query: BlogMetaQuery, 
     variables: {
       uri: params.slug,
     }

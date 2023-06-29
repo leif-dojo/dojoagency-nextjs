@@ -126,7 +126,7 @@ const HomeHeadlineBlock = ({ block }: { block: any }) => {
         ".paintbrush",
         { keyframes: [
           {x:"0%",autoAlpha:0,duration: 0}, 
-          {x:"500%",autoAlpha:1,duration: 0.5,ease: 'power3.out'},
+          {x:"500%",autoAlpha:1,duration: 0.7,ease: 'power3.out'},
           {autoAlpha:1,duration: 0},
           {autoAlpha:0,duration: 0}
         ] },1.4

@@ -100,6 +100,36 @@ ul {
 }
 
 //  ---------------------------------------------------------------------------
+//  Blockquote
+//  ---------------------------------------------------------------------------
+blockquote {
+	padding: 30rem 50rem;
+	quotes: "\201C""\201D""\2018""\2019";
+
+	&:before {
+		color: theme('colors.orange');
+		content: open-quote;
+		font-size: 4em;
+		line-height: 0.1em;
+		margin-right: 0.25em;
+		vertical-align: -0.4em;
+	}
+
+	&:after {
+		color: theme('colors.orange');
+		content: close-quote;
+		font-size: 4em;
+		line-height: 0.1em;
+		margin-right: 0.25em;
+		vertical-align: -0.4em;
+	}
+
+	p {
+		display: inline;
+	}
+}
+
+//  ---------------------------------------------------------------------------
 //  Accessibility
 //  ---------------------------------------------------------------------------
 .a11y {}
