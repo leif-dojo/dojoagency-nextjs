@@ -72,9 +72,14 @@ export default async function Page(context: { params: { slug: string }, searchPa
     notFound()	
   }
 
+  const pagemeta = {
+    title: data.entry.meta_title ? data.entry.meta_title : data.entry.title,
+    description: data.entry.meta_description ? data.entry.meta_description : '',
+  }
+
   return (
   <div className="page">
-    <Repeater blocks={data.entry?.components} />
+    <Repeater blocks={data.entry?.components} meta={pagemeta}/>
   </div>
   )
 }

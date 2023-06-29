@@ -62,36 +62,19 @@ export default async function Page(context: { params: { slug: string }, searchPa
       },
     },
   });
-  //const { loading, error, data } = useQuery(GlobalQuery, { client });
-  //console.log("page client data: ", context.params.slug, data.entry?.components)
-  // This request should be cached until manually invalidated.
-  // Similar to `getStaticProps`.
-  // `force-cache` is the default and can be omitted.
-  // const staticData = await fetch(`https://...`, { cache: 'force-cache' });
 
-  // This request should be refetched on every request.
-  // Similar to `getServerSideProps`.
-  // const dynamicData = await fetch(`https://...`, { cache: 'no-store' });
-
-  // This request should be cached with a lifetime of 10 seconds.
-  // Similar to `getStaticProps` with the `revalidate` option.
-  // const revalidatedData = await fetch(`https://...`, {
-  //   next: { revalidate: 10 },
-  // });
-
-  // Fetch data directly in a Server Component
-  // const recentPosts = await getPosts();
-
-  //const components = data.entry.components?.map((block, index) => componentList[block.__typename])
-
-  // Forward fetched data to your Client Component
   if (!data.entry) {
     notFound()	
   }
 
+  const pagemeta = {
+    title: data.entry.meta_title ? data.entry.meta_title : data.entry.title,
+    description: data.entry.meta_description ? data.entry.meta_description : '',
+  }
+
   return (
   <div className="page ">
-    <Repeater blocks={data.entry?.components} />
+    <Repeater blocks={data.entry?.components} meta={pagemeta}/>
   </div>
   )
 }

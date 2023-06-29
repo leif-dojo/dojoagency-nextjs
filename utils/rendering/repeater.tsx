@@ -36,7 +36,7 @@ interface BlockInterface {
   [key: string]: any
 }
 
-const Repeater = ({ blocks }: { blocks: BlockInterface[] }) => (
+const Repeater = ({ blocks, meta }: { blocks: BlockInterface[], meta?:any }) => (
   <>
     {blocks?.map((block, index) => {
       const blockItem = Object.values(blockInventory).find(
@@ -77,7 +77,7 @@ const Repeater = ({ blocks }: { blocks: BlockInterface[] }) => (
               case 'Set_Components_Headline':
                 return <HeadlineBlock block={block} ></HeadlineBlock>;
               case 'Set_Components_HeadlineHero':
-                return <HeadlineHeroBlock block={block} ></HeadlineHeroBlock>;  
+                return <HeadlineHeroBlock block={block} meta={meta}></HeadlineHeroBlock>;  
               case 'Set_Components_TextScroller':
                 return <TextScrollerBlock block={block} ></TextScrollerBlock>;
               case 'Set_Components_ImageGrid':

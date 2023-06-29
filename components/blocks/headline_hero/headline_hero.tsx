@@ -11,7 +11,7 @@ import { ScrollTrigger } from 'gsap/dist/ScrollTrigger'
 gsap.registerPlugin(ScrollTrigger)
 
 export const typename = 'Set_Components_Wysiwyg'
-const WysiwygBlock = ({ block }: { block: any }) => {
+const WysiwygBlock = ({ block, meta }: { block: any, meta: any }) => {
   const { cursorType, cursorChangeHandler, colorChangeHandler, backgroundChangeHandler} = useThemeContext();
   const sectionRef = useRef<HTMLDivElement>(null)
   const eyebrowRef = useRef<HTMLDivElement>(null)
@@ -163,7 +163,7 @@ const WysiwygBlock = ({ block }: { block: any }) => {
                 <div className="w-full flex flex-nowrap">
                   <div className="w-full md:w-1/2 ">
                     <div ref={shareTitleRef} className="text-25 leading-none font-300 pb-20">Share</div>
-                    <div className="w-full sharewrap"><ShareIcons /></div>
+                    <div className="w-full sharewrap"><ShareIcons meta={meta}/></div>
                   </div>
                   <div className="w-full md:w-1/2 ">
                     <div ref={copyRef} className="text-25 leading-none font-300 pb-20 cursor-pointer">Copy Link</div>

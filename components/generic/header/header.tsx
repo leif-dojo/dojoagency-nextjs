@@ -69,7 +69,7 @@ const HeaderBlock = ({ nav}: HeaderInterface) => {
         id="header-root"
         className={`${styles.root} ${(Dir === 'up') ? styles.up : ''} ${(Dir === 'down') ? styles.down : ''}`}>
         <div className="w-full px-50 md:px-100 flex items-center justify-between relative py-10 z-10">
-          <Link href={''} as={''} className={`${styles.logo} relative text-left`} aria-label="Dojo Agency">
+          <Link href={'/'} className={`${styles.logo} relative text-left`} aria-label="Dojo Agency">
               <Logo />
           </Link>
           <div className={`${styles.hamburger} flex items-center cursor-pointer`} role="none" onClick={() => openOrClose()}>

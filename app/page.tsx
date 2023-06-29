@@ -62,13 +62,16 @@ export default async function Page(context: { params: { slug: string }, searchPa
       },
     },
   });
-  //console.log("page home: ", context.params.slug, data.entry?.components)
-  //console.log("PAGE HOME: ", context.params)
-  //console.log("page home HomeHeroBlock: ", HomeHeroBlock)
+
+  const pagemeta = {
+    title: data.entry.meta_title ? data.entry.meta_title : data.entry.title,
+    description: data.entry.meta_description ? data.entry.meta_description : '',
+  }
+
   return (
     <>
       <div className={`page`}>
-        <Repeater blocks={data.entry.components} />
+        <Repeater blocks={data.entry.components} meta={pagemeta} />
       </div>
     </>
   )

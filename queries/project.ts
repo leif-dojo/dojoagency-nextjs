@@ -513,6 +513,10 @@ export default gql`
               ... on Set_Wysiwyg_2Column {
                 wysiwyg
                 type
+                order {
+                  value
+                  label
+                }
                 image {
                   ... on Asset_Assets {
                     id

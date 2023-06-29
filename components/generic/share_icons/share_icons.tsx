@@ -1,25 +1,33 @@
-
 import React, { useEffect, useRef, useState, Fragment, useContext } from 'react'
 import Link from 'next/link'
 import IconLinkedIn from '@/public/icons/icon-linkedin.svg'
 import IconInstagram from '@/public/icons/icon-instagram.svg'
 import IconFacebook from '@/public/icons/icon-facebook.svg'
+import IconTwitter from '@/public/icons/icon-twitter.svg'
 import styles from './share_icons.module.scss'
 
-const SocialIconsBlock = () => {
+const SocialIconsBlock = ({meta}: {meta:any}) => {
+
+  const url = location ? location?.href : ''
+  const title = meta.title;
+  const description = meta.description;
 
   const socials = [
     { 
       type: 'linkedin', 
-      url:'https://www.linkedin.com/'
+      url:`https://www.linkedin.com/shareArticle?mini=true&url=${url}&title=${title}&summary=${description}`
     },
     { 
       type: 'instagram', 
-      url:'https://www.instagram.com/'
+      url:'https://www.instagram.com/dojoagency/'
     },
     { 
       type: 'facebook', 
-      url:'https://www.facebook.com/'
+      url:`https://www.facebook.com/sharer.php?u=${url}`
+    },
+    { 
+      type: 'twitter', 
+      url:`https://twitter.com/intent/tweet?url=${url}&text=${title}`
     }
   ]
 
@@ -31,6 +39,8 @@ const SocialIconsBlock = () => {
         return <IconInstagram />;
       case 'facebook':
         return <IconFacebook />;
+      case 'twitter':
+        return <IconTwitter />;
     }
   }
 

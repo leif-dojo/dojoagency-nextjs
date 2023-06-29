@@ -84,8 +84,8 @@ const WysiwygBlock = ({ block }: { block: any }) => {
                         )}
                       </div>;
                     case 'Set_Wysiwyg_2Column':
-                      return <div className="block md:flex" key={index}>
-                        <div className="w-full md:w-1/2 md:pr-30 flex items-center">
+                      return <div className={`block md:flex ${item.order.value === 'reverse' ? 'flex-row-reverse' : 'flex-row'}`} key={index}>
+                        <div className={`w-full md:w-1/2 flex items-center ${item.order.value === 'reverse' ? 'md:pl-30' : 'md:pr-30'}`}>
                           <div className='w-full'>
                             <div className="w-full">
                               <div className='wysiwyg text-30 leading-40 font-300 fade' dangerouslySetInnerHTML={{ __html: item.wysiwyg }}></div>
@@ -94,7 +94,7 @@ const WysiwygBlock = ({ block }: { block: any }) => {
                         </div>
                         <div  className="w-full md:w-1/2">
                           {item.image && (
-                            <div className='w-full pl-0 md:pl-100 fade'>
+                            <div className={`w-full fade ${item.order.value === 'reverse' ? 'pr-0 md:pr-100' : 'pl-0 md:pl-100'}`}>
                               <Image
                               src={item.image?.permalink}
                               width={item.image?.width}
@@ -119,7 +119,7 @@ const WysiwygBlock = ({ block }: { block: any }) => {
                       </div>;
                     case 'Set_Wysiwyg_AudioFile':
                       return <div className='py-20 fade' key={index}>
-                        <audio controls>
+                        <audio controls className='w-full'>
                           <source src={item.audio_file?.permalink} type="audio/mpeg" />
                           Your browser does not support the audio element.
                         </audio>
@@ -127,7 +127,7 @@ const WysiwygBlock = ({ block }: { block: any }) => {
                     case 'Set_Wysiwyg_PdfDownload':
                       return <div className='flex items-center py-20 fade' key={index}>
                           <div className='relative pr-20'>
-                            <a href={item.pdf?.permalink} target="_blank" className='text-blue'><PdfIcon className='w-100 h-auto'/></a>
+                            <a href={item.pdf?.permalink} target="_blank" className='text-blue'><PdfIcon className='w-50 h-auto'/></a>
                           </div>
                           <div className='text-30 leading-40 font-300'>
                              {item.pdf_text}

@@ -245,7 +245,7 @@ const HomePartners = ({ block }: { block: any }) => {
                       <div ref={CopyRef} className='copy text-40 leading-60 font-300 ' dangerouslySetInnerHTML={{ __html: item.description }}></div>
                       <div className={`${styles.nextwrap} w-full flex text-left pt-20 text-blue`}>
                         <div ref={NextArrowRef}><NextArrow className={`${styles.nextarrow} next w-40 h-auto`} /></div>
-                        <div className={`${styles.next} font-nothingyoucoulddo text-40 font-400 leading-none text-blue ml-10 mt-15 cursor-pointer`} aria-label="Next" onClick={() => advance()}><div ref={NextRef}><TextNext className={`${styles.nexttext} w-100 h-auto`} /></div></div>
+                        <div className={`font-nothingyoucoulddo text-40 font-400 leading-none text-blue ml-10 mt-15 cursor-pointer`} aria-label="Next Partner" onClick={() => advance()}><div ref={NextRef}><TextNext className={`${styles.nexttext} w-100 h-auto`} /></div></div>
                       </div>
                     </div>
                   </div>
