@@ -157,12 +157,13 @@ const WysiwygBlock = ({ block, meta }: { block: any, meta: any }) => {
                 </div>
               )}
               {block.client[0] && block.client[0].client_logo && (
-                <div ref={logoRef} className='logo relative block w-7/12 mr-auto ml-0 z-10 '>
+                <div ref={logoRef} className={`${styles.logo} logo relative block w-7/12 mr-auto ml-0 z-10`}>
                   <Image
                     src={block.client[0].client_logo?.permalink}
                     width={block.client[0].client_logo?.width}
                     height={block.client[0].client_logo?.height}
                     alt={block.client[0].client_logo?.alt ? block.client[0].client_logo.alt : ''}
+                    className='w-auto h-auto object-contain'
                   />
                 </div>
               )}
