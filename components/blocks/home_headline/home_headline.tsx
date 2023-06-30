@@ -93,15 +93,15 @@ const HomeHeadlineBlock = ({ block }: { block: any }) => {
       .fromTo(
         ".morse",
         { autoAlpha: 0, fill: "rgb(241,90,36)" },
-        { duration: 0.25, autoAlpha: 1, fill: "rgb(255,255,255)",
-          stagger: 0.03,
+        { duration: 0.23, autoAlpha: 1, fill: "rgb(255,255,255)",
+          stagger: 0.02,
           ease: 'power3.out' },0
       )
       .fromTo(
         ".text1",
         { autoAlpha: 0 },
-        { duration: 0.23, autoAlpha: 1,
-          stagger: 0.07,
+        { duration: 0.20, autoAlpha: 1,
+          stagger: 0.05,
           ease: 'power3.out' },0.1
       )
       .fromTo(
@@ -129,7 +129,7 @@ const HomeHeadlineBlock = ({ block }: { block: any }) => {
           {x:"500%",autoAlpha:1,duration: 0.7,ease: 'power3.out'},
           {autoAlpha:1,duration: 0},
           {autoAlpha:0,duration: 0}
-        ] },1.4
+        ] },1.3
       )
       .fromTo(
         ".typewriter",
@@ -198,24 +198,24 @@ const HomeHeadlineBlock = ({ block }: { block: any }) => {
   }, []);
 
   return (
-  <section ref={sectionRef} className={`${styles.root} relative w-full z-10`}>
-    <div className="px-0 md:px-20 py-160">
-      <div className="w-full px-40 md:px-100">
+  <section ref={sectionRef} id="home-headline" className={`${styles.root} relative w-full z-10`}>
+    <div className="px-0 md:px-20 py-100">
+      <div className="w-full px-40 md:px-80">
         <div ref={TelegraphRef} className={`${styles.telegraph} w-100 mb-20`}>
           <Telegraph />
         </div>
       </div>
       <div className="w-full">
-        <div ref={ComRef} className={`${styles.communication} relative text-themebackground mb-40`}>
+        <div ref={ComRef} className={`${styles.communication} relative text-themebackground`}>
           <CommunicationArts />
           <div ref={PaintbrushRef} className={`${styles.paintbrush} paintbrush absolute opacity-0 w-400 mb-20 text-slate`}>
             <Paintbrush />
           </div>
         </div>
       </div>
-      <div className="w-full px-40 md:px-100">
+      <div className="w-full pt-20 px-40 md:px-80">
         <div className="w-full text-left">
-          <div ref={SubRef} className="sub text-40 md:text-55 leading-none font-600 pl-20 pb-40">
+          <div ref={SubRef} className="sub text-40 md:text-55 leading-none font-600 pb-40 text-left">
             {block.subheadline}
           </div>
           <div ref={TypewriterRef} className={`${styles.typewriter} typewriter w-140 mb-20 text-slate`}>

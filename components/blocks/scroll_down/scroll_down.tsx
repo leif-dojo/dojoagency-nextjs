@@ -60,11 +60,16 @@ const HomePartners = ({ block }: { block: any }) => {
     return () => ctx.revert();
   }, []);
 
+  const scrollTo = () => {
+    const nextSection = sectionRef.current.nextSibling
+    nextSection.scrollIntoView({ behavior: "smooth" });
+  }
+
   return (
     <section ref={sectionRef} className={`${styles.root} relative w-full -mt-50 z-10`}>
       <div className="px-50 md:px-100">
         <div className="relative flex items-center justify-items-center text-center">
-          <div className={`${styles.arrowwrap} relative w-100 mx-auto`}>
+          <div className={`${styles.arrowwrap} relative w-100 mx-auto`} onClick={() => scrollTo()}>
             <div ref={ArrowRef}><ScrollDown className={`${styles.arrow} next w-full h-auto text-blue`} /></div>
             <div ref={TextRef} className={`${styles.textwrap} absolute `}>
               <div className='text font-nothingyoucoulddo text-22 font-300 text-blue'>Scroll</div>

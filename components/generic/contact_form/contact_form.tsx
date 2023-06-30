@@ -146,7 +146,7 @@ const NavBlock = ({
                     Connect With Us
                   </div>
                   <div className={`${styles.inputwrapper} ${valid1 ? '':  styles.error} w-full`}>
-                    <label className="w-full text-left text-22 leading-none font-300 pb-20 text-slate" htmlFor="name">Name*</label>
+                    <label className="w-full text-left text-24 leading-none font-600 pb-20 text-slate" htmlFor="name">Name*</label>
                     <input
                       id="name"
                       placeholder=""
@@ -186,7 +186,7 @@ const NavBlock = ({
                     Connect With Us
                   </div>
                   <div className={`${styles.inputwrapper} ${valid2 ? '':  styles.error} w-full`}>
-                    <label className="w-full text-left text-22 leading-none font-300 pb-20 text-white" htmlFor="email">Email*</label>
+                    <label className="w-full text-left text-24 leading-none font-600 pb-20 text-white" htmlFor="email">Email*</label>
                     <input
                       id="email"
                       placeholder=""
@@ -226,7 +226,7 @@ const NavBlock = ({
                     Connect With Us
                   </div>
                   <div className={`${styles.inputwrapper} ${valid3 ? '':  styles.error} w-full`}>
-                    <label className="w-full text-left text-22 leading-none font-300 pb-20 text-slate" htmlFor="message">Message*</label>
+                    <label className="w-full text-left text-24 leading-none font-600 pb-20 text-slate" htmlFor="message">Message*</label>
                     <textarea
                       id="message"
                       placeholder=""

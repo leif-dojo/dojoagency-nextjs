@@ -25,14 +25,14 @@ const VideoBlock = ({ image_placeholder, video_placeholder, video }: { image_pla
       setActive(true)
       setPlaying(playing ? false : true)
       //active ? setVideoState('play') : setVideoState('pause');
-      playing ? cursorChangeHandler("play") : cursorChangeHandler("pause")
+      playing ? cursorChangeHandler("play") : cursorChangeHandler("default")
     }
     const { cursorType, cursorChangeHandler} = useThemeContext();
 
     const onMouseEnter = () => {
         if(video) {
             setHovering(true)
-            playing ? cursorChangeHandler("pause") : cursorChangeHandler("play")
+            playing ? cursorChangeHandler("default") : cursorChangeHandler("play")
         }
     };
 
@@ -117,14 +117,16 @@ const VideoBlock = ({ image_placeholder, video_placeholder, video }: { image_pla
                                 url={video}
                                 playing={playing}
                                 loop={false}
-                                controls={false}
+                                controls={true}
                                 volume={1}
                                 muted={false}
                                 //width='1920px'
                                 //height='1080px'
                                 playsinline={true}
-                                onReady={() => console.log('onReady')}
-                                onStart={() => console.log('onStart')}
+                                //onReady={() => console.log('onReady')}
+                                //onStart={() => console.log('onStart')}
+                                onPause={() => setPlaying(false)}
+                                onPlay={() => setPlaying(true)}
                                 config={{
                                     vimeo: {
                                         //controls: false
@@ -135,15 +137,8 @@ const VideoBlock = ({ image_placeholder, video_placeholder, video }: { image_pla
                     </div>
                 )}
 
-                <div className='absolute flex w-full h-full z-10 left-0 top-0' onClick={() => openOrClose()}></div>
+                <div className={`absolute flex w-full h-full z-10 left-0 top-0 ${playing ? 'hidden': ''}`} onClick={() => openOrClose()}></div>
 
-            </div>
-
-            
-
-            <div className='hidden relative z-99 text-20 text-white'>
-                <button onClick={toggleVideo}>Play</button>
-                {playing ? "false" : "true"}
             </div>
 
         </div>

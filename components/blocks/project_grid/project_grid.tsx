@@ -91,12 +91,13 @@ const ProjectGridBlock = ({ block }: { block: any }) => {
         </div>
       </div>
 
-      <div className={`${styles.grid} grid grid-cols-1 md:grid-cols-3 gap-30 w-full pt-30`} onMouseEnter={() => onMouseEnter()} onMouseLeave={() => onMouseLeave()}>
+      <div className={`${styles.grid} grid grid-cols-1 md:grid-cols-3 gap-30 w-full pt-30`}>
 
         {block?.project_grid?.map((block:any, index:any) => {
-          //console.log('col: ', index, block)
+          const hasPopup = block.popup_headline || block.popup_wysiwyg || block.popup_image || block.popup_video_local || block.popup_video_embed;
           return (
-            <div className={`${styles.project} project relative overflow-hidden cursor-pointer fade`} onClick={() => openOrClose(index)} key={index}>
+            <div className={`${styles.project} project relative overflow-hidden ${hasPopup ? 'cursor-pointer' : ''} fade`} 
+              onClick={() => {hasPopup ? openOrClose(index) : ''}} onMouseEnter={() => {hasPopup ? onMouseEnter() : ''}} onMouseLeave={() => {hasPopup ? onMouseLeave() : ''}} key={index}>
               <div className="block w-full h-full">
                 <div className={`w-full px-30 py-20`}>
                   {block.project_title && (
@@ -126,7 +127,7 @@ const ProjectGridBlock = ({ block }: { block: any }) => {
                   {block.project_video_embed && (
                         <div className={`${styles.video} video absolute w-full h-full top-0 left-0`} >
                           <div className={`${styles.videoinner} absolute block w-auto h-full min-w-full min-h-full aspect-video`}>
-                            <iframe src={`${block.project_video_embed}?autoplay=1&loop=1&autopause=0&background=1&muted=1`} 
+                            <iframe src={`${block.project_video_embed}?autoplay=1&loop=1&autopause=0&background=1&muted=1&controls=0`} 
                             title="Vimeo video player"
                             className="vimeo w-full h-full"
                             width="640" height="360"
@@ -143,7 +144,7 @@ const ProjectGridBlock = ({ block }: { block: any }) => {
                               width="640" 
                               height="360"
                               autoPlay
-                              controls
+                              controls={false}
                               loop
                               muted
                               preload="auto">
@@ -214,7 +215,7 @@ const ProjectGridBlock = ({ block }: { block: any }) => {
                         </div>
                     </div>
                   )}
-                  {block?.project_grid[activeindex].project_video_local && (
+                  {block?.project_grid[activeindex].popup_video_local && (
                         <div className={`${styles.video} video relative w-full md:ml-50 aspect-video mb-40`} >
                           <div className={`${styles.videoinner} absolute block w-auto h-full min-w-full min-h-full aspect-video`}>
                             <video 

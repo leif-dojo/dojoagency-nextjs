@@ -120,7 +120,7 @@ const HomePartners = ({ block }: { block: any }) => {
       }).fromTo(
         ".logo",
         {alpha: 0, }, 
-        {alpha: 1, duration: 0.2}
+        {alpha: 1, duration: 0.1}
       ).add( function(){
         if(process.browser){
           document.getElementById("ovalobject")?.contentDocument?.getElementById("maskanimate")?.beginElement();
@@ -128,8 +128,8 @@ const HomePartners = ({ block }: { block: any }) => {
        } ).fromTo(
         ".copy",
         {alpha: 0, y: 50 }, 
-        {alpha: 1, y: 0, duration: 0.25},
-        1.5
+        {alpha: 1, y: 0, duration: 0.15},
+        1
       ).set( NextArrowRef.current, {
         className: styles.draw
       })
@@ -141,7 +141,7 @@ const HomePartners = ({ block }: { block: any }) => {
 
 
       function setSignaturePaths() {
-        let totalDur = 1
+        let totalDur = 0.5
         // get all SVG elements - lines and dots
         const paths = sectionRef.current.querySelectorAll('.autograph__path')
         // prepare path length variable

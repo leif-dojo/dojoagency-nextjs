@@ -117,7 +117,7 @@ const HomeFeaturedWork = ({ block }: { block: any }) => {
                     {block.video_embed && (
                           <div className={`${styles.video} video absolute w-full h-full overflow-hidden top-0 z-1`} >
                             <div className={`${styles.videoinner} absolute block w-auto h-full min-w-full min-h-full aspect-video`}>
-                              <iframe src={`${block.video_embed}?autoplay=1&loop=1&autopause=0&background=1&muted=1`} 
+                              <iframe src={`${block.video_embed}?autoplay=1&loop=1&autopause=0&background=1&muted=1&controls=0`} 
                               title="Vimeo video player"
                               className="vimeo w-full h-full"
                               width="640" height="360"
@@ -134,7 +134,7 @@ const HomeFeaturedWork = ({ block }: { block: any }) => {
                                 width="640" 
                                 height="360"
                                 autoPlay
-                                controls
+                                controls={false}
                                 loop
                                 muted
                                 preload="auto">
@@ -147,7 +147,7 @@ const HomeFeaturedWork = ({ block }: { block: any }) => {
                     {block.video_embed_hover && (
                           <div className={`${styles.videohover} video absolute w-full h-full overflow-hidden top-0 z-1`} >
                             <div className={`${styles.videoinner} absolute block w-auto h-full min-w-full min-h-full aspect-video`}>
-                              <iframe src={`${block.video_embed_hover}?autoplay=1&loop=1&autopause=0&background=1&muted=1`} 
+                              <iframe src={`${block.video_embed_hover}?autoplay=1&loop=1&autopause=0&background=1&muted=1&controls=0`} 
                               title="Vimeo video player"
                               className="vimeo w-full h-full"
                               width="640" height="360"
@@ -164,7 +164,7 @@ const HomeFeaturedWork = ({ block }: { block: any }) => {
                                 width="640" 
                                 height="360"
                                 autoPlay
-                                controls
+                                controls={false}
                                 loop
                                 muted
                                 preload="auto">

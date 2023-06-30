@@ -48,15 +48,15 @@ const FooterBlock = ({
               </ul>
             </div>
             <div className="col-span-full md:col-span-3 flex flex-col mt-100 md:mt-0">
-              <div className={cn(styles.address, 'flex text-27 leading-32 font-400 text-white text-left')}>
+              <div className={cn(styles.address, 'flex')}>
                 <div className={`${styles.pin} mr-10 text-blue`}><IconPin /></div>
-                {footer.address}
+                <div className='text-27 leading-32 font-400 text-white text-left' dangerouslySetInnerHTML={{ __html: footer.address }}></div>
               </div>
               <div className='pt-30 pb-100 md:pb-0'>
                 <Socials socials={footer.socials}/>
               </div>
-              <div className={cn(styles.address, 'text-60 md:text-36 leading-none font-500 text-white text-left mt-auto cursor-pointer pt-100')} onClick={()=> openOrClose()} onMouseEnter={() => cursorChangeHandler("bridge")} onMouseLeave={() => cursorChangeHandler("default")}>
-                {footer.form_cta}
+              <div className={cn(styles.address, 'mt-auto pt-100')}>
+                <div className='inline text-60 md:text-36 leading-none font-500 text-white text-left cursor-pointer' onClick={()=> openOrClose()} onMouseEnter={() => cursorChangeHandler("bridge")} onMouseLeave={() => cursorChangeHandler("default")}>{footer.form_cta}</div>
               </div>
             </div>
             <div className="md:col-span-8 text-right">

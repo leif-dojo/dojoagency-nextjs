@@ -1,18 +1,20 @@
-
+"use client"
 import React, { useEffect, useRef, useState, Fragment, useContext } from 'react'
 import Link from 'next/link'
 import IconLinkedIn from '@/public/icons/icon-linkedin.svg'
 import IconInstagram from '@/public/icons/icon-instagram.svg'
 import styles from './social_icons.module.scss'
+import { useThemeContext } from '@/context/theme'
 
 const SocialIconsBlock = ({ socials, style}: { socials:any, style?:any}) => {
+  const { contactActive, setContactActive, cursorType, cursorChangeHandler} = useThemeContext();
 
   const getSocialIcon = (t:any) => {
     switch(t.type) {
       case 'linkedin':
-        return <IconLinkedIn />;
+        return <IconLinkedIn onMouseEnter={() => cursorChangeHandler("linkedin")} onMouseLeave={() => cursorChangeHandler("default")}/>;
       case 'instagram':
-        return <IconInstagram />;
+        return <IconInstagram onMouseEnter={() => cursorChangeHandler("instagram")} onMouseLeave={() => cursorChangeHandler("default")}/>;
     }
   }
 

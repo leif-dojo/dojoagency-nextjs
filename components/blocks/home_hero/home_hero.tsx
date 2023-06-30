@@ -6,7 +6,7 @@ import Arrow from 'public/icons/icon-arrow-down.svg'
 import { useThemeContext } from '@/context/theme'
 import { useIsMobile, hexToRgb, rgbToHex } from '@/utils/general'
 import {treestart, treeend} from './trees'
-
+import ScrollDown from '@/public/icons/icon-arrow-scroll.svg'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger'
 gsap.registerPlugin(ScrollTrigger)
@@ -25,6 +25,8 @@ const HomeHeroBlock = ({ block }: { block: any }) => {
   const VideoRef = useRef<HTMLDivElement>(null)
   const DownRef = useRef<HTMLDivElement>(null)
   const RainRef = useRef<HTMLDivElement>(null)
+  const ArrowRef = useRef<HTMLDivElement>(null)
+  const TextRef = useRef<HTMLDivElement>(null)
 
   const isMobile = () => {
     return window.innerWidth < 1024
@@ -254,6 +256,7 @@ const HomeHeroBlock = ({ block }: { block: any }) => {
       const sign_4 = document.getElementsByClassName("signature-4")[0]
       const sign_5 = document.getElementsByClassName("signature-5")[0]
       const sign_6 = document.getElementsByClassName("signature-6")[0]
+
       gsap
       .timeline({
         scrollTrigger: {
@@ -327,33 +330,45 @@ const HomeHeroBlock = ({ block }: { block: any }) => {
       )
       .to(
         ".signature-1",
-        { strokeDashoffset: -1 * sign_1.getTotalLength(),//.98
-          duration: sign_1.dataset.duration, },1
+        {keyframes: [
+          {strokeDashoffset: -1 * sign_1.getTotalLength(), duration: sign_1.dataset.duration,}, 
+          {autoAlpha: 0, duration: 0}
+        ]},1
       )
       .to(
         ".signature-2",
-        { strokeDashoffset: -1 * sign_2.getTotalLength(),//.09
-          duration: sign_2.dataset.duration, },2
+        {keyframes: [
+          {strokeDashoffset: -1 * sign_2.getTotalLength(), duration: sign_2.dataset.duration,}, 
+          {autoAlpha: 0, duration: 0}
+        ]},2
       )
       .to(
         ".signature-3",
-        { strokeDashoffset: -1 * sign_3.getTotalLength(),//.26
-          duration: sign_3.dataset.duration, },2.1
+        {keyframes: [
+          {strokeDashoffset: -1 * sign_3.getTotalLength(), duration: sign_3.dataset.duration,}, 
+          {autoAlpha: 0, duration: 0}
+        ]},2.1
       )
       .to(
         ".signature-4",
-        { strokeDashoffset: -1 * sign_4.getTotalLength(),//.11
-          duration: sign_4.dataset.duration, },2.5
+        {keyframes: [
+          {strokeDashoffset: -1 * sign_4.getTotalLength(), duration: sign_4.dataset.duration,}, 
+          {autoAlpha: 0, duration: 0}
+        ]},2.5
       )
       .to(
         ".signature-5",
-        { strokeDashoffset: -1 * sign_5.getTotalLength(),//.26
-          duration: sign_5.dataset.duration, },3
+        {keyframes: [
+          {strokeDashoffset: -1 * sign_5.getTotalLength(), duration: sign_5.dataset.duration,}, 
+          {autoAlpha: 0, duration: 0}
+        ]},3
       )
       .to(
         ".signature-6",
-        { strokeDashoffset: -1 * sign_6.getTotalLength(),//1.2
-          duration: sign_6.dataset.duration, },4.2
+        {keyframes: [
+          {strokeDashoffset: -1 * sign_6.getTotalLength(), duration: sign_6.dataset.duration,}, 
+          {autoAlpha: 0, duration: 0}
+        ]},4.2
       )
       /*.fromTo(
         ".tree",
@@ -465,12 +480,60 @@ const HomeHeroBlock = ({ block }: { block: any }) => {
         ] },6
       )
 
+
+      //scroll arrow
+      gsap
+      .timeline({
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: 'top bottom',
+          //end: '100% bottom',
+          //scrub: true,
+          //markers: true,
+          toggleActions: "restart none none reverse"
+        },
+      })
+    .fromTo(
+      TextRef.current,
+      {alpha: 0 }, 
+      {alpha: 1}
+    ).set( ArrowRef.current, {
+      className: styles.draw
+    })
+
+    gsap
+      .timeline({
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: 'center 60%',
+          //end: '100% bottom',
+          //scrub: true,
+          //markers: true,
+          toggleActions: "restart none none reverse"
+        },
+      })
+    .fromTo(
+      TextRef.current,
+      {alpha: 1 }, 
+      {alpha: 0}
+    ).set( ArrowRef.current, {
+      className: styles.drawrev
+    })
+
     }, sectionRef);
     return () => ctx.revert();
   }, []);
 
+  const scrollTo = () => {
+    console.log("scrollto")
+    document.getElementById("home-headline").scrollIntoView({ behavior: "smooth" });
+    /*window.scrollTo({
+      top: 100,
+      left: 100,
+      behavior: "smooth",
+    });*/
+  }
 
-  //console.log("Home Hero: ", block)
   return (
   <section ref={sectionRef} className={`${styles.root} bg-themebackground-off w-full pb-0`} onMouseEnter={() => cursorChangeHandler("peace")} onMouseLeave={() => cursorChangeHandler("default")}>
     <div ref={RainRef} id="rain" className={`${styles.rain} absolute w-full h-full top-0 left-0 z-9`}></div>
@@ -488,13 +551,20 @@ const HomeHeroBlock = ({ block }: { block: any }) => {
         </div>
       </div>
 
-      <div ref={PanelRef} className={`${styles.panel} relative w-full bg-themebackground-ff px-50 md:px-100 mt-360 md:mt-320 pb-180 md:pb-120 z-6`}>
+      <div ref={PanelRef} className={`${styles.panel} relative w-full bg-themebackground-ff px-50 md:px-100 mt-360 md:mt-320 pb-180 md:pb-100 z-6`}>
         <div ref={HeadlineRef} className='relative w-full text-center font-lato text-90 md:text-113 font-300 leading-none py-20'>
           <span className='relative'>S<div className={`${styles.splat} splat ${styles.splats}`}><div></div><div></div><div></div><div></div></div></span>tori<span className='relative'>e<div className={`${styles.splat} splat ${styles.splate}`}><div></div><div></div><div></div><div></div></div></span>s at work
         </div>
         <div className={`flex justify-center w-full text-center py-20`}>
-          <div ref={DownRef} className={`${styles.arrow} text-center w-40 h-auto`}>
-            <Arrow />
+          <div ref={DownRef} className={`${styles.arrow} relative text-center cursor-pointer z-10`} onClick={() => scrollTo()}>
+            <div className="relative flex items-center justify-items-center text-center">
+              <div className={`${styles.arrowwrap} relative w-100 mx-auto`} onClick={() => scrollTo()}>
+                <div ref={ArrowRef}><ScrollDown className={`${styles.arrow} next w-full h-auto text-blue`} /></div>
+                <div ref={TextRef} className={`${styles.textwrap} absolute `}>
+                  <div className='text font-nothingyoucoulddo text-22 font-300 text-blue'>Scroll</div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
         <div ref={VideoRef} className='relative mx-0 md:mx-160 z-10'>

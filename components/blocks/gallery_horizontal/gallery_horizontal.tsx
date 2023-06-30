@@ -121,7 +121,7 @@ const GalleryHorizontalBlock = ({ block }: { block: any }) => {
                                 {item.video_embed && (
                                       <div className="video absolute w-full h-full overflow-hidden top-0 z-1" >
                                         <div className="video-inner absolute block w-full h-full">
-                                          <iframe src={`${item.video_embed}?autoplay=1&loop=1&autopause=0&background=1&muted=1`} 
+                                          <iframe src={`${item.video_embed}?autoplay=1&loop=1&autopause=0&background=1&muted=1&controls=0`} 
                                           title="Vimeo video player"
                                           className="vimeo w-full h-full"
                                           width="640" height="360"
@@ -138,7 +138,7 @@ const GalleryHorizontalBlock = ({ block }: { block: any }) => {
                                             width="640" 
                                             height="360"
                                             autoPlay
-                                            controls
+                                            controls={false}
                                             loop
                                             muted
                                             preload="auto">

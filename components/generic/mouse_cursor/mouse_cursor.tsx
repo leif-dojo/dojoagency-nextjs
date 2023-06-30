@@ -8,6 +8,7 @@ import IconPlay from "@/public/icons/cursor-play.svg"
 import IconPause from "@/public/icons/cursor-pause.svg"
 import IconHeart from "@/public/icons/cursor-heart.svg"
 import IconBridge from "@/public/icons/cursor-bridge.svg"
+import IconThumb from "@/public/icons/cursor-thumb.svg"
 
 const Cursor = () => {
   const { cursorType, cursorChangeHandler} = useThemeContext();
@@ -38,6 +39,10 @@ const Cursor = () => {
         return <div className={`${styles.view} flex`}><div className="w-full font-lato text-20 leading-none font-500 text-orange text-center pb-10 mt-auto mb-0">View »</div></div>;
       case 'next':
         return <div className={`${styles.view} flex`}><div className="w-full font-lato text-20 leading-none font-500 text-orange text-center pb-10 mt-auto mb-0">Next »</div></div>;
+      case 'instagram':
+        return <div className={`${styles.instagram} text-orange`}><IconHeart /></div>;
+      case 'linkedin':
+        return <div className={`${styles.linkedin} text-orange`}><IconThumb /></div>;
     }
   }
 

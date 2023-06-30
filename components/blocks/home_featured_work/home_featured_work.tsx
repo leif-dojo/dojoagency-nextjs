@@ -91,7 +91,7 @@ const HomeFeaturedWork = ({ block }: { block: any }) => {
         className: styles.draw
       }).set( ViewAllRef.current, {
         className: styles.draw
-      })
+      },1)
       
 
       function setSignaturePaths() {
@@ -234,7 +234,7 @@ const HomeFeaturedWork = ({ block }: { block: any }) => {
                     {block.video_embed && (
                           <div className={`${styles.video} video absolute w-full h-full overflow-hidden top-0 z-1`} >
                             <div className={`${styles.videoinner} absolute block w-auto h-full min-w-full min-h-full aspect-video`}>
-                              <iframe src={`${block.video_embed}?autoplay=1&loop=1&autopause=0&background=1&muted=1`} 
+                              <iframe src={`${block.video_embed}?autoplay=1&loop=1&autopause=0&background=1&muted=1&controls=0`} 
                               title="Vimeo video player"
                               className="vimeo w-full h-full"
                               width="640" height="360"
@@ -251,7 +251,7 @@ const HomeFeaturedWork = ({ block }: { block: any }) => {
                                 width="640" 
                                 height="360"
                                 autoPlay
-                                controls
+                                controls={false}
                                 loop
                                 muted
                                 preload="auto">
@@ -264,7 +264,7 @@ const HomeFeaturedWork = ({ block }: { block: any }) => {
                     {block.video_embed_hover && (
                           <div className={`${styles.videohover} video absolute w-full h-full overflow-hidden top-0 z-1`} >
                             <div className={`${styles.videoinner} absolute block w-auto h-full min-w-full min-h-full aspect-video`}>
-                              <iframe src={`${block.video_embed_hover}?autoplay=1&loop=1&autopause=0&background=1&muted=1`} 
+                              <iframe src={`${block.video_embed_hover}?autoplay=1&loop=1&autopause=0&background=1&muted=1&controls=0`} 
                               title="Vimeo video player"
                               className="vimeo w-full h-full"
                               width="640" height="360"
@@ -281,7 +281,7 @@ const HomeFeaturedWork = ({ block }: { block: any }) => {
                                 width="640" 
                                 height="360"
                                 autoPlay
-                                controls
+                                controls={false}
                                 loop
                                 muted
                                 preload="auto">
@@ -308,7 +308,7 @@ const HomeFeaturedWork = ({ block }: { block: any }) => {
       <div className={`${styles.nextwrap} relative w-full pt-80 text-right`}>
         <Link className='relative text-white text-right inline-flex ml-auto mr-0' href={`/portfolio/`} aria-label="Dojo Agency fade">
           <div ref={NextArrowRef} className='text-white'><NextArrow className={`${styles.nextarrow} w-40 h-auto`} /></div>
-          <span ref={NextRef} className={`${styles.next} relative pt-20 pl-10`}><div ref={ViewAllRef}><TextViewAll className={`${styles.viewalltext} w-100 h-auto text-white`} /></div></span>
+          <span ref={NextRef} className={`${styles.next} relative pt-20 pl-10`}><div ref={ViewAllRef} className='text-white'><TextViewAll className={`${styles.viewalltext} w-100 h-auto text-white`} /></div></span>
         </Link>
       </div>
     </div>

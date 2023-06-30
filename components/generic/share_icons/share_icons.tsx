@@ -8,7 +8,10 @@ import styles from './share_icons.module.scss'
 
 const SocialIconsBlock = ({meta}: {meta:any}) => {
 
-  const url = location ? location?.href : ''
+  let url = '';
+  if(process.browser){
+    url = location ? location?.href : ''
+  }
   const title = meta.title;
   const description = meta.description;
 

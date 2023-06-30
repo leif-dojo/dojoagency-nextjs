@@ -5,7 +5,7 @@
 	<polyline fill="none" stroke="#00ACE6" stroke-miterlimit="10" points="9.918,2.027 4.347,4.813 2.75,7.5 3.375,10.594 
 		6.832,13.159 11.875,14.938 18.188,16.094 24.469,16.5 30.25,16.344 35.813,15.531 40.938,14.094 44.994,12.16 47.25,8.889 
 		47.165,6.729 44.415,4.191 40.737,2.474 37.188,1.428 33.189,0.58 25.865,0.041" stroke-dasharray="100" stroke-dashoffset="-100">
-			<animate id="maskanimate" attributeName="stroke-dashoffset" from="-100" to="0" dur="1000ms" repeatCount="0" begin="indefinite" fill="freeze" />
+			<animate id="maskanimate" attributeName="stroke-dashoffset" from="-100" to="0" dur="500ms" repeatCount="0" begin="indefinite" fill="freeze" />
 		</polyline>
   </mask>
  </defs>

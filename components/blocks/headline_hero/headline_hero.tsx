@@ -1,5 +1,5 @@
 "use client"
-import React, { useRef, useLayoutEffect } from 'react'
+import React, { useState, useRef, useLayoutEffect } from 'react'
 import { useThemeContext } from '@/context/theme'
 import styles from './headline_hero.module.scss'
 import Image from 'next/image'
@@ -12,6 +12,7 @@ gsap.registerPlugin(ScrollTrigger)
 
 export const typename = 'Set_Components_Wysiwyg'
 const WysiwygBlock = ({ block, meta }: { block: any, meta: any }) => {
+  const [copytext, setCopyText] = useState('Copy Link')
   const { cursorType, cursorChangeHandler, colorChangeHandler, backgroundChangeHandler} = useThemeContext();
   const sectionRef = useRef<HTMLDivElement>(null)
   const eyebrowRef = useRef<HTMLDivElement>(null)
@@ -25,7 +26,13 @@ const WysiwygBlock = ({ block, meta }: { block: any, meta: any }) => {
   const brRef = useRef<HTMLDivElement>(null)
 
   const copyToClip = () => {
-    navigator.clipboard.writeText(location.href);
+    setCopyText('Copied!')
+    if(process.browser){
+      navigator.clipboard.writeText(location?.href);
+      setTimeout(() => {
+        setCopyText('Copy Link')
+      }, 2000);
+    }
   }
 
   useLayoutEffect(() => {
@@ -78,50 +85,50 @@ const WysiwygBlock = ({ block, meta }: { block: any, meta: any }) => {
         { autoAlpha: 0, y: "-20%" },
         { duration: 0.1, autoAlpha: 1, y: "0%",
           ease: 'power3.out'
-        }
+        },0.5
       )
       .fromTo(
         logoRef.current,
         { autoAlpha: 0, y: "-20%" },
-        { duration: 0.15, autoAlpha: 1, y: "0%",
+        { duration: 0.1, autoAlpha: 1, y: "0%",
           ease: 'power3.out'
-        }
+        }, ">"
       )
       .fromTo(
         brRef.current,
         { autoAlpha: 0, },
-        { duration: 0.15, autoAlpha: 1,
+        { duration: 0.1, autoAlpha: 1,
           ease: 'Bounce.easeOut'
-        }
+        }, ">"
       )
       .fromTo(
         shareTitleRef.current,
         { autoAlpha: 0, y: "-20%" },
         { duration: 0.1, autoAlpha: 1, y: "0%",
           ease: 'power3.out'
-        }
+        }, ">"
       )
       .fromTo(
         ".sharewrap div div div",
         { autoAlpha: 0, y: "150%" },
-        { duration: 0.3, autoAlpha: 1, y: "0%",
-          stagger: 0.2,
+        { duration: 0.2, autoAlpha: 1, y: "0%",
+          stagger: 0.15,
           ease: 'Bounce.easeOut'
-        }
+        }, ">"
       )
       .fromTo(
         copyRef.current,
         { autoAlpha: 0, y: "-20%" },
         { duration: 0.1, autoAlpha: 1, y: "0%",
           ease: 'power3.out'
-        }
+        }, ">"
       )
       .fromTo(
         copyIconRef.current,
         { autoAlpha: 0, y: "150%" },
-        { duration: 0.2, autoAlpha: 1, y: "0%",
+        { duration: 0.15, autoAlpha: 1, y: "0%",
           ease: 'Bounce.easeOut'
-        }
+        }, ">"
       )
 
     }, sectionRef);
@@ -144,9 +151,11 @@ const WysiwygBlock = ({ block, meta }: { block: any, meta: any }) => {
           </div>
           <div className="w-full md:w-4/12 text-right">
             <div ref={sideRef} className="w-full md:w-10/12 ml-auto mr-0 text-left pt-30">
-              <div ref={sideTitleRef} className="w-full text-25 leading-none font-300 pb-20 ">
-                {block.sharing_title}
-              </div>
+              {block.sharing_title && (
+                <div ref={sideTitleRef} className="w-full text-25 leading-none font-300 pb-20 ">
+                  {block.sharing_title}
+                </div>
+              )}
               {block.client[0] && block.client[0].client_logo && (
                 <div ref={logoRef} className='logo relative block w-7/12 mr-auto ml-0 z-10 '>
                   <Image
@@ -166,7 +175,7 @@ const WysiwygBlock = ({ block, meta }: { block: any, meta: any }) => {
                     <div className="w-full sharewrap"><ShareIcons meta={meta}/></div>
                   </div>
                   <div className="w-full md:w-1/2 ">
-                    <div ref={copyRef} className="text-25 leading-none font-300 pb-20 cursor-pointer">Copy Link</div>
+                    <div ref={copyRef} className="text-25 leading-none font-300 pb-20 cursor-pointer">{copytext}</div>
                     <div className="w-full">
                       <div ref={copyIconRef} className={`${styles.icon} flex items-center justify-center`}>
                         <div className={`relative flex items-center justify-center text-blue cursor-pointer`} aria-label="copy to clipboard" onClick={copyToClip}>
