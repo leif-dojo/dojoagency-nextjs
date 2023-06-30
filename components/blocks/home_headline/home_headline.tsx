@@ -198,7 +198,7 @@ const HomeHeadlineBlock = ({ block }: { block: any }) => {
   }, []);
 
   return (
-  <section ref={sectionRef} id="home-headline" className={`${styles.root} relative w-full z-10`}>
+  <section ref={sectionRef} id="home-headline" className={`${styles.root} relative w-full z-10 overflow-hidden`}>
     <div className="px-0 md:px-20 py-100">
       <div className="w-full px-40 md:px-80">
         <div ref={TelegraphRef} className={`${styles.telegraph} w-100 mb-20`}>
