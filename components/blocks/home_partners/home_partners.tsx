@@ -1,9 +1,9 @@
 "use client"
-import React, { useContext, useEffect, useState, useRef, useLayoutEffect } from 'react'
-import Image from 'next/image'
+import React, { useState, useRef, useLayoutEffect } from 'react'
 import styles from './home_partners.module.scss'
+import Image from 'next/image'
 import { useThemeContext } from '@/context/theme'
-import { useIsMobile, hexToRgb, rgbToHex } from '@/utils/general'
+import { useIsMobile, hexToRgb } from '@/utils/general'
 import OvalArrow from '@/public/icons/icon-oval-arrow.svg'
 import NextArrow from '@/public/icons/icon-arrow-next-style.svg'
 import TextNext from '@/public/text-next.svg'
@@ -12,9 +12,8 @@ import { ScrollTrigger } from 'gsap/dist/ScrollTrigger'
 gsap.registerPlugin(ScrollTrigger)
 
 export const typename = 'Set_Components_HomePartners'
-
 const HomePartners = ({ block }: { block: any }) => {
-  const { cursorType, cursorChangeHandler, colorChangeHandler, backgroundChangeHandler} = useThemeContext();
+  const { cursorType, cursorChangeHandler, colorChangeHandler, backgroundChangeHandler } = useThemeContext();
   const [step, setStep] = useState(0)
   const [colorlocal, setColorLocal] = useState('');
   const [backgroundColorlocal, setBackgroundColorLocal] = useState('');
@@ -42,7 +41,7 @@ const HomePartners = ({ block }: { block: any }) => {
     let ctx = gsap.context(() => {
 
       //set iniital if avail
-      if(colorlocal != ''){
+      if (colorlocal != '') {
         var r = document.querySelector('body');
         r.style.color = '#FFF';
         r.style.backgroundColor = '#231f20';
@@ -51,53 +50,53 @@ const HomePartners = ({ block }: { block: any }) => {
       }
 
       //Theme Colors
-      const TextColor = '#FFFFFF';
-      const BackgroundColor = '#231f20';
+      const TextColor = block.text_color ? block.text_color : '#FFFFFF';
+      const BackgroundColor = block.background_color ? block.background_color : '#231f20';
       const element = document.querySelector("body");
       const getter = gsap.getProperty(element);
       gsap
-      .timeline({
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "top 50%",
-          end: "top 10%",
-          scrub: true,
-          // markers: true,
-        },
-      })
-      .to(element, {
-        color: `rgb(${hexToRgb(TextColor)})`,
-        backgroundColor: `rgb(${hexToRgb(BackgroundColor)})`,
-        ease: "none",
-        onUpdate: (e) => {
-          colorChangeHandler(getter("color"))
-          backgroundChangeHandler(getter("backgroundColor"))
-          setColorLocal(getter("color"))
-          setBackgroundColorLocal(getter("backgroundColor"))
-        }
-      })
+        .timeline({
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top 50%",
+            end: "top 10%",
+            scrub: true,
+            // markers: true,
+          },
+        })
+        .to(element, {
+          color: `rgb(${hexToRgb(TextColor)})`,
+          backgroundColor: `rgb(${hexToRgb(BackgroundColor)})`,
+          ease: "none",
+          onUpdate: (e) => {
+            colorChangeHandler(getter("color"))
+            backgroundChangeHandler(getter("backgroundColor"))
+            setColorLocal(getter("color"))
+            setBackgroundColorLocal(getter("backgroundColor"))
+          }
+        })
 
       //fades
       const boxes = gsap.utils.toArray('.fade')
       if (boxes.length) {
-          boxes.forEach((box:any, i:any) => {
-              const anim = gsap.fromTo(
-                  box,
-                  { autoAlpha: 0, y: "25%" },
-                  { duration: 1.6, autoAlpha: 1, y: "0%", stagger: 0.25, ease: "power4.out" }
-              )
-              ScrollTrigger.create({
-                  //scroller: page,
-                  trigger: box,
-                  animation: anim,
-                  start: 'top bottom',
-                  //end: 'bottom top',
-                  toggleActions: "restart none none reverse",
-                  //markers: true
-              })
+        boxes.forEach((box: any, i: any) => {
+          const anim = gsap.fromTo(
+            box,
+            { autoAlpha: 0, y: "25%" },
+            { duration: 1.6, autoAlpha: 1, y: "0%", stagger: 0.25, ease: "power4.out" }
+          )
+          ScrollTrigger.create({
+            //scroller: page,
+            trigger: box,
+            animation: anim,
+            start: 'top bottom',
+            //end: 'bottom top',
+            toggleActions: "restart none none reverse",
+            //markers: true
           })
+        })
       }
-      
+
       //Add in elements
       let t2 = gsap
         .timeline({
@@ -113,31 +112,31 @@ const HomePartners = ({ block }: { block: any }) => {
 
       t2.fromTo(
         ".fact",
-        {alpha: 0, y: 50 }, 
-        {alpha: 1, y: 0, duration: 0.1}
-      ).set( ArrowRef.current, {
+        { alpha: 0, y: 50 },
+        { alpha: 1, y: 0, duration: 0.1 }
+      ).set(ArrowRef.current, {
         className: styles.draw
       }).fromTo(
         ".logo",
-        {alpha: 0, }, 
-        {alpha: 1, duration: 0.1}
-      ).add( function(){
-        if(process.browser){
+        { alpha: 0, },
+        { alpha: 1, duration: 0.1 }
+      ).add(function () {
+        if (process.browser) {
           document.getElementById("ovalobject")?.contentDocument?.getElementById("maskanimate")?.beginElement();
         }
-       } ).fromTo(
+      }).fromTo(
         ".copy",
-        {alpha: 0, y: 50 }, 
-        {alpha: 1, y: 0, duration: 0.15},
+        { alpha: 0, y: 50 },
+        { alpha: 1, y: 0, duration: 0.15 },
         1
-      ).set( NextArrowRef.current, {
+      ).set(NextArrowRef.current, {
         className: styles.draw
       })
-      .set(
-        NextRef.current, {
+        .set(
+          NextRef.current, {
           className: styles.draw
         }
-      )
+        )
 
 
       function setSignaturePaths() {
@@ -203,14 +202,14 @@ const HomePartners = ({ block }: { block: any }) => {
                   <div className="w-full md:w-1/2 text-center pb-100 md:pb-0">
                     <div ref={RecentRef} className="recent text-52 font-600 pb-20 fade">{block.headline}</div>
                     <div className={`w-full md:w-3/4 mx-auto relative`}>
-                      
+
                       <div className={`${styles.wrap} relative w-full text-center mx-auto pt-20 pb-30 flex items-center`}>
                         <div className={`${styles.ovalwrap} circle absolute left-0 top-0 w-full h-full`}>
                           <div ref={CircleRef}>
-                              <object id="ovalobject" type="image/svg+xml" data="/icons/icon-oval-single.svg" className={`${styles.oval} oval w-full h-auto`}></object>
+                            <object id="ovalobject" type="image/svg+xml" data="/icons/icon-oval-single.svg" className={`${styles.oval} oval w-full h-auto`}></object>
                           </div>
                         </div>
-                        {item.client[0].client_logo_dark ? 
+                        {item.client[0].client_logo_dark ?
                           item.client[0].client_logo_dark && (
                             <div ref={LogoRef} className={`${styles.logo} logo relative block w-full mr-auto ml-auto z-10`}>
                               <Image
@@ -220,7 +219,7 @@ const HomePartners = ({ block }: { block: any }) => {
                                 alt={item.client[0].client_logo_dark?.alt ? item.client[0].client_logo_dark.alt : ''}
                               />
                             </div>
-                          ) : 
+                          ) :
                           item.client[0].client_logo && (
                             <div ref={LogoRef} className={`${styles.logo} logo relative block w-full mr-auto ml-auto z-10`}>
                               <Image

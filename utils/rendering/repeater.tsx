@@ -8,7 +8,6 @@ import HomeHeadlineBlock from "@/components/blocks/home_headline/home_headline"
 import HomeFeaturedWorkBlock from "@/components/blocks/home_featured_work/home_featured_work"
 import HomePartnersBlock from "@/components/blocks/home_partners/home_partners"
 import Home3ColumnBlock from "@/components/blocks/home_3_column/home_3_column"
-
 import Column2ImageBlock from "@/components/blocks/2_column_image/2_column_image"
 import Column2VideoBlock from "@/components/blocks/2_column_video/2_column_video"
 import FeaturedWorkBlock from "@/components/blocks/featured_work/featured_work"
@@ -30,13 +29,12 @@ import ScrollDownBlock from "@/components/blocks/scroll_down/scroll_down"
 //const HomeHeroBlock = dynamic(() => import(`@/components/blocks/home_hero/home_hero`)),
 //const HomeHeadlineBlock = dynamic(() => import(`@/components/blocks/home_headline/home_headline`))
 
-
 interface BlockInterface {
   __typename: string
   [key: string]: any
 }
 
-const Repeater = ({ blocks, meta }: { blocks: BlockInterface[], meta?:any }) => (
+const Repeater = ({ blocks, meta }: { blocks: BlockInterface[], meta?: any }) => (
   <>
     {blocks?.map((block, index) => {
       const blockItem = Object.values(blockInventory).find(
@@ -46,8 +44,8 @@ const Repeater = ({ blocks, meta }: { blocks: BlockInterface[], meta?:any }) => 
       if (block) {
         //console.log("repeater block: ", block.__typename)
         return (
-          ( () => {
-            switch(block.__typename) {
+          (() => {
+            switch (block.__typename) {
               case 'Set_Components_HomeHero':
                 return <HomeHeroBlock block={block} ></HomeHeroBlock>;
               case 'Set_Components_HomeHeadline':
@@ -77,7 +75,7 @@ const Repeater = ({ blocks, meta }: { blocks: BlockInterface[], meta?:any }) => 
               case 'Set_Components_Headline':
                 return <HeadlineBlock block={block} ></HeadlineBlock>;
               case 'Set_Components_HeadlineHero':
-                return <HeadlineHeroBlock block={block} meta={meta}></HeadlineHeroBlock>;  
+                return <HeadlineHeroBlock block={block} meta={meta}></HeadlineHeroBlock>;
               case 'Set_Components_TextScroller':
                 return <TextScrollerBlock block={block} ></TextScrollerBlock>;
               case 'Set_Components_ImageGrid':

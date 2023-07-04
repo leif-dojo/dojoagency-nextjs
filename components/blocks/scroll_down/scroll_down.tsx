@@ -2,23 +2,20 @@
 import React, { useState, useRef, useLayoutEffect } from 'react'
 import styles from './scroll_down.module.scss'
 import ScrollDown from '@/public/icons/icon-arrow-scroll.svg'
-
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger'
 gsap.registerPlugin(ScrollTrigger)
 
 export const typename = 'Set_Components_ScrollDown'
-
 const HomePartners = ({ block }: { block: any }) => {
   const sectionRef = useRef<HTMLDivElement>(null)
   const ArrowRef = useRef<HTMLDivElement>(null)
   const TextRef = useRef<HTMLDivElement>(null)
 
-
   useLayoutEffect(() => {
     let ctx = gsap.context(() => {
 
-        gsap
+      gsap
         .timeline({
           scrollTrigger: {
             trigger: sectionRef.current,
@@ -29,13 +26,13 @@ const HomePartners = ({ block }: { block: any }) => {
             toggleActions: "restart none none reverse"
           },
         })
-      .fromTo(
-        TextRef.current,
-        {alpha: 0 }, 
-        {alpha: 1}
-      ).set( ArrowRef.current, {
-        className: styles.draw
-      })
+        .fromTo(
+          TextRef.current,
+          { alpha: 0 },
+          { alpha: 1 }
+        ).set(ArrowRef.current, {
+          className: styles.draw
+        })
 
       gsap
         .timeline({
@@ -48,13 +45,13 @@ const HomePartners = ({ block }: { block: any }) => {
             toggleActions: "restart none none reverse"
           },
         })
-      .fromTo(
-        TextRef.current,
-        {alpha: 1 }, 
-        {alpha: 0}
-      ).set( ArrowRef.current, {
-        className: styles.drawrev
-      })
+        .fromTo(
+          TextRef.current,
+          { alpha: 1 },
+          { alpha: 0 }
+        ).set(ArrowRef.current, {
+          className: styles.drawrev
+        })
 
     }, sectionRef);
     return () => ctx.revert();

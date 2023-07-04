@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 import styles from './overlay.module.scss'
 
 export const typename = 'Set_Modules_Overlay'
-
 const OverlayBlock = ({
   children,
   className = '',
@@ -22,9 +21,8 @@ const OverlayBlock = ({
   }, [])
   return (
     <div
-      className={`${styles.root} ${className} ${
-        gradient ? styles.gradient : ''
-      } ${fadeIn ? styles.active : ''} ${extended ? styles.extended : ''}`}
+      className={`${styles.root} ${className} ${gradient ? styles.gradient : ''
+        } ${fadeIn ? styles.active : ''} ${extended ? styles.extended : ''}`}
     >
       <div className={styles.wrapper}>{children}</div>
     </div>

@@ -15,8 +15,7 @@ const FooterBlock = ({
   footer: any
   footer_nav: any
 }) => {
-  //const Globals = useContext(GlobalContext)
-  const { contactActive, setContactActive, cursorType, cursorChangeHandler} = useThemeContext();
+  const { contactActive, setContactActive, cursorType, cursorChangeHandler } = useThemeContext();
   const openOrClose = () => {
     if (contactActive) {
       setContactActive(false)
@@ -24,10 +23,9 @@ const FooterBlock = ({
       setContactActive(true)
     }
   }
-  //console.log("FooterBlock ", footer, footer_nav )
   return (
     <>
-      <footer  className={`${styles.root} relative bg-black`}>
+      <footer className={`${styles.root} relative bg-black`}>
         <div className="relative  mx-50 md:mx-100 py-60 z-10">
           <div className={`${styles.nav} flex flex-col md:grid grid-cols-12 gap-x-30`}>
             <div className="col-span-full md:col-span-2">
@@ -36,11 +34,11 @@ const FooterBlock = ({
                 itemScope
                 itemType="http://www.schema.org/SiteNavigationElement"
               >
-                {footer_nav.tree.map((t:any) => {
+                {footer_nav.tree.map((t: any) => {
                   return (
                     <li key={`${t.page?.url}`} className='pb-25'>
                       <Link href={`${t.page?.url}`} className="cursor-pointer font-lato text-27 leading-none text-white font-400">
-                          {t.page?.title}
+                        {t.page?.title}
                       </Link>
                     </li>
                   )
@@ -53,10 +51,10 @@ const FooterBlock = ({
                 <div className='text-27 leading-32 font-400 text-white text-left' dangerouslySetInnerHTML={{ __html: footer.address }}></div>
               </div>
               <div className='pt-30 pb-100 md:pb-0'>
-                <Socials socials={footer.socials}/>
+                <Socials socials={footer.socials} />
               </div>
               <div className={cn(styles.address, 'mt-auto pt-100')}>
-                <div className='inline text-60 md:text-36 leading-none font-500 text-white text-left cursor-pointer' onClick={()=> openOrClose()} onMouseEnter={() => cursorChangeHandler("bridge")} onMouseLeave={() => cursorChangeHandler("default")}>{footer.form_cta}</div>
+                <div className='inline text-60 md:text-36 leading-none font-500 text-white text-left cursor-pointer' onClick={() => openOrClose()} onMouseEnter={() => cursorChangeHandler("bridge")} onMouseLeave={() => cursorChangeHandler("default")}>{footer.form_cta}</div>
               </div>
             </div>
             <div className="md:col-span-8 text-right">
@@ -65,15 +63,15 @@ const FooterBlock = ({
           </div>
           <div className={`${styles.copyright} text-right pt-100 md:pt-0`}>
             <div className={`text-18 font-300 leading-none text-white text-left md:text-right`}>
-                {footer.copyright}
+              {footer.copyright}
             </div>
           </div>
         </div>
         <div className={`absolute w-full md:w-1/2 h-full right-0 top-0 bottom-0 `}>
           {footer.video_embed && (
-              <div className="video-wrap absolute w-full h-full overflow-hidden top-0 right-0 z-0">
-                <div className={`${styles.video} absolute block w-full h-full opacity-50 aspect-video`}>
-                  <iframe src={`${footer.video_embed}?autoplay=1&loop=1&autopause=0&background=1&muted=1`} 
+            <div className="video-wrap absolute w-full h-full overflow-hidden top-0 right-0 z-0">
+              <div className={`${styles.video} absolute block w-full h-full opacity-50 aspect-video`}>
+                <iframe src={`${footer.video_embed}?autoplay=1&loop=1&autopause=0&background=1&muted=1`}
                   title="Vimeo video player"
                   className="vimeo aspect-video mr-0 ml-auto"
                   width="640" height="360"
@@ -82,19 +80,19 @@ const FooterBlock = ({
             </div>
           )}
           {footer.video_local && (
-              <div className="video-wrap absolute w-full h-full overflow-hidden top-0 right-0 z-0">
-                <div className={`${styles.video} absolute block w-full h-full opacity-70 aspect-video`}>
-                  <video 
-                    className="vimeo aspect-video w-full mr-0 ml-auto"
-                    width="640" 
-                    height="360"
-                    autoPlay
-                    controls
-                    loop
-                    muted
-                    preload="auto">
-                    <source src={`${footer.video_local?.permalink}`} type="video/mp4"></source>
-                  </video>
+            <div className="video-wrap absolute w-full h-full overflow-hidden top-0 right-0 z-0">
+              <div className={`${styles.video} absolute block w-full h-full opacity-70 aspect-video`}>
+                <video
+                  className="vimeo aspect-video w-full mr-0 ml-auto"
+                  width="640"
+                  height="360"
+                  autoPlay
+                  controls
+                  loop
+                  muted
+                  preload="auto">
+                  <source src={`${footer.video_local?.permalink}`} type="video/mp4"></source>
+                </video>
               </div>
             </div>
           )}

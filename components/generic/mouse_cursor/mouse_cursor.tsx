@@ -1,8 +1,9 @@
 "use client"
 import React, { useLayoutEffect } from "react";
 import styles from './mouse_cursor.module.scss'
-import useMousePosition from "@/hooks/useMousePosition";
+import useMousePosition from "@/hooks/useMousePosition"
 import { useThemeContext } from '@/context/theme'
+import { usePathname } from 'next/navigation'
 import IconPeace from "@/public/icons/cursor-peace.svg"
 import IconPlay from "@/public/icons/cursor-play.svg"
 import IconPause from "@/public/icons/cursor-pause.svg"
@@ -11,18 +12,19 @@ import IconBridge from "@/public/icons/cursor-bridge.svg"
 import IconThumb from "@/public/icons/cursor-thumb.svg"
 
 const Cursor = () => {
-  const { cursorType, cursorChangeHandler} = useThemeContext();
-  const { x, y } = useMousePosition();
+  const { cursorType, cursorChangeHandler } = useThemeContext()
+  const { x, y } = useMousePosition()
+  const pathname = usePathname()
   let timeout: any;
 
   const getCursorIcon = () => {
     //update cursor if set
     //console.log("update cursor state",cursorType)
-    if(process.browser){
+    if (process.browser) {
       (cursorType == 'default' || cursorType == '') ? document.body.classList.remove('no-cursor') : document.body.classList.add('no-cursor')
     }
     //change cursor
-    switch(cursorType) {
+    switch (cursorType) {
       case 'peace':
         return <div className={`${styles.peace}`}><IconPeace /></div>;
       case 'play':
@@ -53,8 +55,13 @@ const Cursor = () => {
     timeout = window.setTimeout(() => {
       cursorChangeHandler('default')
     }, 30000);
-    
+
   }, [cursorType]);
+
+  //reset cursor on path change
+  useLayoutEffect(() => {
+    cursorChangeHandler('default')
+  }, [pathname]);
 
   return (
     <>

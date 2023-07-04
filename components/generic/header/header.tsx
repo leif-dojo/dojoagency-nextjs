@@ -2,14 +2,11 @@
 import React, { useEffect, useRef, useState, Fragment, useContext } from 'react'
 import Link from 'next/link'
 import Logo from 'public/icons/Dojo-Logo_Red_RGB.svg'
-import { useRouter } from 'next/router'
-import IconX from '@/public/icons/icon-x.svg'
 import styles from './header.module.scss'
 import HeaderInterface from './header.interface'
 import Nav from '@/components/generic/nav/nav'
 
-
-const HeaderBlock = ({ nav}: HeaderInterface) => {
+const HeaderBlock = ({ nav }: HeaderInterface) => {
   const lastScrollPos = useRef<number>(0)
   const scrollDirection = useRef<'up' | 'down' | 'initial'>('initial')
   const [Dir, setDir] = useState('initial')
@@ -48,8 +45,8 @@ const HeaderBlock = ({ nav}: HeaderInterface) => {
     })
 
     return () => {
-      document.removeEventListener('scroll', () => {})
-      document.removeEventListener('resize', () => {})
+      document.removeEventListener('scroll', () => { })
+      document.removeEventListener('resize', () => { })
     }
   }, [])
 
@@ -70,7 +67,7 @@ const HeaderBlock = ({ nav}: HeaderInterface) => {
         className={`${styles.root} ${(Dir === 'up') ? styles.up : ''} ${(Dir === 'down') ? styles.down : ''}`}>
         <div className="w-full px-50 md:px-100 flex items-center justify-between relative py-10 z-10">
           <Link href={'/'} className={`${styles.logo} relative text-left`} aria-label="Dojo Agency">
-              <Logo />
+            <Logo />
           </Link>
           <div className={`${styles.hamburger} flex items-center cursor-pointer`} role="none" onClick={() => openOrClose()}>
             <div className="a11y hidden">Toggle Menu</div>
@@ -81,7 +78,7 @@ const HeaderBlock = ({ nav}: HeaderInterface) => {
             </div>
           </div>
         </div>
-        {showMobileMenu && 
+        {showMobileMenu &&
           <div className={`${styles.menuwrap} fixed  bg-white w-screen h-screen left-0 top-0 z-10`}>
             <div className="relative  w-full h-full px-50 md:px-100 flex flex-col items-center justify-center" onClick={() => openOrClose()}>
               <div className="relative w-full">
@@ -90,8 +87,8 @@ const HeaderBlock = ({ nav}: HeaderInterface) => {
                   <div className={`font-lato text-orange text-80 font-300 leading-none`}>X</div>
                 </div>
                 <div className={`${styles.menulogo} text-left py-30`}>
-                  <Link  href={'/'} as={''} className='' aria-label="Dojo Agency">
-                      <Logo />
+                  <Link href={'/'} as={''} className='' aria-label="Dojo Agency">
+                    <Logo />
                   </Link>
                 </div>
               </div>

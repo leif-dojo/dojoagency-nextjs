@@ -2,7 +2,7 @@
 import React, { useRef, useEffect, useLayoutEffect } from 'react'
 import styles from './home_headline.module.scss'
 import { useThemeContext } from '@/context/theme'
-import { useIsMobile, hexToRgb, rgbToHex } from '@/utils/general'
+import { useIsMobile, hexToRgb } from '@/utils/general'
 import Telegraph from '@/public/telegraph.svg'
 import Typewriter from '@/public/typewriter.svg'
 import CommunicationArts from '@/public/communication-arts.svg'
@@ -13,7 +13,6 @@ gsap.registerPlugin(ScrollTrigger)
 import ScrollText  from '@/utils/SplitText'
 
 export const typename = 'Set_Components_HomeHeadline'
-
 const HomeHeadlineBlock = ({ block }: { block: any }) => {
   const { cursorType, cursorChangeHandler, colorChangeHandler, backgroundChangeHandler} = useThemeContext();
   const sectionRef = useRef<HTMLDivElement>(null)
@@ -27,8 +26,8 @@ const HomeHeadlineBlock = ({ block }: { block: any }) => {
     let ctx = gsap.context(() => {
 
       //Theme Colors
-      const TextColor = '#304A5F';
-      const BackgroundColor = '#FFFFFF';
+      const TextColor = block.text_color ? block.text_color : '#304A5F';
+      const BackgroundColor = block.background_color ? block.background_color : '#FFFFFF';
       const element = document.querySelector("body");
       const getter = gsap.getProperty(element);
       gsap

@@ -50,6 +50,8 @@ export default gql`
         components {
           ... on Set_Components_HomeHero {
             __typename
+            background_color
+            text_color
             headline
             type
             image {
@@ -94,11 +96,16 @@ export default gql`
           }
           ... on Set_Components_HomeHeadline {
             __typename
+            background_color
+            text_color
             headline
             subheadline
             type
           }
           ... on Set_Components_HomePartners {
+            __typename
+            background_color
+            text_color
             headline
             type
             partners_grid {
@@ -147,6 +154,9 @@ export default gql`
             }
           }
           ... on Set_Components_HomeFeaturedWork {
+            __typename
+            background_color
+            text_color
             headline
             type
             featured_projects {
@@ -212,6 +222,9 @@ export default gql`
             }
           }
           ... on Set_Components_Home3Column {
+            __typename
+            background_color
+            text_color
             type
             columns {
               content
@@ -237,8 +250,15 @@ export default gql`
             }
           }
           ... on Set_Components_FeaturedWork {
+            __typename
+            background_color
+            text_color
             headline
             type
+            grid_style {
+              value
+              label
+            }
             featured_projects {
               headline
               headline_hover
@@ -302,6 +322,9 @@ export default gql`
             }
           }
           ... on Set_Components_2ColumnImage {
+            __typename
+            background_color
+            text_color
             eyebrow
             headline
             type
@@ -326,6 +349,9 @@ export default gql`
             wysiwyg_sub
           }
           ... on Set_Components_2ColumnVideo {
+            __typename
+            background_color
+            text_color
             eyebrow
             headline
             video_embed
@@ -371,6 +397,9 @@ export default gql`
             }
           }
           ... on Set_Components_GalleryHorizontal {
+            __typename
+            background_color
+            text_color
             headline
             type
             gallery_grid {
@@ -406,6 +435,9 @@ export default gql`
             }
           }
           ... on Set_Components_Timeline {
+            __typename
+            background_color
+            text_color
             eyebrow
             headline
             wysiwyg
@@ -450,6 +482,9 @@ export default gql`
             }
           }
           ... on Set_Components_Video {
+            __typename
+            background_color
+            text_color
             video_embed
             type
             image {
@@ -492,6 +527,9 @@ export default gql`
             }
           }
           ... on Set_Components_Wysiwyg {
+            __typename
+            background_color
+            text_color
             type
             eyebrow
             headline
@@ -581,6 +619,9 @@ export default gql`
             }
           }
           ... on Set_Components_Image {
+            __typename
+            background_color
+            text_color
             type
             image {
               id
@@ -601,11 +642,17 @@ export default gql`
             }
           }
           ... on Set_Components_Headline {
+            __typename
+            background_color
+            text_color
             eyebrow
             headline
             type
           }
           ... on Set_Components_HeadlineHero {
+            __typename
+            background_color
+            text_color
             headline
             type
             client {
@@ -636,6 +683,9 @@ export default gql`
             show_sharing
           }
           ... on Set_Components_TextScroller {
+            __typename
+            background_color
+            text_color
             wysiwyg
             type
             background_image {
@@ -668,6 +718,9 @@ export default gql`
             }
           }
           ... on Set_Components_ImageGrid {
+            __typename
+            background_color
+            text_color
             image_grid {
               link
               image_headline
@@ -731,6 +784,9 @@ export default gql`
             }
           }
           ... on Set_Components_PostNavigation {
+            __typename
+            background_color
+            text_color
             back_link
             back_link_copy
             forward_link
@@ -738,6 +794,9 @@ export default gql`
             type
           }
           ... on Set_Components_ProjectGrid {
+            __typename
+            background_color
+            text_color
             type
             wysiwyg
             eyebrow
@@ -797,6 +856,9 @@ export default gql`
             }
           }
           ... on Set_Components_TeamGrid {
+            __typename
+            background_color
+            text_color
             eyebrow
             headline
             wysiwyg

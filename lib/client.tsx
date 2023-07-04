@@ -16,7 +16,7 @@ export const getClient = () => {
         );
       if (networkError) console.log(`[Network error]: ${networkError}`);
     });
-    const httpLink = new HttpLink({         
+    const httpLink = new HttpLink({
       uri: process.env.NEXT_PUBLIC_GRAPHQL_URL,
       headers: {
         'Access-Control-Allow-Origin': '*'
@@ -24,7 +24,7 @@ export const getClient = () => {
       fetchOptions: {
         mode: 'no-cors', // no-cors, *cors, same-origin
         referrerPolicy: "no-referrer", // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
-      }, 
+      },
     })
     client = new ApolloClient({
       // ssrMode: true,

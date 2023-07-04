@@ -3,7 +3,6 @@ import { createContext, useContext, useState, useLayoutEffect } from "react";
 import { usePathname } from "next/navigation";
 const ThemeContext = createContext({} as any)
 const GlobalContextProvider = ThemeContext.Provider
-
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger'
 gsap.registerPlugin(ScrollTrigger)
@@ -32,36 +31,20 @@ export const ThemeContextProvider = ( {children}:{children: any} ) => {
       if(process.browser){
         var r = document.querySelector(':root');
         //var rs = getComputedStyle(r);
-        //alert("The value of --background-rgb is: " + rs.getPropertyValue('--background-rgb'));
         const element = document.querySelector("body");
         const getter = gsap.getProperty(element);
         r.style.setProperty('--foreground-rgb', getter("color"));
         r.style.setProperty('--background-rgb', getter("backgroundColor"));
-        //console.log("updated theme: ", getter("color"), getter("backgroundColor"))
-
-        /*gsap.to(".main", {
-          color: `rgb(${color})`,
-          backgroundColor: `rgb(${backgroundColor})`,
-          duration: 2,
-          ease: "none",
-          onUpdate: (e) => {
-            //console.log('THEME COLOR UPDATING: ', getter("backgroundColor"));
-            r.style.setProperty('--foreground-rgb', getter("color"));
-            r.style.setProperty('--background-rgb', getter("backgroundColor"));
-          }
-        })*/
       }
       
     }, [color, backgroundColor]);
 
     //scroll top on path change
     useLayoutEffect(() => {
-      //reset theme on path change
-      //console.log("updated theme: ", color, backgroundColor)
       if(process.browser){
         document.body.scrollTop = document.documentElement.scrollTop = 0;
       }
-      
+
     }, [pathname]);
     /*
     //reset theme on path change
@@ -77,7 +60,6 @@ export const ThemeContextProvider = ( {children}:{children: any} ) => {
         setBackgroundColor('255,255,255')
         console.log("set layout")
       }
-      
     }, [pathname]);*/
 
     return (

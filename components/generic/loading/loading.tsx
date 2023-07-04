@@ -14,10 +14,10 @@ const Loading = () => {
     <div className={`${styles.root}`}>
       <div className="relative w-screen h-screen left-0 top-0 bg-white">
         <div className='absolute w-full h-full flex items-center justify-center'>
-            <div className='absolute w-1/2 h-auto text-center'>
-                <div className={`${styles.icon} w-100 h-auto mx-auto text-orange`}><Peace /></div>
-                <div className='text-40 leading-none font-300 text-orange text-center pt-20'>Loading</div>
-            </div>
+          <div className='absolute w-1/2 h-auto text-center'>
+            <div className={`${styles.icon} w-100 h-auto mx-auto text-orange`}><Peace /></div>
+            <div className='text-40 leading-none font-300 text-orange text-center pt-20'>Loading</div>
+          </div>
         </div>
       </div>
     </div>
