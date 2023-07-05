@@ -8,7 +8,7 @@ const ReactPlayer = dynamic(() => import("react-player/lazy"), { ssr: false })
 import IconPlay from "@/public/icons/cursor-play.svg"
 
 export const typename = 'Set_Components_Video'
-const VideoBlock = ({ image_placeholder, video_placeholder, video }: { image_placeholder: any, video_placeholder: any, video: any }) => {
+const VideoBlock = ({ image_placeholder, video_placeholder, video, play_text }: { image_placeholder: any, video_placeholder: any, video: any, play_text?:any }) => {
     const { cursorType, cursorChangeHandler } = useThemeContext();
     const [playing, setPlaying] = useState(false)
     const [active, setActive] = useState(false)
@@ -54,7 +54,7 @@ const VideoBlock = ({ image_placeholder, video_placeholder, video }: { image_pla
                         {!hovering && !active && video && (
                             <div className='absolute left-90 top-50 w-80 md:w-160 h-80 md:h-160 z-10 text-orange'>
                                 <IconPlay />
-                                <div className="pt-10 text-white text-20 leading-none font-300 whitespace-nowrap">Play Dojo Reel</div>
+                                <div className="pt-10 text-white text-20 leading-none font-300 whitespace-nowrap">{play_text}</div>
                             </div>
                         )}
                         <Image
@@ -72,7 +72,7 @@ const VideoBlock = ({ image_placeholder, video_placeholder, video }: { image_pla
                         {!hovering && !active && video && (
                             <div className='absolute left-90 top-50 w-80 md:w-160 h-80 md:h-160 z-10 text-orange'>
                                 <IconPlay />
-                                <div className="pt-10 text-white text-20 leading-none font-300 whitespace-nowrap">Play Dojo Reel</div>
+                                <div className="pt-10 text-white text-20 leading-none font-300 whitespace-nowrap">{play_text}</div>
                             </div>
                         )}
 

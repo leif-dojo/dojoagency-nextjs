@@ -231,6 +231,7 @@ const ProjectGridBlock = ({ block }: { block: any }) => {
                             image_placeholder={block?.project_grid[activeindex].popup_image?.permalink}
                             video_placeholder={block?.project_grid[activeindex].project_video_embed}
                             video={block?.project_grid[activeindex].popup_video_embed}
+                            play_text={block?.project_grid[activeindex].popup_video_play_text ? block?.project_grid[activeindex].popup_video_play_text : ''}
                           />
                         </div>
                       )}
@@ -240,6 +241,7 @@ const ProjectGridBlock = ({ block }: { block: any }) => {
                             image_placeholder={block?.project_grid[activeindex].popup_image?.permalink}
                             video_placeholder={block?.project_grid[activeindex].project_video_local?.permalink}
                             video={block?.project_grid[activeindex].popup_video_local?.permalink}
+                            play_text={block?.project_grid[activeindex].popup_video_play_text ? block?.project_grid[activeindex].popup_video_play_text : ''}
                           />
                         </div>
                       )}

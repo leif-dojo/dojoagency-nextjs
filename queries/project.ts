@@ -103,6 +103,7 @@ export default gql`
                 extension
               }
             }
+            video_play_text
           }
           ... on Set_Components_HomeHeadline {
             __typename
@@ -405,6 +406,7 @@ export default gql`
                 extension
               }
             }
+            video_play_text
           }
           ... on Set_Components_GalleryHorizontal {
             __typename
@@ -535,6 +537,7 @@ export default gql`
                 extension
               }
             }
+            video_play_text
           }
           ... on Set_Components_Wysiwyg {
             __typename
@@ -852,6 +855,7 @@ export default gql`
                   extension
                 }
               }
+              popup_video_play_text
               project_video_embed
               project_video_local {
                 ... on Asset_Assets {
