@@ -24,6 +24,7 @@ import TeamGridBlock from "@/components/blocks/team_grid/team_grid"
 import PostNavigationBlock from "@/components/blocks/post_navigation/post_navigation"
 import ProjectGridBlock from "@/components/blocks/project_grid/project_grid"
 import ScrollDownBlock from "@/components/blocks/scroll_down/scroll_down"
+import BlogGridBlock from "@/components/blocks/blog_grid/blog_grid"
 
 //TODO OPTIMIZE 
 //const HomeHeroBlock = dynamic(() => import(`@/components/blocks/home_hero/home_hero`)),
@@ -34,7 +35,7 @@ interface BlockInterface {
   [key: string]: any
 }
 
-const Repeater = ({ blocks, meta }: { blocks: BlockInterface[], meta?: any }) => (
+const Repeater = ({ blocks, meta, entries }: { blocks: BlockInterface[], meta?: any, entries: any }) => (
   <>
     {blocks?.map((block, index) => {
       const blockItem = Object.values(blockInventory).find(
@@ -88,6 +89,8 @@ const Repeater = ({ blocks, meta }: { blocks: BlockInterface[], meta?: any }) =>
                 return <TeamGridBlock block={block} ></TeamGridBlock>;
               case 'Set_Components_ScrollDown':
                 return <ScrollDownBlock block={block} ></ScrollDownBlock>;
+                case 'Set_Components_BlogGrid':
+                  return <BlogGridBlock block={block} entries={entries} ></BlogGridBlock>;
             }
           })()
         )

@@ -896,6 +896,14 @@ export default gql`
           ... on Set_Components_ScrollDown {
             type
           }
+          ... on Set_Components_BlogGrid {
+            __typename
+            background_color
+            text_color
+            eyebrow
+            headline
+            type
+          }
         }
       }
     }

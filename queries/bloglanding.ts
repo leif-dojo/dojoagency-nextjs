@@ -1,9 +1,9 @@
 import { gql } from '@apollo/client'
 
-export const ProjectMetaQuery = gql`
-  query pagemeta($slug: String) {
-    entry(collection: "projects", slug: $slug) {
-      ... on Entry_Projects_Project {
+export const BlogLandingMetaQuery = gql`
+  query pagemeta {
+    entry(collection: "pages", uri: "/blog") {
+      ... on Entry_Pages_Page {
         id
         published
         slug
@@ -28,16 +28,14 @@ export const ProjectMetaQuery = gql`
 `
 
 export default gql`
-  query project($slug: String) {
-    entry(collection: "projects", slug: $slug) {
+  query bloglanding {
+    entry(collection: "pages", uri: "/blog") {
       id
       __typename
       title
       slug
       uri
-      permalink
-      published
-      ... on Entry_Projects_Project {
+      ... on Entry_Pages_Page {
         id
         published
         slug
@@ -46,17 +44,6 @@ export default gql`
         title
         uri
         url
-        project_name
-        permalink
-        client {
-          ... on Entry_Clients_Client {
-            id
-            client_name
-            client_logo {
-              id
-            }
-          }
-        }
         components {
           ... on Set_Components_HomeHero {
             __typename
@@ -914,6 +901,43 @@ export default gql`
             headline
             type
           }
+        }
+      }
+    }
+    entries(collection: "blog", sort: "asc") {
+      from
+      to
+      total
+      per_page
+      last_page
+      has_more_pages
+      current_page
+      data {
+        ... on Entry_Blog_Blog {
+          id
+          author {
+            id
+          }
+          date(format: "F jS, Y")
+          featured_image {
+            ... on Asset_Assets {
+              id
+              permalink
+              is_video
+              width
+              height
+              extension
+            }
+          }
+          last_modified
+          permalink
+          private
+          published
+          slug
+          status
+          title
+          uri
+          excerpt
         }
       }
     }

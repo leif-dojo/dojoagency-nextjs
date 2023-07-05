@@ -1,0 +1,26 @@
+@import '../../../styles/variables';
+
+.root {
+
+    .post {
+        border: 2rem solid theme('colors.grey');
+        &:hover {
+            .image {
+                transform: scale(1.05);
+                transition: all 500ms ease-in-out;
+            }
+
+        }
+    }
+
+    .postimage {
+        aspect-ratio: 2/1;
+        .image {
+            min-width: 100%;
+            min-height: 100%;
+            object-fit: cover;
+            transition: all 500ms ease-in-out;
+        }
+    }
+
+}
