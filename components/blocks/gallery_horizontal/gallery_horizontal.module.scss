@@ -41,17 +41,9 @@
 
                 video,
                 iframe {
-                    height: 56.25vw;
-                    aspect-ratio: 16/9;
-                    object-fit: cover;
-                    object-position: center center;
-                    width: 100vw;
-                    left: 50%;
-                    min-height: 100%;
-                    min-width: 100%;
-                    position: absolute;
-                    top: 50%;
-                    transform: translate(-50%, -50%);
+                    position: relative;
+                    width: 100%;
+                    height: auto;
                 }
             }
             &:nth-child(1n) {

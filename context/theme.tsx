@@ -46,6 +46,25 @@ export const ThemeContextProvider = ( {children}:{children: any} ) => {
       }
 
     }, [pathname]);
+
+    //contact hash
+    useLayoutEffect(() => {
+      const onHashChanged = (e) => {
+        const hash = window.location.hash;
+          if(hash === '#contact') {
+            setContactActive(true)
+            //reset hash
+            history.pushState("", document.title, window.location.pathname + window.location.search);
+          }
+      };
+      window.addEventListener("hashchange", onHashChanged);
+
+      return () => {
+          window.removeEventListener("hashchange", onHashChanged);
+      };
+
+    }, []);
+
     /*
     //reset theme on path change
     useLayoutEffect(() => {

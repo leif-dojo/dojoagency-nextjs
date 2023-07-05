@@ -141,11 +141,11 @@ const GalleryHorizontalBlock = ({ block }: { block: any }) => {
                             )}
 
                             {item.video_embed && (
-                              <div className="video absolute w-full h-full overflow-hidden top-0 z-1" >
-                                <div className="video-inner absolute block w-full h-full">
+                              <div className="video relative w-full overflow-hidden top-0 aspect-video z-1" >
+                                <div className="video-inner absolute block w-full h-full aspect-video">
                                   <iframe src={`${item.video_embed}?autoplay=1&loop=1&autopause=0&background=1&muted=1&controls=0`}
                                     title="Vimeo video player"
-                                    className="vimeo w-full h-full"
+                                    className="vimeo w-full h-full aspect-video"
                                     width="640" height="360"
                                     allow="autoplay; fullscreen"></iframe>
                                 </div>
@@ -153,8 +153,8 @@ const GalleryHorizontalBlock = ({ block }: { block: any }) => {
                             )}
 
                             {item.video_local && (
-                              <div className="video absolute w-full h-full overflow-hidden top-0 z-1" >
-                                <div className="video-inner absolute block w-full h-full">
+                              <div className="video relative w-full overflow-hidden top-0 aspect-video z-1" >
+                                <div className="video-inner absolute block w-full h-full aspect-video">
                                   <video
                                     className="html-video aspect-video"
                                     width="640"
@@ -189,13 +189,13 @@ const GalleryHorizontalBlock = ({ block }: { block: any }) => {
 
 
       {active && (
-        <div className={`${styles.popup} fixed  bg-white w-screen h-screen left-0 top-0 z-10`}>
+        <div className={`${styles.popup} fixed  bg-white w-screen h-screen left-0 top-0 z-10 px-100 py-100`}>
           <div className={`${styles.close} absolute top-50 right-50 flex items-center cursor-pointer z-10`} role="none" onClick={() => openOrClose(0)}>
             <div className={`font-lato text-orange text-80 font-300 leading-none`}>X</div>
           </div>
 
           <div className="relative w-full h-full flex flex-col items-center justify-center">
-            <div className="absolute w-full h-full px-100 py-100 flex flex-col items-center justify-center">
+            <div className="absolute w-full h-full flex flex-col items-center justify-center">
 
               {!block?.gallery_grid[activeindex].video_embed && !block?.gallery_grid[activeindex].video_local && block?.gallery_grid[activeindex].image && (
                 <Image
@@ -203,7 +203,7 @@ const GalleryHorizontalBlock = ({ block }: { block: any }) => {
                   width={block?.gallery_grid[activeindex].image?.width}
                   height={block?.gallery_grid[activeindex].image?.height}
                   alt={block?.gallery_grid[activeindex].image?.alt ? block?.gallery_grid[activeindex].image.alt : ''}
-                  className={`${styles.image} relative min-w-full min-h-full w-100 h-auto  object-contain`}
+                  className={`${styles.image} relative w-full h-full  object-contain`}
                 />
               )}
 
@@ -212,7 +212,7 @@ const GalleryHorizontalBlock = ({ block }: { block: any }) => {
                   <div className="video-inner absolute w-full h-full flex flex-col items-center justify-center object-contain">
                     <iframe src={`${block?.gallery_grid[activeindex].video_embed}`}
                       title="Vimeo video player"
-                      className="vimeo relative min-w-full min-h-full w-100 h-auto object-contain aspect-video"
+                      className="vimeo relative w-full h-full  object-contain aspect-video"
                       width="640" height="360"
                       allow="autoplay; fullscreen"></iframe>
                   </div>
@@ -223,7 +223,7 @@ const GalleryHorizontalBlock = ({ block }: { block: any }) => {
                 <div className="video relative w-full h-full overflow-hidden aspect-video top-0 z-1 object-contain" >
                   <div className="video-inner absolute w-full h-full flex flex-col items-center justify-center object-contain">
                     <video
-                      className="html-video relative min-w-full min-h-full w-100 h-auto  object-contain aspect-video"
+                      className="html-video relative w-full h-full  object-contain aspect-video"
                       width="640"
                       height="360"
                       autoPlay
