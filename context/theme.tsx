@@ -49,7 +49,7 @@ export const ThemeContextProvider = ( {children}:{children: any} ) => {
 
     //contact hash
     useLayoutEffect(() => {
-      const onHashChanged = (e) => {
+      const onHashChanged = () => {
         const hash = window.location.hash;
           if(hash === '#contact') {
             setContactActive(true)
@@ -57,10 +57,24 @@ export const ThemeContextProvider = ( {children}:{children: any} ) => {
             history.pushState("", document.title, window.location.pathname + window.location.search);
           }
       };
+      const onLinkClick = (e:any) => {
+        const link = e.srcElement.closest('a')
+        if(link) {
+          const hash = link.getAttribute("href");
+            if(hash === '#contact') {
+              e.preventDefault()
+              setContactActive(true)
+              //reset hash
+              history.pushState("", document.title, window.location.pathname + window.location.search);
+            }
+        }
+      };
       window.addEventListener("hashchange", onHashChanged);
+      window.addEventListener("click", onLinkClick);
 
       return () => {
           window.removeEventListener("hashchange", onHashChanged);
+          window.removeEventListener("click", onLinkClick);
       };
 
     }, []);
