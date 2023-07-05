@@ -84,7 +84,7 @@ const HomeFeaturedWork = ({ block }: { block: any }) => {
             let rect = item.getBoundingClientRect();
             let positionX = clientX - rect.left;
             let positionY = clientY - rect.top;
-            //parallaxIt(item, positionX, positionY, item.dataset.x, item.dataset.y, item.dataset.dur, 1);
+            parallaxIt(item, positionX, positionY, item.dataset.x, item.dataset.y, item.dataset.dur, 1);
           })
         };
         sectionRef.current.addEventListener("mousemove", mouseMoveHandler);
