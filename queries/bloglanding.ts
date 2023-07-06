@@ -908,7 +908,7 @@ export default gql`
         }
       }
     }
-    entries(collection: "blog", sort: "asc") {
+    entries(collection: "blog", sort: "date desc") {
       from
       to
       total

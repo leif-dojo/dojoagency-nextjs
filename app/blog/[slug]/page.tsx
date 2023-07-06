@@ -25,7 +25,6 @@ export async function generateMetadata(
       slug: params.slug,
     },
   });
-  console.log("meta: ", data.entry)
   return {
     title: data.entry.meta_title ? data.entry.meta_title : data.entry.title,
     description: data.entry.meta_description ? data.entry.meta_description : '',
@@ -77,7 +76,7 @@ export default async function Page(context: { params: { slug: string }, searchPa
     title: data.entry.meta_title ? data.entry.meta_title : data.entry.title,
     description: data.entry.meta_description ? data.entry.meta_description : '',
   }
-  console.log("pagemeta: ", pagemeta)
+  
   return (
   <div className="page ">
     <Repeater blocks={data.entry?.components} meta={pagemeta}/>
