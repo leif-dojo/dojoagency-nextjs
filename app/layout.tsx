@@ -123,7 +123,7 @@ const jsonLd_WebPage = {
       "author": "Dojo Agency",
       "datePublished": "2023-01-01",
       "dateModified": "2023-01-01",
-      "mainEntityOfPage": "main",
+      "mainEntityOfPage": "",
       "headline": "Brand and Campaign Results",
       "image": {
           "@type": "imageObject",
