@@ -1,4 +1,5 @@
 /** @type {import('next').NextConfig} */
+const Redirects = require('./redirects.js')
 const nextConfig = {
   //output: 'export', //enabled static export for static deploy
   webpack(config, options) {
@@ -42,6 +43,9 @@ const nextConfig = {
     // ignoreDuringBuilds: true,
   },
   staticPageGenerationTimeout: 1000,
+  async redirects() {
+    return Redirects
+  },
 }
 
 module.exports = nextConfig
