@@ -1,7 +1,7 @@
 import { gql } from '@apollo/client'
 
 export const BlogMetaQuery = gql`
-  query pagemeta($slug: String) {
+  query blogmeta($slug: String) {
     entry(collection: "blog", slug: $slug) {
       ... on Entry_Blog_Blog {
         id
@@ -12,6 +12,7 @@ export const BlogMetaQuery = gql`
         title
         uri
         url
+        date
         meta_title
         meta_description
         open_graph_image {
@@ -47,6 +48,7 @@ export default gql`
         uri
         url
         permalink
+        date
         components {
           ... on Set_Components_HomeHero {
             __typename

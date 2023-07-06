@@ -18,23 +18,29 @@ export async function generateMetadata(
   parent?: ResolvingMetadata
 ): Promise<Metadata> {
   const client = getClient();
-  const uri = new URL(process.env.NEXT_PUBLIC_GRAPHQL_URL)
+  //const uri = new URL(process.env.NEXT_PUBLIC_GRAPHQL_URL)
   const { data } = await client.query({
     query: BlogMetaQuery, 
     variables: {
-      uri: params.slug,
-    }
+      slug: params.slug,
+    },
   });
+  console.log("meta: ", data.entry)
   return {
     title: data.entry.meta_title ? data.entry.meta_title : data.entry.title,
     description: data.entry.meta_description ? data.entry.meta_description : '',
+    alternates: {
+      canonical: '/blog/'+params.slug,
+    },
     openGraph: {
       url: '/blog/'+params.slug,
       title: data.entry.meta_title ? data.entry.meta_title : data.entry.title,
       description: data.entry.meta_description ? data.entry.meta_description : '',
-      images: data.entry.open_graph_image?.permalink ? [{url: data.entry.open_graph_image?.permalink,width: data.entry.open_graph_image?.width,height: data.entry.open_graph_image?.height}] : [],
+      images: data.entry.open_graph_image?.permalink ? [{url: data.entry.open_graph_image?.permalink,width: data.entry.open_graph_image?.width,height: data.entry.open_graph_image?.height,alt: data.entry.open_graph_image?.alt}] : [],
       locale: 'en_US',
-      type: 'website',
+      type: 'article',
+      publishedTime: data.entry.date,
+      //authors: ['https://www.facebook.com/jeffrey.selin'], //google no longer uses
     }
   }
 }
@@ -71,7 +77,7 @@ export default async function Page(context: { params: { slug: string }, searchPa
     title: data.entry.meta_title ? data.entry.meta_title : data.entry.title,
     description: data.entry.meta_description ? data.entry.meta_description : '',
   }
-
+  console.log("pagemeta: ", pagemeta)
   return (
   <div className="page ">
     <Repeater blocks={data.entry?.components} meta={pagemeta}/>
