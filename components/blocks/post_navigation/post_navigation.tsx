@@ -14,6 +14,10 @@ export const typename = 'Set_Components_PostNavigation'
 const PostNavigationBlock = ({ block }: { block: any }) => {
   const { cursorType, cursorChangeHandler, colorChangeHandler, backgroundChangeHandler } = useThemeContext();
   const sectionRef = useRef<HTMLDivElement>(null)
+  const PrevArrowRef = useRef<HTMLDivElement>(null)
+  const NextArrowRef = useRef<HTMLDivElement>(null)
+  const PrevTextRef = useRef<HTMLDivElement>(null)
+  const NextTextRef = useRef<HTMLDivElement>(null)
 
   useLayoutEffect(() => {
     let ctx = gsap.context(() => {
@@ -64,26 +68,54 @@ const PostNavigationBlock = ({ block }: { block: any }) => {
         })
       }
 
+      gsap
+      .timeline({
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: 'bottom bottom',
+          //end: 'bottom bottom',
+          //scrub: true,
+          toggleActions: "restart none none reverse",
+          //markers: true,
+        },
+      })
+      .set(PrevArrowRef.current, {
+        className: styles.draw
+      })
+      .fromTo(
+        PrevTextRef.current,
+        { alpha: 0, },
+        { alpha: 1, duration: 0.4 }
+      )
+      .set(NextArrowRef.current, {
+        className: styles.draw
+      })
+      .fromTo(
+        NextTextRef.current,
+        { alpha: 0 },
+        { alpha: 1, duration: 0.4 }
+      )
+
     }, sectionRef);
     return () => ctx.revert();
   }, []);
 
   return (
-    <section ref={sectionRef} className="w-full">
+    <section ref={sectionRef} className={`${styles.root} w-full`}>
       <div className='w-full flex flex-nowrap px-50 md:px-100 py-100'>
         <div className='flex w-1/2 justify-items-start'>
           {block.back_link && (
-            <Link href={`${block.back_link}`} className="link inline-flex mr-auto text-blue fade" aria-label="Previous">
-              <PrevIcon className={`${styles.arrow} w-30 h-auto`} />
-              <span className="font-nothingyoucoulddo text-40 font-400 text-blue pl-20">{block.back_link_copy ? block.back_link_copy : 'Previous'}</span>
+            <Link href={`${block.back_link}`} className="link inline-flex items-center mr-auto text-blue " aria-label="Previous">
+              <div ref={PrevArrowRef}><PrevIcon className={`${styles.prevarrow} w-30 h-auto`} /></div>
+              <span ref={PrevTextRef} className="font-nothingyoucoulddo text-40 font-400 text-blue pl-20">{block.back_link_copy ? block.back_link_copy : 'Previous'}</span>
             </Link>
           )}
         </div>
         <div className='flex w-1/2 justify-items-end'>
           {block.forward_link && (
-            <Link href={`${block.forward_link}`} className="link inline-flex ml-auto text-blue fade" aria-label="Next">
-              <span className="font-nothingyoucoulddo text-40 font-400 text-blue pr-20">{block.forward_link_copy ? block.forward_link_copy : 'Next'}</span>
-              <NextIcon className={`${styles.arrow} w-30 h-auto`} />
+            <Link href={`${block.forward_link}`} className="link inline-flex items-center ml-auto text-blue " aria-label="Next">
+              <span ref={NextTextRef} className="font-nothingyoucoulddo text-40 font-400 text-blue pr-20">{block.forward_link_copy ? block.forward_link_copy : 'Next'}</span>
+              <div ref={NextArrowRef}><NextIcon className={`${styles.nextarrow} w-30 h-auto`} /></div>
             </Link>
           )}
         </div>

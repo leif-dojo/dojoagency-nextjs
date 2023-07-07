@@ -564,7 +564,6 @@ const HomeHeroBlock = ({ block }: { block: any }) => {
   }, []);
 
   const scrollTo = () => {
-    console.log("scrollto")
     document.getElementById("home-headline").scrollIntoView({ behavior: "smooth" });
     /*window.scrollTo({
       top: 100,
