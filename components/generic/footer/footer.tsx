@@ -1,8 +1,7 @@
 "use client"
-import React, { Fragment, useContext, useState, useRef } from 'react'
+import React from 'react'
 import Link from 'next/link'
 import cn from 'classnames'
-import FooterInterface from './footer.interface'
 import styles from './footer.module.scss'
 import IconPin from '@/public/icons/icon-pin.svg'
 import { useThemeContext } from '@/context/theme'

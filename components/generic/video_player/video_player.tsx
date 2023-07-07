@@ -8,7 +8,7 @@ const ReactPlayer = dynamic(() => import("react-player/lazy"), { ssr: false })
 import IconPlay from "@/public/icons/cursor-play.svg"
 
 export const typename = 'Set_Components_Video'
-const VideoBlock = ({ image_placeholder, video_placeholder, video, play_text }: { image_placeholder: any, video_placeholder: any, video: any, play_text?:any }) => {
+const VideoBlock = ({ image_placeholder, video_placeholder, video, play_text }: { image_placeholder: any, video_placeholder: any, video: any, play_text?: any }) => {
     const { cursorType, cursorChangeHandler } = useThemeContext();
     const [playing, setPlaying] = useState(false)
     const [active, setActive] = useState(false)
@@ -44,7 +44,7 @@ const VideoBlock = ({ image_placeholder, video_placeholder, video, play_text }: 
             setHasWindow(true);
         }
     }, []);
-    //console.log("VIDEO PLAYER: ", image_placeholder, video, video_placeholder)
+
     return (
         <div className={`${styles.root} relative aspect-video`}>
             <div className='relative w-full h-full aspect-video overflow-hidden' onMouseEnter={() => onMouseEnter()} onMouseLeave={() => onMouseLeave()}>

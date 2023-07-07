@@ -1,13 +1,8 @@
-import { getClient } from "@/lib/client"
-import React from 'react'
-import PageQuery from '@/queries/page'
-
 // route handler with secret and slug
 import { draftMode } from 'next/headers'
 import { redirect } from 'next/navigation'
  
 export async function GET(request: Request) {
-  console.log("API: ", request.url)
   // Parse query string parameters
   const { searchParams } = new URL(request.url)
   //const secret = searchParams.get('secret')
@@ -30,9 +25,7 @@ export async function GET(request: Request) {
  
   // Redirect to the path from the fetched post
   // We don't redirect to searchParams.slug as that might lead to open redirect vulnerabilities
-
   const res = slug+'?livepreview='+livepreview+'&token='+token;
-  
-  console.log("API redirect: ", slug, token, livepreview, res)
+
   redirect(res)
 }

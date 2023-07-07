@@ -1,5 +1,4 @@
 import React from 'react'
-import Link from 'next/link'
 import IconLinkedIn from '@/public/icons/icon-linkedin.svg'
 import IconInstagram from '@/public/icons/icon-instagram.svg'
 import IconFacebook from '@/public/icons/icon-facebook.svg'

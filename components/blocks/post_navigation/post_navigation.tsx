@@ -69,32 +69,32 @@ const PostNavigationBlock = ({ block }: { block: any }) => {
       }
 
       gsap
-      .timeline({
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: 'bottom bottom',
-          //end: 'bottom bottom',
-          //scrub: true,
-          toggleActions: "restart none none reverse",
-          //markers: true,
-        },
-      })
-      .set(PrevArrowRef.current, {
-        className: styles.draw
-      })
-      .fromTo(
-        PrevTextRef.current,
-        { alpha: 0, },
-        { alpha: 1, duration: 0.4 }
-      )
-      .set(NextArrowRef.current, {
-        className: styles.draw
-      })
-      .fromTo(
-        NextTextRef.current,
-        { alpha: 0 },
-        { alpha: 1, duration: 0.4 }
-      )
+        .timeline({
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: 'bottom bottom',
+            //end: 'bottom bottom',
+            //scrub: true,
+            toggleActions: "restart none none reverse",
+            //markers: true,
+          },
+        })
+        .set(PrevArrowRef.current, {
+          className: styles.draw
+        })
+        .fromTo(
+          PrevTextRef.current,
+          { alpha: 0, },
+          { alpha: 1, duration: 0.4 }
+        )
+        .set(NextArrowRef.current, {
+          className: styles.draw
+        })
+        .fromTo(
+          NextTextRef.current,
+          { alpha: 0 },
+          { alpha: 1, duration: 0.4 }
+        )
 
     }, sectionRef);
     return () => ctx.revert();

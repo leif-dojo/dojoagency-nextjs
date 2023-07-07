@@ -2,7 +2,7 @@
 import React, { useState, useRef, useLayoutEffect } from 'react'
 import styles from './headline_hero.module.scss'
 import { useThemeContext } from '@/context/theme'
-import { useIsMobile, hexToRgb, rgbToHex } from '@/utils/general'
+import { useIsMobile, hexToRgb} from '@/utils/general'
 import Image from 'next/image'
 import ShareIcons from '@/components/generic/share_icons/share_icons'
 import IconLink from '@/public/icons/icon-link.svg'

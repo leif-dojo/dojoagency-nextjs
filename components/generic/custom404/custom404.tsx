@@ -3,13 +3,11 @@ import Overlay from '@/components/generic/overlay/overlay'
 
 export const typename = 'Set_Modules_Custom404'
 const Custom404Block = () => {
-  //const globalSet = useContext(GlobalContext)
 
   return (
     <Overlay>
       <h1>404</h1>
       <p className="text--meta">lost your way?</p>
-
     </Overlay>
   )
 }

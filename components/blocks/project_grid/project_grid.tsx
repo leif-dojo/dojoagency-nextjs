@@ -33,7 +33,7 @@ const ProjectGridBlock = ({ block }: { block: any }) => {
   }
 
   const scrollTop = () => {
-    popupScrollRef.current.scroll({top: 0, behavior: "smooth"})
+    popupScrollRef.current.scroll({ top: 0, behavior: "smooth" })
   }
 
   const onNext = () => {

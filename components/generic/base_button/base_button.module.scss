@@ -12,25 +12,12 @@
   display: inline-flex;
   justify-content: flex-start;
   align-items: center;
-  color: theme('colors.grey.dark');
+  color: theme('colors.orange');
   border: 0.1rem solid;
-  border-color: theme('colors.grey.dark');
+  border-color: theme('colors.orange');
   position: relative;
   transition: color .5s cubic-bezier(0.72, 0.16, 0.345, 0.875), border-color .5s cubic-bezier(0.72, 0.16, 0.345, 0.875);
   z-index: 1;
-
-  @screen md {
-    min-height: 6rem;
-    border-color: theme('colors.grey.eyebrow');
-  }
-
-  @screen lg {
-    font-size: 1.6rem;
-  }
-
-  &.white {
-    color: white;
-  }
 
   svg path {
     transition: stroke .5s cubic-bezier(0.72, 0.16, 0.345, 0.875);
@@ -47,31 +34,34 @@
     top: 0;
     left: 0;
   }
+
   &::after {
-    background-image: linear-gradient(
-      90deg,
-      theme('colors.brand.lightblue'),
-      transparent
-    );
+    background-image: linear-gradient(90deg,
+        theme('colors.orange'),
+        transparent);
     transition: width 0.6s cubic-bezier(0.6, 0, 0.25, 1),
       opacity 0.6s cubic-bezier(0.72, 0.16, 0.345, 0.875);
   }
+
   &::before {
     width: 100%;
-    background-color: theme('colors.brand.orange');
-    border-color: theme('colors.brand.light');
+    background-color: theme('colors.orange');
+    border-color: theme('colors.orange');
     transition: width 0.6s cubic-bezier(0.6, 0, 0.25, 1),
       opacity 0.6s cubic-bezier(0.72, 0.16, 0.345, 0.875);
   }
+
   &:hover {
     color: white;
-    border-color: theme('colors.brand.light');
+    border-color: theme('colors.orange');
+
     &::before {
       width: 100%;
       height: 100%;
       z-index: 0;
       opacity: 1;
     }
+
     &::after {
       width: 100%;
       height: 100%;

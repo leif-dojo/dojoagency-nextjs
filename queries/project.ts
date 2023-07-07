@@ -12,6 +12,8 @@ export const ProjectMetaQuery = gql`
         title
         uri
         url
+        date
+        last_modified
         meta_title
         meta_description
         open_graph_image {

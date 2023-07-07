@@ -5,7 +5,7 @@ $scrollbarthumbhover: theme('colors.orange');
 $scrollwidth: 15px;
 
 /* global scroll */
-*{
+* {
 	scrollbar-color: $scrollbarthumb $scrollbg;
 	scrollbar-width: $scrollwidth;
 }
@@ -14,7 +14,7 @@ $scrollwidth: 15px;
 ::-webkit-scrollbar {
 	width: $scrollwidth;
 	cursor: grab;
-    z-index: 999999;
+	z-index: 999999;
 }
 
 /* Track */
@@ -24,8 +24,8 @@ $scrollwidth: 15px;
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-    background: $scrollbarthumb;
-    border-radius: 25px;
+	background: $scrollbarthumb;
+	border-radius: 25px;
 }
 
 /* Handle on hover */

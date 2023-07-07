@@ -1,7 +1,4 @@
-//'use client'
 import React from 'react'
-import blockInventory from './inventory'
-import dynamic from 'next/dynamic'
 
 import HomeHeroBlock from "@/components/blocks/home_hero/home_hero"
 import HomeHeadlineBlock from "@/components/blocks/home_headline/home_headline"
@@ -26,22 +23,14 @@ import ProjectGridBlock from "@/components/blocks/project_grid/project_grid"
 import ScrollDownBlock from "@/components/blocks/scroll_down/scroll_down"
 import BlogGridBlock from "@/components/blocks/blog_grid/blog_grid"
 
-//TODO OPTIMIZE 
-//const HomeHeroBlock = dynamic(() => import(`@/components/blocks/home_hero/home_hero`)),
-//const HomeHeadlineBlock = dynamic(() => import(`@/components/blocks/home_headline/home_headline`))
-
 interface BlockInterface {
   __typename: string
   [key: string]: any
 }
 
-const Repeater = ({ blocks, meta, entries }: { blocks: BlockInterface[], meta?: any, entries: any }) => (
+const Repeater = ({ blocks, meta, entries }: { blocks: BlockInterface[], meta?: any, entries?: any }) => (
   <>
     {blocks?.map((block, index) => {
-      const blockItem = Object.values(blockInventory).find(
-        (b) => b.typename === block.__typename,
-      )
-      //console.log("repeater loop: ", block.__typename)
       if (block) {
         //console.log("repeater block: ", block.__typename)
         return (

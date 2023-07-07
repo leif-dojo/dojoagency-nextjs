@@ -4,45 +4,54 @@
   .nav {
     ul {
       position: relative;
+
       li {
         position: relative;
-        &:last-child{
+
+        &:last-child {
           padding-bottom: 0;
         }
       }
     }
   }
+
   .copyright {
     ul {
       display: flex;
       flex-wrap: nowrap;
+
       li {
         display: flex;
         flex-wrap: nowrap;
       }
     }
   }
+
   .video {
     position: absolute;
+
     iframe,
     video {
       aspect-ratio: 16/9;
     }
+
     &:after {
-      content:'';
+      content: '';
       position: absolute;
       width: 50%;
       height: 100%;
-      top:0;
-      left:0;
-      background: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 100%);
+      top: 0;
+      left: 0;
+      background: linear-gradient(90deg, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0) 100%);
     }
   }
 }
+
 .pin {
   padding-top: 5rem;
   width: 21rem;
-  svg{
+
+  svg {
     width: 100%;
     height: auto;
     fill: theme('colors.blue');

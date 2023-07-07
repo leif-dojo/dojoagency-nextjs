@@ -1,6 +1,5 @@
 "use client"
 import React from 'react'
-import Link from 'next/link'
 import IconLinkedIn from '@/public/icons/icon-linkedin.svg'
 import IconInstagram from '@/public/icons/icon-instagram.svg'
 import styles from './social_icons.module.scss'
@@ -18,7 +17,6 @@ const SocialIconsBlock = ({ socials, style }: { socials: any, style?: any }) => 
     }
   }
 
-  //console.log("Socials: ", socials)
   return (
     <div className={`${styles.root}`}>
       <div className="flex items-left gap-20 relative w-auto">

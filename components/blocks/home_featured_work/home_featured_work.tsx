@@ -20,7 +20,6 @@ const HomeFeaturedWork = ({ block }: { block: any }) => {
   const ViewAllRef = useRef<HTMLDivElement>(null)
   const NextArrowRef = useRef<HTMLDivElement>(null)
   const GridRef = useRef<HTMLDivElement>(null)
-  //const { x, y } = useMousePosition();
 
   const isMobile = () => {
     return window.innerWidth < 1024

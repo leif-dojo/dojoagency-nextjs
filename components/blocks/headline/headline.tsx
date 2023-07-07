@@ -8,7 +8,7 @@ gsap.registerPlugin(ScrollTrigger)
 
 export const typename = 'Set_Components_Wysiwyg'
 const WysiwygBlock = ({ block }: { block: any }) => {
-  const { cursorType, cursorChangeHandler, colorChangeHandler, backgroundChangeHandler} = useThemeContext();
+  const { cursorType, cursorChangeHandler, colorChangeHandler, backgroundChangeHandler } = useThemeContext();
   const sectionRef = useRef<HTMLDivElement>(null)
   const headlineRef = useRef<HTMLDivElement>(null)
 
@@ -21,44 +21,44 @@ const WysiwygBlock = ({ block }: { block: any }) => {
       const element = document.querySelector("body");
       const getter = gsap.getProperty(element);
       gsap
-      .timeline({
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "top 50%",
-          end: "top 10%",
-          scrub: true,
-          // markers: true,
-        },
-      })
-      .to(element, {
-        color: `rgb(${hexToRgb(TextColor)})`,
-        backgroundColor: `rgb(${hexToRgb(BackgroundColor)})`,
-        ease: "none",
-        onUpdate: (e) => {
-          colorChangeHandler(getter("color"))
-          backgroundChangeHandler(getter("backgroundColor"))
-        }
-      })
+        .timeline({
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top 50%",
+            end: "top 10%",
+            scrub: true,
+            // markers: true,
+          },
+        })
+        .to(element, {
+          color: `rgb(${hexToRgb(TextColor)})`,
+          backgroundColor: `rgb(${hexToRgb(BackgroundColor)})`,
+          ease: "none",
+          onUpdate: (e) => {
+            colorChangeHandler(getter("color"))
+            backgroundChangeHandler(getter("backgroundColor"))
+          }
+        })
 
       //fades
       const boxes = gsap.utils.toArray('.fade')
       if (boxes.length) {
-          boxes.forEach((box:any, i:any) => {
-              const anim = gsap.fromTo(
-                  box,
-                  { autoAlpha: 0, y: "25%" },
-                  { duration: 1.6, autoAlpha: 1, y: "0%", stagger: 0.25, ease: "power4.out" }
-              )
-              ScrollTrigger.create({
-                  //scroller: page,
-                  trigger: box,
-                  animation: anim,
-                  start: 'top bottom',
-                  //end: 'bottom top',
-                  toggleActions: "restart none none reverse",
-                  //markers: true
-              })
+        boxes.forEach((box: any, i: any) => {
+          const anim = gsap.fromTo(
+            box,
+            { autoAlpha: 0, y: "25%" },
+            { duration: 1.6, autoAlpha: 1, y: "0%", stagger: 0.25, ease: "power4.out" }
+          )
+          ScrollTrigger.create({
+            //scroller: page,
+            trigger: box,
+            animation: anim,
+            start: 'top bottom',
+            //end: 'bottom top',
+            toggleActions: "restart none none reverse",
+            //markers: true
           })
+        })
       }
 
     }, sectionRef);
@@ -66,20 +66,21 @@ const WysiwygBlock = ({ block }: { block: any }) => {
   }, []);
 
   return (
-  <section ref={sectionRef} className="w-full ">
-    <div className="px-50 md:px-150 py-50">
-      {block.eyebrow && (
-        <div className="text-20 leading-none font-300 uppercase mb-10 fade">
-          {block.eyebrow}
-        </div>
-      )}
-      <div className="w-full flex">
-        <div className="w-full">
-          <div ref={headlineRef} className='wysiwyg text-90 leading-120 font-300 fade' dangerouslySetInnerHTML={{ __html: block.headline }}></div>
+    <section ref={sectionRef} className="w-full ">
+      <div className="px-50 md:px-150 py-50">
+        {block.eyebrow && (
+          <div className="text-20 leading-none font-300 uppercase mb-10 fade">
+            {block.eyebrow}
+          </div>
+        )}
+        <div className="w-full flex">
+          <div className="w-full">
+            <div ref={headlineRef} className='wysiwyg text-90 leading-120 font-300 fade' dangerouslySetInnerHTML={{ __html: block.headline }}></div>
+          </div>
         </div>
       </div>
-    </div>
-  </section>
-)}
+    </section>
+  )
+}
 
 export default WysiwygBlock

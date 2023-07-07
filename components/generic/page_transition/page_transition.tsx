@@ -1,5 +1,4 @@
 "use client"
-import { useState, useRef } from "react";
 import { usePathname } from 'next/navigation'
 import { motion } from "framer-motion";
 

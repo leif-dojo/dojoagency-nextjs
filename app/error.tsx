@@ -16,7 +16,7 @@ export default function Error({
   }, [error]);
 
   return (
-    <div className={''}>
+    <div className={'w-full bg-white text-slate'}>
       <div>ERROR</div>
       <p>Something went wrong!</p>
       <button onClick={() => reset()}>Reset error boundary</button>

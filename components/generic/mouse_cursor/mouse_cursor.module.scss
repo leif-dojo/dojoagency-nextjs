@@ -20,45 +20,55 @@
   width: auto;
   height: auto;
   color: theme('colors.orange');
-  svg{
+
+  svg {
     width: 100%;
     height: auto;
   }
 }
+
 .peace {
   width: 110rem;
   height: 110rem;
 }
+
 .play {
   width: 160rem;
   height: 160rem;
 }
+
 .pause {
   width: 80rem;
   height: 160rem;
 }
+
 .heart {
   width: 100rem;
   height: 100rem;
 }
+
 .bridge {
   width: 80rem;
   height: 160rem;
 }
+
 .horizontal {
   width: 85rem;
   height: 55rem;
   border: 4rem solid theme('colors.orange');
 }
+
 .view {
   width: 85rem;
   height: 55rem;
   border: 4rem solid theme('colors.orange');
 }
+
 .instagram {
   width: 50rem;
   height: 50rem;
 }
+
 .linkedin {
   width: 50rem;
   height: 50rem;

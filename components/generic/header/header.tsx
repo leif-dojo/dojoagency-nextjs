@@ -1,5 +1,5 @@
 "use client"
-import React, { useEffect, useRef, useState, Fragment, useContext } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import Logo from 'public/icons/Dojo-Logo_Red_RGB.svg'
 import styles from './header.module.scss'
@@ -14,10 +14,6 @@ const HeaderBlock = ({ nav }: HeaderInterface) => {
   const [showMobileMenu, openMobileMenu] = useState(false)
 
   useEffect(() => {
-    /*Router.events.on('routeChangeComplete', () => {
-      openMobileMenu(false)
-    })*/
-
     document.addEventListener('scroll', () => {
       //  detect scroll position in %
       const a = document.documentElement.scrollTop

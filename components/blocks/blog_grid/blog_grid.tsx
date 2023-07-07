@@ -10,7 +10,7 @@ import { ScrollTrigger } from 'gsap/dist/ScrollTrigger'
 gsap.registerPlugin(ScrollTrigger)
 
 export const typename = 'Set_Components_BlogGrid'
-const BlogGridBlock = ({ block, entries }: { block: any, entries:any }) => {
+const BlogGridBlock = ({ block, entries }: { block: any, entries: any }) => {
   const sectionRef = useRef<HTMLDivElement>(null)
   const { cursorType, cursorChangeHandler, colorChangeHandler, backgroundChangeHandler } = useThemeContext();
 
