@@ -1,5 +1,5 @@
 "use client"
-import React, { useLayoutEffect, useState, useRef } from 'react'
+import React, { useLayoutEffect, useState, useRef, useEffect } from 'react'
 import styles from './home_hero.module.scss'
 import Logo from 'public/dojo_animated.svg'
 import { useThemeContext } from '@/context/theme'
@@ -65,37 +65,79 @@ const HomeHeroBlock = ({ block }: { block: any }) => {
         })
 
 
+      //fades
+      const boxes = gsap.utils.toArray('.fade')
+      if (boxes.length) {
+        boxes.forEach((box: any, i: any) => {
+          const anim = gsap.fromTo(
+            box,
+            { autoAlpha: 0, y: "25%" },
+            { duration: 1.6, autoAlpha: 1, y: "0%", stagger: 0.25, ease: "power4.out" }
+          )
+          ScrollTrigger.create({
+            //scroller: page,
+            trigger: box,
+            animation: anim,
+            start: 'top bottom',
+            //end: 'bottom top',
+            toggleActions: "restart none none reverse",
+            //markers: true
+          })
+        })
+      }
+
+    }, sectionRef);
+    return () => ctx.revert();
+  }, []);
+
+  useEffect(() => {
+    let ctx = gsap.context(() => {
+
+      //scroll arrow
       gsap
         .timeline({
           scrollTrigger: {
             trigger: sectionRef.current,
             start: 'top bottom',
-            //end: 'bottom bottom',
+            //end: '100% bottom',
             //scrub: true,
-            toggleActions: "restart none none reverse"
             //markers: true,
+            toggleActions: "restart none none reverse"
           },
         })
         .fromTo(
-          LogoWrapRef.current,
-          { autoAlpha: 0 },
-          { duration: 1, autoAlpha: 1 }, 0
-        )
+          TextRef.current,
+          { alpha: 0 },
+          { alpha: 1 }
+        ).set(ArrowRef.current, {
+          className: styles.draw
+        })
+
+      gsap
+        .timeline({
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: 'center 60%',
+            //end: '100% bottom',
+            //scrub: true,
+            //markers: true,
+            toggleActions: "restart none none reverse"
+          },
+        })
         .fromTo(
-          HeadlineRef.current,
-          { autoAlpha: 0, y: "20%" },
-          { duration: 0.5, autoAlpha: 1, y: "0%" }, 0.2
-        )
-        .fromTo(
-          DownRef.current,
-          { autoAlpha: 0, y: "20%" },
-          { duration: 0.5, autoAlpha: 1, y: "0%" }, 0.4
-        )
-        .fromTo(
-          VideoRef.current,
-          { autoAlpha: 0, y: "20%" },
-          { duration: 1, autoAlpha: 1, y: "0%" }, 0.6
-        )
+          TextRef.current,
+          { alpha: 1 },
+          { alpha: 0 }
+        ).set(ArrowRef.current, {
+          className: styles.drawrev
+        })
+
+    }, sectionRef);
+    return () => ctx.revert();
+  }, []);
+
+  useEffect(() => {
+    let ctx = gsap.context(() => {
 
       //stories
       gsap
@@ -519,46 +561,6 @@ const HomeHeroBlock = ({ block }: { block: any }) => {
           }, 6
         )
 
-
-      //scroll arrow
-      gsap
-        .timeline({
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: 'top bottom',
-            //end: '100% bottom',
-            //scrub: true,
-            //markers: true,
-            toggleActions: "restart none none reverse"
-          },
-        })
-        .fromTo(
-          TextRef.current,
-          { alpha: 0 },
-          { alpha: 1 }
-        ).set(ArrowRef.current, {
-          className: styles.draw
-        })
-
-      gsap
-        .timeline({
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: 'center 60%',
-            //end: '100% bottom',
-            //scrub: true,
-            //markers: true,
-            toggleActions: "restart none none reverse"
-          },
-        })
-        .fromTo(
-          TextRef.current,
-          { alpha: 1 },
-          { alpha: 0 }
-        ).set(ArrowRef.current, {
-          className: styles.drawrev
-        })
-
     }, sectionRef);
     return () => ctx.revert();
   }, []);
@@ -590,11 +592,11 @@ const HomeHeroBlock = ({ block }: { block: any }) => {
         </div>
 
         <div ref={PanelRef} className={`${styles.panel} relative w-full bg-themebackground-ff px-50 md:px-100 mt-360 md:mt-320 pb-180 md:pb-100 z-6`}>
-          <div ref={HeadlineRef} className='relative w-full text-center font-lato text-90 md:text-113 font-300 leading-none py-20'>
+          <div ref={HeadlineRef} className='relative w-full text-center font-lato text-90 md:text-113 font-300 leading-none py-20 fade'>
             <span className='relative'>S<div className={`${styles.splat} splat ${styles.splats}`}><div></div><div></div><div></div><div></div></div></span>tori<span className='relative'>e<div className={`${styles.splat} splat ${styles.splate}`}><div></div><div></div><div></div><div></div></div></span>s at work
           </div>
           <div className={`flex justify-center w-full text-center py-20`}>
-            <div ref={DownRef} className={`${styles.arrow} relative text-center cursor-pointer z-10`} onClick={() => scrollTo()}>
+            <div ref={DownRef} className={`${styles.arrow} relative text-center cursor-pointer z-10 fade`} onClick={() => scrollTo()}>
               <div className="relative flex items-center justify-items-center text-center">
                 <div className={`${styles.arrowwrap} relative w-100 mx-auto`} onClick={() => scrollTo()}>
                   <div ref={ArrowRef}><ScrollDown className={`${styles.arrow} next w-full h-auto text-blue`} /></div>
@@ -605,7 +607,7 @@ const HomeHeroBlock = ({ block }: { block: any }) => {
               </div>
             </div>
           </div>
-          <div ref={VideoRef} className='relative mx-0 md:mx-160 z-10'>
+          <div ref={VideoRef} className='relative mx-0 md:mx-160 z-10 fade'>
             <div className={`${styles.splat} splat ${styles.splatv1}`}><div></div><div></div><div></div><div></div></div>
             <div className={`${styles.splat} splat ${styles.splatv2}`}><div></div><div></div><div></div><div></div></div>
             <div className={`${styles.splat} splat ${styles.splatv3}`}><div></div><div></div><div></div><div></div></div>
