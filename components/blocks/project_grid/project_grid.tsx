@@ -14,6 +14,7 @@ export const typename = 'Set_Components_ProjectGrid'
 const ProjectGridBlock = ({ block }: { block: any }) => {
   const { cursorType, cursorChangeHandler, colorChangeHandler, backgroundChangeHandler } = useThemeContext();
   const sectionRef = useRef<HTMLDivElement>(null)
+  const popupScrollRef = useRef<HTMLDivElement>(null)
   const [active, setActive] = useState(false)
   const [activeindex, setActiveIndex] = useState(1)
 
@@ -30,15 +31,22 @@ const ProjectGridBlock = ({ block }: { block: any }) => {
     active ? setActive(false) : setActive(true)
     active ? document.body.classList.remove('body-lock') : document.body.classList.add('body-lock')
   }
+
+  const scrollTop = () => {
+    popupScrollRef.current.scroll({top: 0, behavior: "smooth"})
+  }
+
   const onNext = () => {
     let next = activeindex + 1;
     if (next >= block.project_grid.length) { next = 0 }
     setActiveIndex(next)
+    scrollTop()
   }
   const onPrev = () => {
     let prev = activeindex - 1;
     if (prev < 0) { prev = block.project_grid.length - 1 }
     setActiveIndex(prev)
+    scrollTop()
   }
 
   useLayoutEffect(() => {
@@ -187,7 +195,7 @@ const ProjectGridBlock = ({ block }: { block: any }) => {
 
       {active && (
         <div className={`${styles.popup} fixed   w-screen h-screen left-0 top-0 z-10`}>
-          <div className="relative px-50 md:px-100 py-40 w-full h-full overflow-y-scroll">
+          <div ref={popupScrollRef} className="relative px-50 md:px-100 py-40 w-full h-full overflow-y-scroll">
             <div className="relative bg-white w-full h-auto">
 
               <div className={`${styles.close} absolute top-50 right-50 flex items-center z-10 cursor-pointer`} role="none" onClick={() => openOrClose(0)}>
