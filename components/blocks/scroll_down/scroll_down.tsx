@@ -1,5 +1,5 @@
 "use client"
-import React, { useState, useRef, useLayoutEffect } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import styles from './scroll_down.module.scss'
 import ScrollDown from '@/public/icons/icon-arrow-scroll.svg'
 import { gsap } from 'gsap'
@@ -12,7 +12,7 @@ const HomePartners = ({ block }: { block: any }) => {
   const ArrowRef = useRef<HTMLDivElement>(null)
   const TextRef = useRef<HTMLDivElement>(null)
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     let ctx = gsap.context(() => {
 
       gsap
