@@ -17,6 +17,7 @@ const NavBlock = ({
   const [valid1, setvalid1] = useState(true)
   const [valid2, setvalid2] = useState(true)
   const [valid3, setvalid3] = useState(true)
+  const [validfinal, setvalidfinal] = useState(true)
 
   const openOrClose = () => {
     if (contactActive) {
@@ -26,6 +27,7 @@ const NavBlock = ({
       setvalid1(true);
       setvalid2(true);
       setvalid3(true);
+      setvalidfinal(true);
     } else {
       setContactActive(true)
     }
@@ -35,14 +37,17 @@ const NavBlock = ({
   //FORM
   const initDetailData = {
     name: '',
+    lastname: '', //honeypot
     email: '',
     message: '',
+    hash: '8aaf78f9a70f1a4410c6d16637f877da'
+
   }
   const [detailData, setDetailData] = useState(initDetailData)
 
   const validate1 = () => {
-    //console.log("validate 1: ", detailData.name)
-    if (!detailData.name) {
+    //validation - require least 2 characters and honeypot field empty
+    if (!detailData.name || detailData.name.length < 2 || detailData.lastname.length > 0) {
       setvalid1(false);
       return false
     }
@@ -50,7 +55,7 @@ const NavBlock = ({
     setvalid1(true);
   }
   const validate2 = () => {
-    //console.log("validate 2: ", detailData.email)
+    //validation - require valid email regex checker
     const email = detailData.email;
     if (!detailData.email || !validateEmail(email)) {
       setvalid2(false);
@@ -61,8 +66,8 @@ const NavBlock = ({
   }
 
   const validate3 = () => {
-    //console.log("validate 3: ", detailData.message)
-    if (!detailData.message) {
+    //validation - require least 2 characters
+    if (!detailData.message || detailData.message.length < 2) {
       setvalid3(false);
       return false
     }
@@ -72,51 +77,68 @@ const NavBlock = ({
 
 
   const submit = async () => {
-    const { name, email, message } = detailData
-    const res = await submitForm(
-      name,
-      email,
-      message,
-    )
-    //console.log("res: ", res)
-    if (res.status && res.status === 'error') {
-      // TODO: show error message
-      console.error(res)
+    const { name, lastname, email, message, hash } = detailData
+    if (name.length > 1 && email.length > 1 && message.length > 1 && detailData.lastname.length == 0) {
+      setvalidfinal(true);
+      const res = await submitForm(
+        name,
+        lastname,
+        email,
+        message,
+        hash
+      )
+      //console.log("res: ", res)
+      if (res.status && res.status === 'error') {
+        // TODO: show error message
+        console.error(res)
+        setvalidfinal(false);
+      } else {
+        //console.log("Success")
+        setStep(4)
+      }
     } else {
-      //console.log("Success")
-      setStep(4)
+      console.error('missing required fields')
+      setvalidfinal(false);
     }
   }
 
   const submitForm = async (
-    email: string,
     name: string,
+    lastname: string,
+    email: string,
     message: string,
+    hash: string
   ) => {
     const url = process.env.NEXT_PUBLIC_CONTACT_FORM;
     const data = {
       name: name,
+      lastname: lastname,
       email: email,
-      message: message
+      message: message,
+      hash: hash
     }
     if (url) {
-      return await fetch(url, {
-        method: 'POST',
-        headers: {
-          'Access-Control-Allow-Origin': '*',
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data),
-      }).then((response) => { return response.json() })
-        .catch((error) => {
-          console.log('Error:', error)
-        })
+      console.log("submitForm: ", email, name, message)
+      if (name && email && message && lastname === '' && hash === '8aaf78f9a70f1a4410c6d16637f877da') {
+        return await fetch(url, {
+          method: 'POST',
+          headers: {
+            'Access-Control-Allow-Origin': '*',
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data),
+        }).then((response) => { return response.json() })
+          .catch((error) => {
+            console.log('Error:', error)
+          })
+      } else {
+        return { status: 'error' }
+      }
     } else {
       return { status: 'error' }
     }
   }
 
-  //console.log("Contact Form: ", data)
   return (
     <>
       {contactActive && (
@@ -155,6 +177,15 @@ const NavBlock = ({
                       setDetailData({ ...detailData, ['name']: e.target.value })
                     }
                   />
+                  <input
+                    id="lastname"
+                    placeholder=""
+                    className="w-full text-22 hidden"
+                    onChange={(e) =>
+                      setDetailData({ ...detailData, ['lastname']: e.target.value })
+                    }
+                  />
+                  <div className={`absolute top-full left-0 text-left text-24 leading-none font-600 pb-20 text-red pt-20 ${valid1 ? 'hidden' : 'block'}`}>Name Required</div>
                 </div>
                 <div className='w-full text-right pt-20'>
                   <button className='btn btn-outline' onClick={() => validate1()}>Next</button>
@@ -195,6 +226,7 @@ const NavBlock = ({
                       setDetailData({ ...detailData, ['email']: e.target.value })
                     }
                   />
+                  <div className={`absolute top-full left-0 text-left text-24 leading-none font-600 pb-20 text-red pt-20 ${valid2 ? 'hidden' : 'block'}`}>Not Valid Email</div>
                 </div>
                 <div className='w-full text-right pt-20'>
                   <button className='btn btn-outline-white' onClick={() => validate2()}>Next</button>
@@ -236,6 +268,8 @@ const NavBlock = ({
                       setDetailData({ ...detailData, ['message']: e.target.value })
                     }
                   />
+                  <div className={`absolute top-full left-0 text-left text-24 leading-none font-600 pb-20 text-red pt-20 ${valid3 ? 'hidden' : 'block'}`}>Message Required</div>
+                  <div className={`absolute top-full left-0 text-left text-24 leading-none font-600 pb-20 text-red pt-20 ${validfinal ? 'hidden' : 'block'}`}>Missing Required Fields</div>
                 </div>
                 <div className='w-full text-right pt-20'>
                   <button className='btn btn-outline' onClick={() => validate3()}>Next</button>

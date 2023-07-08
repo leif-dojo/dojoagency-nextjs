@@ -95,16 +95,7 @@ const HomeHeroBlock = ({ block }: { block: any }) => {
 
       //scroll arrow
       gsap
-        .timeline({
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: 'top bottom',
-            //end: '100% bottom',
-            //scrub: true,
-            //markers: true,
-            toggleActions: "restart none none reverse"
-          },
-        })
+        .timeline()
         .fromTo(
           TextRef.current,
           { alpha: 0 },
@@ -116,8 +107,8 @@ const HomeHeroBlock = ({ block }: { block: any }) => {
       gsap
         .timeline({
           scrollTrigger: {
-            trigger: sectionRef.current,
-            start: 'center 60%',
+            trigger: PanelRef.current,
+            start: 'top 20%',
             //end: '100% bottom',
             //scrub: true,
             //markers: true,
@@ -139,6 +130,26 @@ const HomeHeroBlock = ({ block }: { block: any }) => {
   useEffect(() => {
     let ctx = gsap.context(() => {
 
+      //logo
+      gsap
+        .timeline({
+          scrollTrigger: {
+            trigger: PanelRef.current,
+            start: isMobile() ? "top 180rem" : "top 340rem",
+            end: "10% 0%",
+            scrub: true,
+            //end: "+=500",
+            //markers: true,
+            toggleActions: "play reverse play reverse",
+          },
+        }).fromTo(
+          LogoWrapRef.current,
+          {
+            autoAlpha: 1
+          }, {
+          autoAlpha: 0,
+        }
+        )
       //stories
       gsap
         .timeline({
@@ -152,13 +163,6 @@ const HomeHeroBlock = ({ block }: { block: any }) => {
             toggleActions: "play reverse play reverse",
           },
         }).fromTo(
-          LogoWrapRef.current,
-          {
-            autoAlpha: 1
-          }, {
-          autoAlpha: 0,
-        }, 0
-        ).fromTo(
           HeadlineRef.current,
           {
             fontSize: isMobile() ? "90rem" : "110rem"

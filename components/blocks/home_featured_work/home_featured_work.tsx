@@ -220,7 +220,7 @@ const HomeFeaturedWork = ({ block }: { block: any }) => {
             const randomx = Math.floor(Math.random() * (-20 - -80 + 1)) + -80;
             const randomy = Math.floor(Math.random() * (-10 - -40 + 1)) + -40;
             const randomdur = Math.floor(Math.random() * (3 - 1 + 1)) + 1;
-            //console.log('home featured col: ', index, block)
+
             return (
               <Link href={`${block?.link ? block?.link : ''}`} className={`${styles.project} project block relative overflow-hidden bg-dark w-full md:w-1/3 mb-30 md:mb-0 fade`} key={index} data-x={randomx} data-y={randomy} data-dur={randomdur}>
                 <span className="flex justify-center items-center w-full h-full">

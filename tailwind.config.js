@@ -192,6 +192,7 @@ module.exports = {
       gold: '#f2ac25',
       grey: '#e6e7e8',
       lightgrey: '#e6e7e8',
+      red: '#FF0000',
       brand: {
         orange: '#fa642d',
         blue: '#8db7d7'
