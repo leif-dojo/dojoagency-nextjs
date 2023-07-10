@@ -29,7 +29,7 @@ const HomeHeroBlock = ({ block }: { block: any }) => {
     return window.innerWidth < 1024
   }
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     let ctx = gsap.context(() => {
 
       //set initial colors
