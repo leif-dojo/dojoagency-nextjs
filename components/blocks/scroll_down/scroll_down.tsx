@@ -63,7 +63,7 @@ const HomePartners = ({ block }: { block: any }) => {
   }
 
   return (
-    <section ref={sectionRef} className={`${styles.root} relative w-full -mt-50 z-10`}>
+    <section ref={sectionRef} className={`${styles.root} relative w-full z-10`}>
       <div className="px-50 md:px-100">
         <div className="relative flex items-center justify-items-center text-center">
           <div className={`${styles.arrowwrap} relative w-100 mx-auto`} onClick={() => scrollTo()}>
