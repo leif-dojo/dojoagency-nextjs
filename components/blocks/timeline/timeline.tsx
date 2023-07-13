@@ -109,7 +109,7 @@ const TimelineBlock = ({ block }: { block: any }) => {
   }, []);
 
   return (
-    <section ref={sectionRef} className={`${styles.root} w-full `}>
+    <section ref={sectionRef} className={`${styles.root} w-full overflow-hidden`}>
       <div className="px-50 md:px-100 py-100">
         <div className="w-full">
           {block.eyebrow && (

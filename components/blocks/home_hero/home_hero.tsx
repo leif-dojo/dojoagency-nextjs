@@ -570,12 +570,9 @@ const HomeHeroBlock = ({ block }: { block: any }) => {
   }, []);
 
   const scrollTo = () => {
-    document.getElementById("home-headline").scrollIntoView({ behavior: "smooth" });
-    /*window.scrollTo({
-      top: 100,
-      left: 100,
-      behavior: "smooth",
-    });*/
+    //document.getElementById("home-headline").scrollIntoView({ behavior: "smooth" });
+    const nextSection = sectionRef.current.nextSibling
+    nextSection.scrollIntoView({ behavior: "smooth" });
   }
 
   return (

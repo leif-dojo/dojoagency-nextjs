@@ -26,10 +26,10 @@ const SocialIconsBlock = ({ meta }: { meta: any }) => {
       type: 'facebook',
       url: `https://www.facebook.com/sharer.php?u=${url}`
     },
-    {
+    /*{
       type: 'twitter',
       url: `https://twitter.com/intent/tweet?url=${url}&text=${title}`
-    }
+    }*/
   ]
 
   const getSocialIcon = (t: any) => {
