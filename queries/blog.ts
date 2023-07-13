@@ -826,6 +826,7 @@ export default gql`
                   id
                 }
               }
+              project_link
               project_image {
                 ... on Asset_Assets {
                   id

@@ -4,6 +4,7 @@ import styles from './project_grid.module.scss'
 import { useThemeContext } from '@/context/theme'
 import { useIsMobile, hexToRgb } from '@/utils/general'
 import Image from 'next/image'
+import Link from 'next/link'
 import Arrow from '@/public/icons/icon-triangle.svg'
 import VideoPlayer from '../../generic/video_player/video_player'
 import { gsap } from 'gsap'
@@ -102,6 +103,8 @@ const ProjectGridBlock = ({ block }: { block: any }) => {
     }, sectionRef);
     return () => ctx.revert();
   }, []);
+  
+  const ConditionalWrapper = ({ condition, wrapper, children }:{ condition:any, wrapper:any, children:any }) => condition ? wrapper(children) : children;
 
   return (
     <section ref={sectionRef} className={`${styles.root} w-full  overflow-hidden`}>
@@ -126,7 +129,11 @@ const ProjectGridBlock = ({ block }: { block: any }) => {
             const hasPopup = block.popup_headline || block.popup_wysiwyg || block.popup_image || block.popup_video_local || block.popup_video_embed;
             return (
               <div className={`${styles.project} project relative overflow-hidden ${hasPopup ? 'cursor-pointer' : ''} fade`}
-                onClick={() => { hasPopup ? openOrClose(index) : '' }} onMouseEnter={() => { hasPopup ? onMouseEnter() : '' }} onMouseLeave={() => { hasPopup ? onMouseLeave() : '' }} key={index}>
+                onClick={() => { !block.project_link && hasPopup ? openOrClose(index) : '' }} onMouseEnter={() => { hasPopup ? onMouseEnter() : '' }} onMouseLeave={() => { hasPopup ? onMouseLeave() : '' }} key={index}>
+                <ConditionalWrapper
+                  condition={block.project_link}
+                  wrapper={(children:any) => <Link href={`${block.project_link}`} aria-label={block.project_title}>{children}</Link>}
+                >
                 <div className="block w-full h-full">
                   <div className={`w-full px-30 py-20`}>
                     {block.project_title && (
@@ -183,10 +190,8 @@ const ProjectGridBlock = ({ block }: { block: any }) => {
                       </div>
                     )}
                   </div>
-
-
-
                 </div>
+                </ConditionalWrapper>
               </div>
             )
           })}
