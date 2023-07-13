@@ -88,8 +88,6 @@ const VideoBlock = ({ image_placeholder, video_placeholder, video, play_text }: 
                                 //width='1920px'
                                 //height='1080px'
                                 playsinline={true}
-                                //onReady={() => console.log('onReady')}
-                                //onStart={() => console.log('onStart')}
                                 config={{
                                     vimeo: {
                                         //controls: false
@@ -114,8 +112,6 @@ const VideoBlock = ({ image_placeholder, video_placeholder, video, play_text }: 
                                 //width='1920px'
                                 //height='1080px'
                                 playsinline={true}
-                                //onReady={() => console.log('onReady')}
-                                //onStart={() => console.log('onStart')}
                                 onPause={() => setPlaying(false)}
                                 onPlay={() => setPlaying(true)}
                                 config={{
