@@ -67,7 +67,7 @@ const HomeHeadlineBlock = ({ block }: { block: any }) => {
           { autoAlpha: 0, y: 50 },
           { duration: 0.3, autoAlpha: 1, y: 0 }
         )
-      gsap.to('.tele-ticker', { rotation: '+=4cw', repeat: -1, ease: 'none' })
+      //let tickernai = gsap.to('.tele-ticker', { rotation: '+=4cw', repeat: -1, ease: 'none' })
 
       if (SubRef.current) {
         let split = new ScrollText({
@@ -78,7 +78,10 @@ const HomeHeadlineBlock = ({ block }: { block: any }) => {
       }
 
       //main
-      gsap
+      setTimeout(() => {
+      
+        //add delay due to object query
+        gsap
         .timeline({
           scrollTrigger: {
             trigger: sectionRef.current,
@@ -90,30 +93,31 @@ const HomeHeadlineBlock = ({ block }: { block: any }) => {
           },
         })
         .fromTo(
-          ".morse",
-          { autoAlpha: 0, fill: "rgb(241,90,36)" },
-          {
-            duration: 0.23, autoAlpha: 1, fill: "rgb(255,255,255)",
-            stagger: 0.02,
-            ease: 'power3.out'
-          }, 0
-        )
-        .fromTo(
           ".text1",
           { autoAlpha: 0 },
           {
-            duration: 0.20, autoAlpha: 1,
+            autoAlpha: 1,
             stagger: 0.05,
             ease: 'power3.out'
-          }, 0.1
+          }
         )
         .fromTo(
           ".telegraph",
-          { autoAlpha: 1 },
+          { autoAlpha: 0 },
           {
-            duration: 0.05, autoAlpha: 0,
+            duration: 0.2, autoAlpha: 1,
             ease: 'power3.out'
           }
+        )
+        .to('.tele-ticker', { rotation: '+=4cw', repeat: 4, ease: 'none' })
+        .fromTo(
+          ".morse",
+          { autoAlpha: 0, fill: "rgb(241,90,36)" },
+          {
+            autoAlpha: 1, fill: "rgb(255,255,255)",
+            stagger: 0.035,
+            ease: 'power3.out'
+          },1.8
         )
         .fromTo(
           ".text2",
@@ -123,24 +127,45 @@ const HomeHeadlineBlock = ({ block }: { block: any }) => {
             ease: 'power3.out'
           }
         )
-        .fromTo(
-          ".paint",
+        /*.fromTo(
+          document.getElementById("communicationarts")?.contentDocument.querySelectorAll('.paint-2'),
           { autoAlpha: 0, x: -1000 },
           {
             duration: 0.1, autoAlpha: 1, x: 0,
             ease: 'power3.out'
-          }
+          },
+        )*/
+        .to(
+          document.getElementById("communicationartspaint")?.contentDocument.querySelector('.stop2'),
+          {
+            duration: 0.3, attr: { offset: "52%" },
+            ease: 'power3.out'
+          },
         )
         .to(
           ".paintbrush",
           {
             keyframes: [
               { x: "0%", autoAlpha: 0, duration: 0 },
-              { x: "500%", autoAlpha: 1, duration: 0.7, ease: 'power3.out' },
+              { x: "240%", autoAlpha: 1, duration: 0.3 },
+              { x: "240%", autoAlpha: 1, duration: 0.1 },
+              { x: "240%", y:"-100%", duration: 0.2 },
+              { x: "240%", y:"-70%", duration: 0.2 },
+              { x: "240%", y:"-50%", duration: 0.3 },
+              { x: "240%", y:"0%", duration: 0.2 },
+              { x: "450%", duration: 0.6, ease: 'power3.out' },
+              { x: "550%", autoAlpha: 1, duration: 0.5, ease: 'power3.out' },
               { autoAlpha: 1, duration: 0 },
               { autoAlpha: 0, duration: 0 }
             ]
-          }, 1.3
+          }, 3.9
+        )
+        .to(
+          document.getElementById("communicationartspaint")?.contentDocument.querySelector('.stop2'),
+          {
+            duration: 0.2, attr: { offset: "100%" },
+            ease: 'power3.out'
+          }, 5.2
         )
         .fromTo(
           ".typewriter",
@@ -154,8 +179,8 @@ const HomeHeadlineBlock = ({ block }: { block: any }) => {
           ".sub div",
           { autoAlpha: 0, y: 5 },
           {
-            duration: 0.2, autoAlpha: 1, y: 0,
-            stagger: 0.02,
+            duration: 1, autoAlpha: 1, y: 0,
+            stagger: 0.04,
             ease: 'power3.out'
           }
         )
@@ -167,9 +192,11 @@ const HomeHeadlineBlock = ({ block }: { block: any }) => {
               { x: "-15%", duration: 0.3, ease: 'power3.out' },
               { x: "-40%", duration: 0.3, ease: 'power3.out' },
               { x: "-70%", duration: 0.3, ease: 'power3.out' },
+              { x: "-40%", duration: 0.3, ease: 'power3.out' },
+              { x: "-70%", duration: 0.3, ease: 'power3.out' },
               { x: "0%", duration: 0.3, ease: 'power3.out' }
             ]
-          }, 1.5
+          }, 6
         )
         .to(
           ".typewriter-key-1",
@@ -179,7 +206,7 @@ const HomeHeadlineBlock = ({ block }: { block: any }) => {
               { y: "90%", duration: 0.3, ease: 'power3.out' },
               { y: "0%", duration: 0.3 },
             ]
-          }, 1.5
+          }, 6.3
         )
         .to(
           ".typewriter-key-2",
@@ -189,7 +216,7 @@ const HomeHeadlineBlock = ({ block }: { block: any }) => {
               { y: "90%", duration: 0.3, ease: 'power3.out' },
               { y: "0%", duration: 0.3 },
             ]
-          }, 1.7
+          }, 6.6
         )
         .to(
           ".typewriter-key-3",
@@ -199,7 +226,7 @@ const HomeHeadlineBlock = ({ block }: { block: any }) => {
               { y: "90%", duration: 0.3, ease: 'power3.out' },
               { y: "0%", duration: 0.3 },
             ]
-          }, 1.9
+          }, 6.9
         )
         .to(
           ".typewriter-key-4",
@@ -209,15 +236,39 @@ const HomeHeadlineBlock = ({ block }: { block: any }) => {
               { y: "90%", duration: 0.3, ease: 'power3.out' },
               { y: "0%", duration: 0.3 },
             ]
-          }, 2
+          }, 7.2
         )
         .to(
-          ".typewriter",
+          ".typewriter-key-1",
           {
-            duration: 0.2, autoAlpha: 0,
-            ease: 'power3.out'
-          }
+            keyframes: [
+              { y: "0%", duration: 0 },
+              { y: "90%", duration: 0.3, ease: 'power3.out' },
+              { y: "0%", duration: 0.3 },
+            ]
+          }, 7.5
         )
+        .to(
+          ".typewriter-key-2",
+          {
+            keyframes: [
+              { y: "0%", duration: 0 },
+              { y: "90%", duration: 0.3, ease: 'power3.out' },
+              { y: "0%", duration: 0.3 },
+            ]
+          }, 7.8
+        )
+        /*.to(element, {
+          color: `rgb(${hexToRgb('#FFF')})`,
+          backgroundColor: `rgb(${hexToRgb('#304a5f')})`,
+          ease: "none",
+          onUpdate: (e) => {
+            colorChangeHandler(getter("color"))
+            backgroundChangeHandler(getter("backgroundColor"))
+          }
+        })*/
+      }, 100);
+
 
     }, sectionRef);
     return () => ctx.revert();
@@ -233,18 +284,21 @@ const HomeHeadlineBlock = ({ block }: { block: any }) => {
         </div>
         <div className="w-full">
           <div ref={ComRef} className={`${styles.communication} relative text-themebackground`}>
-            <CommunicationArts />
+
+            <CommunicationArts className={`relative z-5`}/>
+            <object id="communicationartspaint" type="image/svg+xml" data="/communication-arts-paint.svg" className={`${styles.paint} absolute top-0 w-full h-auto`}></object>
+
             <div ref={PaintbrushRef} className={`${styles.paintbrush} paintbrush absolute opacity-0 w-400 mb-20 text-slate`}>
               <Paintbrush />
             </div>
           </div>
         </div>
-        <div className="w-full pt-20 px-40 md:px-80">
-          <div className="w-full text-left">
+        <div className="w-full pt-10 px-40 md:px-80">
+          <div className="w-full text-center">
             <div ref={SubRef} className="sub text-40 md:text-55 leading-none font-600 pb-40 text-left">
               {block.subheadline}
             </div>
-            <div ref={TypewriterRef} className={`${styles.typewriter} typewriter w-140 mb-20 text-slate`}>
+            <div ref={TypewriterRef} className={`${styles.typewriter} typewriter w-140 mb-20 mx-auto text-center text-slate`}>
               <Typewriter />
             </div>
           </div>

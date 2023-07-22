@@ -2,6 +2,12 @@
 
 .root {
 
+  .headline {
+    p{
+      margin-bottom:0;
+    }
+  }
+
   .logo {
     img{
       max-width: 300rem;

@@ -38,7 +38,7 @@ const HomePartners = ({ block }: { block: any }) => {
         .timeline({
           scrollTrigger: {
             trigger: sectionRef.current,
-            start: 'center 60%',
+            start: 'center 40%',
             //end: '100% bottom',
             //scrub: true,
             //markers: true,

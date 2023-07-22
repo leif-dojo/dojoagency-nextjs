@@ -146,7 +146,7 @@ const WysiwygBlock = ({ block, meta }: { block: any, meta: any }) => {
 
   return (
     <section ref={sectionRef} className={`${styles.root} w-full `}>
-      <div className="px-50 md:px-100 py-50">
+      <div className="px-50 md:px-100 pt-50 pb-30">
         <div className="block md:flex">
           <div className="w-full md:w-8/12">
             {block.eyebrow && (
@@ -155,7 +155,7 @@ const WysiwygBlock = ({ block, meta }: { block: any, meta: any }) => {
               </div>
             )}
             {block.headline && (
-              <div ref={headlineRef} className='wysiwyg text-110 leading-140 font-300 ' dangerouslySetInnerHTML={{ __html: block.headline }}></div>
+              <div ref={headlineRef} className={`${styles.headline} wysiwyg text-110 leading-140 font-300 `} dangerouslySetInnerHTML={{ __html: block.headline }}></div>
             )}
           </div>
           <div className="w-full md:w-4/12 text-right">

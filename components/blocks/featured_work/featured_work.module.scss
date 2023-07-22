@@ -129,6 +129,9 @@
             .imagehover {
                 opacity: 1;
             }
+            .headline {
+                opacity: 0;
+            }
             .hover {
                 opacity: 1;
             }
@@ -157,9 +160,14 @@
         z-index: 50;
         opacity: 0;
     }
+    .headline {
+        opacity: 1;
+        transition: all 500ms ease-in-out;
+    }
     .hover {
         opacity: 0;
         z-index: 55;
+        transition: all 500ms ease-in-out;
     }
     .video {
         object-fit: cover;

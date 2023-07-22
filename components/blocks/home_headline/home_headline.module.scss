@@ -13,10 +13,14 @@
             height: auto;
         }
     }
+    .paint{
+        z-index: -1;
+    }
     .typewriter {
         svg{
             width: 100%;
             height: auto;
+            margin: 0 auto;
         }
     }
     .paintbrush {
@@ -28,4 +32,3 @@
         }
     }
 }
-
