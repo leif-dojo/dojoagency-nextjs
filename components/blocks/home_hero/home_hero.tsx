@@ -1,7 +1,7 @@
 "use client"
 import React, { useLayoutEffect, useState, useRef, useEffect } from 'react'
 import styles from './home_hero.module.scss'
-import Logo from 'public/dojo_animated.svg'
+import Logo from 'public/dojo_animated-01.svg'
 import { useThemeContext } from '@/context/theme'
 import { useIsMobile, hexToRgb } from '@/utils/general'
 import { treestart, treeend } from './trees'
@@ -218,7 +218,7 @@ const HomeHeroBlock = ({ block }: { block: any }) => {
       };
 
       function setSignaturePaths() {
-        let totalDur = 3
+        let totalDur = 20
         // get all SVG elements - lines and dots
         const paths = sectionRef.current.querySelectorAll('.autograph__path')
         // prepare path length variable
@@ -247,10 +247,12 @@ const HomeHeroBlock = ({ block }: { block: any }) => {
           // calculate current animation duration
           const duration = totalLen / len * totalDuration
 
+          // console.log("each: ", delay, duration, totalLen)
+
           // set animation duration and delay
-          pathElem.style.animationDuration = `${duration < 0.05 ? 0.05 : duration}s`
+          pathElem.style.animationDuration = `${duration < 0.1 ? 0.1 : duration}s`
           pathElem.style.animationDelay = `${delay}s`
-          pathElem.setAttribute('data-duration', `${duration < 0.05 ? 0.05 : duration}`);
+          pathElem.setAttribute('data-duration', `${duration < 0.1 ? 0.1 : duration}`);
 
           // set dash array and offset to path length - this is how you hide the line
           pathElem.setAttribute('stroke-dasharray', totalLen)
@@ -299,6 +301,10 @@ const HomeHeroBlock = ({ block }: { block: any }) => {
       const sign_4 = document.getElementsByClassName("signature-4")[0]
       const sign_5 = document.getElementsByClassName("signature-5")[0]
       const sign_6 = document.getElementsByClassName("signature-6")[0]
+      const sign_7 = document.getElementsByClassName("signature-7")[0]
+      const sign_8 = document.getElementsByClassName("signature-8")[0]
+      const sign_9 = document.getElementsByClassName("signature-9")[0]
+      const sign_10 = document.getElementsByClassName("signature-10")[0]
 
       gsap
         .timeline({
@@ -348,14 +354,14 @@ const HomeHeroBlock = ({ block }: { block: any }) => {
           {
             strokeDashoffset: 0,
             duration: sign_2.dataset.duration,
-          }, sign_1.dataset.duration + 1
+          }, ">"
         )
         .to(
           ".signature-3",
           {
             strokeDashoffset: 0,
             duration: sign_3.dataset.duration,
-          }, sign_2.dataset.duration + sign_1.dataset.duration + 1
+          }, ">"
         )
         .fromTo(
           ".splat",
@@ -367,21 +373,49 @@ const HomeHeroBlock = ({ block }: { block: any }) => {
           {
             strokeDashoffset: 0,
             duration: sign_4.dataset.duration,
-          }, sign_3.dataset.duration + sign_2.dataset.duration + sign_1.dataset.duration + 1
+          }, ">"
         )
         .to(
           ".signature-5",
           {
             strokeDashoffset: 0,
             duration: sign_5.dataset.duration,
-          }, sign_4.dataset.duration + sign_3.dataset.duration + sign_2.dataset.duration + sign_1.dataset.duration + 1
+          }, ">"
         )
         .to(
           ".signature-6",
           {
             strokeDashoffset: 0,
             duration: sign_6.dataset.duration,
-          }, sign_5.dataset.duration + sign_4.dataset.duration + sign_3.dataset.duration + sign_2.dataset.duration + sign_1.dataset.duration + 1
+          }, ">"
+        )
+        .to(
+          ".signature-7",
+          {
+            strokeDashoffset: 0,
+            duration: sign_6.dataset.duration,
+          }, ">"
+        )
+        .to(
+          ".signature-8",
+          {
+            strokeDashoffset: 0,
+            duration: sign_6.dataset.duration,
+          }, ">"
+        )
+        .to(
+          ".signature-9",
+          {
+            strokeDashoffset: 0,
+            duration: sign_6.dataset.duration,
+          }, ">"
+        )
+        .to(
+          ".signature-10",
+          {
+            strokeDashoffset: 0,
+            duration: sign_6.dataset.duration,
+          }, ">"
         )
         .to(
           ".signature-1",
@@ -390,7 +424,7 @@ const HomeHeroBlock = ({ block }: { block: any }) => {
               { strokeDashoffset: -1 * sign_1.getTotalLength(), duration: sign_1.dataset.duration, },
               { autoAlpha: 0, duration: 0 }
             ]
-          }, 1
+          }, sign_1.dataset.duration
         )
         .to(
           ".signature-2",
@@ -399,7 +433,7 @@ const HomeHeroBlock = ({ block }: { block: any }) => {
               { strokeDashoffset: -1 * sign_2.getTotalLength(), duration: sign_2.dataset.duration, },
               { autoAlpha: 0, duration: 0 }
             ]
-          }, 2
+          }, ">0.2"
         )
         .to(
           ".signature-3",
@@ -408,7 +442,7 @@ const HomeHeroBlock = ({ block }: { block: any }) => {
               { strokeDashoffset: -1 * sign_3.getTotalLength(), duration: sign_3.dataset.duration, },
               { autoAlpha: 0, duration: 0 }
             ]
-          }, 2.1
+          }, ">"
         )
         .to(
           ".signature-4",
@@ -417,7 +451,7 @@ const HomeHeroBlock = ({ block }: { block: any }) => {
               { strokeDashoffset: -1 * sign_4.getTotalLength(), duration: sign_4.dataset.duration, },
               { autoAlpha: 0, duration: 0 }
             ]
-          }, 2.5
+          }, ">"
         )
         .to(
           ".signature-5",
@@ -426,7 +460,7 @@ const HomeHeroBlock = ({ block }: { block: any }) => {
               { strokeDashoffset: -1 * sign_5.getTotalLength(), duration: sign_5.dataset.duration, },
               { autoAlpha: 0, duration: 0 }
             ]
-          }, 3
+          }, ">"
         )
         .to(
           ".signature-6",
@@ -435,7 +469,43 @@ const HomeHeroBlock = ({ block }: { block: any }) => {
               { strokeDashoffset: -1 * sign_6.getTotalLength(), duration: sign_6.dataset.duration, },
               { autoAlpha: 0, duration: 0 }
             ]
-          }, 4.2
+          }, ">"
+        )
+        .to(
+          ".signature-7",
+          {
+            keyframes: [
+              { strokeDashoffset: -1 * sign_7.getTotalLength(), duration: sign_7.dataset.duration, },
+              { autoAlpha: 0, duration: 0 }
+            ]
+          }, ">"
+        )
+        .to(
+          ".signature-8",
+          {
+            keyframes: [
+              { strokeDashoffset: -1 * sign_8.getTotalLength(), duration: sign_8.dataset.duration, },
+              { autoAlpha: 0, duration: 0 }
+            ]
+          }, ">"
+        )
+        .to(
+          ".signature-9",
+          {
+            keyframes: [
+              { strokeDashoffset: -1 * sign_9.getTotalLength(), duration: sign_9.dataset.duration, },
+              { autoAlpha: 0, duration: 0 }
+            ]
+          }, ">"
+        )
+        .to(
+          ".signature-10",
+          {
+            keyframes: [
+              { strokeDashoffset: -1 * sign_10.getTotalLength(), duration: sign_10.dataset.duration, },
+              { autoAlpha: 0, duration: 0 }
+            ]
+          }, ">"
         )
         /*.fromTo(
           ".tree",
