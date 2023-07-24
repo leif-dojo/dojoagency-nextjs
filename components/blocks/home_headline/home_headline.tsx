@@ -97,6 +97,7 @@ const HomeHeadlineBlock = ({ block }: { block: any }) => {
           { autoAlpha: 0 },
           {
             autoAlpha: 1,
+            duration: 0.1,
             stagger: 0.05,
             ease: 'power3.out'
           }
@@ -105,7 +106,8 @@ const HomeHeadlineBlock = ({ block }: { block: any }) => {
           ".telegraph",
           { autoAlpha: 0 },
           {
-            duration: 0.2, autoAlpha: 1,
+            duration: 0.2, 
+            autoAlpha: 1,
             ease: 'power3.out'
           }
         )
@@ -115,9 +117,10 @@ const HomeHeadlineBlock = ({ block }: { block: any }) => {
           { autoAlpha: 0, fill: "rgb(241,90,36)" },
           {
             autoAlpha: 1, fill: "rgb(255,255,255)",
+            duration: 0.1,
             stagger: 0.035,
             ease: 'power3.out'
-          },1.8
+          },1.5
         )
         .fromTo(
           ".text2",
@@ -158,14 +161,14 @@ const HomeHeadlineBlock = ({ block }: { block: any }) => {
               { autoAlpha: 1, duration: 0 },
               { autoAlpha: 0, duration: 0 }
             ]
-          }, 3.9
+          }, 3.45
         )
         .to(
           document.getElementById("communicationartspaint")?.contentDocument.querySelector('.stop2'),
           {
             duration: 0.2, attr: { offset: "100%" },
             ease: 'power3.out'
-          }, 5.2
+          }, 4.8
         )
         .fromTo(
           ".typewriter",
@@ -177,9 +180,9 @@ const HomeHeadlineBlock = ({ block }: { block: any }) => {
         )
         .fromTo(
           ".sub div",
-          { autoAlpha: 0, y: 5 },
+          { autoAlpha: 0, y: "25%" },
           {
-            duration: 1, autoAlpha: 1, y: 0,
+            duration: 0.1, autoAlpha: 1, y: "0%",
             stagger: 0.04,
             ease: 'power3.out'
           }
