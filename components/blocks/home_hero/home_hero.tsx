@@ -253,9 +253,9 @@ const HomeHeroBlock = ({ block }: { block: any }) => {
           // console.log("each: ", delay, duration, totalLen)
 
           // set animation duration and delay
-          pathElem.style.animationDuration = `${duration < 0.1 ? 0.1 : duration}s`
+          pathElem.style.animationDuration = `${duration < 0.2 ? 0.2 : duration}s`
           pathElem.style.animationDelay = `${delay}s`
-          pathElem.setAttribute('data-duration', `${duration < 0.1 ? 0.1 : duration}`);
+          pathElem.setAttribute('data-duration', `${duration < 0.2 ? 0.2 : duration}`);
           pathElem.setAttribute('data-length', `${totalLen}`);
 
           // set dash array and offset to path length - this is how you hide the line
@@ -359,7 +359,7 @@ const HomeHeroBlock = ({ block }: { block: any }) => {
           {
             strokeDashoffset: 0,
             duration: sign_2.dataset.duration,
-          }, ">-0.3"
+          }, ">-15%"
         )
         .to(
           ".signature-3",
@@ -371,14 +371,14 @@ const HomeHeroBlock = ({ block }: { block: any }) => {
         .fromTo(
           ".splat",
           { autoAlpha: 0, },
-          { duration: 0.2, autoAlpha: 1, stagger: 0.1 }
+          { duration: 0.1, autoAlpha: 1, stagger: 0.1 }
         )
         .to(
           ".signature-4",
           {
             strokeDashoffset: 0,
             duration: sign_4.dataset.duration,
-          }, ">"
+          }, ">-1.7"
         )
         .to(
           ".signature-5",
@@ -431,7 +431,7 @@ const HomeHeroBlock = ({ block }: { block: any }) => {
               { strokeDashoffset: -1 * sign_2.dataset.length, duration: sign_2.dataset.duration, },
               { autoAlpha: 0, duration: 0 }
             ]
-          }, ">-0.3"
+          }, ">"
         )
         .to(
           ".signature-3",
@@ -506,7 +506,7 @@ const HomeHeroBlock = ({ block }: { block: any }) => {
         .fromTo(
           ".letter-a",
           { autoAlpha: 0 },
-          { duration: 0.2, autoAlpha: 1 }, 3.8
+          { duration: 0.2, autoAlpha: 1 }, 4
         )
         .fromTo(
           ".letter-g",
@@ -594,7 +594,7 @@ const HomeHeroBlock = ({ block }: { block: any }) => {
         }, ">")
         .to(
           ".splat",
-          { duration: 0.25, autoAlpha: 0 }, ">"
+          { duration: 0.5, autoAlpha: 0 }, ">"
         )
         .to(".tree",
           {

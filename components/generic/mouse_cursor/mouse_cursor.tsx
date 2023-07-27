@@ -26,12 +26,13 @@ const Cursor = () => {
 
   const getCursorIcon = () => {
     //update cursor if set
-    //console.log("update cursor state",cursorType)
+    //console.log("update cursor state", cursor, cursorType)
     if (process.browser) {
       (cursor == 'default' || cursor == '' || cursor == 'page') ? document.body.classList.remove('no-cursor') : document.body.classList.add('no-cursor')
     }
     if(cursor == 'page') {
       cursor = cursorPageType
+      if(cursorPageType !== 'default'){document.body.classList.add('no-cursor')}
     }
 
     //change cursor
