@@ -11,11 +11,16 @@ export const ThemeContextProvider = ({ children }: { children: any }) => {
   const [color, setColor] = useState('0,0,0');
   const [backgroundColor, setBackgroundColor] = useState('255,255,255');
   const [contactActive, setContactActive] = useState(false);
-  const [cursorType, setCursorType] = useState("");
+  const [cursorType, setCursorType] = useState();
+  const [cursorPageType, setCursorPageType] = useState();
   const pathname = usePathname();
 
   const cursorChangeHandler = (cursorType: any) => {
     setCursorType(cursorType);
+  };
+
+  const cursorPageChangeHandler = (cursorPageType: any) => {
+    setCursorPageType(cursorPageType);
   };
 
   const colorChangeHandler = (color: any) => {
@@ -100,7 +105,9 @@ export const ThemeContextProvider = ({ children }: { children: any }) => {
       contactActive,
       setContactActive: setContactActive,
       cursorType: cursorType,
+      cursorPageType: cursorPageType,
       cursorChangeHandler: cursorChangeHandler,
+      cursorPageChangeHandler: cursorPageChangeHandler,
       colorChangeHandler: colorChangeHandler,
       backgroundChangeHandler: backgroundChangeHandler,
     }}>

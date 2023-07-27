@@ -18,19 +18,24 @@ import IconRocket from "@/public/icons/cursor-rocket.svg"
 import IconMasks from "@/public/icons/cursor-masks.svg"
 
 const Cursor = () => {
-  const { cursorType, cursorChangeHandler } = useThemeContext()
+  const { cursorType, cursorChangeHandler, cursorPageType } = useThemeContext()
   const { x, y } = useMousePosition()
   const pathname = usePathname()
   let timeout: any;
+  let cursor = cursorType;
 
   const getCursorIcon = () => {
     //update cursor if set
     //console.log("update cursor state",cursorType)
     if (process.browser) {
-      (cursorType == 'default' || cursorType == '') ? document.body.classList.remove('no-cursor') : document.body.classList.add('no-cursor')
+      (cursor == 'default' || cursor == '' || cursor == 'page') ? document.body.classList.remove('no-cursor') : document.body.classList.add('no-cursor')
     }
+    if(cursor == 'page') {
+      cursor = cursorPageType
+    }
+
     //change cursor
-    switch (cursorType) {
+    switch (cursor) {
       case 'peace':
         return <div className={`${styles.peace}`}><IconPeace /></div>;
       case 'play':
@@ -72,14 +77,14 @@ const Cursor = () => {
     //TODO reset cursor if no movement
     clearTimeout(timeout)
     timeout = window.setTimeout(() => {
-      cursorChangeHandler('default')
+      cursorChangeHandler('page')
     }, 30000);
 
   }, [cursorType]);
 
   //reset cursor on path change
   useLayoutEffect(() => {
-    cursorChangeHandler('default')
+    cursorChangeHandler('page')
   }, [pathname]);
 
   return (

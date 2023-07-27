@@ -5,6 +5,7 @@ import PageQuery from '@/queries/page'
 import { PageMetaQuery } from '@/queries/page'
 import Repeater from '@/utils/rendering/repeater'
 import { notFound } from "next/navigation"
+import PageContext from '@/components/generic/page_context/page_context'
 
 type Props = {
   params: { id: string }
@@ -102,6 +103,7 @@ export default async function Page(context: { params: { slug: string }, searchPa
 
   return (
     <>
+      <PageContext cursor={data.entry?.cursor ? data.entry?.cursor.value : 'default'}/>
       <div className="page">
         <Repeater blocks={data.entry?.components} meta={pagemeta} />
       </div>

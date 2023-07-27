@@ -17,13 +17,13 @@ const VideoBlock = ({ image_placeholder, video_placeholder, video, play_text }: 
         setActive(true)
         setPlaying(playing ? false : true)
         //active ? setVideoState('play') : setVideoState('pause');
-        playing ? cursorChangeHandler("play") : cursorChangeHandler("default")
+        playing ? cursorChangeHandler("play") : cursorChangeHandler("page")
     }
 
     const onMouseEnter = () => {
         if (video) {
             setHovering(true)
-            playing ? cursorChangeHandler("default") : cursorChangeHandler("play")
+            playing ? cursorChangeHandler("page") : cursorChangeHandler("play")
         }
     };
 

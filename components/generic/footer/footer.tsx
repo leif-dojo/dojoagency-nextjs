@@ -53,7 +53,7 @@ const FooterBlock = ({
                 <Socials socials={footer.socials} />
               </div>
               <div className={cn(styles.address, 'mt-auto pt-100')}>
-                <div className='inline text-60 md:text-36 leading-none font-500 text-white text-left cursor-pointer' onClick={() => openOrClose()} onMouseEnter={() => cursorChangeHandler("bridge")} onMouseLeave={() => cursorChangeHandler("default")}>{footer.form_cta}</div>
+                <div className='inline text-60 md:text-36 leading-none font-500 text-white text-left cursor-pointer' onClick={() => openOrClose()} onMouseEnter={() => cursorChangeHandler("bridge")} onMouseLeave={() => cursorChangeHandler("page")}>{footer.form_cta}</div>
               </div>
             </div>
             <div className="md:col-span-8 text-right">

@@ -623,7 +623,7 @@ const HomeHeroBlock = ({ block }: { block: any }) => {
   }
 
   return (
-    <section ref={sectionRef} className={`${styles.root} bg-themebackground-off w-full pb-0`} onMouseEnter={() => cursorChangeHandler("peace")} onMouseLeave={() => cursorChangeHandler("default")}>
+    <section ref={sectionRef} className={`${styles.root} bg-themebackground-off w-full pb-0`} onMouseEnter={() => cursorChangeHandler("peace")} onMouseLeave={() => cursorChangeHandler("page")}>
       <div ref={RainRef} id="rain" className={`${styles.rain} absolute w-full h-full top-0 left-0`}></div>
 
       <div className='relative w-full'>

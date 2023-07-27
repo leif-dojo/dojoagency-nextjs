@@ -12,7 +12,7 @@ const NavBlock = ({
   data: any
 }) => {
   const [step, setStep] = useState(1)
-  const { contactActive, setContactActive } = useThemeContext();
+  const { contactActive, setContactActive, cursorChangeHandler } = useThemeContext();
 
   const [valid1, setvalid1] = useState(true)
   const [valid2, setvalid2] = useState(true)
@@ -142,7 +142,7 @@ const NavBlock = ({
   return (
     <>
       {contactActive && (
-        <div className={`${styles.root} fixed bg-black w-screen h-screen left-0 top-0 z-100`}>
+        <div className={`${styles.root} fixed bg-black w-screen h-screen left-0 top-0 z-100`} onMouseEnter={() => { cursorChangeHandler("default") }} onMouseLeave={() => { cursorChangeHandler("page") }}>
           <div className={`${styles.step} ${step === 1 ? styles.active : ''} step absolute opacity-0 bg-gold w-full h-full px-50 md:px-100`}>
             <div className={`${styles.bg} bg absolute w-full h-full left-0 top-0`}>
               {data.step_1_image && (

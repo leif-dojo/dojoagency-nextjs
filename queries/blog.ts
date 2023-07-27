@@ -50,6 +50,10 @@ export default gql`
         url
         permalink
         date
+        cursor {
+          value
+          label
+        }
         components {
           ... on Set_Components_HomeHero {
             __typename

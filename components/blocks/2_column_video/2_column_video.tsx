@@ -68,7 +68,7 @@ const Column2VideoBlock = ({ block }: { block: any }) => {
   }, []);
 
   return (
-    <section ref={sectionRef} className="w-full " onMouseEnter={() => cursorChangeHandler("default")} onMouseLeave={() => cursorChangeHandler("default")}>
+    <section ref={sectionRef} className="w-full " onMouseEnter={() => cursorChangeHandler("page")} onMouseLeave={() => cursorChangeHandler("page")}>
       <div className="px-50 md:px-100 py-100">
         <div className="block md:flex">
           <div ref={copyRef} className="w-full md:w-5/12 md:pr-30">

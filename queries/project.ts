@@ -59,6 +59,10 @@ export default gql`
             }
           }
         }
+        cursor {
+          value
+          label
+        }
         components {
           ... on Set_Components_HomeHero {
             __typename

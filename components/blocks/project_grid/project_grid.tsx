@@ -24,7 +24,7 @@ const ProjectGridBlock = ({ block }: { block: any }) => {
   }
 
   const onMouseLeave = () => {
-    cursorChangeHandler("default")
+    cursorChangeHandler("page")
   }
 
   const openOrClose = (index: any) => {
@@ -199,7 +199,7 @@ const ProjectGridBlock = ({ block }: { block: any }) => {
       </div>
 
       {active && (
-        <div className={`${styles.popup} fixed   w-screen h-screen left-0 top-0 z-10`}>
+        <div className={`${styles.popup} fixed   w-screen h-screen left-0 top-0 z-10`} onMouseEnter={() => { cursorChangeHandler("default") }}>
           <div ref={popupScrollRef} className="relative px-50 md:px-100 py-40 w-full h-full overflow-y-scroll">
             <div className="relative bg-white w-full h-auto">
 

@@ -26,7 +26,7 @@ const GalleryHorizontalBlock = ({ block }: { block: any }) => {
   }
 
   const onMouseLeave = () => {
-    cursorChangeHandler("default")
+    cursorChangeHandler("page")
   }
 
   const openOrClose = (index: any) => {

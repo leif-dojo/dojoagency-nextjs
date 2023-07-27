@@ -19,7 +19,7 @@ const ImageGridBlock = ({ block }: { block: any }) => {
   }
 
   const onMouseLeave = () => {
-    cursorChangeHandler("default")
+    cursorChangeHandler("page")
   }
 
   useLayoutEffect(() => {

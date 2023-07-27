@@ -11,9 +11,9 @@ const SocialIconsBlock = ({ socials, style }: { socials: any, style?: any }) => 
   const getSocialIcon = (t: any) => {
     switch (t.type) {
       case 'linkedin':
-        return <IconLinkedIn onMouseEnter={() => cursorChangeHandler("linkedin")} onMouseLeave={() => cursorChangeHandler("default")} />;
+        return <span className='absolute w-full h-full left-0 top-0 flex items-center justify-center' onMouseEnter={() => cursorChangeHandler("linkedin")} onMouseLeave={() => cursorChangeHandler("page")}><IconLinkedIn /></span>;
       case 'instagram':
-        return <IconInstagram onMouseEnter={() => cursorChangeHandler("instagram")} onMouseLeave={() => cursorChangeHandler("default")} />;
+        return <span className='absolute w-full h-full left-0 top-0 flex items-center justify-center' onMouseEnter={() => cursorChangeHandler("instagram")} onMouseLeave={() => cursorChangeHandler("page")}><IconInstagram /></span>;
     }
   }
 
@@ -21,8 +21,8 @@ const SocialIconsBlock = ({ socials, style }: { socials: any, style?: any }) => 
     <div className={`${styles.root}`}>
       <div className="flex items-left gap-20 relative w-auto">
         {socials.map((t: any) => (
-          <div key={`${t.type}`} className={`${style === 'simple' ? styles.iconsimple : styles.icon} social-icon-wrap flex items-center justify-center`}>
-            <a href={t.url} className={`relative flex items-center justify-center ${style === 'simple' ? 'text-white' : 'text-blue'} cursor-pointer`} aria-label="LinkedIn" target='_blank'>
+          <div key={`${t.type}`} className={`${style === 'simple' ? styles.iconsimple : styles.icon} relative social-icon-wrap flex items-center justify-center`}>
+            <a href={t.url} className={`absolute w-full h-full left-0 top-0 ${style === 'simple' ? 'text-white' : 'text-blue'} cursor-pointer`} target='_blank'>
               {getSocialIcon(t)}
             </a>
           </div>

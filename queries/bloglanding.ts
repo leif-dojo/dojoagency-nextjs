@@ -46,6 +46,10 @@ export default gql`
         title
         uri
         url
+        cursor {
+          value
+          label
+        }
         components {
           ... on Set_Components_HomeHero {
             __typename

@@ -19,7 +19,7 @@ const BlogGridBlock = ({ block, entries }: { block: any, entries: any }) => {
   }
 
   const onMouseLeave = () => {
-    cursorChangeHandler("default")
+    cursorChangeHandler("page")
   }
 
   useLayoutEffect(() => {
