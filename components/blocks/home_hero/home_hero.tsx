@@ -1,7 +1,7 @@
 "use client"
 import React, { useLayoutEffect, useState, useRef, useEffect } from 'react'
 import styles from './home_hero.module.scss'
-import Logo from 'public/dojo_animated-01.svg'
+import Logo from 'public/dojo_animated.svg'
 import { useThemeContext } from '@/context/theme'
 import { useIsMobile, hexToRgb } from '@/utils/general'
 import { treestart, treeend } from './trees'
@@ -185,25 +185,28 @@ const HomeHeroBlock = ({ block }: { block: any }) => {
 
         function loop(i: any,) {
           setTimeout(function () {
-            var randoHundo = (Math.floor(Math.random() * (98 - 1 + 1) + 1));
-            var randoFiver = (Math.floor(Math.random() * (5 - 2 + 1) + 2));
-            var randolength = (Math.floor(Math.random() * (400 - 100 + 1) + 100));
-            var randoopacity = Math.random();
-            //drop container
-            var drop = document.createElement('div');
-            drop.classList.add(`${styles.drop}`);
-            drop.classList.add(`drop`);
-            drop.style.cssText = `height:${randolength}rem;opacity:${randoopacity};left: ${i}%; bottom: ${randoFiver + randoFiver - 1 + 100}%; animation-delay: 0.${randoHundo}s; animation-duration: 0.5${randoHundo}s;`;
-            //rain stem
-            var stem = document.createElement('div');
-            stem.classList.add(`${styles.stem}`);
-            stem.style.cssText = `animation-delay: 0.${randoHundo}s; animation-duration: 0.5${randoHundo}s;`;
-            drop.appendChild(stem);
+            //randomize placement
+            if(Math.random() > 0.6){
+              var randoHundo = (Math.floor(Math.random() * (98 - 1 + 1) + 1));
+              var randoFiver = (Math.floor(Math.random() * (5 - 2 + 1) + 2));
+              var randolength = (Math.floor(Math.random() * (500 - 50 + 1) + 50));
+              var randoopacity = (Math.floor(Math.random() * (40 - 1 + 1) + 1)) / 100;
+              //drop container
+              var drop = document.createElement('div');
+              drop.classList.add(`${styles.drop}`);
+              drop.classList.add(`drop`);
+              drop.style.cssText = `height:${randolength}rem;opacity:${randoopacity};left: ${i}%; bottom: ${randoFiver + randoFiver - 1 + 100}%; animation-delay: 0.${randoHundo}s; animation-duration: 0.5${randoHundo}s;`;
+              //rain stem
+              var stem = document.createElement('div');
+              stem.classList.add(`${styles.stem}`);
+              stem.style.cssText = `animation-delay: 0.${randoHundo}s; animation-duration: 0.5${randoHundo}s;`;
+              drop.appendChild(stem);
 
-            //add in a new raindrop with various randomizations to certain CSS properties
-            //drop.innerHTML += `<div class='${styles.drop}' style="height:${randolength}rem;opacity:${randoopacity};left: ${increment}%; bottom: ${randoFiver + randoFiver - 1 + 100}%; animation-delay: 0.${randoHundo}s; animation-duration: 0.5${randoHundo}s;"><div class='${styles.stem}' style="animation-delay: 0.${randoHundo}s; animation-duration: 0.5${randoHundo}s;"></div><div class='${styles.splat}' style="animation-delay: 0.${randoHundo}s; animation-duration: 0.5${randoHundo}s;"></div></div>`;
-            //backDrops += '<div class="drop" style="right: ' + increment + '%; bottom: ' + (randoFiver + randoFiver - 1 + 100) + '%; animation-delay: 0.' + randoHundo + 's; animation-duration: 0.5' + randoHundo + 's;"><div class="stem" style="animation-delay: 0.' + randoHundo + 's; animation-duration: 0.5' + randoHundo + 's;"></div><div class="splat" style="animation-delay: 0.' + randoHundo + 's; animation-duration: 0.5' + randoHundo + 's;"></div></div>';
-            rainSection?.appendChild(drop);
+              //add in a new raindrop with various randomizations to certain CSS properties
+              //drop.innerHTML += `<div class='${styles.drop}' style="height:${randolength}rem;opacity:${randoopacity};left: ${increment}%; bottom: ${randoFiver + randoFiver - 1 + 100}%; animation-delay: 0.${randoHundo}s; animation-duration: 0.5${randoHundo}s;"><div class='${styles.stem}' style="animation-delay: 0.${randoHundo}s; animation-duration: 0.5${randoHundo}s;"></div><div class='${styles.splat}' style="animation-delay: 0.${randoHundo}s; animation-duration: 0.5${randoHundo}s;"></div></div>`;
+              //backDrops += '<div class="drop" style="right: ' + increment + '%; bottom: ' + (randoFiver + randoFiver - 1 + 100) + '%; animation-delay: 0.' + randoHundo + 's; animation-duration: 0.5' + randoHundo + 's;"><div class="stem" style="animation-delay: 0.' + randoHundo + 's; animation-duration: 0.5' + randoHundo + 's;"></div><div class="splat" style="animation-delay: 0.' + randoHundo + 's; animation-duration: 0.5' + randoHundo + 's;"></div></div>';
+              rainSection?.appendChild(drop);
+            }
           }, i * interval);
         }
       }
@@ -218,7 +221,7 @@ const HomeHeroBlock = ({ block }: { block: any }) => {
       };
 
       function setSignaturePaths() {
-        let totalDur = 20
+        let totalDur = 4
         // get all SVG elements - lines and dots
         const paths = sectionRef.current.querySelectorAll('.autograph__path')
         // prepare path length variable
@@ -253,6 +256,7 @@ const HomeHeroBlock = ({ block }: { block: any }) => {
           pathElem.style.animationDuration = `${duration < 0.1 ? 0.1 : duration}s`
           pathElem.style.animationDelay = `${delay}s`
           pathElem.setAttribute('data-duration', `${duration < 0.1 ? 0.1 : duration}`);
+          pathElem.setAttribute('data-length', `${totalLen}`);
 
           // set dash array and offset to path length - this is how you hide the line
           pathElem.setAttribute('stroke-dasharray', totalLen)
@@ -304,8 +308,9 @@ const HomeHeroBlock = ({ block }: { block: any }) => {
       const sign_7 = document.getElementsByClassName("signature-7")[0]
       const sign_8 = document.getElementsByClassName("signature-8")[0]
       const sign_9 = document.getElementsByClassName("signature-9")[0]
-      const sign_10 = document.getElementsByClassName("signature-10")[0]
+      
 
+      //kick it off
       gsap
         .timeline({
           scrollTrigger: {
@@ -320,22 +325,22 @@ const HomeHeroBlock = ({ block }: { block: any }) => {
         .fromTo(
           ".letter-d",
           { autoAlpha: 0, },
-          { duration: 0.15, autoAlpha: 1 },
+          { duration: 0.5, autoAlpha: 1 },0
         )
         .fromTo(
           ".letter-o-1",
           { autoAlpha: 0, },
-          { duration: 0.15, autoAlpha: 1 },
+          { duration: 0.5, autoAlpha: 1 },0
         )
         .fromTo(
           ".letter-j",
           { autoAlpha: 0, },
-          { duration: 0.15, autoAlpha: 1 },
+          { duration: 0.5, autoAlpha: 1 },0
         )
         .fromTo(
           ".letter-o-2",
           { autoAlpha: 0, },
-          { duration: 0.15, autoAlpha: 1 },
+          { duration: 0.5, autoAlpha: 1 },0
         )
         .add(function () {
           if (process.browser) {
@@ -347,14 +352,14 @@ const HomeHeroBlock = ({ block }: { block: any }) => {
           {
             strokeDashoffset: 0,
             duration: sign_1.dataset.duration,
-          }, 1
+          }, ">"
         )
         .to(
           ".signature-2",
           {
             strokeDashoffset: 0,
             duration: sign_2.dataset.duration,
-          }, ">"
+          }, ">-0.3"
         )
         .to(
           ".signature-3",
@@ -411,35 +416,28 @@ const HomeHeroBlock = ({ block }: { block: any }) => {
           }, ">"
         )
         .to(
-          ".signature-10",
-          {
-            strokeDashoffset: 0,
-            duration: sign_6.dataset.duration,
-          }, ">"
-        )
-        .to(
           ".signature-1",
           {
             keyframes: [
-              { strokeDashoffset: -1 * sign_1.getTotalLength(), duration: sign_1.dataset.duration, },
+              { strokeDashoffset: -1 * sign_1.dataset.length, duration: sign_1.dataset.duration, },
               { autoAlpha: 0, duration: 0 }
             ]
-          }, sign_1.dataset.duration
+          }, 2
         )
         .to(
           ".signature-2",
           {
             keyframes: [
-              { strokeDashoffset: -1 * sign_2.getTotalLength(), duration: sign_2.dataset.duration, },
+              { strokeDashoffset: -1 * sign_2.dataset.length, duration: sign_2.dataset.duration, },
               { autoAlpha: 0, duration: 0 }
             ]
-          }, ">0.2"
+          }, ">-0.3"
         )
         .to(
           ".signature-3",
           {
             keyframes: [
-              { strokeDashoffset: -1 * sign_3.getTotalLength(), duration: sign_3.dataset.duration, },
+              { strokeDashoffset: -1 * sign_3.dataset.length, duration: sign_3.dataset.duration, },
               { autoAlpha: 0, duration: 0 }
             ]
           }, ">"
@@ -448,7 +446,7 @@ const HomeHeroBlock = ({ block }: { block: any }) => {
           ".signature-4",
           {
             keyframes: [
-              { strokeDashoffset: -1 * sign_4.getTotalLength(), duration: sign_4.dataset.duration, },
+              { strokeDashoffset: -1 * sign_4.dataset.length, duration: sign_4.dataset.duration, },
               { autoAlpha: 0, duration: 0 }
             ]
           }, ">"
@@ -457,7 +455,7 @@ const HomeHeroBlock = ({ block }: { block: any }) => {
           ".signature-5",
           {
             keyframes: [
-              { strokeDashoffset: -1 * sign_5.getTotalLength(), duration: sign_5.dataset.duration, },
+              { strokeDashoffset: -1 * sign_5.dataset.length, duration: sign_5.dataset.duration, },
               { autoAlpha: 0, duration: 0 }
             ]
           }, ">"
@@ -466,7 +464,7 @@ const HomeHeroBlock = ({ block }: { block: any }) => {
           ".signature-6",
           {
             keyframes: [
-              { strokeDashoffset: -1 * sign_6.getTotalLength(), duration: sign_6.dataset.duration, },
+              { strokeDashoffset: -1 * sign_6.dataset.length, duration: sign_6.dataset.duration, },
               { autoAlpha: 0, duration: 0 }
             ]
           }, ">"
@@ -475,7 +473,7 @@ const HomeHeroBlock = ({ block }: { block: any }) => {
           ".signature-7",
           {
             keyframes: [
-              { strokeDashoffset: -1 * sign_7.getTotalLength(), duration: sign_7.dataset.duration, },
+              { strokeDashoffset: -1 * sign_7.dataset.length, duration: sign_7.dataset.duration, },
               { autoAlpha: 0, duration: 0 }
             ]
           }, ">"
@@ -484,7 +482,7 @@ const HomeHeroBlock = ({ block }: { block: any }) => {
           ".signature-8",
           {
             keyframes: [
-              { strokeDashoffset: -1 * sign_8.getTotalLength(), duration: sign_8.dataset.duration, },
+              { strokeDashoffset: -1 * sign_8.dataset.length, duration: sign_8.dataset.duration, },
               { autoAlpha: 0, duration: 0 }
             ]
           }, ">"
@@ -493,16 +491,7 @@ const HomeHeroBlock = ({ block }: { block: any }) => {
           ".signature-9",
           {
             keyframes: [
-              { strokeDashoffset: -1 * sign_9.getTotalLength(), duration: sign_9.dataset.duration, },
-              { autoAlpha: 0, duration: 0 }
-            ]
-          }, ">"
-        )
-        .to(
-          ".signature-10",
-          {
-            keyframes: [
-              { strokeDashoffset: -1 * sign_10.getTotalLength(), duration: sign_10.dataset.duration, },
+              { strokeDashoffset: -1 * sign_9.dataset.length, duration: sign_9.dataset.duration, },
               { autoAlpha: 0, duration: 0 }
             ]
           }, ">"
@@ -516,116 +505,115 @@ const HomeHeroBlock = ({ block }: { block: any }) => {
           ".tree",
           {
             strokeDashoffset: 0,
-            duration: 1.4,
-          }, 1.23
+            duration: 1.6,
+          }, 1.5
         )
         .fromTo(
           ".letter-a",
           { autoAlpha: 0 },
-          { duration: 0.2, autoAlpha: 1 }, 2.4
+          { duration: 0.2, autoAlpha: 1 }, 2.6
         )
         .fromTo(
           ".letter-g",
           { autoAlpha: 0, },
-          { duration: 0.2, autoAlpha: 1 }, 2.7
+          { duration: 0.2, autoAlpha: 1 }, ">+0.4"
         )
         .fromTo(
           ".letter-e",
           { autoAlpha: 0, },
-          { duration: 0.2, autoAlpha: 1 }, 3.0
+          { duration: 0.2, autoAlpha: 1 }, ">+0.4"
         )
         .fromTo(
           ".letter-n",
           { autoAlpha: 0, },
-          { duration: 0.2, autoAlpha: 1 }, 3.3
+          { duration: 0.2, autoAlpha: 1 }, ">+0.3"
         )
         .fromTo(
           ".letter-c",
           { autoAlpha: 0, },
-          { duration: 0.2, autoAlpha: 1 }, 3.6
+          { duration: 0.2, autoAlpha: 1 }, ">+0.3"
         )
         .fromTo(
           ".letter-y",
           { autoAlpha: 0, },
-          { duration: 0.2, autoAlpha: 1 }, 3.9
+          { duration: 0.2, autoAlpha: 1 }, ">+0.3"
         )
         .to(
           ".letter-y",
           {
             keyframes: [
-              { y: "0%", fill: "rgba(255,255,255,0)", duration: 0 },
-              { y: "-20%", fill: "rgba(255,255,255,1)", duration: 0.2 },
-              { y: "0%" }
+              { fill: "rgba(255,255,255,0)", duration: 0 },
+              { fill: "rgba(255,255,255,1)", duration: 0.2 },
             ]
-          }, 4
+          }, ">"
         )
         .to(
           ".letter-c",
           {
             keyframes: [
-              { y: "0%", fill: "rgba(255,255,255,0)", duration: 0 },
-              { y: "-20%", fill: "rgba(255,255,255,1)", duration: 0.2 },
-              { y: "0%" }
+              { fill: "rgba(255,255,255,0)", duration: 0 },
+              { fill: "rgba(255,255,255,1)", duration: 0.2 },
             ]
-          }, 4.1
+          }, ">"
         )
         .to(
           ".letter-n",
           {
             keyframes: [
-              { y: "0%", fill: "rgba(255,255,255,0)", duration: 0 },
-              { y: "-20%", fill: "rgba(255,255,255,1)", duration: 0.2 },
-              { y: "0%" }
+              { fill: "rgba(255,255,255,0)", duration: 0 },
+              { fill: "rgba(255,255,255,1)", duration: 0.2 },
             ]
-          }, 4.2
+          }, ">"
         )
         .to(
           ".letter-e",
           {
             keyframes: [
-              { y: "0%", fill: "rgba(255,255,255,0)", duration: 0 },
-              { y: "-20%", fill: "rgba(255,255,255,1)", duration: 0.2 },
-              { y: "0%" }
+              { fill: "rgba(255,255,255,0)", duration: 0 },
+              { fill: "rgba(255,255,255,1)", duration: 0.2 },
             ]
-          }, 4.3
+          }, ">"
         )
         .to(
           ".letter-g",
           {
             keyframes: [
-              { y: "0%", fill: "rgba(255,255,255,0)", duration: 0 },
-              { y: "-20%", fill: "rgba(255,255,255,1)", duration: 0.2 },
-              { y: "0%" }
+              { fill: "rgba(255,255,255,0)", duration: 0 },
+              { fill: "rgba(255,255,255,1)", duration: 0.2 },
             ]
-          }, 4.4
+          }, ">"
         )
         .to(
           ".letter-a",
           {
             keyframes: [
-              { y: "0%", fill: "rgba(255,255,255,0)", duration: 0 },
-              { y: "-20%", fill: "rgba(255,255,255,1)", duration: 0.2 },
-              { y: "0%" }
+              { fill: "rgba(255,255,255,0)", duration: 0 },
+              { fill: "rgba(255,255,255,1)", duration: 0.2 },
             ]
-          }, 4.5
+          }, ">"
         )
-        .to(
+        /*.to(
           ".tree",
           {
             strokeDashoffset: -1 * document.getElementsByClassName("tree")[0].getTotalLength(),
             duration: 1,
           }, 5
-        )
+        )*/
         .add(function () {
           if (process.browser) {
             stoprain();
           }
-        })
+        }, ">")
         .to(
           ".splat",
-          { duration: 0.25, autoAlpha: 0 }, 5.5
+          { duration: 0.25, autoAlpha: 0 }, ">"
         )
         .to(".tree",
+          {
+            fill: '#FFF', duration: 0.5
+          }, ">"
+        )
+        /*.to(".tree",
           {
             keyframes: [
               { attr: { d: treeend }, duration: 0 },
@@ -633,7 +621,7 @@ const HomeHeroBlock = ({ block }: { block: any }) => {
               { attr: { d: treeend }, duration: 0.8 }
             ]
           }, 6
-        )
+        )*/
 
     }, sectionRef);
     return () => ctx.revert();
@@ -647,24 +635,98 @@ const HomeHeroBlock = ({ block }: { block: any }) => {
 
   return (
     <section ref={sectionRef} className={`${styles.root} bg-themebackground-off w-full pb-0`} onMouseEnter={() => cursorChangeHandler("peace")} onMouseLeave={() => cursorChangeHandler("default")}>
-      <div ref={RainRef} id="rain" className={`${styles.rain} absolute w-full h-full top-0 left-0 z-9`}></div>
+      <div ref={RainRef} id="rain" className={`${styles.rain} absolute w-full h-full top-0 left-0`}></div>
 
       <div className='relative w-full'>
         <div className={`fixed top-220 md:top-60 w-full z-5`}>
           <div ref={LogoWrapRef} className={`${styles.logo} logo w-full text-center px-0 pb-40`}>
             <div ref={LogoRef} className='w-full'>
               <Logo className={`${styles.logosvg} w-full h-auto`} />
-              <div className={`${styles.splat} splat ${styles.splatd}`}><div></div><div></div><div></div><div></div></div>
-              <div className={`${styles.splat} splat ${styles.splato}`}><div></div><div></div><div></div><div></div></div>
-              <div className={`${styles.splat} splat ${styles.splatj}`}><div></div><div></div><div></div><div></div></div>
-              <div className={`${styles.splat} splat ${styles.splato2}`}><div></div><div></div><div></div><div></div></div>
+              <span className={`${styles.splat} splat ${styles.splatd}`}>
+                <span className={`${styles.splat_c_1}`}></span>
+                <span className={`${styles.splat_c_2}`}></span>
+                <span className={`${styles.splat_l_1}`}></span>
+                <span className={`${styles.splat_l_2}`}></span>
+                <span className={`${styles.splat_l_3}`}></span>
+                <span className={`${styles.splat_r_1}`}></span>
+                <span className={`${styles.splat_r_2}`}></span>
+                <span className={`${styles.splat_r_3}`}></span>
+              </span>
+              <span className={`${styles.splat} splat ${styles.splato}`}>
+              <span className={`${styles.splat_c_1}`}></span>
+                <span className={`${styles.splat_c_2}`}></span>
+                <span className={`${styles.splat_l_1}`}></span>
+                <span className={`${styles.splat_l_2}`}></span>
+                <span className={`${styles.splat_l_3}`}></span>
+                <span className={`${styles.splat_r_1}`}></span>
+                <span className={`${styles.splat_r_2}`}></span>
+                <span className={`${styles.splat_r_3}`}></span>
+              </span>
+              <span className={`${styles.splat} splat ${styles.splatj}`}>
+              <span className={`${styles.splat_c_1}`}></span>
+                <span className={`${styles.splat_c_2}`}></span>
+                <span className={`${styles.splat_l_1}`}></span>
+                <span className={`${styles.splat_l_2}`}></span>
+                <span className={`${styles.splat_l_3}`}></span>
+                <span className={`${styles.splat_r_1}`}></span>
+              </span>
+              <span className={`${styles.splat} splat ${styles.splato2}`}>
+                <span className={`${styles.splat_c_1}`}></span>
+                <span className={`${styles.splat_c_2}`}></span>
+                <span className={`${styles.splat_l_1}`}></span>
+                <span className={`${styles.splat_l_2}`}></span>
+                <span className={`${styles.splat_l_3}`}></span>
+                <span className={`${styles.splat_r_1}`}></span>
+                <span className={`${styles.splat_r_2}`}></span>
+                <span className={`${styles.splat_r_3}`}></span>
+              </span>
             </div>
           </div>
         </div>
 
         <div ref={PanelRef} className={`${styles.panel} relative w-full bg-themebackground-ff px-50 md:px-100 mt-360 md:mt-320 pb-180 md:pb-100 z-6`}>
           <div ref={HeadlineRef} className='relative w-full text-center font-lato text-90 md:text-113 font-300 leading-none py-20 fade'>
-            <span className='relative'>S<div className={`${styles.splat} splat ${styles.splats}`}><div></div><div></div><div></div><div></div></div></span>tori<span className='relative'>e<div className={`${styles.splat} splat ${styles.splate}`}><div></div><div></div><div></div><div></div></div></span>s at work
+            <span className='relative'>S<span className={`${styles.splat} splat ${styles.splats}`}>
+              <span className={`${styles.splat_c_1}`}></span>
+              <span className={`${styles.splat_c_2}`}></span>
+              <span className={`${styles.splat_l_1}`}></span>
+              <span className={`${styles.splat_l_2}`}></span>
+              <span className={`${styles.splat_l_3}`}></span>
+              <span className={`${styles.splat_r_1}`}></span>
+              <span className={`${styles.splat_r_2}`}></span>
+              <span className={`${styles.splat_r_3}`}></span>
+            </span></span>tori
+            <span className='relative'>e<span className={`${styles.splat} splat ${styles.splate}`}>
+              <span className={`${styles.splat_c_1}`}></span>
+              <span className={`${styles.splat_c_2}`}></span>
+              <span className={`${styles.splat_l_1}`}></span>
+              <span className={`${styles.splat_l_2}`}></span>
+              <span className={`${styles.splat_l_3}`}></span>
+              <span className={`${styles.splat_r_1}`}></span>
+              <span className={`${styles.splat_r_2}`}></span>
+              <span className={`${styles.splat_r_3}`}></span>
+            </span></span>s a
+            <span className='relative'>t<span className={`${styles.splat} splat ${styles.splatt}`}>
+              <span className={`${styles.splat_c_1}`}></span>
+              <span className={`${styles.splat_c_2}`}></span>
+              <span className={`${styles.splat_r_1}`}></span>
+              <span className={`${styles.splat_r_2}`}></span>
+              <span className={`${styles.splat_r_3}`}></span>
+            </span></span> 
+            <span className='relative'>w<span className={`${styles.splat} splat ${styles.splatw}`}>
+              <span className={`${styles.splat_c_1}`}></span>
+              <span className={`${styles.splat_c_2}`}></span>
+            </span></span>o
+            <span className='relative'>r<span className={`${styles.splat} splat ${styles.splatr}`}>
+              <span className={`${styles.splat_c_1}`}></span>
+              <span className={`${styles.splat_c_2}`}></span>
+              <span className={`${styles.splat_l_1}`}></span>
+              <span className={`${styles.splat_l_2}`}></span>
+              <span className={`${styles.splat_l_3}`}></span>
+              <span className={`${styles.splat_r_1}`}></span>
+              <span className={`${styles.splat_r_2}`}></span>
+              <span className={`${styles.splat_r_3}`}></span>
+            </span></span>k
           </div>
           <div className={`flex justify-center w-full text-center py-20`}>
             <div ref={DownRef} className={`${styles.arrow} relative text-center cursor-pointer z-10 fade`} onClick={() => scrollTo()}>
@@ -679,11 +741,86 @@ const HomeHeroBlock = ({ block }: { block: any }) => {
             </div>
           </div>
           <div ref={VideoRef} className='relative mx-0 md:mx-160 z-10 fade'>
-            <div className={`${styles.splat} splat ${styles.splatv1}`}><div></div><div></div><div></div><div></div></div>
-            <div className={`${styles.splat} splat ${styles.splatv2}`}><div></div><div></div><div></div><div></div></div>
-            <div className={`${styles.splat} splat ${styles.splatv3}`}><div></div><div></div><div></div><div></div></div>
-            <div className={`${styles.splat} splat ${styles.splatv4}`}><div></div><div></div><div></div><div></div></div>
-            <div className={`${styles.splat} splat ${styles.splatv5}`}><div></div><div></div><div></div><div></div></div>
+            <div className={`${styles.splat} splat ${styles.splatv1}`}>
+              <span className={`${styles.splat_c_1}`}></span>
+              <span className={`${styles.splat_c_2}`}></span>
+              <span className={`${styles.splat_l_1}`}></span>
+              <span className={`${styles.splat_l_2}`}></span>
+              <span className={`${styles.splat_l_3}`}></span>
+              <span className={`${styles.splat_r_1}`}></span>
+              <span className={`${styles.splat_r_2}`}></span>
+              <span className={`${styles.splat_r_3}`}></span>
+            </div>
+            <div className={`${styles.splat} splat ${styles.splatv2}`}>
+              <span className={`${styles.splat_c_1}`}></span>
+              <span className={`${styles.splat_c_2}`}></span>
+              <span className={`${styles.splat_l_1}`}></span>
+              <span className={`${styles.splat_l_2}`}></span>
+              <span className={`${styles.splat_l_3}`}></span>
+              <span className={`${styles.splat_r_1}`}></span>
+              <span className={`${styles.splat_r_2}`}></span>
+              <span className={`${styles.splat_r_3}`}></span>
+            </div>
+            <div className={`${styles.splat} splat ${styles.splatv3}`}>
+              <span className={`${styles.splat_c_1}`}></span>
+              <span className={`${styles.splat_c_2}`}></span>
+              <span className={`${styles.splat_l_1}`}></span>
+              <span className={`${styles.splat_l_2}`}></span>
+              <span className={`${styles.splat_l_3}`}></span>
+              <span className={`${styles.splat_r_1}`}></span>
+              <span className={`${styles.splat_r_2}`}></span>
+              <span className={`${styles.splat_r_3}`}></span>
+            </div>
+            <div className={`${styles.splat} splat ${styles.splatv4}`}>
+              <span className={`${styles.splat_c_1}`}></span>
+              <span className={`${styles.splat_c_2}`}></span>
+              <span className={`${styles.splat_l_1}`}></span>
+              <span className={`${styles.splat_l_2}`}></span>
+              <span className={`${styles.splat_l_3}`}></span>
+              <span className={`${styles.splat_r_1}`}></span>
+              <span className={`${styles.splat_r_2}`}></span>
+              <span className={`${styles.splat_r_3}`}></span>
+            </div>
+            <div className={`${styles.splat} splat ${styles.splatv5}`}>
+              <span className={`${styles.splat_c_1}`}></span>
+              <span className={`${styles.splat_c_2}`}></span>
+              <span className={`${styles.splat_l_1}`}></span>
+              <span className={`${styles.splat_l_2}`}></span>
+              <span className={`${styles.splat_l_3}`}></span>
+              <span className={`${styles.splat_r_1}`}></span>
+              <span className={`${styles.splat_r_2}`}></span>
+              <span className={`${styles.splat_r_3}`}></span>
+            </div>
+            <div className={`${styles.splat} splat ${styles.splatv6}`}>
+              <span className={`${styles.splat_c_1}`}></span>
+              <span className={`${styles.splat_c_2}`}></span>
+              <span className={`${styles.splat_l_1}`}></span>
+              <span className={`${styles.splat_l_2}`}></span>
+              <span className={`${styles.splat_l_3}`}></span>
+              <span className={`${styles.splat_r_1}`}></span>
+              <span className={`${styles.splat_r_2}`}></span>
+              <span className={`${styles.splat_r_3}`}></span>
+            </div>
+            <div className={`${styles.splat} splat ${styles.splatv7}`}>
+              <span className={`${styles.splat_c_1}`}></span>
+              <span className={`${styles.splat_c_2}`}></span>
+              <span className={`${styles.splat_l_1}`}></span>
+              <span className={`${styles.splat_l_2}`}></span>
+              <span className={`${styles.splat_l_3}`}></span>
+              <span className={`${styles.splat_r_1}`}></span>
+              <span className={`${styles.splat_r_2}`}></span>
+              <span className={`${styles.splat_r_3}`}></span>
+            </div>
+            <div className={`${styles.splat} splat ${styles.splatv8}`}>
+              <span className={`${styles.splat_c_1}`}></span>
+              <span className={`${styles.splat_c_2}`}></span>
+              <span className={`${styles.splat_l_1}`}></span>
+              <span className={`${styles.splat_l_2}`}></span>
+              <span className={`${styles.splat_l_3}`}></span>
+              <span className={`${styles.splat_r_1}`}></span>
+              <span className={`${styles.splat_r_2}`}></span>
+              <span className={`${styles.splat_r_3}`}></span>
+            </div>
             <VideoPlayer
               image_placeholder={block.image}
               video_placeholder={block.video_embed ? block.video_embed : block.video_local?.permalink}

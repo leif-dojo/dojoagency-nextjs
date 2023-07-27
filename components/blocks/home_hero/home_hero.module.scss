@@ -6,11 +6,13 @@
 
     .panel {
         transition: all 0ms ease-in-out;
+        z-index: 6;
     }
 
     .arrowwrap {
         text-align: center;
     }
+
     .arrow {
         path {
             stroke-dasharray: 300;
@@ -59,8 +61,8 @@
     }
 
     .rain {
-        z-index: 9;
-        transform: rotate('30deg');
+        z-index: -1;
+        //transform: rotate(-10deg);
 
         .drop {
             position: absolute;
@@ -68,7 +70,7 @@
             width: 15rem;
             height: 120rem;
             pointer-events: none;
-            animation: drop 0.5s linear infinite;
+            animation: drop 0.4s linear infinite;
         }
 
         .stem {
@@ -77,7 +79,7 @@
             margin-left: 7rem;
             //background: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.95));
             background: #FFF;
-            animation: stem 0.5s linear infinite;
+            animation: stem 0.4s linear infinite;
         }
 
         .splat {
@@ -100,131 +102,216 @@
         opacity: 1;
         transform: scale(0);
         animation: splat 0.75s linear infinite;
-        //display: none;
-        //background-color: pink;
     }
 
     .splat {
-        //background-color: pink;
-        //width: 5rem;
+        width: 20rem;
         //height: 5rem;
-        div {
+        //border: 1px solid red;
+
+        div,
+        span {
             position: absolute;
             border-radius: 100%;
-            background-color: white;
+            background: radial-gradient(circle, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0.5) 100%);
             //animation-duration: var(--duration);
             //animation-delay: var(--delay);
             animation-iteration-count: infinite;
             animation-timing-function: ease;
             animation-fill-mode: backwards;
+            box-shadow: 0 0 5rem 7rem rgba(255, 255, 255, 0.05);
 
-            &:nth-child(1) {
-                animation-duration:  1.3s;
-                animation-delay: 0.3s;
-                width: 7rem;
-                height: 7rem;
-                top: 50%;
-                left: 50%;
-                animation-name: jumpLeft;
-                opacity: 0.5;
-            }
-
-            &:nth-child(2) {
-                animation-duration: 0.7s;
+            &.splat_c_1 {
+                animation-duration: 500ms;
                 width: 5rem;
                 height: 5rem;
-                top: 30%;
                 left: 50%;
-                animation-name: jumpLeft;
-                animation-delay: calc(0.7s + 0.1s);
-                opacity: 0.2;
+                animation-name: jumpCenter;
+                animation-delay: 0ms;
+                opacity: 0.6;
             }
 
-            &:nth-child(3) {
-                animation-duration: 1.0s;
-                animation-delay: 1.2s;
+            &.splat_c_2 {
+                animation-duration: 500ms;
+                width: 4rem;
+                height: 4rem;
+                left: 50%;
+                animation-name: jumpCenter2;
+                animation-delay: 50ms;
+                opacity: 0.4;
+            }
+
+            &.splat_l_1 {
+                animation-duration: 500ms;
+                width: 4rem;
+                height: 4rem;
+                left: 25%;
+                animation-name: jumpLeft;
+                animation-delay: 50ms;
+                opacity: 0.3;
+                //background-color: red;
+            }
+
+            &.splat_l_2 {
+                animation-duration: 600ms;
+                width: 4rem;
+                height: 4rem;
+                left: 75%;
+                animation-name: jumpLeft2;
+                animation-delay: 90ms;
+                opacity: 0.2;
+                //background-color: pink;
+            }
+
+            &.splat_l_3 {
+                animation-duration: 750ms;
                 width: 3rem;
                 height: 3rem;
-                top: 20%;
-                left: 70%;
-                animation-name: jumpRight;
-                animation-delay: calc(1.2s + 0.15s);
+                left: 15%;
+                animation-name: jumpLeft3;
+                animation-delay: 100ms;
                 opacity: 0.3;
+                //background-color: blue;
             }
 
-            &:nth-child(4) {
-                animation-duration: 0.7s;
-                animation-delay: 2.5s;
-                width: 5rem;
-                height: 5rem;
-                top: 30%;
-                left: 50%;
+            &.splat_r_1 {
+                animation-duration: 500ms;
+                width: 3rem;
+                height: 3rem;
+                left: 85%;
                 animation-name: jumpRight;
-                animation-delay: calc(2.5s + 0.3s);
-                opacity: 0.6;
+                animation-delay: 40ms;
+                opacity: 0.5;
+                //background-color: aqua;
+            }
+
+            &.splat_r_2 {
+                animation-duration: 600ms;
+                width: 2rem;
+                height: 2rem;
+                left: 0%;
+                animation-name: jumpRight2;
+                animation-delay: 80ms;
+                opacity: 0.4;
+                //background-color: green;
+            }
+
+            &.splat_r_3 {
+                animation-duration: 750ms;
+                width: 2rem;
+                height: 2rem;
+                left: 100%;
+                animation-name: jumpRight3;
+                animation-delay: 150ms;
+                opacity: 0.3;
+                //background-color: orange;
             }
         }
     }
+
     //dojo splash
     .splatd {
         position: absolute;
         left: 12%;
-        top: 29%;
+        top: 30.5%;
     }
 
     .splato {
         position: absolute;
-        left: 25%;
-        top: 30%;
+        left: 22.5%;
+        top: 30.5%;
     }
 
     .splatj {
         position: absolute;
-        left: 29%;
-        top: 57%;
+        left: 28%;
+        top: 55%;
     }
 
     .splato2 {
         position: absolute;
-        left: 38%;
-        top: 29%;
+        left: 39%;
+        top: 32%;
+        transform: rotate(23deg);
     }
+
     //stories splash
     .splats {
         position: absolute;
-        left: 50%;
-        top: 27%;
+        left: 40%;
+        top: 22%;
     }
 
     .splate {
         position: absolute;
+        left: 40%;
+        top: 40%;
+    }
+
+    .splatt {
+        position: absolute;
+        left: 49%;
+        top: 43%;
+    }
+
+    .splatw {
+        position: absolute;
+        left: 15%;
+        top: 70%;
+    }
+
+    .splatr {
+        position: absolute;
         left: 50%;
         top: 40%;
     }
+
     //video splash
     .splatv1 {
         position: absolute;
         left: 2%;
         top: 0;
     }
+
     .splatv2 {
         position: absolute;
-        left: 15%;
+        left: 8%;
         top: 0;
     }
+
     .splatv3 {
+        position: absolute;
+        left: 25%;
+        top: 0;
+    }
+
+    .splatv4 {
+        position: absolute;
+        left: 40%;
+        top: 0;
+    }
+
+    .splatv5 {
         position: absolute;
         left: 50%;
         top: 0;
     }
-    .splatv4 {
+
+    .splatv6 {
         position: absolute;
-        left: 65%;
+        left: 75%;
         top: 0;
     }
-    .splatv5 {
+
+    .splatv7 {
         position: absolute;
-        left: 99%;
+        left: 85%;
+        top: 0;
+    }
+
+    .splatv8 {
+        position: absolute;
+        left: 97%;
         top: 0;
     }
 
@@ -289,42 +376,144 @@
         }
     }
 
-    @keyframes jumpLeft{
-        0%{
-          transform: translate(0,0) scale(0);
+    @keyframes jumpCenter {
+        0% {
+            transform: translate(0, 0) scale(0);
         }
-      
-        45%{
-          transform: translate(0,0) scale(0);
-        }
-      
-        60%{
-          transform: translate(-10rem, -15rem) scale(1);
-        }
-      
-        100%{
-          transform: translate(-20rem, 0rem) scale(0.1);
-        }
-      }
-      @keyframes jumpRight{
-        0%{
-          transform: translate(0,0) scale(0);
-        }
-      
-        45%{
-          transform: translate(0,0) scale(0);
-        }
-      
-        60%{
-          transform: translate(5rem, -15rem) scale(1);
-        }
-      
-        100%{
-          transform: translate(10rem, 0rem) scale(0.1);
-        }
-      }
 
-      @keyframes dash {
+        50% {
+            transform: translate(2rem, -20rem) scale(1.2);
+        }
+
+        90% {
+            transform: translate(4rem, -5rem) scale(1.5);
+        }
+
+        100% {
+            transform: scale(2);
+            opacity: 0;
+        }
+    }
+
+    @keyframes jumpCenter2 {
+        0% {
+            transform: translate(0, 0) scale(0);
+        }
+
+        50% {
+            transform: translate(-2rem, -15rem) scale(1.5);
+        }
+
+        95% {
+            transform: translate(-5rem, 0rem) scale(1.5);
+        }
+
+        100% {
+            opacity: 0;
+        }
+    }
+
+    @keyframes jumpLeft {
+        0% {
+            transform: translate(0, 0) scale(0);
+        }
+
+        50% {
+            transform: translate(-7rem, -15rem) scale(1.2);
+        }
+
+        100% {
+            transform: translate(-14rem, 5rem) scale(1.5);
+        }
+    }
+
+    @keyframes jumpLeft2 {
+        0% {
+            transform: translate(0, 0) scale(0);
+        }
+
+        50% {
+            transform: translate(-10rem, -10rem) scale(1.2);
+        }
+
+        75% {
+            transform: translate(-20rem, 0rem) scale(1.5);
+        }
+
+        90% {
+            transform: translate(-25rem, -3rem) scale(1.2);
+        }
+
+        100% {
+            transform: translate(-30rem, 0rem) scale(1);
+        }
+    }
+
+    @keyframes jumpLeft3 {
+        0% {
+            transform: translate(0, 0) scale(0);
+        }
+
+        50% {
+            transform: translate(-12.5rem, -7rem) scale(1.2);
+        }
+
+        100% {
+            transform: translate(-25rem, 10rem) scale(1.5);
+        }
+    }
+
+    @keyframes jumpRight {
+        0% {
+            transform: translate(0, 0) scale(0);
+        }
+
+        50% {
+            transform: translate(5rem, -12rem) scale(1);
+        }
+
+        100% {
+            transform: translate(10rem, 5rem) scale(1.1);
+        }
+    }
+
+    @keyframes jumpRight2 {
+        0% {
+            transform: translate(0, 0) scale(0);
+        }
+
+        50% {
+            transform: translate(12rem, -15rem) scale(1);
+        }
+
+        75% {
+            transform: translate(24rem, 0rem) scale(1.5);
+        }
+
+        90% {
+            transform: translate(30rem, -3rem) scale(1.2);
+        }
+
+        100% {
+            transform: translate(35rem, 0rem) scale(1.5);
+        }
+    }
+
+    @keyframes jumpRight3 {
+        0% {
+            transform: translate(0, 0) scale(0);
+        }
+
+        50% {
+            transform: translate(15rem, -15rem) scale(1);
+        }
+
+        100% {
+            transform: translate(20rem, 10rem) scale(0.5);
+        }
+    }
+
+    @keyframes dash {
         from {
             stroke-dashoffset: 300;
         }
@@ -333,6 +522,7 @@
             stroke-dashoffset: 0;
         }
     }
+
     @keyframes dashrev {
         from {
             stroke-dashoffset: 0;
@@ -348,6 +538,7 @@
 .logo {
     width: 100%;
     margin: 0 auto;
+    z-index: 5;
 
     svg {
         width: 100%;
