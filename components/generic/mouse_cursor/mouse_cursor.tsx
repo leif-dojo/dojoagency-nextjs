@@ -10,6 +10,12 @@ import IconPause from "@/public/icons/cursor-pause.svg"
 import IconHeart from "@/public/icons/cursor-heart.svg"
 import IconBridge from "@/public/icons/cursor-bridge.svg"
 import IconThumb from "@/public/icons/cursor-thumb.svg"
+import IconBoots from "@/public/icons/cursor-boots.svg"
+import IconHeart2 from "@/public/icons/cursor-heart-2.svg"
+import IconGoggles from "@/public/icons/cursor-goggles.svg"
+import IconSteeringWheel from "@/public/icons/cursor-steering-wheel.svg"
+import IconRocket from "@/public/icons/cursor-rocket.svg"
+import IconMasks from "@/public/icons/cursor-masks.svg"
 
 const Cursor = () => {
   const { cursorType, cursorChangeHandler } = useThemeContext()
@@ -44,7 +50,20 @@ const Cursor = () => {
       case 'instagram':
         return <div className={`${styles.instagram} text-orange`}><IconHeart /></div>;
       case 'linkedin':
-        return <div className={`${styles.linkedin} text-orange`}><IconThumb /></div>;
+        return <div className={`${styles.linkedin} text-orange`}><IconThumb /></div>; 
+      case 'boots':
+        return <div className={`${styles.boots}`}><IconBoots /></div>;
+      case 'heart-2':
+        return <div className={`${styles.heart2}`}><IconHeart2 /></div>;
+      case 'goggles':
+        return <div className={`${styles.goggles}`}><IconGoggles /></div>;
+      case 'steering-wheel':
+        return <div className={`${styles.steeringwheel}`}><IconSteeringWheel /></div>;
+      case 'rocket':
+        return <div className={`${styles.rocket}`}><IconRocket /></div>;
+      case 'masks':
+        return <div className={`${styles.masks}`}><IconMasks /></div>;
+
     }
   }
 

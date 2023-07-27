@@ -787,6 +787,10 @@ export default gql`
                   extension
                 }
               }
+              cursor {
+                value
+                label
+              }
             }
           }
           ... on Set_Components_PostNavigation {

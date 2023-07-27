@@ -2,14 +2,21 @@
   position: fixed;
   top: 50%;
   left: 50%;
-  width: 1rem;
-  height: 1rem;
+  width: 0rem;
+  height: 0rem;
   background-color: theme('colors.orange');
   border-radius: 100%;
   transform: translate(-50%, -50%);
   z-index: 99999;
   pointer-events: none;
   transition: all 0ms ease-in-out;
+
+  div{
+    //transition: all 250ms cubic-bezier(0.6, 0, 0.25, 1);
+    transition: all 500ms ease-out 0ms;
+    -webkit-animation: popfade 250ms ease both;
+    animation: popfade 250ms ease both;
+  }
 }
 
 .icon {
@@ -24,6 +31,20 @@
   svg {
     width: 100%;
     height: auto;
+  }
+}
+
+@-webkit-keyframes popfade {
+  from {
+    opacity: 0;
+    transform: scale(0);
+  }
+}
+
+@keyframes popfade {
+  from {
+    opacity: 0;
+    transform: scale(0);
   }
 }
 
@@ -72,4 +93,34 @@
 .linkedin {
   width: 50rem;
   height: 50rem;
+}
+
+.masks {
+  width: 150rem;
+  height: 100rem;
+}
+
+.boots {
+  width: 120rem;
+  height: 120rem;
+}
+
+.heart2 {
+  width: 120rem;
+  height: 120rem;
+}
+
+.rocket {
+  width: 90rem;
+  height: 120rem;
+}
+
+.steeringwheel {
+  width: 120rem;
+  height: 120rem;
+}
+
+.goggles {
+  width: 150rem;
+  height: 100rem;
 }

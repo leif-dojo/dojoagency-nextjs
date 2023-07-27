@@ -15,8 +15,8 @@ const ImageGridBlock = ({ block }: { block: any }) => {
   const sectionRef = useRef<HTMLDivElement>(null)
   const { cursorType, cursorChangeHandler, colorChangeHandler, backgroundChangeHandler } = useThemeContext();
 
-  const onMouseEnter = () => {
-    cursorChangeHandler("next")
+  const onMouseEnter = (cursor:String) => {
+    cursorChangeHandler(cursor)
   }
 
   const onMouseLeave = () => {
@@ -83,7 +83,7 @@ const ImageGridBlock = ({ block }: { block: any }) => {
 
           {block?.image_grid?.map((block: any, index: any) => {
             return (
-              <Link href={`${block?.link}`} className={`${styles.project} item relative overflow-hidden bg-dark f-full fade`} key={index} onMouseEnter={() => onMouseEnter()} onMouseLeave={() => onMouseLeave()}>
+              <Link href={`${block?.link}`} className={`${styles.project} item relative overflow-hidden bg-dark f-full fade`} key={index} onMouseEnter={() => onMouseEnter(block.cursor ? block.cursor.value : "next")} onMouseLeave={() => onMouseLeave()}>
                 <span className="flex justify-center items-center w-full h-full">
 
                   <span className='absolute w-full h-full top-0 left-0'>
