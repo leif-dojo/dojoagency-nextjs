@@ -325,34 +325,34 @@ const HomeHeroBlock = ({ block }: { block: any }) => {
         .fromTo(
           ".letter-d",
           { autoAlpha: 0, },
-          { duration: 0.5, autoAlpha: 1 },0
+          { duration: 0.2, autoAlpha: 1 },1
         )
         .fromTo(
           ".letter-o-1",
           { autoAlpha: 0, },
-          { duration: 0.5, autoAlpha: 1 },0
+          { duration: 0.2, autoAlpha: 1 }, ">"
         )
         .fromTo(
           ".letter-j",
           { autoAlpha: 0, },
-          { duration: 0.5, autoAlpha: 1 },0
+          { duration: 0.2, autoAlpha: 1 }, ">"
         )
         .fromTo(
           ".letter-o-2",
           { autoAlpha: 0, },
-          { duration: 0.5, autoAlpha: 1 },0
+          { duration: 0.2, autoAlpha: 1 }, ">"
         )
         .add(function () {
           if (process.browser) {
             makeitrain();
           }
-        }, 1.3)
+        }, 1.6)
         .to(
           ".signature-1",
           {
             strokeDashoffset: 0,
             duration: sign_1.dataset.duration,
-          }, ">"
+          }, ">+0.5"
         )
         .to(
           ".signature-2",
@@ -371,7 +371,7 @@ const HomeHeroBlock = ({ block }: { block: any }) => {
         .fromTo(
           ".splat",
           { autoAlpha: 0, },
-          { duration: 0.2, autoAlpha: 1 }
+          { duration: 0.2, autoAlpha: 1, stagger: 0.1 }
         )
         .to(
           ".signature-4",
@@ -422,7 +422,7 @@ const HomeHeroBlock = ({ block }: { block: any }) => {
               { strokeDashoffset: -1 * sign_1.dataset.length, duration: sign_1.dataset.duration, },
               { autoAlpha: 0, duration: 0 }
             ]
-          }, 2
+          }, 3
         )
         .to(
           ".signature-2",
@@ -496,22 +496,17 @@ const HomeHeroBlock = ({ block }: { block: any }) => {
             ]
           }, ">"
         )
-        /*.fromTo(
-          ".tree",
-          { autoAlpha: 0, },
-          { duration: 0.7, autoAlpha: 1 },1.2
-        )*/
         .to(
           ".tree",
           {
             strokeDashoffset: 0,
             duration: 1.6,
-          }, 1.5
+          }, 2.4
         )
         .fromTo(
           ".letter-a",
           { autoAlpha: 0 },
-          { duration: 0.2, autoAlpha: 1 }, 2.6
+          { duration: 0.2, autoAlpha: 1 }, 3.8
         )
         .fromTo(
           ".letter-g",
@@ -592,13 +587,6 @@ const HomeHeroBlock = ({ block }: { block: any }) => {
             ]
           }, ">"
         )
-        /*.to(
-          ".tree",
-          {
-            strokeDashoffset: -1 * document.getElementsByClassName("tree")[0].getTotalLength(),
-            duration: 1,
-          }, 5
-        )*/
         .add(function () {
           if (process.browser) {
             stoprain();
@@ -610,7 +598,8 @@ const HomeHeroBlock = ({ block }: { block: any }) => {
         )
         .to(".tree",
           {
-            fill: '#FFF', duration: 0.5
+            fill: '#FFF', 
+            duration: 0.5
           }, ">"
         )
         /*.to(".tree",
