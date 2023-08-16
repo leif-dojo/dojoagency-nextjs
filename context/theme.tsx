@@ -87,7 +87,6 @@ export const ThemeContextProvider = ({ children }: { children: any }) => {
   /*
   //reset theme on path change
   useLayoutEffect(() => {
-    //reset theme on path change
     //console.log("updated theme: ", color, backgroundColor)
     if(process.browser){
       var rb = document.querySelector('body');
@@ -96,7 +95,6 @@ export const ThemeContextProvider = ({ children }: { children: any }) => {
       //reset theme on route change
       setColor('0,0,0')
       setBackgroundColor('255,255,255')
-      console.log("set layout")
     }
   }, [pathname]);*/
 
