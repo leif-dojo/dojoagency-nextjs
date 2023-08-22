@@ -1,5 +1,6 @@
 "use client"
 import React, { useRef, useLayoutEffect } from 'react'
+import styles from './headline.module.scss'
 import { useThemeContext } from '@/context/theme'
 import { useIsMobile, hexToRgb } from '@/utils/general'
 import { gsap } from 'gsap'
@@ -66,7 +67,7 @@ const WysiwygBlock = ({ block }: { block: any }) => {
   }, []);
 
   return (
-    <section ref={sectionRef} className="w-full ">
+    <section ref={sectionRef} className={`${styles.root} w-full`}>
       <div className="px-50 md:px-150 py-50">
         {block.eyebrow && (
           <div className="text-20 leading-none font-300 uppercase mb-10 fade">
@@ -74,9 +75,31 @@ const WysiwygBlock = ({ block }: { block: any }) => {
           </div>
         )}
         <div className="w-full flex">
-          <div className="w-full">
-            <div ref={headlineRef} className='wysiwyg text-55 md:text-90 leading-70 md:leading-120 font-300 fade' dangerouslySetInnerHTML={{ __html: block.headline }}></div>
-          </div>
+          {block.headline_set && (
+            <div className="w-full">
+
+              {typeof block.headline_set === 'string' && (
+                <div ref={headlineRef} className={`${styles.headline} wysiwyg text-70 md:text-110 leading-85 md:leading-140 font-300`} dangerouslySetInnerHTML={{ __html: block.headline }}></div>
+              )}
+
+              {typeof block.headline_set === 'object' && block?.headline_set?.map((item: any, index: any) => {
+                return (
+                  (() => {
+                    switch (item.__typename) {
+                      case 'BardText':
+                        return <div ref={headlineRef} className={`${styles.headline} wysiwyg text-70 md:text-110 leading-85 md:leading-140 font-300`} dangerouslySetInnerHTML={{ __html: item.text }} key={index}></div>;
+                      case 'Set_Headline_Headline':
+                        const Tag = item.headline_tag ? item.headline_tag.value : 'p';
+                        return <div className='w-full' key={index}>
+                          <Tag ref={headlineRef} className={`${styles.headline} wysiwyg ${item.headline_size ? item.headline_size.value : 'text-70'} leading-none font-300`} dangerouslySetInnerHTML={{ __html: item.headline }} ></Tag>
+                        </div>;
+                    }
+                  })()
+                )
+              })}
+
+            </div>
+          )}
         </div>
       </div>
     </section>

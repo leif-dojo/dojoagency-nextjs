@@ -60,6 +60,7 @@
             grid-template-rows: 1fr 1fr;
             grid-auto-flow: column;
             .slide {
+                max-width: 50vw;
                 .project {
                     width: 90%;
                     margin-bottom: 0rem;
@@ -146,8 +147,11 @@
         }
     }
     .image {
-        //max-height: 80vh;
+        max-height: 80vh;
         max-width: 100vw;
+        object-position: 50% 50%;
+    }
+    .imagewrap {
         object-position: 50% 50%;
     }
     .videowrap {

@@ -86,12 +86,57 @@ const ImageGridBlock = ({ block }: { block: any }) => {
               {block.eyebrow}
             </div>
           )}
-          <div className="w-full">
-            <div className='wysiwyg text-55 md:text-90 leading-70 md:leading-120 font-300 fade' dangerouslySetInnerHTML={{ __html: block.headline }}></div>
-          </div>
-          <div className="w-full">
-            <div className='wysiwyg text-30 leading-40 font-300 fade' dangerouslySetInnerHTML={{ __html: block.wysiwyg }}></div>
-          </div>
+            {block.headline_set && (
+              <div className="w-full">
+
+                {typeof block.headline_set === 'string' && (
+                  <div  className={`${styles.headline} wysiwyg text-70 md:text-110 leading-85 md:leading-140 font-300`} dangerouslySetInnerHTML={{ __html: block.headline }}></div>
+                )}
+
+                {typeof block.headline_set === 'object' && block?.headline_set?.map((item: any, index: any) => {
+                  return (
+                    (() => {
+                      switch (item.__typename) {
+                        case 'BardText':
+                          return <div  className={`${styles.headline} wysiwyg text-70 md:text-110 leading-85 md:leading-140 font-300`} dangerouslySetInnerHTML={{ __html: item.text }} key={index}></div>;
+                        case 'Set_Headline_Headline':
+                          const Tag = item.headline_tag ? item.headline_tag.value : 'p';
+                          return <div className='w-full' key={index}>
+                            <Tag  className={`${styles.headline} wysiwyg ${item.headline_size ? item.headline_size.value : 'text-70'} leading-none font-300`} dangerouslySetInnerHTML={{ __html: item.headline }} ></Tag>
+                          </div>;
+                      }
+                    })()
+                  )
+                })}
+
+              </div>
+            )}
+          {block.wysiwyg_set && (
+            <div className="w-full">
+
+              {typeof block.wysiwyg_set === 'string' && (
+                <div className='wysiwyg text-30 leading-40 font-300 fade' dangerouslySetInnerHTML={{ __html: block.wysiwyg_set }}></div>
+              )}
+
+              {typeof block.wysiwyg_set === 'object' && block?.wysiwyg_set?.map((item: any, index: any) => {
+                return (
+                  (() => {
+                    switch (item.__typename) {
+                      case 'BardText':
+                        return <div className='wysiwyg text-30 leading-40 font-300 mb-30 fade' dangerouslySetInnerHTML={{ __html: item.text }} key={index}></div>;
+                      case 'Set_Wysiwyg_Headline':
+                        const Tag = item.headline_tag ? item.headline_tag : 'p';
+                        return <div className='w-full' key={index}>
+                          <Tag className={`wysiwyg ${item.headline_size ? item.headline_size : 'text-30'} font-300 mb-30 fade`} dangerouslySetInnerHTML={{ __html: item.headline }} ></Tag>
+                        </div>;
+                    }
+                  })()
+                )
+
+              })}
+
+            </div>
+          )}
         </div>
         <div className={`${styles.grid} grid grid-cols-1 md:grid-cols-3 gap-30 w-full pt-50`}>
 

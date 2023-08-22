@@ -78,9 +78,29 @@ const WysiwygBlock = ({ block }: { block: any }) => {
               {block.eyebrow}
             </div>
           )}
-          {block.headline && (
+          {block.headline_set && (
             <div className="w-full">
-              <div ref={headlineRef} className={`${styles.headline} wysiwyg text-55 md:text-90 leading-70 md:leading-120 font-300 pb-20 md:pb-0 fade`} dangerouslySetInnerHTML={{ __html: block.headline }}></div>
+
+              {typeof block.headline_set === 'string' && (
+                <div ref={headlineRef} className={`${styles.headline} wysiwyg text-55 md:text-90 leading-70 md:leading-120 font-300 pb-20 md:pb-0 fade`} dangerouslySetInnerHTML={{ __html: block.headline }}></div>
+              )}
+
+              {typeof block.headline_set === 'object' && block?.headline_set?.map((item: any, index: any) => {
+                return (
+                  (() => {
+                    switch (item.__typename) {
+                      case 'BardText':
+                        return <div ref={headlineRef} className='wysiwyg text-30 leading-40 font-300 mb-30 fade' dangerouslySetInnerHTML={{ __html: item.text }} key={index}></div>;
+                      case 'Set_Headline_Headline':
+                        const Tag = item.headline_tag ? item.headline_tag.value : 'p';
+                        return <div className='w-full' key={index}>
+                          <Tag ref={headlineRef} className={`wysiwyg ${item.headline_size ? item.headline_size.value : 'text-30'} font-300 mb-30 fade`} dangerouslySetInnerHTML={{ __html: item.headline }} ></Tag>
+                        </div>;
+                    }
+                  })()
+                )
+              })}
+
             </div>
           )}
           {block.wysiwyg_set && (
@@ -96,6 +116,11 @@ const WysiwygBlock = ({ block }: { block: any }) => {
                     switch (item.__typename) {
                       case 'BardText':
                         return <div ref={wysiwygRef} className='wysiwyg text-30 leading-40 font-300 mb-30 fade' dangerouslySetInnerHTML={{ __html: item.text }} key={index}></div>;
+                      case 'Set_Wysiwyg_Headline':
+                        const Tag = item.headline_tag ? item.headline_tag : 'p';
+                        return <div className='w-full' key={index}>
+                          <Tag ref={wysiwygRef} className={`wysiwyg ${item.headline_size ? item.headline_size : 'text-30'} font-300 mb-30 fade`} dangerouslySetInnerHTML={{ __html: item.headline }} ></Tag>
+                        </div>;
                       case 'Set_Wysiwyg_Image':
                         return <div className='w-full' key={index}>
                           {item.image && (

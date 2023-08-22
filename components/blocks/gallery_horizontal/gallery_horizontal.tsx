@@ -217,13 +217,18 @@ const GalleryHorizontalBlock = ({ block }: { block: any }) => {
             <div className="absolute w-full h-full flex flex-col items-center justify-center">
 
               {!block?.gallery_grid[activeindex].video_embed && !block?.gallery_grid[activeindex].video_local && block?.gallery_grid[activeindex].image && (
-                <Image
-                  src={block?.gallery_grid[activeindex].image?.permalink}
-                  width={block?.gallery_grid[activeindex].image?.width}
-                  height={block?.gallery_grid[activeindex].image?.height}
-                  alt={block?.gallery_grid[activeindex].image?.alt ? block?.gallery_grid[activeindex].image.alt : ''}
-                  className={`${styles.image} relative w-full h-full  object-contain`}
-                />
+                <div className={`${styles.imagewrap} relative`} >
+                  <Image
+                    src={block?.gallery_grid[activeindex].image?.permalink}
+                    width={block?.gallery_grid[activeindex].image?.width}
+                    height={block?.gallery_grid[activeindex].image?.height}
+                    alt={block?.gallery_grid[activeindex].image?.alt ? block?.gallery_grid[activeindex].image.alt : ''}
+                    className={`${styles.image} relative w-full h-full  object-contain`}
+                  />
+                  {block?.gallery_grid[activeindex].image?.alt && (
+                    <div className="relative z-1 w-full px-20 py-14 text-26 md:text-20 leading-none font-500 text-center fade">{block?.gallery_grid[activeindex].image?.alt}</div>
+                  )}
+                </div>
               )}
 
               {block?.gallery_grid[activeindex]?.video_embed && (
@@ -258,6 +263,7 @@ const GalleryHorizontalBlock = ({ block }: { block: any }) => {
 
             </div>
           </div>
+
         </div>
       )}
     </section>

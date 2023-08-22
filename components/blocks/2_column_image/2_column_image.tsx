@@ -1,6 +1,7 @@
 "use client"
 import React, { useRef, useLayoutEffect } from 'react'
 import { useThemeContext } from '@/context/theme'
+import styles from './2_column_image.module.scss'
 import { useIsMobile, hexToRgb } from '@/utils/general'
 import Image from 'next/image'
 import { gsap } from 'gsap'
@@ -68,7 +69,7 @@ const Column2ImageBlock = ({ block }: { block: any }) => {
   }, []);
 
   return (
-    <section ref={sectionRef} className="w-full">
+    <section ref={sectionRef} className={`${styles.root} w-full`}>
       <div className="px-50 md:px-100 py-100">
         <div className="block md:flex">
           <div ref={copyRef} className="w-full md:w-1/2 md:pr-30 flex items-center">
@@ -78,12 +79,57 @@ const Column2ImageBlock = ({ block }: { block: any }) => {
                   {block.eyebrow}
                 </div>
               )}
-              <div className="w-full">
-                <div className="text-55 md:text-90 leading-70 md:leading-120 font-300 mb-20 fade" dangerouslySetInnerHTML={{ __html: block.headline }}></div>
-              </div>
-              <div className="w-full">
-                <div className='wysiwyg text-30 leading-40 font-300 fade' dangerouslySetInnerHTML={{ __html: block.wysiwyg }}></div>
-              </div>
+              {block.headline_set && (
+                <div className="w-full mb-20">
+
+                  {typeof block.headline_set === 'string' && (
+                    <div className={`${styles.headline} wysiwyg text-70 md:text-110 leading-85 md:leading-140 font-300`} dangerouslySetInnerHTML={{ __html: block.headline }}></div>
+                  )}
+
+                  {typeof block.headline_set === 'object' && block?.headline_set?.map((item: any, index: any) => {
+                    return (
+                      (() => {
+                        switch (item.__typename) {
+                          case 'BardText':
+                            return <div className={`${styles.headline} wysiwyg text-70 md:text-110 leading-85 md:leading-140 font-300`} dangerouslySetInnerHTML={{ __html: item.text }} key={index}></div>;
+                          case 'Set_Headline_Headline':
+                            const Tag = item.headline_tag ? item.headline_tag.value : 'p';
+                            return <div className='w-full' key={index}>
+                              <Tag className={`${styles.headline} wysiwyg ${item.headline_size ? item.headline_size.value : 'text-70'} leading-none font-300`} dangerouslySetInnerHTML={{ __html: item.headline }} ></Tag>
+                            </div>;
+                        }
+                      })()
+                    )
+                  })}
+
+                </div>
+              )}
+              {block.wysiwyg_set && (
+                <div className="w-full">
+
+                  {typeof block.wysiwyg_set === 'string' && (
+                    <div className='wysiwyg text-30 leading-40 font-300 fade' dangerouslySetInnerHTML={{ __html: block.wysiwyg_set }}></div>
+                  )}
+
+                  {typeof block.wysiwyg_set === 'object' && block?.wysiwyg_set?.map((item: any, index: any) => {
+                    return (
+                      (() => {
+                        switch (item.__typename) {
+                          case 'BardText':
+                            return <div className='wysiwyg text-30 leading-40 font-300 mb-30 fade' dangerouslySetInnerHTML={{ __html: item.text }} key={index}></div>;
+                          case 'Set_Wysiwyg_Headline':
+                            const Tag = item.headline_tag ? item.headline_tag : 'p';
+                            return <div className='w-full' key={index}>
+                              <Tag className={`wysiwyg ${item.headline_size ? item.headline_size : 'text-30'} font-300 mb-30 fade`} dangerouslySetInnerHTML={{ __html: item.headline }} ></Tag>
+                            </div>;
+                        }
+                      })()
+                    )
+
+                  })}
+
+                </div>
+              )}
               {block.wysiwyg_sub && (
                 <div className="w-full">
                   <div className='wysiwyg text-30 leading-40 font-300 fade' dangerouslySetInnerHTML={{ __html: block.wysiwyg_sub }}></div>

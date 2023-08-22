@@ -330,7 +330,25 @@ export default gql`
             background_color
             text_color
             eyebrow
-            headline
+            headline_set: headline {
+              ... on BardText {
+                text
+                type
+              }
+              ... on Set_Headline_Headline {
+                id
+                headline_tag {
+                  value
+                  label
+                }
+                headline_size {
+                  value
+                  label
+                }
+                headline
+                type
+              }
+            }
             type
             image {
               id
@@ -349,7 +367,24 @@ export default gql`
                 focus_css
               }
             }
-            wysiwyg
+            wysiwyg_set: wysiwyg {
+              ... on BardText {
+                text
+                type
+              }
+              ... on Set_Wysiwyg_Headline {
+                type
+                headline
+                headline_size {
+                  value
+                  label
+                }
+                headline_tag {
+                  label
+                  value
+                }
+              }
+            }
             wysiwyg_sub
           }
           ... on Set_Components_2ColumnVideo {
@@ -357,10 +392,45 @@ export default gql`
             background_color
             text_color
             eyebrow
-            headline
+            headline_set: headline {
+              ... on BardText {
+                text
+                type
+              }
+              ... on Set_Headline_Headline {
+                id
+                headline_tag {
+                  value
+                  label
+                }
+                headline_size {
+                  value
+                  label
+                }
+                headline
+                type
+              }
+            }
             video_embed
             type
-            wysiwyg
+            wysiwyg_set: wysiwyg {
+              ... on BardText {
+                text
+                type
+              }
+              ... on Set_Wysiwyg_Headline {
+                type
+                headline
+                headline_size {
+                  value
+                  label
+                }
+                headline_tag {
+                  label
+                  value
+                }
+              }
+            }
             wysiwyg_sub
             image {
               ... on Asset_Assets {
@@ -444,8 +514,43 @@ export default gql`
             background_color
             text_color
             eyebrow
-            headline
-            wysiwyg
+            headline_set: headline {
+              ... on BardText {
+                text
+                type
+              }
+              ... on Set_Headline_Headline {
+                id
+                headline_tag {
+                  value
+                  label
+                }
+                headline_size {
+                  value
+                  label
+                }
+                headline
+                type
+              }
+            }
+            wysiwyg_set: wysiwyg {
+              ... on BardText {
+                text
+                type
+              }
+              ... on Set_Wysiwyg_Headline {
+                type
+                headline
+                headline_size {
+                  value
+                  label
+                }
+                headline_tag {
+                  label
+                  value
+                }
+              }
+            }
             type
             timeline {
               color
@@ -538,11 +643,41 @@ export default gql`
             text_color
             type
             eyebrow
-            headline
+            headline_set: headline {
+              ... on BardText {
+                text
+                type
+              }
+              ... on Set_Headline_Headline {
+                id
+                headline_tag {
+                  value
+                  label
+                }
+                headline_size {
+                  value
+                  label
+                }
+                headline
+                type
+              }
+            }
             wysiwyg_set: wysiwyg {
               ... on BardText {
                 text
                 type
+              }
+              ... on Set_Wysiwyg_Headline {
+                type
+                headline
+                headline_size {
+                  value
+                  label
+                }
+                headline_tag {
+                  label
+                  value
+                }
               }
               ... on Set_Wysiwyg_2Column {
                 wysiwyg
@@ -652,14 +787,50 @@ export default gql`
             background_color
             text_color
             eyebrow
-            headline
+            headline_set: headline {
+              ... on BardText {
+                text
+                type
+              }
+              ... on Set_Headline_Headline {
+                id
+                headline_tag {
+                  value
+                  label
+                }
+                headline_size {
+                  value
+                  label
+                }
+                headline
+                type
+              }
+            }
             type
           }
           ... on Set_Components_HeadlineHero {
             __typename
             background_color
             text_color
-            headline
+            headline_set: headline {
+              ... on BardText {
+                text
+                type
+              }
+              ... on Set_Headline_Headline {
+                id
+                headline_tag {
+                  value
+                  label
+                }
+                headline_size {
+                  value
+                  label
+                }
+                headline
+                type
+              }
+            }
             type
             client {
               ... on Entry_Clients_Client {
@@ -808,9 +979,44 @@ export default gql`
             background_color
             text_color
             type
-            wysiwyg
+            wysiwyg_set: wysiwyg {
+              ... on BardText {
+                text
+                type
+              }
+              ... on Set_Wysiwyg_Headline {
+                type
+                headline
+                headline_size {
+                  value
+                  label
+                }
+                headline_tag {
+                  label
+                  value
+                }
+              }
+            }
             eyebrow
-            headline
+            headline_set: headline {
+              ... on BardText {
+                text
+                type
+              }
+              ... on Set_Headline_Headline {
+                id
+                headline_tag {
+                  value
+                  label
+                }
+                headline_size {
+                  value
+                  label
+                }
+                headline
+                type
+              }
+            }
             project_grid {
               popup_headline
               popup_image {
@@ -872,8 +1078,43 @@ export default gql`
             background_color
             text_color
             eyebrow
-            headline
-            wysiwyg
+            headline_set: headline {
+              ... on BardText {
+                text
+                type
+              }
+              ... on Set_Headline_Headline {
+                id
+                headline_tag {
+                  value
+                  label
+                }
+                headline_size {
+                  value
+                  label
+                }
+                headline
+                type
+              }
+            }
+            wysiwyg_set: wysiwyg {
+              ... on BardText {
+                text
+                type
+              }
+              ... on Set_Wysiwyg_Headline {
+                type
+                headline
+                headline_size {
+                  value
+                  label
+                }
+                headline_tag {
+                  label
+                  value
+                }
+              }
+            }
             type
             team_grid {
               ... on Entry_Team_Team {

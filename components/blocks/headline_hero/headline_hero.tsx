@@ -2,7 +2,7 @@
 import React, { useState, useRef, useLayoutEffect } from 'react'
 import styles from './headline_hero.module.scss'
 import { useThemeContext } from '@/context/theme'
-import { useIsMobile, hexToRgb} from '@/utils/general'
+import { useIsMobile, hexToRgb } from '@/utils/general'
 import Image from 'next/image'
 import ShareIcons from '@/components/generic/share_icons/share_icons'
 import IconLink from '@/public/icons/icon-link.svg'
@@ -154,9 +154,33 @@ const WysiwygBlock = ({ block, meta }: { block: any, meta: any }) => {
                 {block.eyebrow}
               </div>
             )}
-            {block.headline && (
-              <div ref={headlineRef} className={`${styles.headline} wysiwyg text-70 md:text-110 leading-85 md:leading-140 font-300 `} dangerouslySetInnerHTML={{ __html: block.headline }}></div>
+
+            {block.headline_set && (
+              <div className="w-full">
+
+                {typeof block.headline_set === 'string' && (
+                  <div ref={headlineRef} className={`${styles.headline} wysiwyg text-70 md:text-110 leading-85 md:leading-140 font-300`} dangerouslySetInnerHTML={{ __html: block.headline }}></div>
+                )}
+
+                {typeof block.headline_set === 'object' && block?.headline_set?.map((item: any, index: any) => {
+                  return (
+                    (() => {
+                      switch (item.__typename) {
+                        case 'BardText':
+                          return <div ref={headlineRef} className={`${styles.headline} wysiwyg text-70 md:text-110 leading-85 md:leading-140 font-300`} dangerouslySetInnerHTML={{ __html: item.text }} key={index}></div>;
+                        case 'Set_Headline_Headline':
+                          const Tag = item.headline_tag ? item.headline_tag.value : 'p';
+                          return <div className='w-full' key={index}>
+                            <Tag ref={headlineRef} className={`${styles.headline} wysiwyg ${item.headline_size ? item.headline_size.value : 'text-70'} leading-none font-300`} dangerouslySetInnerHTML={{ __html: item.headline }} ></Tag>
+                          </div>;
+                      }
+                    })()
+                  )
+                })}
+
+              </div>
             )}
+
           </div>
           <div className="w-full md:w-4/12 text-right">
             <div ref={sideRef} className="w-full md:w-10/12 ml-auto mr-0 text-left pt-30">
