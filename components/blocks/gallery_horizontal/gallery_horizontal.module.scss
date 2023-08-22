@@ -7,36 +7,21 @@
 
     .gallery {
         display: grid;
-        //grid-auto-columns: 1fr 1fr 300rem;
-        //grid-auto-flow: column; /* this will do the trick */
-        grid-auto-columns: 800rem;
-        grid-template-rows: 1fr 1fr;
-        //grid-auto-columns: 300rem;
-        grid-auto-flow: column;
+        grid-template-columns: 1fr 1fr;
 
         .slide {
-            //border: 2px solid orange;
-            //aspect-ratio: 3/2;
-           // background-color: pink;
+            position: relative;
 
             .project {
                 position: relative;
-                //aspect-ratio: 3/2;
-                width: 90%;
-                //border: 1px solid orange;
+                width: 115%;
                 z-index: 10;
+                margin-bottom: 80rem;
 
                 .image {
-                    //object-fit: contain;
-                    //object-position: center center;
                     width: 100%;
                     height: auto;
-                    //left: 50%;
-                    //min-height: 100%;
-                    //min-width: 100%;
                     position: relative;
-                    //top: 50%;
-                    //transform: translate(-50%, -50%);
                 }
 
                 video,
@@ -46,61 +31,87 @@
                     height: auto;
                 }
             }
-            &:nth-child(1n) {
+
+            &:nth-child(even) {
                 .project {
-                    top: 0rem;
-                    left: -20rem;
+                    left: -15%;
+                    top: 150rem;
                 }
             }
 
-            &:nth-child(2n) {
+            &:nth-child(odd) {
+                z-index: 20;
                 .project {
-                    top: -30rem;
-                    right: -100rem;
-                    left: auto;
+                    left:0;
                 }
             }
 
-            &:nth-child(3n) {
-                .project {
-                    top: auto;
-                    bottom: -50rem;
-                    right: 0rem;
-                    left: auto;
-                }
-            }
-
-            &:nth-child(4n) {
-                .project {
-                    top: -60rem;
-                    left: auto;
-                    right: -150rem;
-                }
-            }
-
-            &:nth-child(5n) {
-                .project {
-                    top: auto;
-                    bottom: -50rem;
-                    right: 0rem;
-                    left: auto;
-                }
-            }
-
-            &:nth-child(6n) {
-                .project {
-                    top: auto;
-                    bottom: 0rem;
-                    right: auto;
-                    left: 170rem;
-                }
-            }
 
             &:hover {
                 z-index: 99;
 
                 .hover {
                     opacity: 1;
+                }
+            }
+        }
+        @screen md {
+            grid-auto-columns: 800rem;
+            grid-template-rows: 1fr 1fr;
+            grid-auto-flow: column;
+            .slide {
+                .project {
+                    width: 90%;
+                    margin-bottom: 0rem;
+                }
+                &:nth-child(1n) {
+                    .project {
+                        top: 0rem;
+                        left: -20rem;
+                    }
+                }
+    
+                &:nth-child(2n) {
+                    .project {
+                        top: -30rem;
+                        right: -100rem;
+                        left: auto;
+                    }
+                }
+    
+                &:nth-child(3n) {
+                    .project {
+                        top: auto;
+                        bottom: -50rem;
+                        right: 0rem;
+                        left: auto;
+                    }
+                }
+    
+                &:nth-child(4n) {
+                    .project {
+                        top: -60rem;
+                        left: auto;
+                        right: -150rem;
+                    }
+                }
+    
+                &:nth-child(5n) {
+                    .project {
+                        top: auto;
+                        bottom: -50rem;
+                        right: 0rem;
+                        left: auto;
+                    }
+                }
+    
+                &:nth-child(6n) {
+                    .project {
+                        top: auto;
+                        bottom: 0rem;
+                        right: auto;
+                        left: 170rem;
+                    }
                 }
             }
         }

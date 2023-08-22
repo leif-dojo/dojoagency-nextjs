@@ -48,12 +48,19 @@
 }
 
 .pin {
-  padding-top: 5rem;
-  width: 21rem;
+  padding-top: 20rem;
+  width: 41rem;
+  min-width: 41rem;
 
   svg {
     width: 100%;
     height: auto;
     fill: theme('colors.blue');
+  }
+
+  @screen md {
+    padding-top: 5rem;
+    width: 21rem;
+    min-width: 21rem;
   }
 }

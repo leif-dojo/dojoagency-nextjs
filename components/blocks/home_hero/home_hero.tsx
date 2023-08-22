@@ -695,7 +695,7 @@ const HomeHeroBlock = ({ block }: { block: any }) => {
               <span className={`${styles.splat_r_2}`}></span>
               <span className={`${styles.splat_r_3}`}></span>
             </span></span>s a
-            <span className='relative'>t<span className={`${styles.splat} splat ${styles.splatt}`}>
+            <span className='relative'>t <span className={`${styles.splat} splat ${styles.splatt}`}>
               <span className={`${styles.splat_c_1}`}></span>
               <span className={`${styles.splat_c_2}`}></span>
               <span className={`${styles.splat_r_1}`}></span>

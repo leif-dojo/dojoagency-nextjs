@@ -1,4 +1,6 @@
 .root {
+    aspect-ratio: 4/3;
+
 
     .image {
         min-width: 100%;
@@ -9,14 +11,18 @@
     video {
         width: 100% !important;
         height: auto !important;
-        aspect-ratio: 16/9;
+        aspect-ratio: 4/3;
+
+        @screen md {
+            aspect-ratio: 16/9;
+        }
     }
 
     .player {
         position: relative;
         width: 100% !important;
         height: auto !important;
-        aspect-ratio: 16/9;
+        aspect-ratio: 4/3;
 
         transition: all 1000ms ease-out 0ms;
         -webkit-animation: popfade 1000ms ease both;
@@ -26,10 +32,24 @@
         iframe,
         video {
             position: relative;
+            aspect-ratio: 16/9;
+            width: auto !important;
+            height: 100% !important;
+            max-width: 1000%;
+            object-fit: cover;
+
             transition: all 1000ms ease-out 0ms;
             -webkit-animation: popfade 1000ms ease both;
             animation: popfade 1000ms ease both;
         }
+
+        @screen md {
+            aspect-ratio: 16/9;
+        }
+    }
+
+    @screen md {
+        aspect-ratio: 16/9;
     }
 
     @-webkit-keyframes popfade {

@@ -75,7 +75,7 @@ const WysiwygBlock = ({ block }: { block: any }) => {
         )}
         <div className="w-full flex">
           <div className="w-full">
-            <div ref={headlineRef} className='wysiwyg text-90 leading-120 font-300 fade' dangerouslySetInnerHTML={{ __html: block.headline }}></div>
+            <div ref={headlineRef} className='wysiwyg text-55 md:text-90 leading-70 md:leading-120 font-300 fade' dangerouslySetInnerHTML={{ __html: block.headline }}></div>
           </div>
         </div>
       </div>

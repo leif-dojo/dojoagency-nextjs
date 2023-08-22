@@ -80,7 +80,7 @@ const WysiwygBlock = ({ block }: { block: any }) => {
           )}
           {block.headline && (
             <div className="w-full">
-              <div ref={headlineRef} className={`${styles.headline} wysiwyg text-90 leading-120 font-300 fade`} dangerouslySetInnerHTML={{ __html: block.headline }}></div>
+              <div ref={headlineRef} className={`${styles.headline} wysiwyg text-55 md:text-90 leading-70 md:leading-120 font-300 pb-20 md:pb-0 fade`} dangerouslySetInnerHTML={{ __html: block.headline }}></div>
             </div>
           )}
           {block.wysiwyg_set && (

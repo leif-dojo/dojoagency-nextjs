@@ -17,9 +17,9 @@ const GalleryHorizontalBlock = ({ block }: { block: any }) => {
   const GalleryRef = useRef<HTMLDivElement>(null)
   const ScrollerTriggerRef = useRef<HTMLDivElement>(null)
   const ScrollerRef = useRef<HTMLDivElement>(null)
-
   const [active, setActive] = useState(false)
   const [activeindex, setActiveIndex] = useState(1)
+  const [scrollpos, setScrollpos] = useState(0)
 
   const onMouseEnter = () => {
     cursorChangeHandler("horizontal-scroll")
@@ -30,9 +30,24 @@ const GalleryHorizontalBlock = ({ block }: { block: any }) => {
   }
 
   const openOrClose = (index: any) => {
+    if(!active){
+      setScrollpos(window.scrollY);
+    }
     setActiveIndex(index)
     active ? setActive(false) : setActive(true)
-    //active ? document.body.classList.remove('body-lock') : document.body.classList.add('body-lock')// TODO -- reset to scroll position
+    active ? document.body.classList.remove('body-lock') : document.body.classList.add('body-lock')
+    //if close
+    if(active){
+      window.scroll({
+        top: scrollpos,
+        behavior: "smooth"
+      });
+    }
+    
+  }
+
+  const isMobile = () => {
+    return window.innerWidth < 1024
   }
 
   useLayoutEffect(() => {
@@ -84,26 +99,29 @@ const GalleryHorizontalBlock = ({ block }: { block: any }) => {
         })
       }
 
-      //horizontal scroller
-      let sections = gsap.utils.toArray(ScrollerRef.current);
-      let container_width = gsap.getProperty(ContainerInnerRef.current, "width");
-      let gallery_width = gsap.getProperty(ScrollerRef.current, "width");
-      let diff = (gallery_width - container_width);
-      //console.log("diff: ", diff)
-      gsap.to(sections, {
-        //xPercent: -100 * 1,
-        x: diff < 0 ? 0 : diff * -1,
-        ease: "none",
-        scrollTrigger: {
-          trigger: ScrollerTriggerRef.current,
-          pin: true,
-          scrub: 1,
-          //snap: 1 / (sections.length - 1),
-          // base vertical scrolling on how wide the container is so it feels more natural.
-          //end: "+=3500",
-          end: "+=" + (diff).toString(),
-        }
-      });
+      console.log("mobile: ", isMobile())
+      if (!isMobile()) {
+        //horizontal scroller
+        let sections = gsap.utils.toArray(ScrollerRef.current);
+        let container_width = gsap.getProperty(ContainerInnerRef.current, "width");
+        let gallery_width = gsap.getProperty(ScrollerRef.current, "width");
+        let diff = (gallery_width - container_width);
+        //console.log("diff: ", diff)
+        gsap.to(sections, {
+          //xPercent: -100 * 1,
+          x: diff < 0 ? 0 : diff * -1,
+          ease: "none",
+          scrollTrigger: {
+            trigger: ScrollerTriggerRef.current,
+            pin: true,
+            scrub: 1,
+            //snap: 1 / (sections.length - 1),
+            // base vertical scrolling on how wide the container is so it feels more natural.
+            //end: "+=3500",
+            end: "+=" + (diff).toString(),
+          }
+        });
+      }
 
     }, sectionRef);
     return () => ctx.revert();
@@ -111,14 +129,14 @@ const GalleryHorizontalBlock = ({ block }: { block: any }) => {
 
   return (
     <section ref={sectionRef} className={`${styles.root} w-full  overflow-hidden`}>
-      <div ref={ScrollerTriggerRef} className="px-50 md:px-100 py-100">
+      <div ref={ScrollerTriggerRef} className="px-50 md:px-100 py-0">
         <div ref={ContainerInnerRef} className="w-full">
           {block.headline && (
             <div className="w-full pb-20">
-              <div className='wysiwyg text-90 leading-120 font-300 fade' dangerouslySetInnerHTML={{ __html: block.headline }}></div>
+              <div className='wysiwyg text-55 md:text-90 leading-70 md:leading-120 font-300 fade' dangerouslySetInnerHTML={{ __html: block.headline }}></div>
             </div>
           )}
-          <div className="w-[10000rem]">
+          <div className="w-full md:w-[10000rem]">
             <div className="relative flex w-auto h-auto">
               <div ref={ScrollerRef} className={`${styles.gallery} gallery w-auto h-auto grid`}>
                 {block?.gallery_grid?.map((item: any, index: any) => {
@@ -189,7 +207,7 @@ const GalleryHorizontalBlock = ({ block }: { block: any }) => {
 
 
       {active && (
-        <div className={`${styles.popup} fixed  bg-white w-screen h-screen left-0 top-0 z-10 px-100 py-100`}>
+        <div className={`${styles.popup} fixed  bg-white w-screen h-screen left-0 top-0 z-10 px-50 md:px-100 py-50 md:py-100`}>
           <div className={`${styles.close} absolute top-50 right-50 flex items-center cursor-pointer z-10`} role="none" onClick={() => openOrClose(0)}>
             <div className={`font-lato text-orange text-80 font-300 leading-none`}>X</div>
           </div>

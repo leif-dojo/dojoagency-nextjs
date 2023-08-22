@@ -24,52 +24,59 @@ const Cursor = () => {
   let timeout: any;
   let cursor = cursorType;
 
+  const isMobile = () => {
+    return window.innerWidth < 1024
+  }
+
   const getCursorIcon = () => {
-    //update cursor if set
-    //console.log("update cursor state", cursor, cursorType)
-    if (process.browser) {
-      (cursor == 'default' || cursor == '' || cursor == 'page') ? document.body.classList.remove('no-cursor') : document.body.classList.add('no-cursor')
-    }
-    if(cursor == 'page') {
-      cursor = cursorPageType
-      if(cursorPageType !== 'default'){document.body.classList.add('no-cursor')}
-    }
+    //disable cursors on mobile
+    if (!isMobile()) {
+      //update cursor if set
+      //console.log("update cursor state", cursor, cursorType)
+      if (process.browser) {
+        (cursor == 'default' || cursor == '' || cursor == 'page') ? document.body.classList.remove('no-cursor') : document.body.classList.add('no-cursor')
+      }
+      if (cursor == 'page') {
+        cursor = cursorPageType
+        if (cursorPageType !== 'default') { document.body.classList.add('no-cursor') }
+      }
 
-    //change cursor
-    switch (cursor) {
-      case 'peace':
-        return <div className={`${styles.peace}`}><IconPeace /></div>;
-      case 'play':
-        return <div className={`${styles.play}`}><IconPlay /></div>;
-      case 'pause':
-        return <div className={`${styles.pause}`}><IconPause /></div>;
-      case 'heart':
-        return <div className={`${styles.heart}`}><IconHeart /></div>;
-      case 'bridge':
-        return <div className={`${styles.bridge}`}><IconBridge /></div>;
-      case 'horizontal-scroll':
-        return <div className={`${styles.horizontal} flex`}><div className="w-full font-lato text-20 leading-none font-500 text-orange text-center pb-10 mt-auto mb-0">Scroll »</div></div>;
-      case 'view':
-        return <div className={`${styles.view} flex`}><div className="w-full font-lato text-20 leading-none font-500 text-orange text-center pb-10 mt-auto mb-0">View »</div></div>;
-      case 'next':
-        return <div className={`${styles.view} flex`}><div className="w-full font-lato text-20 leading-none font-500 text-orange text-center pb-10 mt-auto mb-0">Next »</div></div>;
-      case 'instagram':
-        return <div className={`${styles.instagram} text-orange`}><IconHeart /></div>;
-      case 'linkedin':
-        return <div className={`${styles.linkedin} text-orange`}><IconThumb /></div>; 
-      case 'boots':
-        return <div className={`${styles.boots}`}><IconBoots /></div>;
-      case 'heart-2':
-        return <div className={`${styles.heart2}`}><IconHeart2 /></div>;
-      case 'goggles':
-        return <div className={`${styles.goggles}`}><IconGoggles /></div>;
-      case 'steering-wheel':
-        return <div className={`${styles.steeringwheel}`}><IconSteeringWheel /></div>;
-      case 'rocket':
-        return <div className={`${styles.rocket}`}><IconRocket /></div>;
-      case 'masks':
-        return <div className={`${styles.masks}`}><IconMasks /></div>;
+      //change cursor
+      switch (cursor) {
+        case 'peace':
+          return <div className={`${styles.peace}`}><IconPeace /></div>;
+        case 'play':
+          return <div className={`${styles.play}`}><IconPlay /></div>;
+        case 'pause':
+          return <div className={`${styles.pause}`}><IconPause /></div>;
+        case 'heart':
+          return <div className={`${styles.heart}`}><IconHeart /></div>;
+        case 'bridge':
+          return <div className={`${styles.bridge}`}><IconBridge /></div>;
+        case 'horizontal-scroll':
+          return <div className={`${styles.horizontal} flex`}><div className="w-full font-lato text-20 leading-none font-500 text-orange text-center pb-10 mt-auto mb-0">Scroll »</div></div>;
+        case 'view':
+          return <div className={`${styles.view} flex`}><div className="w-full font-lato text-20 leading-none font-500 text-orange text-center pb-10 mt-auto mb-0">View »</div></div>;
+        case 'next':
+          return <div className={`${styles.view} flex`}><div className="w-full font-lato text-20 leading-none font-500 text-orange text-center pb-10 mt-auto mb-0">Next »</div></div>;
+        case 'instagram':
+          return <div className={`${styles.instagram} text-orange`}><IconHeart /></div>;
+        case 'linkedin':
+          return <div className={`${styles.linkedin} text-orange`}><IconThumb /></div>;
+        case 'boots':
+          return <div className={`${styles.boots}`}><IconBoots /></div>;
+        case 'heart-2':
+          return <div className={`${styles.heart2}`}><IconHeart2 /></div>;
+        case 'goggles':
+          return <div className={`${styles.goggles}`}><IconGoggles /></div>;
+        case 'steering-wheel':
+          return <div className={`${styles.steeringwheel}`}><IconSteeringWheel /></div>;
+        case 'rocket':
+          return <div className={`${styles.rocket}`}><IconRocket /></div>;
+        case 'masks':
+          return <div className={`${styles.masks}`}><IconMasks /></div>;
 
+      }
     }
   }
 

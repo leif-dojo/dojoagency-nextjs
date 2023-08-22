@@ -3,14 +3,19 @@
 .root {
 
   .icon {
-    width: 35rem;
-    height: 35rem;
+    width: 50rem;
+    height: 50rem;
     border: 2px solid theme('colors.blue');
     border-radius: 12rem;
 
     svg {
       width: 60%;
       height: auto;
+    }
+
+    @screen md {
+      width: 35rem;
+      height: 35rem;
     }
   }
 }

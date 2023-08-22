@@ -155,13 +155,13 @@ const WysiwygBlock = ({ block, meta }: { block: any, meta: any }) => {
               </div>
             )}
             {block.headline && (
-              <div ref={headlineRef} className={`${styles.headline} wysiwyg text-110 leading-140 font-300 `} dangerouslySetInnerHTML={{ __html: block.headline }}></div>
+              <div ref={headlineRef} className={`${styles.headline} wysiwyg text-70 md:text-110 leading-85 md:leading-140 font-300 `} dangerouslySetInnerHTML={{ __html: block.headline }}></div>
             )}
           </div>
           <div className="w-full md:w-4/12 text-right">
             <div ref={sideRef} className="w-full md:w-10/12 ml-auto mr-0 text-left pt-30">
               {block.sharing_title && (
-                <div ref={sideTitleRef} className="w-full text-25 leading-none font-300 pb-20 ">
+                <div ref={sideTitleRef} className="w-full text-32 md:text-25 leading-none font-300 pb-20 ">
                   {block.sharing_title}
                 </div>
               )}
@@ -181,11 +181,11 @@ const WysiwygBlock = ({ block, meta }: { block: any, meta: any }) => {
                   <div ref={brRef} className="w-full bg-slate h-1 my-25 opacity-10"></div>
                   <div className="w-full flex flex-nowrap">
                     <div className="w-full md:w-1/2 ">
-                      <div ref={shareTitleRef} className="text-25 leading-none font-300 pb-20">Share</div>
+                      <div ref={shareTitleRef} className="text-32 md:text-25 leading-none font-300 pb-20">Share</div>
                       <div className="w-full sharewrap"><ShareIcons meta={meta} /></div>
                     </div>
                     <div className="w-full md:w-1/2 ">
-                      <div ref={copyRef} className="text-25 leading-none font-300 pb-20 cursor-pointer">{copytext}</div>
+                      <div ref={copyRef} className="text-32 md:text-25 leading-none font-300 pb-20 cursor-pointer">{copytext}</div>
                       <div className="w-full">
                         <div ref={copyIconRef} className={`${styles.icon} flex items-center justify-center`}>
                           <div className={`relative flex items-center justify-center text-blue cursor-pointer`} aria-label="copy to clipboard" onClick={copyToClip}>

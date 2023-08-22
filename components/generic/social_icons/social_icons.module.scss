@@ -4,14 +4,18 @@
   min-height: 40rem;
 
   .icon {
-    width: 60rem;
-    height: 60rem;
+    width: 100rem;
+    height: 100rem;
     border: 3rem solid theme('colors.blue');
     border-radius: 10rem;
 
     svg {
       width: 60%;
       height: auto;
+    }
+    @screen md {
+      width: 60rem;
+      height: 60rem;
     }
   }
 

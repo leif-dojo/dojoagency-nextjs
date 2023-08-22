@@ -87,7 +87,7 @@ const BlogGridBlock = ({ block, entries }: { block: any, entries: any }) => {
             </div>
           )}
           <div className="w-full">
-            <div className='wysiwyg text-90 leading-120 font-300 fade' dangerouslySetInnerHTML={{ __html: block.headline }}></div>
+            <div className='wysiwyg text-55 md:text-90 leading-70 md:leading-120 font-300 fade' dangerouslySetInnerHTML={{ __html: block.headline }}></div>
           </div>
         </div>
         <div className={`${styles.grid} grid grid-cols-1 md:grid-cols-3 gap-30 w-full pt-50`}>

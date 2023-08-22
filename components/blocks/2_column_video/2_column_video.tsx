@@ -78,7 +78,7 @@ const Column2VideoBlock = ({ block }: { block: any }) => {
               </div>
             )}
             <div className="w-full">
-                <div className="text-90 leading-120 font-300 mb-20 fade" dangerouslySetInnerHTML={{ __html: block.headline }}></div>
+                <div className="text-55 md:text-90 leading-70 md:leading-120 font-300 mb-20 fade" dangerouslySetInnerHTML={{ __html: block.headline }}></div>
               </div>
             <div className="w-full">
               <div className='wysiwyg font-lato text-30 leading-40 font-300 fade' dangerouslySetInnerHTML={{ __html: block.wysiwyg }}></div>

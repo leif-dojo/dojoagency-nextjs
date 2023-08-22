@@ -108,7 +108,7 @@ const ProjectGridBlock = ({ block }: { block: any }) => {
 
   return (
     <section ref={sectionRef} className={`${styles.root} w-full  overflow-hidden`}>
-      <div className="px-50 md:px-100 py-100">
+      <div className="px-50 md:px-100 py-50">
         <div className="w-full">
           {block.eyebrow && (
             <div className="text-20 leading-none font-300 uppercase mb-10 fade">
@@ -214,7 +214,7 @@ const ProjectGridBlock = ({ block }: { block: any }) => {
                   <div className="w-full md:w-6/12 md:pr-30 flex items-center">
                     <div className='w-full'>
                       {block?.project_grid[activeindex].popup_headline && (
-                        <div className="text-90 leading-120 font-300 text-slate mb-20">
+                        <div className="text-55 md:text-90 leading-70 md:leading-120 font-300 text-slate mb-20">
                           {block?.project_grid[activeindex].popup_headline}
                         </div>
                       )}
