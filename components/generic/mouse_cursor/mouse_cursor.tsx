@@ -25,7 +25,11 @@ const Cursor = () => {
   let cursor = cursorType;
 
   const isMobile = () => {
-    return window.innerWidth < 1024
+    if (process.browser) {
+      return window.innerWidth < 1024
+    } else {
+      return false
+    }
   }
 
   const getCursorIcon = () => {

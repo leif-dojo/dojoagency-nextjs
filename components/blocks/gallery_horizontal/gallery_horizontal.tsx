@@ -30,20 +30,22 @@ const GalleryHorizontalBlock = ({ block }: { block: any }) => {
   }
 
   const openOrClose = (index: any) => {
-    if(!active){
+    if (!active) {
       setScrollpos(window.scrollY);
     }
     setActiveIndex(index)
     active ? setActive(false) : setActive(true)
     active ? document.body.classList.remove('body-lock') : document.body.classList.add('body-lock')
     //if close
-    if(active){
-      window.scroll({
-        top: scrollpos,
-        behavior: "smooth"
-      });
+    if (active) {
+      if (process.browser) {
+        window.scroll({
+          top: scrollpos,
+          behavior: "smooth"
+        });
+      }
     }
-    
+
   }
 
   const isMobile = () => {
@@ -99,7 +101,6 @@ const GalleryHorizontalBlock = ({ block }: { block: any }) => {
         })
       }
 
-      console.log("mobile: ", isMobile())
       if (!isMobile()) {
         //horizontal scroller
         let sections = gsap.utils.toArray(ScrollerRef.current);
