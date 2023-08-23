@@ -212,27 +212,54 @@
     //dojo splash
     .splatd {
         position: absolute;
-        left: 12%;
-        top: 30.5%;
+        left: 20%;
+        top: 1%;
     }
 
     .splato {
         position: absolute;
-        left: 22.5%;
-        top: 30.5%;
+        left: 45%;
+        top: 1%;
     }
 
     .splatj {
         position: absolute;
-        left: 28%;
-        top: 55%;
+        left: 55%;
+        top: 27%;
     }
 
     .splato2 {
         position: absolute;
-        left: 39%;
-        top: 32%;
+        left: 77%;
+        top: 2%;
         transform: rotate(23deg);
+    }
+
+    @screen md {
+        .splatd {
+            position: absolute;
+            left: 12%;
+            top: 30.5%;
+        }
+    
+        .splato {
+            position: absolute;
+            left: 22.5%;
+            top: 30.5%;
+        }
+    
+        .splatj {
+            position: absolute;
+            left: 28%;
+            top: 55%;
+        }
+    
+        .splato2 {
+            position: absolute;
+            left: 39%;
+            top: 32%;
+            transform: rotate(23deg);
+        }
     }
 
     //stories splash

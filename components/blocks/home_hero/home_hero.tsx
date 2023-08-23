@@ -2,6 +2,7 @@
 import React, { useLayoutEffect, useState, useRef, useEffect } from 'react'
 import styles from './home_hero.module.scss'
 import Logo from 'public/dojo_animated.svg'
+import LogoMobile from 'public/dojo_animated_mobile.svg'
 import { useThemeContext } from '@/context/theme'
 import { useIsMobile, hexToRgb } from '@/utils/general'
 import { treestart, treeend } from './trees'
@@ -26,7 +27,9 @@ const HomeHeroBlock = ({ block }: { block: any }) => {
   const TextRef = useRef<HTMLDivElement>(null)
 
   const isMobile = () => {
-    return window.innerWidth < 1024
+    if (process.browser) {
+      return window.innerWidth < 1024
+    }
   }
 
   useEffect(() => {
@@ -501,7 +504,7 @@ const HomeHeroBlock = ({ block }: { block: any }) => {
           {
             strokeDashoffset: 0,
             duration: 1.6,
-          }, 2.4
+          }, isMobile() ? 3.3 : 2.4
         )
         .fromTo(
           ".letter-a",
@@ -630,7 +633,7 @@ const HomeHeroBlock = ({ block }: { block: any }) => {
         <div className={`fixed top-220 md:top-60 w-full z-5`}>
           <div ref={LogoWrapRef} className={`${styles.logo} logo w-full text-center px-0 pb-40`}>
             <div ref={LogoRef} className='w-full'>
-              <Logo className={`${styles.logosvg} w-full h-auto`} />
+              {isMobile() ? <LogoMobile className={`${styles.logosvg} w-full h-auto`} /> : <Logo className={`${styles.logosvg} w-full h-auto`} />}
               <span className={`${styles.splat} splat ${styles.splatd}`}>
                 <span className={`${styles.splat_c_1}`}></span>
                 <span className={`${styles.splat_c_2}`}></span>
@@ -673,7 +676,7 @@ const HomeHeroBlock = ({ block }: { block: any }) => {
           </div>
         </div>
 
-        <div ref={PanelRef} className={`${styles.panel} relative w-full bg-themebackground-ff px-50 md:px-100 mt-360 md:mt-320 pb-180 md:pb-100 z-6`}>
+        <div ref={PanelRef} className={`${styles.panel} relative w-full bg-themebackground-ff px-50 md:px-100 mt-450 md:mt-320 pb-180 md:pb-100 z-6`}>
           <div ref={HeadlineRef} className='relative w-full text-center font-lato text-90 md:text-113 font-300 leading-none py-20 fade'>
             <span className='relative'>S<span className={`${styles.splat} splat ${styles.splats}`}>
               <span className={`${styles.splat_c_1}`}></span>
