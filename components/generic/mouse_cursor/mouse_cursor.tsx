@@ -93,12 +93,12 @@ const Cursor = () => {
       cursorChangeHandler('page')
     }, 30000);
 
-  }, [cursorType]);
+  }, [cursorType, cursorChangeHandler]);
 
   //reset cursor on path change
   useEffect(() => {
     cursorChangeHandler('page')
-  }, [pathname]);
+  }, [pathname, cursorChangeHandler]);
 
   return (
     <>

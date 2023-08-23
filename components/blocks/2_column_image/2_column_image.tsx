@@ -167,6 +167,7 @@ const Column2ImageBlock = ({ block }: { block: any }) => {
                   {block.images?.map((item: any, index: any) => {
                     return (
                       <Image
+                        key={index}
                         src={item?.permalink}
                         width={item?.width}
                         height={item?.height}
