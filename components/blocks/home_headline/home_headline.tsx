@@ -270,7 +270,7 @@ const HomeHeadlineBlock = ({ block }: { block: any }) => {
             backgroundChangeHandler(getter("backgroundColor"))
           }
         })*/
-      }, 100);
+      }, 250);
 
 
     }, sectionRef);
