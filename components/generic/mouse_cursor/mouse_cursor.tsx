@@ -1,5 +1,5 @@
 "use client"
-import React, { useLayoutEffect } from "react";
+import React, { useEffect } from "react";
 import styles from './mouse_cursor.module.scss'
 import useMousePosition from "@/hooks/useMousePosition"
 import { useThemeContext } from '@/context/theme'
@@ -34,15 +34,17 @@ const Cursor = () => {
 
   const getCursorIcon = () => {
     //disable cursors on mobile
-    if (!isMobile()) {
+    if (process.browser) {
       //update cursor if set
-      //console.log("update cursor state", cursor, cursorType)
-      if (process.browser) {
-        (cursor == 'default' || cursor == '' || cursor == 'page') ? document.body.classList.remove('no-cursor') : document.body.classList.add('no-cursor')
-      }
+      (cursor == 'default' || cursor == '' || cursor == 'page' || cursor == undefined) ? document.body.classList.remove('no-cursor') : document.body.classList.add('no-cursor')
+
       if (cursor == 'page') {
         cursor = cursorPageType
         if (cursorPageType !== 'default') { document.body.classList.add('no-cursor') }
+      }
+
+      if(isMobile()){
+        return false;
       }
 
       //change cursor
@@ -79,12 +81,11 @@ const Cursor = () => {
           return <div className={`${styles.rocket}`}><IconRocket /></div>;
         case 'masks':
           return <div className={`${styles.masks}`}><IconMasks /></div>;
-
       }
     }
   }
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     //console.log("update cursor state")
     //TODO reset cursor if no movement
     clearTimeout(timeout)
@@ -95,7 +96,7 @@ const Cursor = () => {
   }, [cursorType]);
 
   //reset cursor on path change
-  useLayoutEffect(() => {
+  useEffect(() => {
     cursorChangeHandler('page')
   }, [pathname]);
 

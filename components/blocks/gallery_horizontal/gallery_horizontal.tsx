@@ -1,5 +1,5 @@
 "use client"
-import React, { useRef, useState, useLayoutEffect } from 'react'
+import React, { useRef, useState, useEffect } from 'react'
 import styles from './gallery_horizontal.module.scss'
 import { useThemeContext } from '@/context/theme'
 import { useIsMobile, hexToRgb } from '@/utils/general'
@@ -52,7 +52,7 @@ const GalleryHorizontalBlock = ({ block }: { block: any }) => {
     return window.innerWidth < 1024
   }
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     let ctx = gsap.context(() => {
 
       //Theme Colors
@@ -101,13 +101,13 @@ const GalleryHorizontalBlock = ({ block }: { block: any }) => {
         })
       }
 
+
+      //horizontal scroller
       if (!isMobile()) {
-        //horizontal scroller
         let sections = gsap.utils.toArray(ScrollerRef.current);
         let container_width = gsap.getProperty(ContainerInnerRef.current, "width");
         let gallery_width = gsap.getProperty(ScrollerRef.current, "width");
         let diff = (gallery_width - container_width);
-        //console.log("diff: ", diff)
         gsap.to(sections, {
           //xPercent: -100 * 1,
           x: diff < 0 ? 0 : diff * -1,
@@ -123,6 +123,7 @@ const GalleryHorizontalBlock = ({ block }: { block: any }) => {
           }
         });
       }
+
 
     }, sectionRef);
     return () => ctx.revert();
