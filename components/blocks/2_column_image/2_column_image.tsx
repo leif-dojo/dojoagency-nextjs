@@ -138,13 +138,13 @@ const Column2ImageBlock = ({ block }: { block: any }) => {
             </div>
           </div>
           <div ref={mediaRef} className="w-full md:w-1/2">
-            {block.image && (
+            {block.images && (
               <div className='w-full pl-0 md:pl-100 fade'>
                 <Image
-                  src={block.image?.permalink}
-                  width={block.image?.width}
-                  height={block.image?.height}
-                  alt={block.image?.alt ? block.image.alt : ''}
+                  src={block.images[0]?.permalink}
+                  width={block.images[0]?.width}
+                  height={block.images[0]?.height}
+                  alt={block.images[0]?.alt ? block.images[0].alt : ''}
                   className='w-full h-auto'
                 />
               </div>

@@ -363,7 +363,7 @@ export default gql`
               }
             }
             type
-            image {
+            images: image {
               id
               ... on Asset_Assets {
                 id
