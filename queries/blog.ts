@@ -37,7 +37,9 @@ export default gql`
       title
       slug
       uri
-      ... on Entry_Pages_Page {
+      permalink
+      published
+      ... on Entry_Blog_Blog {
         id
         published
         slug
@@ -46,6 +48,8 @@ export default gql`
         title
         uri
         url
+        permalink
+        date
         cursor {
           value
           label

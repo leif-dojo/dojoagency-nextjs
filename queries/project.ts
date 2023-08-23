@@ -37,7 +37,9 @@ export default gql`
       title
       slug
       uri
-      ... on Entry_Pages_Page {
+      permalink
+      published
+      ... on Entry_Projects_Project {
         id
         published
         slug
@@ -46,6 +48,17 @@ export default gql`
         title
         uri
         url
+        project_name
+        permalink
+        client {
+          ... on Entry_Clients_Client {
+            id
+            client_name
+            client_logo {
+              id
+            }
+          }
+        }
         cursor {
           value
           label

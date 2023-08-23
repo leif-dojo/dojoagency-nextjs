@@ -1160,5 +1160,42 @@ export default gql`
         }
       }
     }
+    entries(collection: "blog", sort: "date desc") {
+      from
+      to
+      total
+      per_page
+      last_page
+      has_more_pages
+      current_page
+      data {
+        ... on Entry_Blog_Blog {
+          id
+          author {
+            id
+          }
+          date(format: "F jS, Y")
+          featured_image {
+            ... on Asset_Assets {
+              id
+              permalink
+              is_video
+              width
+              height
+              extension
+            }
+          }
+          last_modified
+          permalink
+          private
+          published
+          slug
+          status
+          title
+          uri
+          excerpt
+        }
+      }
+    }
   }
 `
