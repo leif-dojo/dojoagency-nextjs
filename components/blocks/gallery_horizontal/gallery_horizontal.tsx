@@ -1,5 +1,5 @@
 "use client"
-import React, { useRef, useState, useEffect } from 'react'
+import React, { useRef, useState, useEffect, useLayoutEffect } from 'react'
 import styles from './gallery_horizontal.module.scss'
 import { useThemeContext } from '@/context/theme'
 import { useIsMobile, hexToRgb } from '@/utils/general'
@@ -101,7 +101,13 @@ const GalleryHorizontalBlock = ({ block }: { block: any }) => {
         })
       }
 
+    }, sectionRef);
+    return () => ctx.revert();
+  }, []);
 
+
+  useEffect(() => {
+    let ctx = gsap.context(() => {
       //horizontal scroller
       if (!isMobile()) {
         let sections = gsap.utils.toArray(ScrollerRef.current);
@@ -109,7 +115,6 @@ const GalleryHorizontalBlock = ({ block }: { block: any }) => {
         let gallery_width = gsap.getProperty(ScrollerRef.current, "width");
         let diff = (gallery_width - container_width);
         gsap.to(sections, {
-          //xPercent: -100 * 1,
           x: diff < 0 ? 0 : diff * -1,
           ease: "none",
           scrollTrigger: {
@@ -123,8 +128,6 @@ const GalleryHorizontalBlock = ({ block }: { block: any }) => {
           }
         });
       }
-
-
     }, sectionRef);
     return () => ctx.revert();
   }, []);
@@ -157,6 +160,7 @@ const GalleryHorizontalBlock = ({ block }: { block: any }) => {
                                 height={item.image?.height}
                                 alt={item.image?.alt ? item.image.alt : ''}
                                 className={`${styles.image} relative w-full h-auto`}
+                                loading={'eager'}//lazy loading caused pin calc to break
                               />
                             )}
 
