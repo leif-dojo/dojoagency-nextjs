@@ -121,7 +121,7 @@ const TimelineBlock = ({ block }: { block: any }) => {
               <div className="w-full">
 
                 {typeof block.headline_set === 'string' && (
-                  <div ref={headlineRef} className={`${styles.headline} wysiwyg text-70 md:text-110 leading-85 md:leading-140 font-300`} dangerouslySetInnerHTML={{ __html: block.headline }}></div>
+                  <div ref={headlineRef} className={`${styles.headline} wysiwyg text-70 md:text-90 leading-85 md:leading-120 font-300`} dangerouslySetInnerHTML={{ __html: block.headline }}></div>
                 )}
 
                 {typeof block.headline_set === 'object' && block?.headline_set?.map((item: any, index: any) => {
@@ -129,7 +129,7 @@ const TimelineBlock = ({ block }: { block: any }) => {
                     (() => {
                       switch (item.__typename) {
                         case 'BardText':
-                          return <div ref={headlineRef} className={`${styles.headline} wysiwyg text-70 md:text-110 leading-85 md:leading-140 font-300`} dangerouslySetInnerHTML={{ __html: item.text }} key={index}></div>;
+                          return <div ref={headlineRef} className={`${styles.headline} wysiwyg text-70 md:text-90 leading-85 md:leading-120 font-300`} dangerouslySetInnerHTML={{ __html: item.text }} key={index}></div>;
                         case 'Set_Headline_Headline':
                           const Tag = item.headline_tag ? item.headline_tag.value : 'p';
                           return <div className='w-full' key={index}>

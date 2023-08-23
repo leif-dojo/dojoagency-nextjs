@@ -119,7 +119,7 @@ const ProjectGridBlock = ({ block }: { block: any }) => {
               <div className="w-full pb-10">
 
                 {typeof block.headline_set === 'string' && (
-                  <div  className={`${styles.headline} wysiwyg text-70 md:text-110 leading-85 md:leading-140 font-300`} dangerouslySetInnerHTML={{ __html: block.headline }}></div>
+                  <div  className={`${styles.headline} wysiwyg text-70 md:text-90 leading-85 md:leading-120 font-300`} dangerouslySetInnerHTML={{ __html: block.headline }}></div>
                 )}
 
                 {typeof block.headline_set === 'object' && block?.headline_set?.map((item: any, index: any) => {
@@ -127,7 +127,7 @@ const ProjectGridBlock = ({ block }: { block: any }) => {
                     (() => {
                       switch (item.__typename) {
                         case 'BardText':
-                          return <div  className={`${styles.headline} wysiwyg text-70 md:text-110 leading-85 md:leading-140 font-300`} dangerouslySetInnerHTML={{ __html: item.text }} key={index}></div>;
+                          return <div  className={`${styles.headline} wysiwyg text-70 md:text-90 leading-85 md:leading-120 font-300`} dangerouslySetInnerHTML={{ __html: item.text }} key={index}></div>;
                         case 'Set_Headline_Headline':
                           const Tag = item.headline_tag ? item.headline_tag.value : 'p';
                           return <div className='w-full' key={index}>

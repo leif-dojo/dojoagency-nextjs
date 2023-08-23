@@ -22,10 +22,10 @@ const SocialIconsBlock = ({ meta }: { meta: any }) => {
       type: 'instagram',
       url: 'https://www.instagram.com/dojoagency/'
     },
-    {
+    /*{
       type: 'facebook',
       url: `https://www.facebook.com/sharer.php?u=${url}`
-    },
+    },*/
     /*{
       type: 'twitter',
       url: `https://twitter.com/intent/tweet?url=${url}&text=${title}`
