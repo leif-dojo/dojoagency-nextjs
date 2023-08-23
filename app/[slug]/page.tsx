@@ -25,6 +25,7 @@ export async function generateMetadata(
       uri: '/' + params.slug,
     }
   });
+  if(!data.entry){return {}};
   jsonLd_WebPage = {
     "@context": "http://schema.org",
     "@type": "WebPage",

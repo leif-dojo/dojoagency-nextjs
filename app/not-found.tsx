@@ -3,7 +3,7 @@ export default function NotFound() {
     <>
       <div className={`page`}>
         <section className="w-full bg-white text-slate">
-          <div className="px-50 md:px-150 py-50">
+          <div className="px-50 md:px-150 py-300">
             <div className="w-full">
               <div className="w-full">
                 <div className={`text-70 leading-none text-center`}>Not Found</div>

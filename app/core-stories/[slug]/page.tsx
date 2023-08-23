@@ -25,6 +25,7 @@ export async function generateMetadata(
       uri: '/core-stories/' + params.slug,
     }
   });
+  if(!data.entry){return {}};
   jsonLd_WebPage = {
     "@context": "http://schema.org",
     "@type": "WebPage",

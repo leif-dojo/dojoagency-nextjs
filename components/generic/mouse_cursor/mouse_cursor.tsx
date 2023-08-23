@@ -41,6 +41,7 @@ const Cursor = () => {
       if (cursor == 'page') {
         cursor = cursorPageType
         if (cursorPageType !== 'default') { document.body.classList.add('no-cursor') }
+        if (cursorPageType == undefined) { document.body.classList.remove('no-cursor') }
       }
 
       if(isMobile()){
