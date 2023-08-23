@@ -3,7 +3,26 @@
 .root {
     .headline {
         p {
-            margin-bottom:0;
+            margin-bottom: 0;
         }
     }
+
+    .image {
+        transition: all 500ms ease-in-out;
+    }
+
+    .imagefade {
+        opacity: 0;
+        visibility: hidden;
+        max-height: 0px;
+        transition: opacity 700ms ease-in-out;
+
+        &.active {
+            opacity: 1;
+            visibility: visible;
+            max-height: 10000px;
+            transition: opacity 700ms ease-in-out;
+        }
+    }
+
 }

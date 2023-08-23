@@ -1,5 +1,5 @@
 "use client"
-import React, { useRef, useLayoutEffect } from 'react'
+import React, { useRef, useState, useEffect, useLayoutEffect } from 'react'
 import { useThemeContext } from '@/context/theme'
 import styles from './2_column_image.module.scss'
 import { useIsMobile, hexToRgb } from '@/utils/general'
@@ -14,6 +14,8 @@ const Column2ImageBlock = ({ block }: { block: any }) => {
   const sectionRef = useRef<HTMLDivElement>(null)
   const copyRef = useRef<HTMLDivElement>(null)
   const mediaRef = useRef<HTMLDivElement>(null)
+  const faderRef = useRef<HTMLDivElement>(null)
+  const [activeindex, setActiveIndex] = useState(1)
 
   useLayoutEffect(() => {
     let ctx = gsap.context(() => {
@@ -67,6 +69,18 @@ const Column2ImageBlock = ({ block }: { block: any }) => {
     }, sectionRef);
     return () => ctx.revert();
   }, []);
+
+  useEffect(() => {
+    //image fader
+    if (faderRef.current) {
+      const slideCount = block.images.length;
+      setInterval(() => {
+        let nextIndex = activeindex + 1;
+        if (nextIndex > slideCount) { nextIndex = 1 };
+        setActiveIndex(nextIndex);
+      }, 7000);
+    }
+  }, [activeindex]);
 
   return (
     <section ref={sectionRef} className={`${styles.root} w-full`}>
@@ -138,17 +152,32 @@ const Column2ImageBlock = ({ block }: { block: any }) => {
             </div>
           </div>
           <div ref={mediaRef} className="w-full md:w-1/2">
-            {block.images && (
-              <div className='w-full pl-0 md:pl-100 fade'>
+            <div className='w-full pl-0 md:pl-100 fade'>
+              {block.images.length == 1 && (
                 <Image
                   src={block.images[0]?.permalink}
                   width={block.images[0]?.width}
                   height={block.images[0]?.height}
                   alt={block.images[0]?.alt ? block.images[0].alt : ''}
-                  className='w-full h-auto'
+                  className={`${styles.image} w-full h-auto`}
                 />
-              </div>
-            )}
+              )}
+              {block.images.length > 1 && (
+                <div ref={faderRef} className='relative w-full '>
+                  {block.images?.map((item: any, index: any) => {
+                    return (
+                      <Image
+                        src={item?.permalink}
+                        width={item?.width}
+                        height={item?.height}
+                        alt={item?.alt ? item.alt : ''}
+                        className={`${styles.imagefade} ${activeindex == (index + 1) ? styles.active : ''} w-full h-auto`}
+                      />
+                    )
+                  })}
+                </div>
+              )}
+            </div>
           </div>
         </div>
       </div>
