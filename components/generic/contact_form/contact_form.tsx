@@ -95,6 +95,15 @@ const NavBlock = ({
       } else {
         //console.log("Success")
         setStep(4)
+        if (process.browser) {
+          //GTM/GA event
+          window.dataLayer = window.dataLayer || [];
+          window.dataLayer.push({
+            'event': 'submission',
+            'event_category': 'form',
+            'event_label': 'Contact Form',
+          });
+        }
       }
     } else {
       console.error('missing required fields')
