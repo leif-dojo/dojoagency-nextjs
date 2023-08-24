@@ -110,23 +110,26 @@ const GalleryHorizontalBlock = ({ block }: { block: any }) => {
     let ctx = gsap.context(() => {
       //horizontal scroller
       if (!isMobile()) {
-        let sections = gsap.utils.toArray(ScrollerRef.current);
-        let container_width = gsap.getProperty(ContainerInnerRef.current, "width");
-        let gallery_width = gsap.getProperty(ScrollerRef.current, "width");
-        let diff = (gallery_width - container_width);
-        gsap.to(sections, {
-          x: diff < 0 ? 0 : diff * -1,
-          ease: "none",
-          scrollTrigger: {
-            trigger: ScrollerTriggerRef.current,
-            pin: true,
-            scrub: 1,
-            //snap: 1 / (sections.length - 1),
-            // base vertical scrolling on how wide the container is so it feels more natural.
-            //end: "+=3500",
-            end: "+=" + (diff).toString(),
-          }
-        });
+        setTimeout(() => {
+          let sections = gsap.utils.toArray(ScrollerRef.current);
+          let container_width = gsap.getProperty(ContainerInnerRef.current, "width");
+          let gallery_width = gsap.getProperty(ScrollerRef.current, "width");
+          let diff = (gallery_width - container_width);
+          console.log("horizontal slider: ", container_width, gallery_width, diff)
+          gsap.to(sections, {
+            x: diff < 0 ? 0 : diff * -1,
+            ease: "none",
+            scrollTrigger: {
+              trigger: ScrollerTriggerRef.current,
+              pin: true,
+              scrub: 1,
+              //snap: 1 / (sections.length - 1),
+              // base vertical scrolling on how wide the container is so it feels more natural.
+              //end: "+=3500",
+              end: "+=" + (diff).toString(),
+            }
+          });
+        }, 500);
       }
     }, sectionRef);
     return () => ctx.revert();
