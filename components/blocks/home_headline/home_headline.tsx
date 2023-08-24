@@ -264,11 +264,11 @@ const HomeHeadlineBlock = ({ block }: { block: any }) => {
           {
             keyframes: [
               { x: "0%", duration: 0.3, ease: 'power3.out' },
-              { x: "-15%", duration: 0.3, ease: 'power3.out' },
-              { x: "-40%", duration: 0.3, ease: 'power3.out' },
-              { x: "-70%", duration: 0.3, ease: 'power3.out' },
-              { x: "-40%", duration: 0.3, ease: 'power3.out' },
-              { x: "-70%", duration: 0.3, ease: 'power3.out' },
+              { x: "-12%", duration: 0.3, ease: 'power3.out' },
+              { x: "-24%", duration: 0.3, ease: 'power3.out' },
+              { x: "-36%", duration: 0.3, ease: 'power3.out' },
+              { x: "-48%", duration: 0.3, ease: 'power3.out' },
+              { x: "-60%", duration: 0.3, ease: 'power3.out' },
               { x: "0%", duration: 0.3, ease: 'power3.out' }
             ]
           }, 4.5
@@ -333,6 +333,10 @@ const HomeHeadlineBlock = ({ block }: { block: any }) => {
             ]
           }, 6.3
         )
+        .to(
+          ".typewriter",
+          { autoAlpha: 0, duration: 0.3 }
+        )
         /*.to(element, {
           color: `rgb(${hexToRgb('#FFF')})`,
           backgroundColor: `rgb(${hexToRgb('#304a5f')})`,
@@ -357,22 +361,22 @@ const HomeHeadlineBlock = ({ block }: { block: any }) => {
             <Telegraph />
           </div>
         </div>
-        <div className="w-full">
+        <div className="w-full relative">
           <div ref={ComRef} className={`${styles.communication} relative text-themebackground`}>
 
             <CommunicationArts className={`relative z-5`}/>
             <object id="communicationartspaint" type="image/svg+xml" data="/communication-arts-paint.svg" className={`${styles.paint} absolute top-0 w-full h-auto`}></object>
 
-            <div ref={PaintbrushRef} className={`${styles.paintbrush} paintbrush absolute opacity-0 w-400 mb-20 text-slate`}>
+            <div ref={PaintbrushRef} className={`${styles.paintbrush} paintbrush absolute opacity-0 mb-20 text-slate`}>
               <div className={`${styles.paintbrushsvg} paintbrushsvg relative`}>
                 <Paintbrush />
               </div>
             </div>
           </div>
         </div>
-        <div className="w-full pt-10 px-40 md:px-80">
+        <div className="w-full pt-0 px-40 md:px-80 -mt-10 md:-mt-40">
           <div className="w-full text-center">
-            <div ref={SubRef} className="sub text-40 md:text-55 leading-none font-600 pb-40 text-left">
+            <div ref={SubRef} className="sub font-americantypewriter text-30 md:text-48 leading-none font-500 pb-40 text-left">
               {block.subheadline}
             </div>
             <div ref={TypewriterRef} className={`${styles.typewriter} typewriter w-140 mb-20 mx-auto text-center text-slate`}>

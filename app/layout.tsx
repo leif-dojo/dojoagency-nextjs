@@ -34,6 +34,16 @@ const nothingyoucoulddo = localFont({
   ],
   variable: '--font-nothingyoucoulddo'
 });
+const americantypewriter = localFont({
+  src: [
+    {
+      path: '../public/fonts/AmericanTypewriter/AmericanTypewriter-Condensed.woff2',
+      weight: '500',
+      style: 'normal'
+    }
+  ],
+  variable: '--font-americantypewriter'
+});
 
 type Props = {
   params: { id: string }
@@ -83,7 +93,7 @@ export default async function RootLayout({
         j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
         })(window,document,'script','dataLayer','${process.env.GTM_ID}');`}}></Script>
-      <body className={`${lato.variable} ${nothingyoucoulddo.variable} font-lato`} suppressHydrationWarning={true}>
+      <body className={`${lato.variable} ${nothingyoucoulddo.variable} ${americantypewriter.variable} font-lato`} suppressHydrationWarning={true}>
       <noscript dangerouslySetInnerHTML={{ __html: `<iframe src="https://www.googletagmanager.com/ns.html?id=${process.env.GTM_ID}" height="0" width="0" style="display:none;visibility:hidden"></iframe>`}}></noscript>
         <main className='main pt-100'>
           <ThemeContextProvider>

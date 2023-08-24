@@ -1,0 +1,98 @@
+@font-face {
+    font-family: 'American Typewriter';
+    src: url('AmericanTypewriter-Condensed.eot');
+    src: local('American Typewriter Condensed'), local('AmericanTypewriter-Condensed'),
+        url('AmericanTypewriter-Condensed.eot?#iefix') format('embedded-opentype'),
+        url('AmericanTypewriter-Condensed.woff2') format('woff2'),
+        url('AmericanTypewriter-Condensed.woff') format('woff'),
+        url('AmericanTypewriter-Condensed.ttf') format('truetype'),
+        url('AmericanTypewriter-Condensed.svg#AmericanTypewriter-Condensed') format('svg');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'American Typewriter';
+    src: url('AmericanTypewriter.eot');
+    src: local('American Typewriter'), local('AmericanTypewriter'),
+        url('AmericanTypewriter.eot?#iefix') format('embedded-opentype'),
+        url('AmericanTypewriter.woff2') format('woff2'),
+        url('AmericanTypewriter.woff') format('woff'),
+        url('AmericanTypewriter.ttf') format('truetype'),
+        url('AmericanTypewriter.svg#AmericanTypewriter') format('svg');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'American Typewriter';
+    src: url('AmericanTypewriter-Bold.eot');
+    src: local('American Typewriter Bold'), local('AmericanTypewriter-Bold'),
+        url('AmericanTypewriter-Bold.eot?#iefix') format('embedded-opentype'),
+        url('AmericanTypewriter-Bold.woff2') format('woff2'),
+        url('AmericanTypewriter-Bold.woff') format('woff'),
+        url('AmericanTypewriter-Bold.ttf') format('truetype'),
+        url('AmericanTypewriter-Bold.svg#AmericanTypewriter-Bold') format('svg');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'American Typewriter';
+    src: url('AmericanTypewriter-Light.eot');
+    src: local('American Typewriter Light'), local('AmericanTypewriter-Light'),
+        url('AmericanTypewriter-Light.eot?#iefix') format('embedded-opentype'),
+        url('AmericanTypewriter-Light.woff2') format('woff2'),
+        url('AmericanTypewriter-Light.woff') format('woff'),
+        url('AmericanTypewriter-Light.ttf') format('truetype'),
+        url('AmericanTypewriter-Light.svg#AmericanTypewriter-Light') format('svg');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'American Typewriter';
+    src: url('AmericanTypewriter-CondensedLight.eot');
+    src: local('American Typewriter Condensed Light'), local('AmericanTypewriter-CondensedLight'),
+        url('AmericanTypewriter-CondensedLight.eot?#iefix') format('embedded-opentype'),
+        url('AmericanTypewriter-CondensedLight.woff2') format('woff2'),
+        url('AmericanTypewriter-CondensedLight.woff') format('woff'),
+        url('AmericanTypewriter-CondensedLight.ttf') format('truetype'),
+        url('AmericanTypewriter-CondensedLight.svg#AmericanTypewriter-CondensedLight') format('svg');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'American Typewriter';
+    src: url('AmericanTypewriter-Semibold.eot');
+    src: local('American Typewriter Semibold'), local('AmericanTypewriter-Semibold'),
+        url('AmericanTypewriter-Semibold.eot?#iefix') format('embedded-opentype'),
+        url('AmericanTypewriter-Semibold.woff2') format('woff2'),
+        url('AmericanTypewriter-Semibold.woff') format('woff'),
+        url('AmericanTypewriter-Semibold.ttf') format('truetype'),
+        url('AmericanTypewriter-Semibold.svg#AmericanTypewriter-Semibold') format('svg');
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'American Typewriter';
+    src: url('AmericanTypewriter-CondensedBold.eot');
+    src: local('American Typewriter Condensed Bold'), local('AmericanTypewriter-CondensedBold'),
+        url('AmericanTypewriter-CondensedBold.eot?#iefix') format('embedded-opentype'),
+        url('AmericanTypewriter-CondensedBold.woff2') format('woff2'),
+        url('AmericanTypewriter-CondensedBold.woff') format('woff'),
+        url('AmericanTypewriter-CondensedBold.ttf') format('truetype'),
+        url('AmericanTypewriter-CondensedBold.svg#AmericanTypewriter-CondensedBold') format('svg');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+

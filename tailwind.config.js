@@ -59,6 +59,7 @@ module.exports = {
       myriad: ['Myriad Pro', 'Myriad', 'Arial', 'sans-serif'],
       lato: ['var(--font-lato)'],
       nothingyoucoulddo: ['var(--font-nothingyoucoulddo)'],
+      americantypewriter: ['var(--font-americantypewriter)'],
     },
     minHeight: {
       '5em': '5em',
@@ -104,6 +105,7 @@ module.exports = {
         30,
         32,
         34,
+        35,
         36,
         38,
         40,
