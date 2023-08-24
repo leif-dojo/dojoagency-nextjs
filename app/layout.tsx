@@ -77,7 +77,7 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <head />
-      <body className={`${lato.variable} ${nothingyoucoulddo.variable} font-lato`}>
+      <body className={`${lato.variable} ${nothingyoucoulddo.variable} font-lato`} suppressHydrationWarning={true}>
         <main className='main pt-100'>
           <ThemeContextProvider>
             <MouseCursor />
