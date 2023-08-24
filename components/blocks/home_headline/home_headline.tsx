@@ -26,8 +26,8 @@ const HomeHeadlineBlock = ({ block }: { block: any }) => {
     let ctx = gsap.context(() => {
 
       //Theme Colors
-      const TextColor = block.text_color ? block.text_color : '#304A5F';
-      const BackgroundColor = block.background_color ? block.background_color : '#FFFFFF';
+      const TextColor = block.text_color ? block.text_color : '#FFFFFF';
+      const BackgroundColor = block.background_color ? block.background_color : '#783d67';
       const element = document.querySelector("body");
       const getter = gsap.getProperty(element);
       gsap
@@ -93,16 +93,6 @@ const HomeHeadlineBlock = ({ block }: { block: any }) => {
           },
         })
         .fromTo(
-          ".text1",
-          { autoAlpha: 0 },
-          {
-            autoAlpha: 1,
-            duration: 0.1,
-            stagger: 0.05,
-            ease: 'power3.out'
-          }
-        )
-        .fromTo(
           ".telegraph",
           { autoAlpha: 0 },
           {
@@ -112,23 +102,35 @@ const HomeHeadlineBlock = ({ block }: { block: any }) => {
           }
         )
         .to('.tele-ticker', { rotation: '+=4cw', repeat: 4, ease: 'none' })
-        .fromTo(
+        .to(
           ".morse",
-          { autoAlpha: 0, fill: "rgb(241,90,36)" },
           {
-            autoAlpha: 1, fill: "rgb(255,255,255)",
-            duration: 0.1,
-            stagger: 0.035,
-            ease: 'power3.out'
-          },1.5
+            keyframes: [
+              { autoAlpha: 0, fill: "rgb(241,90,36)",duration: 0 },
+              {
+                autoAlpha: 1, fill: "rgb(241,90,36)",
+                duration: 0.4,
+                ease: 'power3.out'
+              },
+              { autoAlpha: 0, fill: "rgb(241,90,36)",duration: 0 },
+            ],
+            stagger: 0.03
+          }, 0
         )
         .fromTo(
-          ".text2",
+          ".text1",
           { autoAlpha: 0 },
           {
-            duration: 0, autoAlpha: 1,
+            autoAlpha: 1,
+            duration: 0.15,
+            stagger: 0.07,
             ease: 'power3.out'
-          }
+          },0.5
+        )
+        .to(
+          ".telegraph",
+          { autoAlpha: 0 },
+          ">"
         )
         /*.fromTo(
           document.getElementById("communicationarts")?.contentDocument.querySelectorAll('.paint-2'),
@@ -144,31 +146,101 @@ const HomeHeadlineBlock = ({ block }: { block: any }) => {
             duration: 0.3, attr: { offset: "52%" },
             ease: 'power3.out'
           },
+          ">"
+        )
+        .fromTo(
+          ".text2",
+          { autoAlpha: 0 },
+          {
+            autoAlpha: 1,
+            duration: 0.005,
+            stagger: 0.01,
+            ease: 'power3.out'
+          }, 2.2
         )
         .to(
           ".paintbrush",
           {
             keyframes: [
               { x: "0%", autoAlpha: 0, duration: 0 },
-              { x: "240%", autoAlpha: 1, duration: 0.3 },
-              { x: "240%", autoAlpha: 1, duration: 0.1 },
-              { x: "240%", y:"-100%", duration: 0.2 },
-              { x: "240%", y:"-70%", duration: 0.2 },
-              { x: "240%", y:"-50%", duration: 0.3 },
-              { x: "240%", y:"0%", duration: 0.2 },
+              { x: "215%", autoAlpha: 1, duration: 0.3 },
+              { x: "215%", duration: 0.9 },
               { x: "450%", duration: 0.6, ease: 'power3.out' },
               { x: "550%", autoAlpha: 1, duration: 0.5, ease: 'power3.out' },
               { autoAlpha: 1, duration: 0 },
               { autoAlpha: 0, duration: 0 }
             ]
-          }, 3.45
+          }, 2.1
+        )
+        .to(
+          ".paintbrushsvg",
+          {
+            keyframes: [
+              { y:"0%", rotation: 0, duration: 0.25 },
+              { y:"-70%", rotation: -45, duration: 0.2 },
+              { y:"-140%", rotation: -70, duration: 0.4 },
+              { y:"-100%", rotation: -70, duration: 0.2 },
+              { y:"-20%", rotation: -30, duration: 0.1 },
+              { y:"-10%", rotation: 0, duration: 0.1 },
+            ]
+          }, 2.1
+        )
+        .to(
+          ".paintbrush-1",
+          {
+            keyframes: [
+              { autoAlpha: 1, duration: 0 },
+              { autoAlpha: 1, duration: 0.4 },
+              { autoAlpha: 0, duration: 0 },
+              { autoAlpha: 0, duration: 0.4 },
+              { autoAlpha: 1, duration: 0 },
+              { autoAlpha: 1, duration: 0.1 },
+              { autoAlpha: 0, duration: 0 },
+              { autoAlpha: 0, duration: 0.2 },
+              { autoAlpha: 1, duration: 0 },
+            ]
+          }, 2.1
+        )
+        .to(
+          ".paintbrush-2",
+          {
+            keyframes: [
+              { autoAlpha: 0, duration: 0 },
+              { autoAlpha: 0, duration: 0.9 },
+              { autoAlpha: 1, duration: 0 },
+              { autoAlpha: 1, duration: 0.2 },
+              { autoAlpha: 0, duration: 0 },
+            ]
+          }, 2.1
+        )
+        .to(
+          ".paintbrush-3",
+          {
+            keyframes: [
+              { autoAlpha: 0, duration: 0 },
+              { autoAlpha: 0, duration: 0.4 },
+              { autoAlpha: 1, duration: 0 },
+              { autoAlpha: 1, duration: 0.4 },
+              { autoAlpha: 0, duration: 0 }
+            ]
+          }, 2.1
+        )
+        .fromTo(
+          ".text3",
+          { autoAlpha: 0 },
+          {
+            autoAlpha: 1,
+            duration: 0.005,
+            stagger: 0.01,
+            ease: 'power3.out'
+          }, 3.4
         )
         .to(
           document.getElementById("communicationartspaint")?.contentDocument.querySelector('.stop2'),
           {
             duration: 0.2, attr: { offset: "100%" },
             ease: 'power3.out'
-          }, 4.8
+          }, 3.4
         )
         .fromTo(
           ".typewriter",
@@ -199,67 +271,67 @@ const HomeHeadlineBlock = ({ block }: { block: any }) => {
               { x: "-70%", duration: 0.3, ease: 'power3.out' },
               { x: "0%", duration: 0.3, ease: 'power3.out' }
             ]
-          }, 6
+          }, 4.5
         )
         .to(
           ".typewriter-key-1",
           {
             keyframes: [
               { y: "0%", duration: 0 },
-              { y: "90%", duration: 0.3, ease: 'power3.out' },
-              { y: "0%", duration: 0.3 },
+              { y: "90%", duration: 0.3, fill: '#e8ad45', ease: 'power3.out' },
+              { y: "0%", fill: '#FFF', duration: 0.3 },
             ]
-          }, 6.3
+          }, 4.8
         )
         .to(
           ".typewriter-key-2",
           {
             keyframes: [
               { y: "0%", duration: 0 },
-              { y: "90%", duration: 0.3, ease: 'power3.out' },
-              { y: "0%", duration: 0.3 },
+              { y: "90%", duration: 0.3, fill: '#e8ad45', ease: 'power3.out' },
+              { y: "0%", fill: '#FFF',duration: 0.3 },
             ]
-          }, 6.6
+          }, 5.1
         )
         .to(
           ".typewriter-key-3",
           {
             keyframes: [
               { y: "0%", duration: 0 },
-              { y: "90%", duration: 0.3, ease: 'power3.out' },
-              { y: "0%", duration: 0.3 },
+              { y: "90%", duration: 0.3, fill: '#e8ad45', ease: 'power3.out' },
+              { y: "0%", fill: '#FFF',duration: 0.3 },
             ]
-          }, 6.9
+          }, 5.4
         )
         .to(
           ".typewriter-key-4",
           {
             keyframes: [
               { y: "0%", duration: 0 },
-              { y: "90%", duration: 0.3, ease: 'power3.out' },
-              { y: "0%", duration: 0.3 },
+              { y: "90%", duration: 0.3, fill: '#e8ad45', ease: 'power3.out' },
+              { y: "0%", fill: '#FFF',duration: 0.3 },
             ]
-          }, 7.2
+          }, 5.7
         )
         .to(
           ".typewriter-key-1",
           {
             keyframes: [
               { y: "0%", duration: 0 },
-              { y: "90%", duration: 0.3, ease: 'power3.out' },
-              { y: "0%", duration: 0.3 },
+              { y: "90%", duration: 0.3, fill: '#e8ad45', ease: 'power3.out' },
+              { y: "0%", fill: '#FFF',duration: 0.3 },
             ]
-          }, 7.5
+          }, 6.0
         )
         .to(
           ".typewriter-key-2",
           {
             keyframes: [
               { y: "0%", duration: 0 },
-              { y: "90%", duration: 0.3, ease: 'power3.out' },
-              { y: "0%", duration: 0.3 },
+              { y: "90%", duration: 0.3, fill: '#e8ad45', ease: 'power3.out' },
+              { y: "0%", fill: '#FFF', duration: 0.3 },
             ]
-          }, 7.8
+          }, 6.3
         )
         /*.to(element, {
           color: `rgb(${hexToRgb('#FFF')})`,
@@ -292,7 +364,9 @@ const HomeHeadlineBlock = ({ block }: { block: any }) => {
             <object id="communicationartspaint" type="image/svg+xml" data="/communication-arts-paint.svg" className={`${styles.paint} absolute top-0 w-full h-auto`}></object>
 
             <div ref={PaintbrushRef} className={`${styles.paintbrush} paintbrush absolute opacity-0 w-400 mb-20 text-slate`}>
-              <Paintbrush />
+              <div className={`${styles.paintbrushsvg} paintbrushsvg relative`}>
+                <Paintbrush />
+              </div>
             </div>
           </div>
         </div>
