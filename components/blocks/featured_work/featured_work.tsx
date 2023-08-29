@@ -130,7 +130,7 @@ const HomeFeaturedWork = ({ block }: { block: any }) => {
 
   return (
     <section ref={sectionRef} className={`${styles.root} w-full  overflow-hidden`}>
-      <div className="px-50 md:px-100 py-100">
+      <div className="px-50 md:px-100 py-80">
         <div className={`${styles.grid} project-wrap w-full ${block.grid_style.value == 'alternating' ? styles.grid_alternating : styles.grid_square} ${projectRows}`}>
 
           {block?.featured_projects?.map((block: any, index: any) => {

@@ -13,6 +13,7 @@ import Header from '@/components/generic/header/header'
 import Footer from '@/components/generic/footer/footer'
 import ContactForm from '@/components/generic/contact_form/contact_form'
 import MouseCursor from "@/components/generic/mouse_cursor/mouse_cursor";
+import CookieConsent from '@/components/generic/cookie_consent/cookie_consent'
 import { PageTransition } from '@/components/generic/page_transition/page_transition'
 import Loading from "./loading";
 import { jsonLd_LocalBusiness, jsonLd_WebSite } from '@/utils/schema'
@@ -102,6 +103,7 @@ export default async function RootLayout({
             <Header nav={data.header_nav} />
             <Suspense fallback={<Loading />}><PageTransition>{children}</PageTransition></Suspense>
             <Footer footer={data.footer} footer_nav={data.footer_nav} />
+            <CookieConsent data={data.consent}/>
           </ThemeContextProvider>
         </main>
         <script

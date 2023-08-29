@@ -183,5 +183,12 @@ query GlobalQuery {
       depth
     }
   }
+  consent: globalSet(handle: "global") {
+    ... on GlobalSet_Global {
+      handle
+      consent_headline
+      consent_copy
+    }
+  }
 }
 `

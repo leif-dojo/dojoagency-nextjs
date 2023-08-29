@@ -84,7 +84,7 @@ const Column2ImageBlock = ({ block }: { block: any }) => {
 
   return (
     <section ref={sectionRef} className={`${styles.root} w-full`}>
-      <div className="px-50 md:px-100 py-100">
+      <div className="px-50 md:px-100 py-50">
         <div className="block md:flex">
           <div ref={copyRef} className="w-full md:w-1/2 md:pr-30 flex items-center">
             <div className='w-full'>
@@ -93,7 +93,7 @@ const Column2ImageBlock = ({ block }: { block: any }) => {
                   {block.eyebrow}
                 </div>
               )}
-              {block.headline_set && (
+              {block.headline_set && block.headline_set.length > 0 && (
                 <div className="w-full mb-20">
 
                   {typeof block.headline_set === 'string' && (

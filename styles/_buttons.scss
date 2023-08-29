@@ -104,5 +104,18 @@ button {
 		}
 	}
 
+	&.btn-outline-blue {
+		color: theme('colors.blue');
+		background-color: transparent;
+		border: 2px solid theme('colors.blue');
+		border-radius: 10px;
+
+		&:hover {
+			color: theme('colors.slate');
+			background-color: theme('colors.gold');
+			border: 2px solid theme('colors.gold');
+		}
+	}
+
 
 }

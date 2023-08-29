@@ -105,16 +105,16 @@ const PostNavigationBlock = ({ block }: { block: any }) => {
       <div className={`w-full flex flex-nowrap px-50 md:px-100 py-100 ${block.text_color ? block.text_color : 'text-blue'}`}>
         <div className='flex w-1/2 justify-items-start'>
           {block.back_link && (
-            <Link href={`${block.back_link}`} className="link inline-flex items-center mr-auto  " aria-label="Previous">
+            <Link href={`${block.back_link}`} className="link inline-flex items-center justify-items-start mr-auto  " aria-label="Previous">
               <div ref={PrevArrowRef}><PrevIcon className={`${styles.prevarrow} w-30 h-auto`} /></div>
-              <span ref={PrevTextRef} className="font-nothingyoucoulddo text-40 font-400  pl-20">{block.back_link_copy ? block.back_link_copy : 'Previous'}</span>
+              <span ref={PrevTextRef} className="font-nothingyoucoulddo text-40 font-400 leading-none pl-20 text-left">{block.back_link_copy ? block.back_link_copy : 'Previous'}</span>
             </Link>
           )}
         </div>
         <div className='flex w-1/2 justify-items-end'>
           {block.forward_link && (
-            <Link href={`${block.forward_link}`} className="link inline-flex items-center ml-auto" aria-label="Next">
-              <span ref={NextTextRef} className="font-nothingyoucoulddo text-40 font-400 pr-20">{block.forward_link_copy ? block.forward_link_copy : 'Next'}</span>
+            <Link href={`${block.forward_link}`} className="link inline-flex items-center justify-items-end ml-auto" aria-label="Next">
+              <span ref={NextTextRef} className="font-nothingyoucoulddo text-40 font-400 leading-none pr-20 text-right">{block.forward_link_copy ? block.forward_link_copy : 'Next'}</span>
               <div ref={NextArrowRef}><NextIcon className={`${styles.nextarrow} w-30 h-auto`} /></div>
             </Link>
           )}

@@ -36,6 +36,10 @@ p {}
 				color: theme('colors.orange');
 			}
 		}
+
+		&:last-child {
+			margin-bottom: 0;
+		}
 	}
 
 	h2 {}

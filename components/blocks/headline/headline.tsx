@@ -68,7 +68,7 @@ const WysiwygBlock = ({ block }: { block: any }) => {
 
   return (
     <section ref={sectionRef} className={`${styles.root} w-full`}>
-      <div className="px-50 md:px-150 py-50">
+      <div className="px-50 md:px-150 py-20">
         {block.eyebrow && (
           <div className="text-20 leading-none font-300 uppercase mb-10 fade">
             {block.eyebrow}

@@ -173,12 +173,12 @@ const TimelineBlock = ({ block }: { block: any }) => {
 
         </div>
 
-        <div className={`${styles.timeline} relative flex flex-nowrap items-stretch w-full my-200`}>
+        <div className={`${styles.timeline} relative block md:flex flex-nowrap items-stretch w-full my-200`}>
 
           {block?.timeline?.map((block: any, index: any) => {
             //console.log('col: ', index, block)
             return (
-              <div className={`${styles.item} item relative flex-1`} key={index}>
+              <div className={`${styles.item} item relative flex-1 mb-10 md:mb-0`} key={index}>
                 {block.image && (
                   <div className={`${styles.top} absolute w-full h-150 bottom-0`}>
                     <div className='absolute w-full h-full top-0 left-0 overflow-hidden'>
@@ -187,16 +187,16 @@ const TimelineBlock = ({ block }: { block: any }) => {
                         width={block.image?.width}
                         height={block.image?.height}
                         alt={block.image?.alt ? block.image.alt : ''}
-                        className={`${styles.image} relative w-full h-auto`}
+                        className={`${styles.image} relative w-full h-full md:h-auto object-cover`}
                       />
                     </div>
                   </div>
                 )}
                 <div className={`${styles.mid} relative bg-orange z-10`} style={{ backgroundColor: block.color }}>
-                  <div className='flex items-stretch px-10 py-10'>
-                    <div className={`${styles.year} w-full text-24 leading-none font-400 text-white text-center`}>{block.year}</div>
+                  <div className='flex items-stretch px-10 py-20 md:py-10'>
+                    <div className={`${styles.year} w-full text-50 md:text-24 leading-none font-400 text-white text-center`}>{block.year}</div>
                     <div className={`${styles.headlinewrap} overflow-hidden w-0 mx-0`}>
-                      <div className={`${styles.headline} relative text-24 leading-none font-400 text-white whitespace-nowrap text-right`}>{block.headline}</div>
+                      <div className={`${styles.headline} relative text-34 md:text-24 leading-none font-400 text-white whitespace-nowrap text-right`}>{block.headline}</div>
                     </div>
                   </div>
                 </div>
@@ -218,7 +218,7 @@ const TimelineBlock = ({ block }: { block: any }) => {
                         {block?.overview?.map((item: any, index2: any) => {
                           //console.log('col: ', index, block)
                           return (
-                            <div className='text-20 font-300 leading-none text-slate text-left py-5' key={index2}>{item}</div>
+                            <div className='text-30 md:text-20 font-300 leading-none text-slate text-left py-5' key={index2}>{item}</div>
                           )
                         })}
                       </div>

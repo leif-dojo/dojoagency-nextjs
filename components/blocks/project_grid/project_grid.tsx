@@ -105,7 +105,6 @@ const ProjectGridBlock = ({ block }: { block: any }) => {
   }, []);
   
   const ConditionalWrapper = ({ condition, wrapper, children }:{ condition:any, wrapper:any, children:any }) => condition ? wrapper(children) : children;
-
   return (
     <section ref={sectionRef} className={`${styles.root} w-full  overflow-hidden`}>
       <div className="px-50 md:px-100 py-50">
@@ -115,7 +114,7 @@ const ProjectGridBlock = ({ block }: { block: any }) => {
               {block.eyebrow}
             </div>
           )}
-            {block.headline_set && (
+            {block.headline_set && block.headline_set.length > 0 && (
               <div className="w-full pb-10">
 
                 {typeof block.headline_set === 'string' && (
@@ -192,7 +191,7 @@ const ProjectGridBlock = ({ block }: { block: any }) => {
                       </div>
                     )}
                   </div>
-                  <div className={`${styles.projectimage} relative w-full h-300 top-0 left-0`}>
+                  <div className={`${styles.projectimage} relative w-full h-400 md:h-300 top-0 left-0`}>
                     {block.project_image && (
                       <div className={`absolute w-full h-full top-0 left-0`}>
                         <Image
