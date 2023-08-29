@@ -5,30 +5,31 @@
     .project {
         aspect-ratio: 1/1;
 
-        
-        &:hover {
-            .image {
-                transform: scale(1.05);
+        @media (hover: hover) {
+            &:hover {
+                .image {
+                    transform: scale(1.05);
 
-                @screen md {
-                    transition: all 500ms ease-in-out;
+                    @screen md {
+                        transition: all 500ms ease-in-out;
+                    }
                 }
-            }
 
-            .imagehover {
-                opacity: 1;
-            }
+                .imagehover {
+                    opacity: 1;
+                }
 
-            .hover {
-                opacity: 1;
-            }
+                .hover {
+                    opacity: 1;
+                }
 
-            .headline {
-                opacity: 0;
-            }
+                .headline {
+                    opacity: 0;
+                }
 
-            .videohover {
-                opacity: 1;
+                .videohover {
+                    opacity: 1;
+                }
             }
         }
     }
