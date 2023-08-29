@@ -263,7 +263,7 @@ const HomeHeroBlock = ({ block }: { block: any }) => {
 
           // set dash array and offset to path length - this is how you hide the line
           pathElem.setAttribute('stroke-dasharray', totalLen)
-          pathElem.setAttribute('stroke-dashoffset', totalLen)
+          pathElem.setAttribute('stroke-dashoffset', totalLen * 3)
 
           // set delay for the next path - added .5 seconds to make it more realistic
           delay += duration + 0.0
@@ -293,7 +293,7 @@ const HomeHeroBlock = ({ block }: { block: any }) => {
           // get current path length
           const totalLen = path.getTotalLength()
           // set dash array and offset to path length - this is how you hide the line
-          pathElem.setAttribute('stroke-dasharray', totalLen)
+          pathElem.setAttribute('stroke-dasharray', totalLen )
           pathElem.setAttribute('stroke-dashoffset', totalLen)
         })
         return true
@@ -353,21 +353,21 @@ const HomeHeroBlock = ({ block }: { block: any }) => {
         .to(
           ".signature-1",
           {
-            strokeDashoffset: 0,
+            strokeDashoffset: 2 * sign_1.dataset.length,
             duration: sign_1.dataset.duration,
           }, ">+0.5"
         )
         .to(
           ".signature-2",
           {
-            strokeDashoffset: 0,
+            strokeDashoffset: 2 * sign_2.dataset.length,
             duration: sign_2.dataset.duration,
           }, ">-15%"
         )
         .to(
           ".signature-3",
           {
-            strokeDashoffset: 0,
+            strokeDashoffset: 2 * sign_3.dataset.length,
             duration: sign_3.dataset.duration,
           }, ">"
         )
@@ -379,42 +379,42 @@ const HomeHeroBlock = ({ block }: { block: any }) => {
         .to(
           ".signature-4",
           {
-            strokeDashoffset: 0,
+            strokeDashoffset: 2 * sign_4.dataset.length,
             duration: sign_4.dataset.duration,
           }, ">-1.7"
         )
         .to(
           ".signature-5",
           {
-            strokeDashoffset: 0,
+            strokeDashoffset: 2 * sign_5.dataset.length,
             duration: sign_5.dataset.duration,
           }, ">"
         )
         .to(
           ".signature-6",
           {
-            strokeDashoffset: 0,
+            strokeDashoffset: 2 * sign_6.dataset.length,
             duration: sign_6.dataset.duration,
           }, ">"
         )
         .to(
           ".signature-7",
           {
-            strokeDashoffset: 0,
+            strokeDashoffset: 2 * sign_7.dataset.length,
             duration: sign_6.dataset.duration,
           }, ">"
         )
         .to(
           ".signature-8",
           {
-            strokeDashoffset: 0,
+            strokeDashoffset: 2 * sign_8.dataset.length,
             duration: sign_6.dataset.duration,
           }, ">"
         )
         .to(
           ".signature-9",
           {
-            strokeDashoffset: 0,
+            strokeDashoffset: 2 * sign_9.dataset.length,
             duration: sign_6.dataset.duration,
           }, ">"
         )
@@ -422,7 +422,7 @@ const HomeHeroBlock = ({ block }: { block: any }) => {
           ".signature-1",
           {
             keyframes: [
-              { strokeDashoffset: -1 * sign_1.dataset.length, duration: sign_1.dataset.duration, },
+              { strokeDashoffset: 1 * sign_1.dataset.length, duration: sign_1.dataset.duration, },
               { autoAlpha: 0, duration: 0 }
             ]
           }, 3
@@ -431,7 +431,7 @@ const HomeHeroBlock = ({ block }: { block: any }) => {
           ".signature-2",
           {
             keyframes: [
-              { strokeDashoffset: -1 * sign_2.dataset.length, duration: sign_2.dataset.duration, },
+              { strokeDashoffset: 1 * sign_2.dataset.length, duration: sign_2.dataset.duration, },
               { autoAlpha: 0, duration: 0 }
             ]
           }, ">"
@@ -440,7 +440,7 @@ const HomeHeroBlock = ({ block }: { block: any }) => {
           ".signature-3",
           {
             keyframes: [
-              { strokeDashoffset: -1 * sign_3.dataset.length, duration: sign_3.dataset.duration, },
+              { strokeDashoffset: 1 * sign_3.dataset.length, duration: sign_3.dataset.duration, },
               { autoAlpha: 0, duration: 0 }
             ]
           }, ">"
@@ -449,7 +449,7 @@ const HomeHeroBlock = ({ block }: { block: any }) => {
           ".signature-4",
           {
             keyframes: [
-              { strokeDashoffset: -1 * sign_4.dataset.length, duration: sign_4.dataset.duration, },
+              { strokeDashoffset: 1 * sign_4.dataset.length, duration: sign_4.dataset.duration, },
               { autoAlpha: 0, duration: 0 }
             ]
           }, ">"
@@ -458,7 +458,7 @@ const HomeHeroBlock = ({ block }: { block: any }) => {
           ".signature-5",
           {
             keyframes: [
-              { strokeDashoffset: -1 * sign_5.dataset.length, duration: sign_5.dataset.duration, },
+              { strokeDashoffset: 1 * sign_5.dataset.length, duration: sign_5.dataset.duration, },
               { autoAlpha: 0, duration: 0 }
             ]
           }, ">"
@@ -467,7 +467,7 @@ const HomeHeroBlock = ({ block }: { block: any }) => {
           ".signature-6",
           {
             keyframes: [
-              { strokeDashoffset: -1 * sign_6.dataset.length, duration: sign_6.dataset.duration, },
+              { strokeDashoffset: 1 * sign_6.dataset.length, duration: sign_6.dataset.duration, },
               { autoAlpha: 0, duration: 0 }
             ]
           }, ">"
@@ -476,7 +476,7 @@ const HomeHeroBlock = ({ block }: { block: any }) => {
           ".signature-7",
           {
             keyframes: [
-              { strokeDashoffset: -1 * sign_7.dataset.length, duration: sign_7.dataset.duration, },
+              { strokeDashoffset: 1 * sign_7.dataset.length, duration: sign_7.dataset.duration, },
               { autoAlpha: 0, duration: 0 }
             ]
           }, ">"
@@ -485,7 +485,7 @@ const HomeHeroBlock = ({ block }: { block: any }) => {
           ".signature-8",
           {
             keyframes: [
-              { strokeDashoffset: -1 * sign_8.dataset.length, duration: sign_8.dataset.duration, },
+              { strokeDashoffset: 1 * sign_8.dataset.length, duration: sign_8.dataset.duration, },
               { autoAlpha: 0, duration: 0 }
             ]
           }, ">"
@@ -494,7 +494,7 @@ const HomeHeroBlock = ({ block }: { block: any }) => {
           ".signature-9",
           {
             keyframes: [
-              { strokeDashoffset: -1 * sign_9.dataset.length, duration: sign_9.dataset.duration, },
+              { strokeDashoffset: 1 * sign_9.dataset.length, duration: sign_9.dataset.duration, },
               { autoAlpha: 0, duration: 0 }
             ]
           }, ">"

@@ -1,5 +1,5 @@
 "use client"
-import React, { useEffect, useRef, useState, Fragment, useContext } from 'react'
+import React, { useState } from 'react'
 import styles from './cookie_consent.module.scss'
 
 
@@ -28,9 +28,6 @@ const Loading = ({
     setActive(false)
   }
 
-
-
-  console.log("consent: ", data)
   return (
     <div className={`${styles.root} fixed w-full bottom-0 left-0 bg-darkgrey text-white ${active ? styles.active : ''}`}>
       <div className="relative flex w-full px-50 md:px-100 py-60 md:py-30">
