@@ -131,6 +131,7 @@ const TextScrollerBlock = ({ block }: { block: any }) => {
                 controls
                 loop
                 muted
+                playsinline
                 preload="auto">
                 <source src={`${block.video_local?.permalink}`} type="video/mp4"></source>
               </video>

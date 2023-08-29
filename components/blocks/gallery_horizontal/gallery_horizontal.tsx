@@ -190,6 +190,7 @@ const GalleryHorizontalBlock = ({ block }: { block: any }) => {
                                     controls={false}
                                     loop
                                     muted
+                                    playsinline
                                     preload="auto">
                                     <source src={`${item.video_local?.permalink}`} type="video/mp4"></source>
                                   </video>
@@ -262,6 +263,7 @@ const GalleryHorizontalBlock = ({ block }: { block: any }) => {
                       controls
                       loop
                       muted
+                      playsinline
                       preload="auto">
                       <source src={`${block?.gallery_grid[activeindex].video_local?.permalink}`} type="video/mp4"></source>
                     </video>

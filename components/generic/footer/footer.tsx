@@ -89,6 +89,7 @@ const FooterBlock = ({
                   controls
                   loop
                   muted
+                  playsinline
                   preload="auto">
                   <source src={`${footer.video_local?.permalink}`} type="video/mp4"></source>
                 </video>

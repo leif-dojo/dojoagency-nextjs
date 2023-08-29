@@ -186,6 +186,7 @@ const HomeFeaturedWork = ({ block }: { block: any }) => {
                             controls={false}
                             loop
                             muted
+                            playsinline
                             preload="auto">
                             <source src={`${block.video_local?.permalink}`} type="video/mp4"></source>
                           </video>
@@ -216,6 +217,7 @@ const HomeFeaturedWork = ({ block }: { block: any }) => {
                             controls={false}
                             loop
                             muted
+                            playsinline
                             preload="auto">
                             <source src={`${block.video_local_hover?.permalink}`} type="video/mp4"></source>
                           </video>

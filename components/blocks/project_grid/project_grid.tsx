@@ -227,6 +227,7 @@ const ProjectGridBlock = ({ block }: { block: any }) => {
                             controls={false}
                             loop
                             muted
+                            playsinline
                             preload="auto">
                             <source src={`${block.project_video_local?.permalink}`} type="video/mp4"></source>
                           </video>
