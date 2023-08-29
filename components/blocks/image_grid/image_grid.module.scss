@@ -4,20 +4,29 @@
 
     .project {
         aspect-ratio: 1/1;
+
+        
         &:hover {
             .image {
                 transform: scale(1.05);
-                transition: all 500ms ease-in-out;
+
+                @screen md {
+                    transition: all 500ms ease-in-out;
+                }
             }
+
             .imagehover {
                 opacity: 1;
             }
+
             .hover {
                 opacity: 1;
             }
+
             .headline {
                 opacity: 0;
             }
+
             .videohover {
                 opacity: 1;
             }
@@ -29,60 +38,81 @@
         min-width: 100%;
         min-height: 100%;
         object-fit: cover;
-        transition: all 500ms ease-in-out;
+
+        @screen md {
+            transition: all 500ms ease-in-out;
+        }
     }
+
     .imagehover {
         min-width: 100%;
         min-height: 100%;
         object-fit: cover;
-        transition: all 500ms ease-in-out;
         z-index: 50;
         opacity: 0;
+
+        @screen md {
+            transition: all 500ms ease-in-out;
+        }
     }
+
     .headline {
         opacity: 1;
         z-index: 55;
     }
+
     .hover {
         opacity: 0;
         z-index: 55;
     }
+
     .video {
         object-fit: cover;
         object-position: 50% 50%;
-        transition: all 500ms ease-in-out;
+
         .videoinner {
             left: 50%;
             top: 50%;
             transform: translate(-50%, -50%);
         }
-        iframe, 
+
+        iframe,
         video {
-            width: 100%!important;
-            height: auto!important;
+            width: 100% !important;
+            height: auto !important;
             aspect-ratio: 16/9;
             object-fit: cover;
             object-position: 50% 50%;
         }
+
+        @screen md {
+            transition: all 500ms ease-in-out;
+        }
     }
+
     .videohover {
         opacity: 0;
         z-index: 55;
         object-fit: cover;
         object-position: 50% 50%;
-        transition: all 500ms ease-in-out;
+
         .videoinner {
             left: 50%;
             top: 50%;
             transform: translate(-50%, -50%);
         }
-        iframe, 
+
+        iframe,
         video {
-            width: 100%!important;
-            height: auto!important;
+            width: 100% !important;
+            height: auto !important;
             aspect-ratio: 16/9;
             object-fit: cover;
             object-position: 50% 50%;
+        }
+
+        @screen md {
+            transition: all 500ms ease-in-out;
         }
     }
 }
