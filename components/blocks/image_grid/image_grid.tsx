@@ -86,7 +86,7 @@ const ImageGridBlock = ({ block }: { block: any }) => {
               <Link href={`${block?.link}`} className={`${styles.project} item relative overflow-hidden bg-dark f-full fade`} key={index}>
                 <span className="flex justify-center items-center w-full h-full" onMouseEnter={() => onMouseEnter(block.cursor ? block.cursor.value : "next")} onMouseLeave={() => onMouseLeave()}>
 
-                  <span className='absolute w-full h-full top-0 left-0'>
+                  <span className='absolute w-full h-full top-0 left-0 overflow-hidden'>
 
                     {block.image && (
                       <Image
@@ -173,10 +173,10 @@ const ImageGridBlock = ({ block }: { block: any }) => {
                   </span>
 
                   <span className={`relative w-full flex justify-center items-center`}>
-                    <span className={`${styles.headline} absolute w-full px-40 py-40 z-5 text-60 leading-none font-500 text-white text-center`}>
+                    <span className={`${styles.headline} absolute w-full px-40 py-40 z-5 text-60 leading-none font-500 text-white text-center z-10`}>
                       {block.image_headline}
                     </span>
-                    <span className={`${styles.hover} absolute w-full px-40 py-40 z-5 text-40 leading-none font-500 text-white text-center`}>
+                    <span className={`${styles.hover} absolute w-full px-40 py-40 z-5 text-40 leading-none font-500 text-white text-center z-10`}>
                       {block.image_headline_hover}
                     </span>
                   </span>
