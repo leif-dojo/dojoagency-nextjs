@@ -49,7 +49,7 @@ const GalleryHorizontalBlock = ({ block }: { block: any }) => {
   }
 
   const isMobile = () => {
-    return window.innerWidth < 1024
+    return window.innerHeight > window.innerWidth && window.innerWidth < 1024
   }
 
   useEffect(() => {
@@ -144,7 +144,7 @@ const GalleryHorizontalBlock = ({ block }: { block: any }) => {
               <div className='wysiwyg text-55 md:text-90 leading-70 md:leading-120 font-300 fade' dangerouslySetInnerHTML={{ __html: block.headline }}></div>
             </div>
           )}
-          <div className="w-full md:w-[10000rem]">
+          <div className="w-full landscape:w-[10000rem] md:w-[10000rem]">
             <div className="relative flex w-auto h-auto">
               <div ref={ScrollerRef} className={`${styles.gallery} gallery w-auto h-auto grid`}>
                 {block?.gallery_grid?.map((item: any, index: any) => {

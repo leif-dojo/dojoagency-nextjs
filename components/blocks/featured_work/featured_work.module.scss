@@ -13,6 +13,10 @@
             .project {
                 aspect-ratio: 2/2;
             }
+            @media screen and (max-width: 1023px) and (orientation:landscape) {
+                display: grid;
+                grid-template-columns: repeat(3,minmax(0,1fr));
+            }
             @screen md {
                 display: grid;
                 grid-template-columns: repeat(3,minmax(0,1fr));
@@ -24,6 +28,89 @@
             gap: 30px;
             .project {
                 margin-bottom: 30px;
+            }
+            @media screen and (max-width: 1023px) and (orientation:landscape) {
+                display: flex;
+                max-height: 60vw;
+
+                .project {
+                    width: calc(33.333% - 20px);
+                    margin-bottom: 0;
+                }
+
+                &.rows_1 {
+                    max-height: 30vw;
+                    .project {
+                        aspect-ratio: 2/2;
+                        &:nth-child(2),
+                        &:nth-child(3),
+                        &:nth-child(6) {
+                            //aspect-ratio: 2/1;
+                        }
+                    }
+                }
+                &.rows_2 {
+                    max-height: 60vw;
+                    .project {
+                        aspect-ratio: 2/2;
+                        &:nth-child(2),
+                        &:nth-child(3),
+                        &:nth-child(6) {
+                            aspect-ratio: 2/1;
+                        }
+                    }
+                }
+                &.rows_3 {
+                    max-height: 80vw;
+                    .project {
+                        aspect-ratio: 2/2;
+                        &:nth-child(2),
+                        &:nth-child(5),
+                        &:nth-child(8) {
+                            aspect-ratio: 2/1;
+                        }
+                        &:nth-child(3),
+                        &:nth-child(4),
+                        &:nth-child(9) {
+                            aspect-ratio: 6/7;
+                        }
+                    }
+                }
+                &.rows_4 {
+                    max-height: 120vw;
+                    .project {
+                        aspect-ratio: 2/2;
+                        &:nth-child(4),
+                        &:nth-child(5),
+                        &:nth-child(11) {
+                            aspect-ratio: 2/1;
+                        }
+                        &:nth-child(2),
+                        &:nth-child(7),
+                        &:nth-child(12) {
+                            aspect-ratio: 6/7;
+                        }
+                    }
+                }
+                &.rows_5 {
+                    max-height: 150vw;
+                    .project {
+                        aspect-ratio: 2/2;
+                        &:nth-child(4),
+                        &:nth-child(6),
+                        &:nth-child(14) {
+                            aspect-ratio: 2/1;
+                        }
+                        &:nth-child(2),
+                        &:nth-child(5),
+                        &:nth-child(7),
+                        &:nth-child(9),
+                        &:nth-child(12),
+                        &:nth-child(15) {
+                            aspect-ratio: 6/7;
+                        }
+                    }
+                }
             }
             @screen md {
                 display: flex;

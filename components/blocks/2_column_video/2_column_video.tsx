@@ -71,8 +71,8 @@ const Column2VideoBlock = ({ block }: { block: any }) => {
   return (
     <section ref={sectionRef} className={`${styles.root} w-full`} onMouseEnter={() => cursorChangeHandler("page")} onMouseLeave={() => cursorChangeHandler("page")}>
       <div className="px-50 md:px-100 py-50">
-        <div className="block md:flex">
-          <div ref={copyRef} className="w-full md:w-5/12 md:pr-30">
+        <div className="block landscape:flex md:flex">
+          <div ref={copyRef} className="w-full landscape:w-5/12 landscape:pr-30 md:w-5/12 md:pr-30">
             {block.eyebrow && (
               <div className="text-20 leading-none font-300 uppercase mb-10 fade">
                 {block.eyebrow}
@@ -135,7 +135,7 @@ const Column2VideoBlock = ({ block }: { block: any }) => {
               </div>
             )}
           </div>
-          <div ref={mediaRef} className="w-full md:w-7/12 fade">
+          <div ref={mediaRef} className="w-full landscape:w-7/12 md:w-7/12 fade">
 
             <VideoPlayer
               image_placeholder={block.image}

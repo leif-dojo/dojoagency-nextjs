@@ -28,7 +28,7 @@ const HomeHeroBlock = ({ block }: { block: any }) => {
 
   const isMobile = () => {
     if (process.browser) {
-      return window.innerWidth < 1024
+      return window.innerHeight > window.innerWidth && window.innerWidth < 1024
     }
   }
 
@@ -654,7 +654,7 @@ const HomeHeroBlock = ({ block }: { block: any }) => {
       <div ref={RainRef} id="rain" className={`${styles.rain} absolute w-full h-full top-0 left-0`}></div>
 
       <div className='relative w-full'>
-        <div className={`fixed top-220 md:top-60 w-full z-5`}>
+        <div className={`fixed top-220 landscape:top-60 md:top-60 w-full z-5`}>
           <div ref={LogoWrapRef} className={`${styles.logo} logo w-full text-center px-0 pb-40`}>
             <div ref={LogoRef} className='w-full'>
               {isMobile() ? <LogoMobile className={`${styles.logosvg} w-full h-auto`} /> : <Logo className={`${styles.logosvg} w-full h-auto`} />}
@@ -700,7 +700,7 @@ const HomeHeroBlock = ({ block }: { block: any }) => {
           </div>
         </div>
 
-        <div ref={PanelRef} className={`${styles.panel} relative w-full bg-themebackground-ff px-50 md:px-100 mt-450 md:mt-320 pb-180 md:pb-100 z-6`}>
+        <div ref={PanelRef} className={`${styles.panel} relative w-full bg-themebackground-ff px-50 landscape:px-100 md:px-100 mt-450 landscape:mt-320 md:mt-320 pb-180 landscape:pb-100 md:pb-100 z-6`}>
           <div ref={HeadlineRef} className='relative w-full text-center font-lato text-90 md:text-113 font-300 leading-none py-20 fade'>
             <span className='relative'>S<span className={`${styles.splat} splat ${styles.splats}`}>
               <span className={`${styles.splat_c_1}`}></span>
@@ -756,7 +756,7 @@ const HomeHeroBlock = ({ block }: { block: any }) => {
               </div>
             </div>
           </div>
-          <div ref={VideoRef} className='relative mx-0 md:mx-160 z-10 fade'>
+          <div ref={VideoRef} className='relative mx-0 landscape:mx-160 md:mx-160 z-10 fade'>
             <div className={`${styles.splat} splat ${styles.splatv1}`}>
               <span className={`${styles.splat_c_1}`}></span>
               <span className={`${styles.splat_c_2}`}></span>

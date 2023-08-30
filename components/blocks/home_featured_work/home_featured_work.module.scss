@@ -8,7 +8,77 @@
         flex-wrap: wrap;
         gap: 30px;
 
-        //transition: all 0ms ease-in-out;
+        @media screen and (max-width: 1023px) and (orientation:landscape) {
+            display: flex;
+            max-height: 60vw;
+            &.rows_1 {
+                max-height: 30vw;
+                .project {
+                    aspect-ratio: 2/2;
+                    &:nth-child(2),
+                    &:nth-child(3),
+                    &:nth-child(6) {
+                        //aspect-ratio: 2/1;
+                    }
+                }
+            }
+            &.rows_2 {
+                max-height: 60vw;
+                .project {
+                    aspect-ratio: 2/2;
+                    &:nth-child(2),
+                    &:nth-child(3),
+                    &:nth-child(6) {
+                        aspect-ratio: 2/1;
+                    }
+                }
+            }
+            &.rows_3 {
+                max-height: 70vw;
+                .project {
+                    aspect-ratio: 2/2;
+                    &:nth-child(2),
+                    &:nth-child(3),
+                    &:nth-child(4),
+                    &:nth-child(6),
+                    &:nth-child(8),
+                    &:nth-child(9) {
+                        aspect-ratio: 2/1;
+                    }
+                }
+            }
+            &.rows_4 {
+                max-height: 100vw;
+                .project {
+                    aspect-ratio: 2/2;
+                    &:nth-child(2),
+                    &:nth-child(4),
+                    &:nth-child(5),
+                    &:nth-child(7),
+                    &:nth-child(10),
+                    &:nth-child(12) {
+                        aspect-ratio: 2/1;
+                    }
+                }
+            }
+            &.rows_5 {
+                max-height: 130vw;
+                .project {
+                    aspect-ratio: 2/2;
+                    &:nth-child(2),
+                    &:nth-child(4),
+                    &:nth-child(6),
+                    &:nth-child(8),
+                    &:nth-child(10),
+                    &:nth-child(12),
+                    &:nth-child(14),
+                    &:nth-child(16),
+                    &:nth-child(18) {
+                        aspect-ratio: 2/1;
+                    }
+                }
+            }
+        }
         @screen md {
             display: flex;
             max-height: 60vw;
@@ -110,6 +180,10 @@
             .videohover {
                 opacity: 1;
             }
+        }
+
+        @media screen and (max-width: 1023px) and (orientation:landscape) {
+            width: calc(33.333% - 20px);
         }
 
         @screen md {

@@ -136,17 +136,17 @@ const WysiwygBlock = ({ block }: { block: any }) => {
                           )}
                         </div>;
                       case 'Set_Wysiwyg_2Column':
-                        return <div className={`block md:flex ${item.order.value === 'reverse' ? 'flex-row-reverse' : 'flex-row'}  mb-30 fade`} key={index}>
-                          <div className={`w-full md:w-1/2 flex items-center ${item.order.value === 'reverse' ? 'md:pl-30' : 'md:pr-30'}`}>
+                        return <div className={`block landscape:flex md:flex ${item.order.value === 'reverse' ? 'flex-row-reverse' : 'flex-row'}  mb-30 fade`} key={index}>
+                          <div className={`w-full landscape:w-1/2 md:w-1/2 flex items-center ${item.order.value === 'reverse' ? 'landscape:pl-30 md:pl-30' : 'landscape:pr-30 md:pr-30'}`}>
                             <div className='w-full'>
                               <div className="w-full">
                                 <div className='wysiwyg text-30 leading-40 font-300' dangerouslySetInnerHTML={{ __html: item.wysiwyg }}></div>
                               </div>
                             </div>
                           </div>
-                          <div className="w-full md:w-1/2">
+                          <div className="w-full landscape:w-1/2 md:w-1/2">
                             {item.image && (
-                              <div className={`w-full  ${item.order.value === 'reverse' ? 'pr-0 md:pr-100' : 'pl-0 md:pl-100'}`}>
+                              <div className={`w-full  ${item.order.value === 'reverse' ? 'pr-0 landscape:pr-100 md:pr-100' : 'pl-0 landscape:pl-100 md:pl-100'}`}>
                                 <Image
                                   src={item.image?.permalink}
                                   width={item.image?.width}

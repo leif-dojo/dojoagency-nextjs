@@ -57,7 +57,11 @@
     height: auto;
     fill: theme('colors.blue');
   }
-
+  @media screen and (max-width: 1023px) and (orientation:landscape) {
+    padding-top: 5rem;
+    width: 21rem;
+    min-width: 21rem;
+  }
   @screen md {
     padding-top: 5rem;
     width: 21rem;

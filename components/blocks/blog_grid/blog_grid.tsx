@@ -90,7 +90,7 @@ const BlogGridBlock = ({ block, entries }: { block: any, entries: any }) => {
             <div className='wysiwyg text-55 md:text-90 leading-70 md:leading-120 font-300 fade' dangerouslySetInnerHTML={{ __html: block.headline }}></div>
           </div>
         </div>
-        <div className={`${styles.grid} grid grid-cols-1 md:grid-cols-3 gap-30 w-full pt-50`}>
+        <div className={`${styles.grid} grid grid-cols-1 landscape:grid-cols-3 md:grid-cols-3 gap-30 w-full pt-50`}>
 
           {entries?.data?.map((post: any, index: any) => {
             //console.log('col: ', index, post)

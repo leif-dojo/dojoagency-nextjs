@@ -31,6 +31,9 @@
         opacity: 0;
         transition: opacity 0.5s cubic-bezier(0.72, 0.16, 0.345, 0.875);
 
+        @media screen and (max-width: 1023px) and (orientation:landscape) {
+          content: '';
+        }
         @screen md {
           content: '';
         }

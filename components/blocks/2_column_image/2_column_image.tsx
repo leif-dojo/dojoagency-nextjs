@@ -85,8 +85,8 @@ const Column2ImageBlock = ({ block }: { block: any }) => {
   return (
     <section ref={sectionRef} className={`${styles.root} w-full`}>
       <div className="px-50 md:px-100 py-50">
-        <div className="block md:flex">
-          <div ref={copyRef} className="w-full md:w-1/2 md:pr-30 flex items-center">
+        <div className="block landscape:flex md:flex">
+          <div ref={copyRef} className="w-full landscape:w-1/2 landscape:pr-30 md:w-1/2 md:pr-30 flex items-center">
             <div className='w-full'>
               {block.eyebrow && (
                 <div className="text-20 leading-none font-300 uppercase mb-10 fade">
@@ -151,8 +151,8 @@ const Column2ImageBlock = ({ block }: { block: any }) => {
               )}
             </div>
           </div>
-          <div ref={mediaRef} className="w-full md:w-1/2">
-            <div className='w-full pl-0 md:pl-100 fade'>
+          <div ref={mediaRef} className="w-full landscape:w-1/2 md:w-1/2">
+            <div className='w-full pl-0 landscape:pl-100 md:pl-100 fade'>
               {block.images.length == 1 && (
                 <Image
                   src={block.images[0]?.permalink}

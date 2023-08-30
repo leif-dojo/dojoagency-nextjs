@@ -69,10 +69,10 @@ const Home3Column = ({ block }: { block: any }) => {
 
   return (
     <section ref={sectionRef} className={`${styles.root} relative w-full  py-280 z-10`}>
-      <div className="px-50 md:px-100 block md:flex gap-100">
+      <div className="px-50 md:px-100 block landscape:flex md:flex gap-100">
         {block?.columns?.map((block: any, index: any) => {
           return (
-            <div className={`${styles.column} column w-full md:w-1/3 fade`} key={index}>
+            <div className={`${styles.column} column w-full landscape:w-1/3 md:w-1/3 fade`} key={index}>
               <div className='w-full pb-10'>
                 {block.icon && (
                   <Link href={`${block?.link ? block?.link : null}`} className={``}>

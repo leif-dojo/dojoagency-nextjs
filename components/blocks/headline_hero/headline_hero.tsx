@@ -147,8 +147,8 @@ const WysiwygBlock = ({ block, meta }: { block: any, meta: any }) => {
   return (
     <section ref={sectionRef} className={`${styles.root} w-full `}>
       <div className="px-50 md:px-100 pt-50 pb-30">
-        <div className="block md:flex">
-          <div className="w-full md:w-8/12">
+        <div className="block landscape:flex md:flex">
+          <div className="w-full landscape:w-8/12 md:w-8/12">
             {block.eyebrow && (
               <div ref={eyebrowRef} className="text-20 leading-none font-300 uppercase mb-10 ">
                 {block.eyebrow}
@@ -182,8 +182,8 @@ const WysiwygBlock = ({ block, meta }: { block: any, meta: any }) => {
             )}
 
           </div>
-          <div className="w-full md:w-4/12 text-right">
-            <div ref={sideRef} className="w-full md:w-10/12 ml-auto mr-0 text-left pt-30">
+          <div className="w-full landscape:w-4/12 md:!w-4/12 text-right">
+            <div ref={sideRef} className="w-full landscape:w-10/12 md:w-10/12 ml-auto mr-0 text-left pt-30">
               {block.sharing_title && (
                 <div ref={sideTitleRef} className="w-full text-32 md:text-25 leading-none font-300 pb-20 ">
                   {block.sharing_title}
@@ -204,11 +204,11 @@ const WysiwygBlock = ({ block, meta }: { block: any, meta: any }) => {
                 <>
                   <div ref={brRef} className="w-full bg-slate h-1 my-25 opacity-10"></div>
                   <div className="w-full flex flex-nowrap">
-                    <div className="w-full md:w-1/2 ">
+                    <div className="w-full landscape:w-1/2 md:w-1/2 ">
                       <div ref={shareTitleRef} className="text-32 md:text-25 leading-none font-300 pb-20">Share</div>
                       <div className="w-full sharewrap"><ShareIcons meta={meta} /></div>
                     </div>
-                    <div className="w-full md:w-1/2 ">
+                    <div className="w-full landscape:w-1/2 md:w-1/2 ">
                       <div ref={copyRef} className="text-32 md:text-25 leading-none font-300 pb-20 cursor-pointer">{copytext}</div>
                       <div className="w-full">
                         <div ref={copyIconRef} className={`${styles.icon} flex items-center justify-center`}>

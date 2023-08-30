@@ -79,7 +79,7 @@ const ImageGridBlock = ({ block }: { block: any }) => {
   return (
     <section ref={sectionRef} className={`${styles.root} w-full overflow-hidden`}>
       <div className="px-50 md:px-100 py-100">
-        <div className={`${styles.grid} grid grid-cols-1 md:grid-cols-3 gap-50 w-full `}>
+        <div className={`${styles.grid} grid grid-cols-1 landscape:grid-cols-3 md:grid-cols-3 gap-50 w-full `}>
 
           {block?.image_grid?.map((block: any, index: any) => {
             return (

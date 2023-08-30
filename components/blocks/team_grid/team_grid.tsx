@@ -138,7 +138,7 @@ const ImageGridBlock = ({ block }: { block: any }) => {
             </div>
           )}
         </div>
-        <div className={`${styles.grid} grid grid-cols-1 md:grid-cols-3 gap-30 w-full pt-50`}>
+        <div className={`${styles.grid} grid grid-cols-1 landscape:grid-cols-3 md:grid-cols-3 gap-30 w-full pt-50`}>
 
           {block?.team_grid?.map((block: any, index: any) => {
             //console.log('col: ', index, block)

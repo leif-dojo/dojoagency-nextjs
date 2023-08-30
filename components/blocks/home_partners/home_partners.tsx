@@ -198,10 +198,10 @@ const HomePartners = ({ block }: { block: any }) => {
           return (
             <div key={index}>
               {step === index && (
-                <div className="block md:flex">
-                  <div className="w-full md:w-1/2 text-center pb-100 md:pb-0">
+                <div className="block landscape:flex md:flex">
+                  <div className="w-full landscape:w-1/2 md:w-1/2 text-center pb-100 landscape:pb-0 md:pb-0">
                     <div ref={RecentRef} className="recent text-52 font-600 pb-20 fade">{block.headline}</div>
-                    <div className={`w-full md:w-3/4 mx-auto relative`}>
+                    <div className={`w-full landscape:w-3/4 md:w-3/4 mx-auto relative`}>
 
                       <div className={`${styles.wrap} relative w-full text-center mx-auto pt-20 pb-30 flex items-center`}>
                         <div className={`${styles.ovalwrap} circle absolute left-0 top-0 w-full h-full`}>
@@ -239,7 +239,7 @@ const HomePartners = ({ block }: { block: any }) => {
                     </div>
 
                   </div>
-                  <div className="w-full md:w-1/2 flex items-center">
+                  <div className="w-full landscape:w-1/2 md:w-1/2 flex items-center">
                     <div className="w-full">
                       <div ref={CopyRef} className='copy text-40 leading-60 font-300 ' dangerouslySetInnerHTML={{ __html: item.description }}></div>
                       <div className={`${styles.nextwrap} w-full flex text-left pt-20 text-blue`}>

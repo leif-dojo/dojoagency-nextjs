@@ -152,7 +152,7 @@ const NavBlock = ({
     <>
       {contactActive && (
         <div className={`${styles.root} fixed bg-black w-screen h-screen left-0 top-0 z-100`} onMouseEnter={() => { cursorChangeHandler("default") }} onMouseLeave={() => { cursorChangeHandler("page") }}>
-          <div className={`${styles.step} ${step === 1 ? styles.active : ''} step absolute opacity-0 bg-gold w-full h-full px-50 md:px-100`}>
+          <div className={`${styles.step} ${step === 1 ? styles.active : ''} step absolute opacity-0 bg-gold w-full h-full px-50 landscape:px-100 md:px-100`}>
             <div className={`${styles.bg} bg absolute w-full h-full left-0 top-0`}>
               {data.step_1_image && (
                 <Image
@@ -170,8 +170,8 @@ const NavBlock = ({
               </div>
             </div>
             <div className="relative  w-full h-full flex items-center z-10 justify-items-end">
-              <div className={`w-full md:w-1/2 ml-auto text-left pr-0 md:pr-200`}>
-                <div className='text-90 font-300 text-slate pb-40'>
+              <div className={`w-full landscape:w-1/2 md:w-1/2 ml-auto text-left pr-0 landscape:pr-200 md:pr-200`}>
+                <div className='text-90 font-300 leading-none text-slate pb-40'>
                   Connect With Us
                 </div>
                 <div className={`${styles.inputwrapper} ${valid1 ? '' : styles.error} w-full`}>
@@ -218,9 +218,9 @@ const NavBlock = ({
                 <div className={`relative inline-block font-lato text-80 font-300 leading-none cursor-pointer z-10 text-gold`} onClick={() => openOrClose()}>X</div>
               </div>
             </div>
-            <div className="relative  w-full h-full flex items-center z-10 flex justify-items-end">
-              <div className={`w-full md:w-1/2 ml-auto text-left pr-0 md:pr-200`}>
-                <div className='text-90 font-300 text-gold pb-40'>
+            <div className="relative  w-full h-full flex items-center z-10 justify-items-end">
+              <div className={`w-full landscape:w-1/2 md:w-1/2 ml-auto text-left pr-0 landscape:pr-200 md:pr-200`}>
+                <div className='text-90 font-300 leading-none text-gold pb-40'>
                   Connect With Us
                 </div>
                 <div className={`${styles.inputwrapper} ${valid2 ? '' : styles.error} w-full`}>
@@ -259,9 +259,9 @@ const NavBlock = ({
                 <div className={`relative inline-block font-lato text-80 font-300 leading-none cursor-pointer z-10 text-white`} onClick={() => openOrClose()}>X</div>
               </div>
             </div>
-            <div className="relative  w-full h-full flex items-center z-10 flex justify-items-end">
-              <div className={`w-full md:w-1/2 ml-auto text-left pr-0 md:pr-200`}>
-                <div className='text-90 font-300 text-slate pb-40'>
+            <div className="relative  w-full h-full flex items-center z-10 justify-items-end">
+              <div className={`w-full landscape:w-1/2 md:w-1/2 ml-auto text-left pr-0 landscape:pr-200 md:pr-200`}>
+                <div className='text-90 font-300 leading-none text-slate pb-40'>
                   Connect With Us
                 </div>
                 <div className={`${styles.inputwrapper} ${valid3 ? '' : styles.error} w-full`}>
@@ -302,8 +302,8 @@ const NavBlock = ({
                 <div className={`relative inline-block font-lato text-80 font-300 leading-none cursor-pointer z-10 text-slate`} onClick={() => openOrClose()}>X</div>
               </div>
             </div>
-            <div className="relative  w-full h-full flex items-center z-10 flex justify-items-end">
-              <div className={`w-full md:w-1/2 ml-auto text-left pr-0 md:pr-200`}>
+            <div className="relative  w-full h-full flex items-center z-10 justify-items-end">
+              <div className={`w-full landscape:w-1/2 md:w-1/2 ml-auto text-left pr-0 landscape:pr-200 md:pr-200`}>
                 <div className='text-90 font-300 text-slate leading-none pb-40'>
                   Thanks! We will <br /> be in touch soon.
                 </div>

@@ -13,6 +13,10 @@
       width: 60%;
       height: auto;
     }
+    @media screen and (max-width: 1023px) and (orientation:landscape) {
+      width: 60rem;
+      height: 60rem;
+    }
     @screen md {
       width: 60rem;
       height: 60rem;

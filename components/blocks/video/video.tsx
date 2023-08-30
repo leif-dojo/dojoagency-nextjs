@@ -69,7 +69,7 @@ const VideoBlock = ({ block }: { block: any }) => {
 
   return (
     <section ref={sectionRef} className={`${styles.root} w-full `}>
-      <div ref={videoRef} className="px-50 md:px-200 py-100 fade">
+      <div ref={videoRef} className="px-50 landscape:px-200 md:px-200 py-100 fade">
         <VideoPlayer
           image_placeholder={block.image}
           video_placeholder={block.video_embed ? block.video_embed : block.video_local?.permalink}

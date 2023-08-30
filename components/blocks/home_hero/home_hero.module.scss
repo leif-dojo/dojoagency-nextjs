@@ -262,6 +262,33 @@
         }
     }
 
+    @media screen and (max-width: 1023px) and (orientation:landscape) {
+        .splatd {
+            position: absolute;
+            left: 12%;
+            top: 30.5%;
+        }
+    
+        .splato {
+            position: absolute;
+            left: 22.5%;
+            top: 30.5%;
+        }
+    
+        .splatj {
+            position: absolute;
+            left: 28%;
+            top: 55%;
+        }
+    
+        .splato2 {
+            position: absolute;
+            left: 39%;
+            top: 32%;
+            transform: rotate(23deg);
+        }
+    }
+
     //stories splash
     .splats {
         position: absolute;

@@ -167,7 +167,7 @@ const ProjectGridBlock = ({ block }: { block: any }) => {
           )}
         </div>
 
-        <div className={`${styles.grid} grid grid-cols-1 md:grid-cols-3 gap-30 w-full pt-30`}>
+        <div className={`${styles.grid} grid grid-cols-1 landscape:grid-cols-3 md:grid-cols-3 gap-30 w-full pt-30`}>
 
           {block?.project_grid?.map((block: any, index: any) => {
             const hasPopup = block.popup_headline || block.popup_wysiwyg || block.popup_image || block.popup_video_local || block.popup_video_embed;
@@ -191,7 +191,7 @@ const ProjectGridBlock = ({ block }: { block: any }) => {
                       </div>
                     )}
                   </div>
-                  <div className={`${styles.projectimage} relative w-full h-400 md:h-300 top-0 left-0`}>
+                  <div className={`${styles.projectimage} relative w-full h-400 landscape:h-300 md:h-300 top-0 left-0`}>
                     {block.project_image && (
                       <div className={`absolute w-full h-full top-0 left-0`}>
                         <Image
@@ -255,8 +255,8 @@ const ProjectGridBlock = ({ block }: { block: any }) => {
 
               <div className="relative w-full px-50 md:px-150 pt-200 pb-100">
 
-                <div className="block md:flex">
-                  <div className="w-full md:w-6/12 md:pr-30 flex items-center">
+                <div className="block landscape:flex md:flex">
+                  <div className="w-full landscape:w-6/12 md:w-6/12 landscape:pr-30 md:pr-30 flex items-center">
                     <div className='w-full'>
                       {block?.project_grid[activeindex].popup_headline && (
                         <div className="text-55 md:text-90 leading-70 md:leading-120 font-300 text-slate mb-20">
@@ -270,10 +270,10 @@ const ProjectGridBlock = ({ block }: { block: any }) => {
                       )}
                     </div>
                   </div>
-                  <div className="w-full md:w-6/12 flex items-center">
+                  <div className="w-full landscape:w-6/12 md:w-6/12 flex items-center">
                     <div className='w-full'>
                       {block?.project_grid[activeindex].popup_image && (
-                        <div className='relative w-full md:pl-50 mb-40'>
+                        <div className='relative w-full landscape:pl-50 md:pl-50 mb-40'>
                           <Image
                             src={block?.project_grid[activeindex].popup_image?.permalink}
                             width={block?.project_grid[activeindex].popup_image?.width}
@@ -284,7 +284,7 @@ const ProjectGridBlock = ({ block }: { block: any }) => {
                         </div>
                       )}
                       {block?.project_grid[activeindex].popup_video_embed && (
-                        <div className={`${styles.video} video relative w-full md:ml-50 aspect-video mb-40`} onMouseLeave={() => { onMouseLeave() }}>
+                        <div className={`${styles.video} video relative w-full landscape:ml-50 md:ml-50 aspect-video mb-40`} onMouseLeave={() => { onMouseLeave() }}>
                           <VideoPlayer
                             image_placeholder={block?.project_grid[activeindex].popup_image?.permalink}
                             video_placeholder={block?.project_grid[activeindex].project_video_embed}
@@ -294,7 +294,7 @@ const ProjectGridBlock = ({ block }: { block: any }) => {
                         </div>
                       )}
                       {block?.project_grid[activeindex].popup_video_local && (
-                        <div className={`${styles.video} video relative w-full md:ml-50 aspect-video mb-40`} onMouseLeave={() => { onMouseLeave() }}>
+                        <div className={`${styles.video} video relative w-full landscape:ml-50 md:ml-50 aspect-video mb-40`} onMouseLeave={() => { onMouseLeave() }}>
                           <VideoPlayer
                             image_placeholder={block?.project_grid[activeindex].popup_image?.permalink}
                             video_placeholder={block?.project_grid[activeindex].project_video_local?.permalink}

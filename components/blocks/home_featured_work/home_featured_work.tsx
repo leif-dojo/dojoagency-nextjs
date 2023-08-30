@@ -222,7 +222,7 @@ const HomeFeaturedWork = ({ block }: { block: any }) => {
             const randomdur = Math.floor(Math.random() * (3 - 1 + 1)) + 1;
 
             return (
-              <Link href={`${block?.link ? block?.link : ''}`} className={`${styles.project} project block relative overflow-hidden bg-dark w-full md:w-1/3 mb-30 md:mb-0 fade`} key={index} data-x={randomx} data-y={randomy} data-dur={randomdur}>
+              <Link href={`${block?.link ? block?.link : ''}`} className={`${styles.project} project block relative overflow-hidden bg-dark w-full landscape:w-1/3 landscape:mb-0 md:w-1/3 mb-30 md:mb-0 fade`} key={index} data-x={randomx} data-y={randomy} data-dur={randomdur}>
                 <span className="flex justify-center items-center w-full h-full">
 
                   <span className='absolute w-full h-full top-0 left-0'>

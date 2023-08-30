@@ -39,7 +39,7 @@ const Loading = ({
           <div className='text-40 leading-none font-300 text-white pb-10'>{data.consent_headline}</div>
           <div className={`${styles.copy} text-20 leading-30 font-300 text-white`} dangerouslySetInnerHTML={{ __html: data.consent_copy }}></div>
         </div>
-        <div className='flex flex-col md:flex-row items-center justify-items-center gap-30'>
+        <div className='flex flex-col landscape:flex-row md:flex-row items-center justify-items-center gap-30'>
           <button className={`${styles.button} btn btn-outline-blue text-20`} onClick={() => onConsent(true)}>Accept All</button>
           <button className={`${styles.button} btn btn-outline-white text-20`} onClick={() => onConsent(false)}>Reject All</button>
         </div>

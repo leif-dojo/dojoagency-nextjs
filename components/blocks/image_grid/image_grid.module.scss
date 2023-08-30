@@ -5,7 +5,7 @@
     .project {
         aspect-ratio: 1/1;
 
-        @media (hover: hover) {
+        @media(hover: hover) and (pointer: fine) {
             &:hover {
                 .image {
                     transform: scale(1.05);
