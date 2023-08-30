@@ -20,6 +20,11 @@ html {
 		font-size: calc((1px / 1920px) * 100vw); //1rem at 1080px = 1px
 	}
 
+	//mobile landscape mode - WIP
+	@media screen and (max-width: 1023px) and (orientation:landscape) {
+		font-size: 0.5px;
+	 }
+
 }
 
 body {

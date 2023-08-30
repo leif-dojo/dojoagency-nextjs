@@ -138,7 +138,7 @@ const HomeHeroBlock = ({ block }: { block: any }) => {
         .timeline({
           scrollTrigger: {
             trigger: PanelRef.current,
-            start: isMobile() ? "top 180rem" : "top 340rem",
+            start: isMobile() ? "top 180rem" : "top 23%",
             end: "10% 0%",
             scrub: true,
             //end: "+=500",
@@ -325,6 +325,12 @@ const HomeHeroBlock = ({ block }: { block: any }) => {
             //markers: true,
           },
         })
+        .to(
+          ".autograph__path",
+          {
+            autoAlpha: 0, duration: 0
+          },
+        )
         .fromTo(
           ".letter-d",
           { autoAlpha: 0, },
@@ -353,22 +359,28 @@ const HomeHeroBlock = ({ block }: { block: any }) => {
         .to(
           ".signature-1",
           {
-            strokeDashoffset: 2 * sign_1.dataset.length,
-            duration: sign_1.dataset.duration,
+            keyframes: [
+              { autoAlpha: 1, duration:0 },
+              { strokeDashoffset: 2 * sign_1.dataset.length, duration: sign_1.dataset.duration, }
+            ]
           }, ">+0.5"
         )
         .to(
           ".signature-2",
           {
-            strokeDashoffset: 2 * sign_2.dataset.length,
-            duration: sign_2.dataset.duration,
+            keyframes: [
+              { autoAlpha: 1, duration:0 },
+              { strokeDashoffset: 2 * sign_2.dataset.length, duration: sign_2.dataset.duration, }
+            ]
           }, ">-15%"
         )
         .to(
           ".signature-3",
           {
-            strokeDashoffset: 2 * sign_3.dataset.length,
-            duration: sign_3.dataset.duration,
+            keyframes: [
+              { autoAlpha: 1, duration:0 },
+              { strokeDashoffset: 2 * sign_3.dataset.length, duration: sign_3.dataset.duration, }
+            ]
           }, ">"
         )
         .fromTo(
@@ -379,43 +391,55 @@ const HomeHeroBlock = ({ block }: { block: any }) => {
         .to(
           ".signature-4",
           {
-            strokeDashoffset: 2 * sign_4.dataset.length,
-            duration: sign_4.dataset.duration,
+            keyframes: [
+              { autoAlpha: 1, duration:0 },
+              { strokeDashoffset: 2 * sign_4.dataset.length, duration: sign_4.dataset.duration, }
+            ]
           }, ">-1.7"
         )
         .to(
           ".signature-5",
           {
-            strokeDashoffset: 2 * sign_5.dataset.length,
-            duration: sign_5.dataset.duration,
+            keyframes: [
+              { autoAlpha: 1, duration:0 },
+              { strokeDashoffset: 2 * sign_5.dataset.length, duration: sign_5.dataset.duration, }
+            ]
           }, ">"
         )
         .to(
           ".signature-6",
           {
-            strokeDashoffset: 2 * sign_6.dataset.length,
-            duration: sign_6.dataset.duration,
+            keyframes: [
+              { autoAlpha: 1, duration:0 },
+              { strokeDashoffset: 2 * sign_6.dataset.length, duration: sign_6.dataset.duration, }
+            ]
           }, ">"
         )
         .to(
           ".signature-7",
           {
-            strokeDashoffset: 2 * sign_7.dataset.length,
-            duration: sign_6.dataset.duration,
+            keyframes: [
+              { autoAlpha: 1, duration:0 },
+              { strokeDashoffset: 2 * sign_7.dataset.length, duration: sign_7.dataset.duration, }
+            ]
           }, ">"
         )
         .to(
           ".signature-8",
           {
-            strokeDashoffset: 2 * sign_8.dataset.length,
-            duration: sign_6.dataset.duration,
+            keyframes: [
+              { autoAlpha: 1, duration:0 },
+              { strokeDashoffset: 2 * sign_8.dataset.length, duration: sign_8.dataset.duration, }
+            ]
           }, ">"
         )
         .to(
           ".signature-9",
           {
-            strokeDashoffset: 2 * sign_9.dataset.length,
-            duration: sign_6.dataset.duration,
+            keyframes: [
+              { autoAlpha: 1, duration:0 },
+              { strokeDashoffset: 2 * sign_9.dataset.length, duration: sign_9.dataset.duration, }
+            ]
           }, ">"
         )
         .to(
@@ -626,7 +650,7 @@ const HomeHeroBlock = ({ block }: { block: any }) => {
   }
 
   return (
-    <section ref={sectionRef} className={`${styles.root} bg-themebackground-off w-full pb-0`} onMouseEnter={() => cursorChangeHandler("peace")} onMouseLeave={() => cursorChangeHandler("page")}>
+    <section ref={sectionRef} className={`${styles.root} relative bg-themebackground-off w-full pb-0`} onMouseEnter={() => cursorChangeHandler("peace")} onMouseLeave={() => cursorChangeHandler("page")}>
       <div ref={RainRef} id="rain" className={`${styles.rain} absolute w-full h-full top-0 left-0`}></div>
 
       <div className='relative w-full'>

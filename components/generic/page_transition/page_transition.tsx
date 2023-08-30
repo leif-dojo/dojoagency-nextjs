@@ -8,6 +8,7 @@ export const PageTransition = ({ children }: { children: any }) => {
         <>
             <motion.div
                 key={pathname}
+                className='top-0'
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
