@@ -65,7 +65,7 @@ const HeaderBlock = ({ nav }: HeaderInterface) => {
           <Link href={'/'} className={`${styles.logo} relative text-left`} aria-label="Dojo Agency">
             <Logo />
           </Link>
-          <div className={`${styles.hamburger} flex items-center cursor-pointer`} role="none" onClick={() => openOrClose()} role="button">
+          <div className={`${styles.hamburger} flex items-center cursor-pointer`} onClick={() => openOrClose()} role="button">
             <div className="a11y hidden">Toggle Menu</div>
             <div role="none" className={`${styles.bars}`}>
               <span className={styles.bar} />
@@ -78,7 +78,7 @@ const HeaderBlock = ({ nav }: HeaderInterface) => {
           <div className={`${styles.menuwrap} fixed  bg-white w-screen h-screen left-0 top-0 z-10`}>
             <div className="relative  w-full h-full px-50 md:px-100 flex flex-col items-center justify-center" onClick={() => openOrClose()} role="button">
               <div className="relative w-full">
-                <div className={`${styles.close} absolute top-30 right-0 flex items-center cursor-pointer`} role="none" onClick={() => openOrClose()} role="button">
+                <div className={`${styles.close} absolute top-30 right-0 flex items-center cursor-pointer`} onClick={() => openOrClose()} role="button">
                   <div className="a11y hidden">Toggle Menu</div>
                   <div className={`font-lato text-orange text-80 font-300 leading-none`}>X</div>
                 </div>
