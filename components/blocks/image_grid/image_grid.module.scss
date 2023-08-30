@@ -31,6 +31,14 @@
                     opacity: 1;
                 }
             }
+            @screen md {
+                .image,
+                .imagehover,
+                .video,
+                .videohover {
+                    transition: all 500ms ease-in-out;
+                }
+            }
         }
     }
 
@@ -39,10 +47,6 @@
         min-width: 100%;
         min-height: 100%;
         object-fit: cover;
-
-        @screen md {
-            transition: all 500ms ease-in-out;
-        }
     }
 
     .imagehover {
@@ -51,10 +55,6 @@
         object-fit: cover;
         z-index: 50;
         opacity: 0;
-
-        @screen md {
-            transition: all 500ms ease-in-out;
-        }
     }
 
     .headline {
@@ -85,10 +85,6 @@
             object-fit: cover;
             object-position: 50% 50%;
         }
-
-        @screen md {
-            transition: all 500ms ease-in-out;
-        }
     }
 
     .videohover {
@@ -110,10 +106,6 @@
             aspect-ratio: 16/9;
             object-fit: cover;
             object-position: 50% 50%;
-        }
-
-        @screen md {
-            transition: all 500ms ease-in-out;
         }
     }
 }

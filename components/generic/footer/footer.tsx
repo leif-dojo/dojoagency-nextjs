@@ -27,7 +27,7 @@ const FooterBlock = ({
       <footer className={`${styles.root} relative bg-black`}>
         <div className="relative  mx-50 md:mx-100 py-60 z-10">
           <div className={`${styles.nav} flex flex-col landscape:grid md:grid grid-cols-12 gap-x-30`}>
-            <div className="col-span-full landscape:col-span-4 md:col-span-2">
+            <div className="col-span-full landscape:col-span-4 md:!col-span-2">
               <ul
                 className=""
                 itemScope
@@ -44,7 +44,7 @@ const FooterBlock = ({
                 })}
               </ul>
             </div>
-            <div className="col-span-full landscape:col-span-8 md:col-span-3 flex flex-col mt-100 landscape:mt-0 md:mt-0">
+            <div className="col-span-full landscape:col-span-8 md:!col-span-3 flex flex-col mt-100 landscape:mt-0 md:mt-0">
               <div className={cn(styles.address, 'flex')}>
                 <div className={`${styles.pin} mr-15 landscape:mr-10 md:mr-10 text-blue`}><IconPin /></div>
                 <div className='text-52 md:text-27 leding:none md:leading-32 font-300 md:font-400 text-white text-left' dangerouslySetInnerHTML={{ __html: footer.address }}></div>
@@ -53,10 +53,10 @@ const FooterBlock = ({
                 <Socials socials={footer.socials} />
               </div>
               <div className={cn(styles.address, 'mt-auto pt-0 landscape:pt-50 md:pt-100')}>
-                <a role="button" className='inline text-66 md:text-36 leading-none font-500 text-white text-left cursor-pointer' onClick={() => openOrClose()} onMouseEnter={() => cursorChangeHandler("bridge")} onMouseLeave={() => cursorChangeHandler("page")}>{footer.form_cta}</a>
+                <a role="button" className='inline text-66 md:text-36 leading-none font-500 text-white text-left cursor-pointer' onClick={() => openOrClose()}><span onMouseEnter={() => cursorChangeHandler("bridge")} onMouseLeave={() => cursorChangeHandler("page")}>{footer.form_cta}</span></a>
               </div>
             </div>
-            <div className="landscape:col-span-0 md:col-span-8 text-right">
+            <div className="landscape:col-span-0 md:!col-span-8 text-right">
 
             </div>
           </div>

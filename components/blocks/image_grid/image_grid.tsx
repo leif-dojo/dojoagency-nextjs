@@ -83,8 +83,8 @@ const ImageGridBlock = ({ block }: { block: any }) => {
 
           {block?.image_grid?.map((block: any, index: any) => {
             return (
-              <Link href={`${block?.link}`} className={`${styles.project} item relative overflow-hidden bg-dark f-full fade`} key={index} onMouseEnter={() => onMouseEnter(block.cursor ? block.cursor.value : "next")} onMouseLeave={() => onMouseLeave()}>
-                <span className="flex justify-center items-center w-full h-full">
+              <Link href={`${block?.link}`} className={`${styles.project} item relative overflow-hidden bg-dark f-full fade`} key={index}>
+                <span className="flex justify-center items-center w-full h-full" onMouseEnter={() => onMouseEnter(block.cursor ? block.cursor.value : "next")} onMouseLeave={() => onMouseLeave()}>
 
                   <span className='absolute w-full h-full top-0 left-0'>
 
