@@ -2,9 +2,19 @@
 
 .root {
   z-index: 999;
-  transition: all 500ms ease-out 0ms;
-  -webkit-animation: popfade 1000ms ease both;
-  animation: popfade 1000ms ease both;
+  max-height: 0px;
+  overflow: hidden;
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 500ms ease-out 0ms;
+
+  &.active {
+    max-height: 100000px;
+    visibility: visible;
+    opacity: 1;
+    transition: opacity 500ms ease-out 0ms;
+  }
+
 
   .bg {
     transition: all 500ms ease-out 0ms;

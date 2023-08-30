@@ -74,24 +74,24 @@ const HeaderBlock = ({ nav }: HeaderInterface) => {
             </div>
           </div>
         </div>
-        {showMobileMenu &&
-          <div className={`${styles.menuwrap} fixed  bg-white w-screen h-screen left-0 top-0 z-10`}>
-            <div className="relative  w-full h-full px-50 md:px-100 flex flex-col items-center justify-center" onClick={() => openOrClose()} role="button">
-              <div className="relative w-full">
-                <div className={`${styles.close} absolute top-30 right-0 flex items-center cursor-pointer`} onClick={() => openOrClose()} role="button">
-                  <div className="a11y hidden">Toggle Menu</div>
-                  <div className={`font-lato text-orange text-80 font-300 leading-none`}>X</div>
-                </div>
-                <div className={`${styles.menulogo} text-left py-30`}>
-                  <Link href={'/'} as={''} className='' aria-label="Dojo Agency">
-                    <Logo />
-                  </Link>
-                </div>
+
+        <div className={`${styles.menuwrap} ${showMobileMenu ? styles.active : ''} fixed  bg-white w-screen h-screen left-0 top-0 z-10`}>
+          <div className="relative  w-full h-full px-50 md:px-100 flex flex-col items-center justify-center" onClick={() => openOrClose()} role="button">
+            <div className="relative w-full">
+              <div className={`${styles.close} absolute top-30 right-0 flex items-center cursor-pointer`} onClick={() => openOrClose()} role="button">
+                <div className="a11y hidden">Toggle Menu</div>
+                <div className={`font-lato text-orange text-80 font-300 leading-none`}>X</div>
               </div>
-              <Nav nav={nav} />
+              <div className={`${styles.menulogo} text-left py-30`}>
+                <Link href={'/'} as={''} className='' aria-label="Dojo Agency">
+                  <Logo />
+                </Link>
+              </div>
             </div>
+            <Nav nav={nav} />
           </div>
-        }
+        </div>
+        
       </div>
     </>
   )
