@@ -6,7 +6,7 @@ import { useIsMobile, hexToRgb } from '@/utils/general'
 import Telegraph from '@/public/telegraph.svg'
 import Typewriter from '@/public/typewriter.svg'
 import CommunicationArts from '@/public/communication-arts.svg'
-import Paintbrush from '@/public/paint-brush.svg'
+import Paintbrush from '@/public/paint-brush-2.svg'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger'
 gsap.registerPlugin(ScrollTrigger)
@@ -19,6 +19,7 @@ const HomeHeadlineBlock = ({ block }: { block: any }) => {
   const TelegraphRef = useRef<HTMLDivElement>(null)
   const TypewriterRef = useRef<HTMLDivElement>(null)
   const PaintbrushRef = useRef<HTMLDivElement>(null)
+  const PaintdropRef = useRef<HTMLDivElement>(null)
   const ComRef = useRef<HTMLDivElement>(null)
   const SubRef = useRef<HTMLDivElement>(null)
 
@@ -155,7 +156,7 @@ const HomeHeadlineBlock = ({ block }: { block: any }) => {
           .to(
             document.getElementById("communicationartspaint")?.contentDocument.querySelector('.stop2'),
             {
-              duration: 0.3, attr: { offset: "52%" },
+              duration: 0.3, attr: { offset: "51%" },
               ease: 'power3.out'
             },
             ">"
@@ -175,10 +176,11 @@ const HomeHeadlineBlock = ({ block }: { block: any }) => {
             {
               keyframes: [
                 { x: "0%", autoAlpha: 0, duration: 0 },
-                { x: "215%", autoAlpha: 1, duration: 0.3 },
-                { x: "215%", duration: 0.9 },
-                { x: "450%", duration: 0.6, ease: 'power3.out' },
-                { x: "550%", autoAlpha: 1, duration: 0.5, ease: 'power3.out' },
+                { x: "310%", autoAlpha: 1, duration: 0.3 },
+                { x: "310%", duration: 0.5, ease: 'power3.out' },
+                { x: "310%", duration: 0.8, ease: 'power3.out' },
+                { x: "330%", duration: 0.2, ease: 'power3.out' },
+                { x: "650%", autoAlpha: 1, duration: 0.5, ease: 'power3.out' },
                 { autoAlpha: 1, duration: 0 },
                 { autoAlpha: 0, duration: 0 }
               ]
@@ -189,11 +191,11 @@ const HomeHeadlineBlock = ({ block }: { block: any }) => {
             {
               keyframes: [
                 { y: "0%", rotation: 0, duration: 0.25 },
-                { y: "-70%", rotation: -45, duration: 0.2 },
-                { y: "-140%", rotation: -70, duration: 0.4 },
-                { y: "-100%", rotation: -70, duration: 0.2 },
-                { y: "-20%", rotation: -30, duration: 0.1 },
-                { y: "-10%", rotation: 0, duration: 0.1 },
+                { y: "-20%", rotation: -15, duration: 0.3 },
+                { y: "-60%", rotation: -40, duration: 0.5 },//drip 
+                { y: "-40%", rotation: -45, duration: 0.2 },
+                { y: "-10%", rotation: -10, duration: 0.2 },
+                { y: "0%", rotation: 0, duration: 0.1 },
               ]
             }, 2.1
           )
@@ -201,15 +203,11 @@ const HomeHeadlineBlock = ({ block }: { block: any }) => {
             ".paintbrush-1",
             {
               keyframes: [
-                { autoAlpha: 1, duration: 0 },
-                { autoAlpha: 1, duration: 0.4 },
                 { autoAlpha: 0, duration: 0 },
-                { autoAlpha: 0, duration: 0.4 },
+                { autoAlpha: 0, duration: 0.55 },
                 { autoAlpha: 1, duration: 0 },
-                { autoAlpha: 1, duration: 0.1 },
+                { autoAlpha: 1, duration: 0.7 },
                 { autoAlpha: 0, duration: 0 },
-                { autoAlpha: 0, duration: 0.2 },
-                { autoAlpha: 1, duration: 0 },
               ]
             }, 2.1
           )
@@ -217,25 +215,45 @@ const HomeHeadlineBlock = ({ block }: { block: any }) => {
             ".paintbrush-2",
             {
               keyframes: [
-                { autoAlpha: 0, duration: 0 },
-                { autoAlpha: 0, duration: 0.9 },
                 { autoAlpha: 1, duration: 0 },
-                { autoAlpha: 1, duration: 0.2 },
+                { autoAlpha: 1, duration: 0.55 },
                 { autoAlpha: 0, duration: 0 },
+                { autoAlpha: 0, duration: 0.7 },
+                { autoAlpha: 1, duration: 0 },
               ]
             }, 2.1
           )
           .to(
-            ".paintbrush-3",
+            ".paintdrop",
+            {
+              autoAlpha: 1, duration: 0
+            }, 2.65
+          )
+          .to(
+            '#paintdrop-1',
             {
               keyframes: [
                 { autoAlpha: 0, duration: 0 },
-                { autoAlpha: 0, duration: 0.4 },
-                { autoAlpha: 1, duration: 0 },
-                { autoAlpha: 1, duration: 0.4 },
-                { autoAlpha: 0, duration: 0 }
+                { y: "0%", autoAlpha: 1, duration: 0 },
+                { y: "200%", autoAlpha: 1, duration: 0.7 },
               ]
-            }, 2.1
+            }, 2.65
+          )
+          .to(
+            '#paintdrop-2',
+            {
+              keyframes: [
+                { autoAlpha: 0, duration: 0 },
+                { y: "0%", autoAlpha: 1, duration: 0.25 },
+                { y: "200%", autoAlpha: 1, duration: 0.7 },
+              ]
+            }, 2.65
+          )
+          .to(
+            ".paintdrop",
+            {
+              autoAlpha: 0, duration: 0.5
+            }, ">"
           )
           .fromTo(
             ".text3",
@@ -245,14 +263,14 @@ const HomeHeadlineBlock = ({ block }: { block: any }) => {
               duration: 0.005,
               stagger: 0.01,
               ease: 'power3.out'
-            }, 3.4
+            }, 3.9
           )
           .to(
             document.getElementById("communicationartspaint")?.contentDocument.querySelector('.stop2'),
             {
               duration: 0.2, attr: { offset: "100%" },
               ease: 'power3.out'
-            }, 3.4
+            }, 3.9
           )
           .fromTo(
             ".typewriter",
@@ -383,6 +401,10 @@ const HomeHeadlineBlock = ({ block }: { block: any }) => {
               <div className={`${styles.paintbrushsvg} paintbrushsvg relative`}>
                 <Paintbrush />
               </div>
+            </div>
+            <div ref={PaintdropRef} className={`${styles.paintdrops} paintdrop absolute opacity-0 mb-20 text-slate`}>
+                <object id="paintdrop-1" type="image/svg+xml" data="/paint-drop-1.svg" className={`${styles.paintdrop} absolute top-0`}></object>
+                <object id="paintdrop-2" type="image/svg+xml" data="/paint-drop-2.svg" className={`${styles.paintdrop} absolute top-0`}></object>
             </div>
           </div>
         </div>

@@ -24,9 +24,10 @@
         }
     }
     .paintbrush {
-        top: 37%;
+        top: -25%;
         left: 0%;
-        width: 22%;
+        width: 15%;
+        z-index: 15;
     }
 
     .paintbrushsvg {
@@ -34,5 +35,16 @@
             width: 100%;
             height: auto;
         }
+    }
+
+    .paintdrops {
+        top: 40%;
+        left: 50%;
+        width: 3%;
+        height: 50%;
+    }
+
+    .paintdrop {
+        top:0;
     }
 }

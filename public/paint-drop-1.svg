@@ -1,0 +1,12 @@
+<!-- EDITOR REFERENCE - width="20px" height="20px" -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	  viewBox="0 0 20 20" enable-background="new 0 0 20 20" xml:space="preserve">
+<linearGradient id="SVGID_1_" gradientUnits="userSpaceOnUse" x1="10626.6289" y1="-12276.9277" x2="10621.0898" y2="-12833.8311" gradientTransform="matrix(0.024 0 0 -0.024 -245.2641 -291.9673)">
+	<stop  offset="0" style="stop-color:#3C6689"/>
+	<stop  offset="0.2091" style="stop-color:#395F7E"/>
+	<stop  offset="0.5798" style="stop-color:#304B5F"/>
+	<stop  offset="0.5852" style="stop-color:#304B5F"/>
+</linearGradient>
+<path class="paintdrop-1" fill="url(#SVGID_1_)" d="M9.449,3.115c0,0-5.812,8.184-2.5,11.081s7.116-1.099,7.116-1.099s0.207-4.283-1.878-8.422
+	C10.149,0.472,9.449,3.115,9.449,3.115z"/>
+</svg>
