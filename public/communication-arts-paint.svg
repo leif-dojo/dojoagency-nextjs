@@ -2,7 +2,7 @@
 	 width="50px" height="8.162px" viewBox="-24.5 46.419 50 8.162" enable-background="new -24.5 46.419 50 8.162"
 	 xml:space="preserve">
 	     <defs>
-    <linearGradient id="Gradient2">
+    <linearGradient id="Gradient2" gradientTransform="rotate(1)">
       <stop class="stop1" offset="0%" stop-color="#304a5f" />
       <stop class="stop2" offset="0%" stop-color="#304a5f" />
 	  <stop class="stop3" offset="0%" stop-color="#304a5f" stop-opacity="0" />

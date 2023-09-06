@@ -289,7 +289,7 @@ const ProjectGridBlock = ({ block }: { block: any }) => {
                             image_placeholder={block?.project_grid[activeindex].popup_image?.permalink}
                             video_placeholder={block?.project_grid[activeindex].project_video_embed}
                             video={block?.project_grid[activeindex].popup_video_embed}
-                            video_mobile={block?.project_grid[activeindex].popup_video_embed_mobile}
+                            video_mobile={block?.project_grid[activeindex].popup_video_embed_mobile ? block?.project_grid[activeindex].popup_video_embed_mobile : ''}
                             play_text={block?.project_grid[activeindex].popup_video_play_text ? block?.project_grid[activeindex].popup_video_play_text : ''}
                           />
                         </div>

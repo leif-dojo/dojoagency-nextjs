@@ -48,7 +48,7 @@ const NavBlock = ({
   const [detailData, setDetailData] = useState(initDetailData)
 
   const onKeyUp = (e) => {
-    if(e.code === 'Enter') {
+    if(e.code === 'Enter' || e.key === 'Enter' || e.keyCode === 13) {
       switch(step) {
         case 1:
           validate1()
@@ -220,7 +220,7 @@ const NavBlock = ({
               </div>
               <div className='relative w-full text-right mt-20'>
                 <button className='btn btn-outline' onClick={() => validate1()}>Next</button>
-                <div className={`${styles.progress} flex md:hidden absolute left-full h-full top-0`}>
+                <div className={`${styles.progress} flex  absolute left-full h-full top-0`}>
                   <div className={`${styles.progressdot} border-golden bg-golden`}></div>
                   <div className={`${styles.progressdot} border-golden`}></div>
                   <div className={`${styles.progressdot} border-golden`}></div>
@@ -272,7 +272,7 @@ const NavBlock = ({
               </div>
               <div className='relative w-full text-right mt-20'>
                 <button className='btn btn-outline-white' onClick={() => validate2()}>Next</button>
-                <div className={`${styles.progress} flex md:hidden absolute left-full h-full top-0`}>
+                <div className={`${styles.progress} flex  absolute left-full h-full top-0`}>
                   <div className={`${styles.progressdot} border-bluedark`}></div>
                   <div className={`${styles.progressdot} border-bluedark bg-bluedark`}></div>
                   <div className={`${styles.progressdot} border-bluedark`}></div>
@@ -325,8 +325,8 @@ const NavBlock = ({
                 <div className={`absolute top-full left-0 text-left text-24 leading-none font-600 pb-20 text-red pt-20 ${validfinal ? 'hidden' : 'block'}`}>Missing Required Fields</div>
               </div>
               <div className='relative w-full text-right mt-20'>
-                <button className='btn btn-outline' onClick={() => validate3()}>Next</button>
-                <div className={`${styles.progress} flex md:hidden absolute left-full h-full top-0`}>
+                <button className='btn btn-outline' onClick={() => validate3()}>Submit</button>
+                <div className={`${styles.progress} flex  absolute left-full h-full top-0`}>
                   <div className={`${styles.progressdot} border-aquadark`}></div>
                   <div className={`${styles.progressdot} border-aquadark`}></div>
                   <div className={`${styles.progressdot} border-aquadark bg-aquadark`}></div>

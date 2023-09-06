@@ -105,10 +105,10 @@ const VideoBlock = ({ image_placeholder, video_placeholder, video, video_mobile,
 
                 {active && video && (
                     <div className={`${styles.video} video absolute w-full h-full overflow-hidden top-0 left-0 z-5`}>
-                        <div className="video-inner absolute block w-full h-full">
+                        <div className="video-inner absolute block w-full h-full bg-black">
                             <ReactPlayer
-                                className={`${styles.player} ${isMobile() ? styles.player_aspect : ''} react-player w-full h-auto aspect-video`}
-                                url={isMobile() ? video_mobile : video}
+                                className={`${styles.player} ${isMobile() ? (video_mobile ? styles.player_aspect : '') : ''} react-player w-full h-auto aspect-video`}
+                                url={isMobile() ? (video_mobile ? video_mobile : video) : video}
                                 playing={playing}
                                 loop={false}
                                 controls={true}
