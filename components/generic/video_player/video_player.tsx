@@ -51,7 +51,7 @@ const VideoBlock = ({ image_placeholder, video_placeholder, video, video_mobile,
       }
 
     return (
-        <div className={`${styles.root} relative aspect-video`}>
+        <div className={`${styles.root} relative aspect-video ${isMobile() ? (video_mobile ? styles.player_aspect_4_3 : styles.player_aspect_16_9) : ''}`}>
             <div className='relative w-full h-full aspect-video overflow-hidden' onMouseEnter={() => onMouseEnter()} onMouseLeave={() => onMouseLeave()}>
 
                 {image_placeholder && (
