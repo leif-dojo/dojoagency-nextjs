@@ -54,6 +54,23 @@
         }
     }
 
+    .player_aspect {
+        aspect-ratio: 4/3;
+        div,
+        iframe,
+        video {
+            aspect-ratio: 4/3;
+        }
+        @screen md {
+            aspect-ratio: 16/9;
+            div,
+            iframe,
+            video {
+                aspect-ratio: 16/9;
+            }
+        }
+    }
+
     @screen md {
         aspect-ratio: 16/9;
     }

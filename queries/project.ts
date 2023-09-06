@@ -89,6 +89,7 @@ export default gql`
             }
             video_embed
             video_popup_embed
+            video_popup_embed_mobile
             video_local {
               ... on Asset_Assets {
                 id
@@ -462,6 +463,7 @@ export default gql`
               }
             }
             video_popup_embed
+            video_popup_embed_mobile
             video_local_popup {
               ... on Asset_Assets {
                 id
@@ -628,6 +630,7 @@ export default gql`
               }
             }
             video_popup_embed
+            video_popup_embed_mobile
             video_local {
               ... on Asset_Assets {
                 id
@@ -1062,6 +1065,7 @@ export default gql`
               }
               project_title
               popup_video_embed
+              popup_video_embed_mobile
               popup_video_local {
                 ... on Asset_Assets {
                   id

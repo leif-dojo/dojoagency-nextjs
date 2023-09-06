@@ -20,13 +20,15 @@
     transition: all 500ms ease-out 0ms;
     -webkit-animation: popfade 500ms ease both;
     animation: popfade 500ms ease both;
+    isolation: isolate;
 
     img {
-      opacity: 0.3;
+      opacity: 0.5;
       min-width: 100%;
       min-height: 100%;
       object-fit: cover;
       transition: all 500ms ease-in-out;
+      mix-blend-mode: overlay;
     }
   }
 
@@ -48,7 +50,7 @@
 
     &.error {
       label {
-        color: red;
+        color: #9d102d;
         transition: all 500ms ease-out 0ms;
       }
 
@@ -76,6 +78,23 @@
       height: 100%;
       fill: theme('colors.white');
       z-index: 89;
+    }
+  }
+
+  .progress {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 15rem;
+    padding-left:10rem;
+
+    .progressdot {
+      width: 15rem;
+      height: 11rem;
+      border-width: 4rem;
+      border-style: solid;
+      border-radius: 5rem;
     }
   }
 }

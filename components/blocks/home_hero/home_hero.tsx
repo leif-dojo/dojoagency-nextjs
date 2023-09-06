@@ -12,7 +12,6 @@ import { ScrollTrigger } from 'gsap/dist/ScrollTrigger'
 gsap.registerPlugin(ScrollTrigger)
 import VideoPlayer from '../../generic/video_player/video_player'
 
-export const typename = 'Set_Components_HomeHero'
 const HomeHeroBlock = ({ block }: { block: any }) => {
   const { cursorType, cursorChangeHandler, color, colorChangeHandler, backgroundColor, backgroundChangeHandler } = useThemeContext();
   const sectionRef = useRef<HTMLDivElement>(null)
@@ -198,7 +197,7 @@ const HomeHeroBlock = ({ block }: { block: any }) => {
               var drop = document.createElement('div');
               drop.classList.add(`${styles.drop}`);
               drop.classList.add(`drop`);
-              drop.style.cssText = `height:${randolength}rem;opacity:${randoopacity};left: ${i}%; bottom: ${randoFiver + randoFiver - 1 + 100}%; animation-delay: 0.${randoHundo}s; animation-duration: 0.5${randoHundo}s;`;
+              drop.style.cssText = `height:${randolength}rem;opacity:${randoopacity};left: ${i}%; bottom: ${randoFiver + randoFiver - 1 + 100}%; animation-delay: 0s; animation-duration: 0.5${randoHundo}s;`;
               //rain stem
               var stem = document.createElement('div');
               stem.classList.add(`${styles.stem}`);
@@ -841,6 +840,7 @@ const HomeHeroBlock = ({ block }: { block: any }) => {
               image_placeholder={block.image}
               video_placeholder={block.video_embed ? block.video_embed : block.video_local?.permalink}
               video={block.video_popup_embed ? block.video_popup_embed : block.video_popup_local?.permalink}
+              video_mobile={block.video_popup_embed_mobile ? block.video_popup_embed_mobile : block.video_popup_embed}
               play_text={block.video_play_text ? block.video_play_text : 'Play Dojo Reel'}
             />
           </div>
