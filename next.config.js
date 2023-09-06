@@ -9,7 +9,14 @@ const nextConfig = {
         loader: '@svgr/webpack',
         options: {
           svgoConfig: {
-
+            plugins: [
+              {
+                name: 'cleanupIds',
+                params: {
+                  "minify": false
+                },
+              },
+            ],
           },
         },
       }],
