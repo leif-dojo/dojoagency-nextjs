@@ -220,7 +220,7 @@ const NavBlock = ({
               </div>
               <div className='relative w-full text-right mt-20'>
                 <button className='btn btn-outline' onClick={() => validate1()}>Next</button>
-                <div className={`${styles.progress} absolute left-full h-full top-0`}>
+                <div className={`${styles.progress} flex md:hidden absolute left-full h-full top-0`}>
                   <div className={`${styles.progressdot} border-golden bg-golden`}></div>
                   <div className={`${styles.progressdot} border-golden`}></div>
                   <div className={`${styles.progressdot} border-golden`}></div>
@@ -272,7 +272,7 @@ const NavBlock = ({
               </div>
               <div className='relative w-full text-right mt-20'>
                 <button className='btn btn-outline-white' onClick={() => validate2()}>Next</button>
-                <div className={`${styles.progress} absolute left-full h-full top-0`}>
+                <div className={`${styles.progress} flex md:hidden absolute left-full h-full top-0`}>
                   <div className={`${styles.progressdot} border-bluedark`}></div>
                   <div className={`${styles.progressdot} border-bluedark bg-bluedark`}></div>
                   <div className={`${styles.progressdot} border-bluedark`}></div>
@@ -326,7 +326,7 @@ const NavBlock = ({
               </div>
               <div className='relative w-full text-right mt-20'>
                 <button className='btn btn-outline' onClick={() => validate3()}>Next</button>
-                <div className={`${styles.progress} absolute left-full h-full top-0`}>
+                <div className={`${styles.progress} flex md:hidden absolute left-full h-full top-0`}>
                   <div className={`${styles.progressdot} border-aquadark`}></div>
                   <div className={`${styles.progressdot} border-aquadark`}></div>
                   <div className={`${styles.progressdot} border-aquadark bg-aquadark`}></div>
