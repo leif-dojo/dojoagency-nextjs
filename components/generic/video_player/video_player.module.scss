@@ -78,6 +78,57 @@
         aspect-ratio: 16/9;
     }
 
+    &.player_aspect_4_3 {
+        aspect-ratio: 4/3;
+        .player {
+            aspect-ratio: 4/3;
+            div,
+            iframe,
+            video {
+                aspect-ratio: 4/3;
+            }
+    
+            @screen md {
+                aspect-ratio: 16/9;
+            }
+            @media screen and (max-width: 1023px) and (orientation:landscape) {
+                aspect-ratio: 16/9;
+            }
+        }
+
+        @screen md {
+            aspect-ratio: 16/9;
+        }
+        @media screen and (max-width: 1023px) and (orientation:landscape) {
+            aspect-ratio: 16/9;
+        }
+    }
+
+    &.player_aspect_16_9 {
+        aspect-ratio: 16/9;
+        .player {
+            aspect-ratio: 16/9;
+            div,
+            iframe,
+            video {
+                aspect-ratio: 16/9;
+            }
+    
+            @screen md {
+                aspect-ratio: 16/9;
+            }
+            @media screen and (max-width: 1023px) and (orientation:landscape) {
+                aspect-ratio: 16/9;
+            }
+        }
+        @screen md {
+            aspect-ratio: 16/9;
+        }
+        @media screen and (max-width: 1023px) and (orientation:landscape) {
+            aspect-ratio: 16/9;
+        }
+    }
+
     @-webkit-keyframes popfade {
         from {
             opacity: 0;
