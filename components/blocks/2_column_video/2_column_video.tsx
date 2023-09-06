@@ -141,7 +141,7 @@ const Column2VideoBlock = ({ block }: { block: any }) => {
               image_placeholder={block.image}
               video_placeholder={block.video_embed ? block.video_embed : block.video_local?.permalink}
               video={block.video_popup_embed ? block.video_popup_embed : block.video_popup_local}
-              video_mobile={block.video_popup_embed_mobile ? block.video_popup_embed_mobile : block.video_popup_embed}
+              video_mobile={block.video_popup_embed_mobile ? block.video_popup_embed_mobile : ''}
               play_text={block.video_play_text ? block.video_play_text : ''}
             />
 

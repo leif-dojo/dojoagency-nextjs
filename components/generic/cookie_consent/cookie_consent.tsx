@@ -56,7 +56,7 @@ const Loading = ({
   useEffect(() => {
     let cookie = getCookie('consent')
     if(cookie) {
-      setActive(false)
+      onConsent(true)
     }
   }, []);
 
