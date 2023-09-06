@@ -72,6 +72,16 @@ query GlobalQuery {
           extension
         }
       }
+      step_1_image_mobile {
+        ... on Asset_Assets {
+          id
+          permalink
+          is_video
+          width
+          height
+          extension
+        }
+      }
       step_2_video_embed
       step_2_video_local {
         ... on Asset_Assets {
@@ -84,6 +94,16 @@ query GlobalQuery {
         }
       }
       step_2_image {
+        ... on Asset_Assets {
+          id
+          permalink
+          is_video
+          width
+          height
+          extension
+        }
+      }
+      step_2_image_mobile {
         ... on Asset_Assets {
           id
           permalink
@@ -114,6 +134,16 @@ query GlobalQuery {
           extension
         }
       }
+      step_3_image_mobile {
+        ... on Asset_Assets {
+          id
+          permalink
+          is_video
+          width
+          height
+          extension
+        }
+      }
       step_4_video_embed
       step_4_video_local {
         ... on Asset_Assets {
@@ -126,6 +156,16 @@ query GlobalQuery {
         }
       }
       step_4_image {
+        ... on Asset_Assets {
+          id
+          permalink
+          is_video
+          width
+          height
+          extension
+        }
+      }
+      step_4_image_mobile {
         ... on Asset_Assets {
           id
           permalink

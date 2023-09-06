@@ -7,8 +7,7 @@ import dynamic from "next/dynamic"
 const ReactPlayer = dynamic(() => import("react-player/lazy"), { ssr: false })
 import IconPlay from "@/public/icons/cursor-play.svg"
 
-export const typename = 'Set_Components_Video'
-const VideoBlock = ({ image_placeholder, video_placeholder, video, play_text }: { image_placeholder: any, video_placeholder: any, video: any, play_text?: any }) => {
+const VideoBlock = ({ image_placeholder, video_placeholder, video, video_mobile, play_text }: { image_placeholder: any, video_placeholder: any, video: any, video_mobile?: any, play_text?: any }) => {
     const { cursorType, cursorChangeHandler } = useThemeContext();
     const [playing, setPlaying] = useState(false)
     const [active, setActive] = useState(false)
@@ -44,6 +43,12 @@ const VideoBlock = ({ image_placeholder, video_placeholder, video, play_text }: 
             setHasWindow(true);
         }
     }, []);
+
+    const isMobile = () => {
+        if (process.browser) {
+          return window.innerWidth < 1024
+        }
+      }
 
     return (
         <div className={`${styles.root} relative aspect-video`}>
@@ -99,11 +104,11 @@ const VideoBlock = ({ image_placeholder, video_placeholder, video, play_text }: 
                 )}
 
                 {active && video && (
-                    <div className={`${styles.video} video absolute w-full h-full overflow-hidden top-0 z-5`}>
+                    <div className={`${styles.video} video absolute w-full h-full overflow-hidden top-0 left-0 z-5`}>
                         <div className="video-inner absolute block w-full h-full">
                             <ReactPlayer
-                                className={`${styles.player} react-player w-full h-auto aspect-video`}
-                                url={video}
+                                className={`${styles.player} ${isMobile() ? styles.player_aspect : ''} react-player w-full h-auto aspect-video`}
+                                url={isMobile() ? video_mobile : video}
                                 playing={playing}
                                 loop={false}
                                 controls={true}
