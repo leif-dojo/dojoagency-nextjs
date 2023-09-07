@@ -132,22 +132,25 @@ blockquote {
 	padding: 30rem 50rem;
 	quotes: "\201C""\201D""\2018""\2019";
 
-	&:before {
+	&:before,
+	&:after {
+		display: inline;
 		color: theme('colors.orange');
-		content: open-quote;
 		font-size: 4em;
-		line-height: 0.1em;
+		line-height: 0em;
+	}
+
+	&:before {
+		content: open-quote;
 		margin-right: 0.25em;
 		vertical-align: -0.4em;
 	}
 
 	&:after {
-		color: theme('colors.orange');
+		position: relative;
 		content: close-quote;
-		font-size: 4em;
-		line-height: 0.1em;
 		margin-left: 0.25em;
-		vertical-align: -0.4em;
+		vertical-align: -0.5em;
 	}
 
 	p {
