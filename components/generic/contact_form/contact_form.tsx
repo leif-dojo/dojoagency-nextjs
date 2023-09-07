@@ -366,7 +366,7 @@ const NavBlock = ({
 
               </div>
               <div className='w-full text-left pt-0'>
-                <Link href={`/team`} className="link inline-flex items-center justify-items-end ml-auto text-slate" aria-label="Next">
+                <Link href={`/team`} className="link inline-flex items-center justify-items-end ml-auto text-slate" aria-label="Meet the team" onClick={() => openOrClose()}>
                   <span className="font-nothingyoucoulddo text-40 font-400 leading-none pr-20 text-right">Meet the team</span>
                   <div><NextIcon className={`${styles.nextarrow} w-30 h-auto`} /></div>
                 </Link>
