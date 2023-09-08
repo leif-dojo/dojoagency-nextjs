@@ -15,7 +15,7 @@ const ImageGridBlock = ({ block }: { block: any }) => {
   const sectionRef = useRef<HTMLDivElement>(null)
   const { cursorType, cursorChangeHandler, colorChangeHandler, backgroundChangeHandler } = useThemeContext();
 
-  const onMouseEnter = (cursor:String) => {
+  const onMouseEnter = (cursor: String) => {
     cursorChangeHandler(cursor)
   }
 
@@ -76,6 +76,7 @@ const ImageGridBlock = ({ block }: { block: any }) => {
     return () => ctx.revert();
   }, []);
 
+  const ConditionalWrapper = ({ condition, wrapper, children }: { condition: any, wrapper: any, children: any }) => condition ? wrapper(children) : children;
   return (
     <section ref={sectionRef} className={`${styles.root} w-full overflow-hidden`}>
       <div className="px-50 md:px-100 py-100">
@@ -83,105 +84,110 @@ const ImageGridBlock = ({ block }: { block: any }) => {
 
           {block?.image_grid?.map((block: any, index: any) => {
             return (
-              <Link href={`${block?.link}`} className={`${styles.project} item relative overflow-hidden bg-dark f-full fade`} key={index}>
-                <span className="flex justify-center items-center w-full h-full" onMouseEnter={() => onMouseEnter(block.cursor ? block.cursor.value : "next")} onMouseLeave={() => onMouseLeave()}>
+              <div className={`${styles.project} item relative overflow-hidden bg-dark f-full fade`} key={index}>
+                <ConditionalWrapper
+                  condition={block.link}
+                  wrapper={(children: any) => <Link href={`${block?.link}`} aria-label={block.image_headline} onMouseEnter={() => onMouseEnter(block.cursor ? block.cursor.value : "next")} onMouseLeave={() => onMouseLeave()}>{children}</Link>}
+                >
+                  <span className="flex justify-center items-center w-full h-full">
 
-                  <span className='absolute w-full h-full top-0 left-0 overflow-hidden'>
+                    <span className='absolute w-full h-full top-0 left-0 overflow-hidden'>
 
-                    {block.image && (
-                      <Image
-                        src={block.image?.permalink}
-                        width={block.image?.width}
-                        height={block.image?.height}
-                        alt={block.image?.alt ? block.image.alt : ''}
-                        className={`${styles.image} relative w-full h-auto`}
-                      />
-                    )}
+                      {block.image && (
+                        <Image
+                          src={block.image?.permalink}
+                          width={block.image?.width}
+                          height={block.image?.height}
+                          alt={block.image?.alt ? block.image.alt : ''}
+                          className={`${styles.image} relative w-full h-auto`}
+                        />
+                      )}
 
-                    {block.image_hover && (
-                      <Image
-                        src={block.image_hover?.permalink}
-                        width={block.image_hover?.width}
-                        height={block.image_hover?.height}
-                        alt={block.image_hover?.alt ? block.image_hover.alt : ''}
-                        className={`${styles.imagehover} absolute top-0 w-full h-auto`}
-                      />
-                    )}
+                      {block.image_hover && (
+                        <Image
+                          src={block.image_hover?.permalink}
+                          width={block.image_hover?.width}
+                          height={block.image_hover?.height}
+                          alt={block.image_hover?.alt ? block.image_hover.alt : ''}
+                          className={`${styles.imagehover} absolute top-0 w-full h-auto`}
+                        />
+                      )}
 
-                    {block.video_embed && (
-                      <div className={`${styles.video} video absolute w-full h-full overflow-hidden top-0 z-1`} >
-                        <div className={`${styles.videoinner} absolute block w-auto h-full min-w-full min-h-full aspect-video`}>
-                          <iframe src={`${block.video_embed}?autoplay=1&loop=1&autopause=0&background=1&muted=1&controls=0`}
-                            title="Vimeo video player"
-                            className="vimeo w-full h-full"
-                            width="640" height="360"
-                            allow="autoplay; fullscreen"></iframe>
+                      {block.video_embed && (
+                        <div className={`${styles.video} video absolute w-full h-full overflow-hidden top-0 z-1`} >
+                          <div className={`${styles.videoinner} absolute block w-auto h-full min-w-full min-h-full aspect-video`}>
+                            <iframe src={`${block.video_embed}?autoplay=1&loop=1&autopause=0&background=1&muted=1&controls=0`}
+                              title="Vimeo video player"
+                              className="vimeo w-full h-full"
+                              width="640" height="360"
+                              allow="autoplay; fullscreen"></iframe>
+                          </div>
                         </div>
-                      </div>
-                    )}
+                      )}
 
-                    {block.video_local && (
-                      <div className={`${styles.video} video absolute w-full h-full overflow-hidden top-0 z-1`} >
-                        <div className={`${styles.videoinner} absolute block w-auto h-full min-w-full min-h-full aspect-video`}>
-                          <video
-                            className="html-video aspect-video"
-                            width="640"
-                            height="360"
-                            autoPlay
-                            controls={false}
-                            loop
-                            muted
-                            playsInline
-                            preload="auto">
-                            <source src={`${block.video_local?.permalink}`} type="video/mp4"></source>
-                          </video>
+                      {block.video_local && (
+                        <div className={`${styles.video} video absolute w-full h-full overflow-hidden top-0 z-1`} >
+                          <div className={`${styles.videoinner} absolute block w-auto h-full min-w-full min-h-full aspect-video`}>
+                            <video
+                              className="html-video aspect-video"
+                              width="640"
+                              height="360"
+                              autoPlay
+                              controls={false}
+                              loop
+                              muted
+                              playsInline
+                              preload="auto">
+                              <source src={`${block.video_local?.permalink}`} type="video/mp4"></source>
+                            </video>
+                          </div>
                         </div>
-                      </div>
-                    )}
+                      )}
 
-                    {block.video_embed_hover && (
-                      <div className={`${styles.videohover} video absolute w-full h-full overflow-hidden top-0 z-1`} >
-                        <div className={`${styles.videoinner} absolute block w-auto h-full min-w-full min-h-full aspect-video`}>
-                          <iframe src={`${block.video_embed_hover}?autoplay=1&loop=1&autopause=0&background=1&muted=1&controls=0`}
-                            title="Vimeo video player"
-                            className="vimeo w-full h-full"
-                            width="640" height="360"
-                            allow="autoplay; fullscreen"></iframe>
+                      {block.video_embed_hover && (
+                        <div className={`${styles.videohover} video absolute w-full h-full overflow-hidden top-0 z-1`} >
+                          <div className={`${styles.videoinner} absolute block w-auto h-full min-w-full min-h-full aspect-video`}>
+                            <iframe src={`${block.video_embed_hover}?autoplay=1&loop=1&autopause=0&background=1&muted=1&controls=0`}
+                              title="Vimeo video player"
+                              className="vimeo w-full h-full"
+                              width="640" height="360"
+                              allow="autoplay; fullscreen"></iframe>
+                          </div>
                         </div>
-                      </div>
-                    )}
+                      )}
 
-                    {block.video_local_hover && (
-                      <div className={`${styles.videohover} video absolute w-full h-full overflow-hidden top-0 z-1`} >
-                        <div className={`${styles.videoinner} absolute block w-auto h-full min-w-full min-h-full aspect-video`}>
-                          <video
-                            className="html-video aspect-video"
-                            width="640"
-                            height="360"
-                            autoPlay
-                            controls={false}
-                            loop
-                            muted
-                            playsInline
-                            preload="auto">
-                            <source src={`${block.video_local_hover?.permalink}`} type="video/mp4"></source>
-                          </video>
+                      {block.video_local_hover && (
+                        <div className={`${styles.videohover} video absolute w-full h-full overflow-hidden top-0 z-1`} >
+                          <div className={`${styles.videoinner} absolute block w-auto h-full min-w-full min-h-full aspect-video`}>
+                            <video
+                              className="html-video aspect-video"
+                              width="640"
+                              height="360"
+                              autoPlay
+                              controls={false}
+                              loop
+                              muted
+                              playsInline
+                              preload="auto">
+                              <source src={`${block.video_local_hover?.permalink}`} type="video/mp4"></source>
+                            </video>
+                          </div>
                         </div>
-                      </div>
-                    )}
+                      )}
 
-                  </span>
-
-                  <span className={`relative w-full flex justify-center items-center`}>
-                    <span className={`${styles.headline} absolute w-full px-40 py-40 z-5 text-60 leading-none font-500 text-white text-center z-10`}>
-                      {block.image_headline}
                     </span>
-                    <span className={`${styles.hover} absolute w-full px-40 py-40 z-5 text-40 leading-none font-500 text-white text-center z-10`}>
-                      {block.image_headline_hover}
+
+                    <span className={`relative w-full flex justify-center items-center`}>
+                      <span className={`${styles.headline} absolute w-full px-40 py-40 z-5 text-60 leading-none font-500 text-white text-center z-10`}>
+                        {block.image_headline}
+                      </span>
+                      <span className={`${styles.hover} absolute w-full px-40 py-40 z-5 text-40 leading-none font-500 text-white text-center z-10`}>
+                        {block.image_headline_hover}
+                      </span>
                     </span>
                   </span>
-                </span>
-              </Link>
+                </ConditionalWrapper>
+              </div>
             )
           })}
         </div>
