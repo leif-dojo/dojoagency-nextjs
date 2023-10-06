@@ -85,7 +85,14 @@ export default async function RootLayout({
   children: React.ReactNode
 }) {
   const client = getClient();
-  const { data } = await client.query({ query: GlobalQuery });
+  const { data } = await client.query({ 
+    query: GlobalQuery,
+    context: {
+      fetchOptions: {
+        cache: 'no-store',
+      },
+    },
+  });
   return (
     <html lang="en">
       <head />
