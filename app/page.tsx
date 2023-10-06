@@ -22,6 +22,11 @@ export async function generateMetadata(
     query: PageMetaQuery,
     variables: {
       uri: '/',
+    },
+    context:{
+      fetchOptions: {
+        cache: 'no-store',
+      },
     }
   });
   jsonLd_WebPage = {

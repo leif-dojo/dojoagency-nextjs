@@ -93,7 +93,7 @@ export default async function Page(context: { params: { slug: string }, searchPa
     context: {
       uri: uri.toString(),
       fetchOptions: {
-        next: { revalidate: 15 },
+        cache: 'no-store',
       },
     },
   });

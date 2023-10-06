@@ -24,6 +24,11 @@ export async function generateMetadata(
     variables: {
       slug: params.slug,
     },
+    context: {
+      fetchOptions: {
+        cache: 'no-store',
+      },
+    }
   });
   if(!data.entry){return {}};
   jsonLd_WebPage = {

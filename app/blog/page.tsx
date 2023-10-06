@@ -23,6 +23,11 @@ export async function generateMetadata(
     query: BlogLandingMetaQuery,
     variables: {
       uri: '/' + params.slug,
+    },
+    context: {
+      fetchOptions: {
+        cache: 'no-store',
+      },
     }
   });
   if(!data.entry){return {}};

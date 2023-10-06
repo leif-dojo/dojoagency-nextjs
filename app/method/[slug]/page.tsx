@@ -23,6 +23,11 @@ export async function generateMetadata(
     query: PageMetaQuery,
     variables: {
       uri: '/method/' + params.slug,
+    },
+    context: {
+      fetchOptions: {
+        cache: 'no-store',
+      },
     }
   });
   if(!data.entry){return {}};
