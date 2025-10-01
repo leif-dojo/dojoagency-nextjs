@@ -3,7 +3,7 @@ import { NextResponse } from 'next/server'
 export async function GET() {
   const baseUrl = 'https://www.dojoagency.com'
 
-  const types = ['pages', 'projects', 'blog']
+  const types = ['pages', 'project', 'blog']
   const sitemaps = types.map((type) => {
     return `
       <sitemap>
