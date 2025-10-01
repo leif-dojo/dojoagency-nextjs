@@ -1,7 +1,13 @@
 /** @type {import('next').NextConfig} */
 const Redirects = require('./redirects.js')
 const nextConfig = {
-  //output: 'export', //enabled static export for static deploy
+  //reactStrictMode: false,
+  output: 'standalone',
+  experimental: {
+    esmExternals: true, // enables ES modules externals, useful for modern bundling
+  },
+  trailingSlash: true,
+  
   webpack(config, options) {
     config.module.rules.push({
       test: /\.svg$/,

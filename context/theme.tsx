@@ -44,14 +44,6 @@ export const ThemeContextProvider = ({ children }: { children: any }) => {
 
   }, [color, backgroundColor]);
 
-  //scroll top on path change
-  useLayoutEffect(() => {
-    if (process.browser) {
-      document.body.scrollTop = document.documentElement.scrollTop = 0;
-    }
-
-  }, [pathname]);
-
   //contact hash
   useLayoutEffect(() => {
     const onHashChanged = () => {

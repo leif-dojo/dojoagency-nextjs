@@ -16,7 +16,7 @@ const HomePartners = ({ block }: { block: any }) => {
   const { cursorType, cursorChangeHandler, colorChangeHandler, backgroundChangeHandler } = useThemeContext();
   const [step, setStep] = useState(0)
   const [colorlocal, setColorLocal] = useState('');
-  const [backgroundColorlocal, setBackgroundColorLocal] = useState('');
+  //const [backgroundColorlocal, setBackgroundColorLocal] = useState('');
   const advance = () => {
     let next = step + 1;
     const total = block?.partners_grid.length - 1;
@@ -72,7 +72,7 @@ const HomePartners = ({ block }: { block: any }) => {
             colorChangeHandler(getter("color"))
             backgroundChangeHandler(getter("backgroundColor"))
             setColorLocal(getter("color"))
-            setBackgroundColorLocal(getter("backgroundColor"))
+            //setBackgroundColorLocal(getter("backgroundColor"))
           }
         })
 

@@ -1,11 +1,11 @@
 "use client"
-import React, { useLayoutEffect, useState, useRef, useEffect } from 'react'
+import React, { useEffect, useState, useRef, useLayoutEffect } from 'react'
 import styles from './home_hero.module.scss'
-import Logo from 'public/dojo_animated.svg'
-import LogoMobile from 'public/dojo_animated_mobile.svg'
+import Logo from '@/public/dojo_animated.svg'
+import LogoMobile from '@/public/dojo_animated_mobile.svg'
 import { useThemeContext } from '@/context/theme'
 import { useIsMobile, hexToRgb } from '@/utils/general'
-import { treestart, treeend } from './trees'
+//import { treestart, treeend } from './trees'
 import ScrollDown from '@/public/icons/icon-arrow-scroll.svg'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger'
@@ -31,15 +31,17 @@ const HomeHeroBlock = ({ block }: { block: any }) => {
     }
   }
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     let ctx = gsap.context(() => {
 
       //set initial colors
       const TextColor = block.text_color ? block.text_color : '#FFFFFF';
       const BackgroundColor = block.background_color ? block.background_color : '#304A5F';
       var rb = document.querySelector('body');
-      rb.style.color = TextColor;
-      rb.style.backgroundColor = BackgroundColor;
+      if (rb) {
+        rb.style.color = TextColor;
+        rb.style.backgroundColor = BackgroundColor;
+      }
       colorChangeHandler(hexToRgb(TextColor))
       backgroundChangeHandler(hexToRgb(BackgroundColor))
 
@@ -67,6 +69,13 @@ const HomeHeroBlock = ({ block }: { block: any }) => {
         })
 
 
+    }, sectionRef);
+    return () => ctx.revert();
+  }, []);
+
+  useLayoutEffect(() => {
+    let ctx = gsap.context(() => {
+
       //fades
       const boxes = gsap.utils.toArray('.fade')
       if (boxes.length) {
@@ -92,7 +101,7 @@ const HomeHeroBlock = ({ block }: { block: any }) => {
     return () => ctx.revert();
   }, []);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     let ctx = gsap.context(() => {
 
       //scroll arrow
@@ -129,7 +138,7 @@ const HomeHeroBlock = ({ block }: { block: any }) => {
     return () => ctx.revert();
   }, []);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     let ctx = gsap.context(() => {
 
       //logo
@@ -188,7 +197,7 @@ const HomeHeroBlock = ({ block }: { block: any }) => {
         function loop(i: any,) {
           setTimeout(function () {
             //randomize placement
-            if(Math.random() > 0.6){
+            if (Math.random() > 0.6) {
               var randoHundo = (Math.floor(Math.random() * (98 - 1 + 1) + 1));
               var randoFiver = (Math.floor(Math.random() * (5 - 2 + 1) + 2));
               var randolength = (Math.floor(Math.random() * (500 - 50 + 1) + 50));
@@ -292,7 +301,7 @@ const HomeHeroBlock = ({ block }: { block: any }) => {
           // get current path length
           const totalLen = path.getTotalLength()
           // set dash array and offset to path length - this is how you hide the line
-          pathElem.setAttribute('stroke-dasharray', totalLen )
+          pathElem.setAttribute('stroke-dasharray', totalLen)
           pathElem.setAttribute('stroke-dashoffset', totalLen)
         })
         return true
@@ -310,7 +319,7 @@ const HomeHeroBlock = ({ block }: { block: any }) => {
       const sign_7 = document.getElementsByClassName("signature-7")[0]
       const sign_8 = document.getElementsByClassName("signature-8")[0]
       const sign_9 = document.getElementsByClassName("signature-9")[0]
-      
+
 
       //kick it off
       gsap
@@ -333,7 +342,7 @@ const HomeHeroBlock = ({ block }: { block: any }) => {
         .fromTo(
           ".letter-d",
           { autoAlpha: 0, },
-          { duration: 0.2, autoAlpha: 1 },1
+          { duration: 0.2, autoAlpha: 1 }, 1
         )
         .fromTo(
           ".letter-o-1",
@@ -359,7 +368,7 @@ const HomeHeroBlock = ({ block }: { block: any }) => {
           ".signature-1",
           {
             keyframes: [
-              { autoAlpha: 1, duration:0 },
+              { autoAlpha: 1, duration: 0 },
               { strokeDashoffset: 2 * sign_1.dataset.length, duration: sign_1.dataset.duration, }
             ]
           }, ">+0.5"
@@ -368,7 +377,7 @@ const HomeHeroBlock = ({ block }: { block: any }) => {
           ".signature-2",
           {
             keyframes: [
-              { autoAlpha: 1, duration:0 },
+              { autoAlpha: 1, duration: 0 },
               { strokeDashoffset: 2 * sign_2.dataset.length, duration: sign_2.dataset.duration, }
             ]
           }, ">-15%"
@@ -377,7 +386,7 @@ const HomeHeroBlock = ({ block }: { block: any }) => {
           ".signature-3",
           {
             keyframes: [
-              { autoAlpha: 1, duration:0 },
+              { autoAlpha: 1, duration: 0 },
               { strokeDashoffset: 2 * sign_3.dataset.length, duration: sign_3.dataset.duration, }
             ]
           }, ">"
@@ -391,7 +400,7 @@ const HomeHeroBlock = ({ block }: { block: any }) => {
           ".signature-4",
           {
             keyframes: [
-              { autoAlpha: 1, duration:0 },
+              { autoAlpha: 1, duration: 0 },
               { strokeDashoffset: 2 * sign_4.dataset.length, duration: sign_4.dataset.duration, }
             ]
           }, ">-1.7"
@@ -400,7 +409,7 @@ const HomeHeroBlock = ({ block }: { block: any }) => {
           ".signature-5",
           {
             keyframes: [
-              { autoAlpha: 1, duration:0 },
+              { autoAlpha: 1, duration: 0 },
               { strokeDashoffset: 2 * sign_5.dataset.length, duration: sign_5.dataset.duration, }
             ]
           }, ">"
@@ -409,7 +418,7 @@ const HomeHeroBlock = ({ block }: { block: any }) => {
           ".signature-6",
           {
             keyframes: [
-              { autoAlpha: 1, duration:0 },
+              { autoAlpha: 1, duration: 0 },
               { strokeDashoffset: 2 * sign_6.dataset.length, duration: sign_6.dataset.duration, }
             ]
           }, ">"
@@ -418,7 +427,7 @@ const HomeHeroBlock = ({ block }: { block: any }) => {
           ".signature-7",
           {
             keyframes: [
-              { autoAlpha: 1, duration:0 },
+              { autoAlpha: 1, duration: 0 },
               { strokeDashoffset: 2 * sign_7.dataset.length, duration: sign_7.dataset.duration, }
             ]
           }, ">"
@@ -427,7 +436,7 @@ const HomeHeroBlock = ({ block }: { block: any }) => {
           ".signature-8",
           {
             keyframes: [
-              { autoAlpha: 1, duration:0 },
+              { autoAlpha: 1, duration: 0 },
               { strokeDashoffset: 2 * sign_8.dataset.length, duration: sign_8.dataset.duration, }
             ]
           }, ">"
@@ -436,7 +445,7 @@ const HomeHeroBlock = ({ block }: { block: any }) => {
           ".signature-9",
           {
             keyframes: [
-              { autoAlpha: 1, duration:0 },
+              { autoAlpha: 1, duration: 0 },
               { strokeDashoffset: 2 * sign_9.dataset.length, duration: sign_9.dataset.duration, }
             ]
           }, ">"
@@ -624,19 +633,19 @@ const HomeHeroBlock = ({ block }: { block: any }) => {
         )
         .to(".tree",
           {
-            fill: '#FFF', 
+            fill: '#FFF',
             duration: 0.5
           }, ">"
         )
-        /*.to(".tree",
-          {
-            keyframes: [
-              { attr: { d: treeend }, duration: 0 },
-              { attr: { d: treestart }, strokeDashoffset: 0, fill: '#FFF', duration: 0 },
-              { attr: { d: treeend }, duration: 0.8 }
-            ]
-          }, 6
-        )*/
+      /*.to(".tree",
+        {
+          keyframes: [
+            { attr: { d: treeend }, duration: 0 },
+            { attr: { d: treestart }, strokeDashoffset: 0, fill: '#FFF', duration: 0 },
+            { attr: { d: treeend }, duration: 0.8 }
+          ]
+        }, 6
+      )*/
 
     }, sectionRef);
     return () => ctx.revert();
@@ -668,7 +677,7 @@ const HomeHeroBlock = ({ block }: { block: any }) => {
                 <span className={`${styles.splat_r_3}`}></span>
               </span>
               <span className={`${styles.splat} splat ${styles.splato}`}>
-              <span className={`${styles.splat_c_1}`}></span>
+                <span className={`${styles.splat_c_1}`}></span>
                 <span className={`${styles.splat_c_2}`}></span>
                 <span className={`${styles.splat_l_1}`}></span>
                 <span className={`${styles.splat_l_2}`}></span>
@@ -678,7 +687,7 @@ const HomeHeroBlock = ({ block }: { block: any }) => {
                 <span className={`${styles.splat_r_3}`}></span>
               </span>
               <span className={`${styles.splat} splat ${styles.splatj}`}>
-              <span className={`${styles.splat_c_1}`}></span>
+                <span className={`${styles.splat_c_1}`}></span>
                 <span className={`${styles.splat_c_2}`}></span>
                 <span className={`${styles.splat_l_1}`}></span>
                 <span className={`${styles.splat_l_2}`}></span>
@@ -727,7 +736,7 @@ const HomeHeroBlock = ({ block }: { block: any }) => {
               <span className={`${styles.splat_r_1}`}></span>
               <span className={`${styles.splat_r_2}`}></span>
               <span className={`${styles.splat_r_3}`}></span>
-            </span></span> 
+            </span></span>
             <span className='relative'>w<span className={`${styles.splat} splat ${styles.splatw}`}>
               <span className={`${styles.splat_c_1}`}></span>
               <span className={`${styles.splat_c_2}`}></span>

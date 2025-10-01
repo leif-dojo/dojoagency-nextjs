@@ -1,4 +1,5 @@
-import React from 'react'
+"use client"
+import React, { useEffect, useState } from 'react'
 import IconLinkedIn from '@/public/icons/icon-linkedin.svg'
 import IconInstagram from '@/public/icons/icon-instagram.svg'
 import IconFacebook from '@/public/icons/icon-facebook.svg'
@@ -7,10 +8,12 @@ import styles from './share_icons.module.scss'
 
 const SocialIconsBlock = ({ meta }: { meta: any }) => {
 
-  let url = '';
-  if (process.browser) {
-    url = location ? location?.href : ''
-  }
+  const [url, setUrl] = useState('')
+
+  useEffect(() => {
+    setUrl(window.location.href)
+  }, [])
+
   const title = meta.title;
   const description = meta.description;
   const socials = [

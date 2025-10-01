@@ -8,7 +8,7 @@ import { notFound } from "next/navigation"
 import PageContext from '@/components/generic/page_context/page_context'
 
 type Props = {
-  params: { id: string }
+  params: { slug: string }
   searchParams: { [key: string]: string | string[] | undefined }
 }
 let jsonLd_WebPage = {}
@@ -18,15 +18,17 @@ export async function generateMetadata(
   parent?: ResolvingMetadata
 ): Promise<Metadata> {
   const client = getClient();
-  const uri = new URL(process.env.NEXT_PUBLIC_GRAPHQL_URL)
+  const { slug } = await params;
+
   const { data } = await client.query({
     query: PageMetaQuery,
     variables: {
-      uri: '/portfolio/' + params.slug,
+      uri: '/portfolio/' + slug,
     },
     context: {
       fetchOptions: {
-        cache: 'no-store',
+        cache: 'force-cache', // or 'no-store', depending on freshness
+        next: { revalidate: 3600 },
       },
     }
   });
@@ -35,7 +37,7 @@ export async function generateMetadata(
     "@context": "http://schema.org",
     "@type": "WebPage",
     "name": "Dojo Agency",
-    "url": 'https://www.dojoagency.com/portfolio/' + params.slug,
+    "url": 'https://www.dojoagency.com/portfolio/' + slug,
     "description": data.entry.meta_description ? data.entry.meta_description : 'Brand marketing and health care advertising specialists based in Portland, Oregon.',
     "mainEntity": {
       "@type": "Article",
@@ -59,41 +61,83 @@ export async function generateMetadata(
           "url": "https://www.dojoagency.com/images/social_logo_1200x1200.jpg"
         }
       }
+    },
+    "breadcrumb": {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://www.dojoagency.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Vans",
+          "item": "https://www.dojoagency.com/portfolio"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": data.entry.title,
+          "item": `https://www.dojoagency.com/portfolio/${slug}`
+        }
+      ].filter(Boolean),
     }
   }
   return {
     title: data.entry.meta_title ? data.entry.meta_title : data.entry.title,
     description: data.entry.meta_description ? data.entry.meta_description : '',
+    keywords: data.entry.keywords || '',
+    alternates: {
+      canonical: data.entry.canonical || "https://www.dojoagency.com/portfolio/" + slug,
+    },
     openGraph: {
-      url: '/portfolio/' + params.slug,
+      url: '/portfolio/' + slug,
       title: data.entry.meta_title ? data.entry.meta_title : data.entry.title,
       description: data.entry.meta_description ? data.entry.meta_description : '',
-      images: data.entry.open_graph_image?.permalink ? [{ url: data.entry.open_graph_image?.permalink, width: data.entry.open_graph_image?.width, height: data.entry.open_graph_image?.height }] : [],
+      images: data.entry.open_graph_image?.permalink ? [{ url: data.entry.open_graph_image?.permalink, width: data.entry.open_graph_image?.width, height: data.entry.open_graph_image?.height }] : [{ url: 'https://www.dojoagency.com/images/social_logo_1200x630.jpg', width: 1200, height: 630 }],
       locale: 'en_US',
       type: 'website',
+    },
+    robots: {
+      index: data.entry.robots_index ?? true,
+      follow: data.entry.robots_follow ?? true,
+    },
+    other: {
+      'ai-crawl': data.entry.ai_crawl ? data.entry.ai_crawl : true,
+      'ai-use': data.entry.ai_use ? data.entry.ai_use : false,
     }
   }
 }
 
 export default async function Page(context: { params: { slug: string }, searchParams: { livepreview: string, token: string } }) {
   const client = getClient();
+  const { slug } = await context.params;
   const uri = new URL(process.env.NEXT_PUBLIC_GRAPHQL_URL)
-  const token = context.searchParams.token
-  const livepreview = context.searchParams.livepreview
+  const { searchParams } = context;
+
+  // Await searchParams before using them
+  const { token, livepreview } = await searchParams;  // Ensure we await searchParams
+
   if (token) {
-    uri.searchParams.append('token', token)
-    uri.searchParams.append('live-preview', livepreview)
+    uri.searchParams.append('token', token);
+    if (livepreview) {
+      uri.searchParams.append('live-preview', livepreview);
+    }
   }
 
   const { data } = await client.query({
     query: PageQuery,
     variables: {
-      uri: '/portfolio/' + context.params.slug,
+      uri: '/portfolio/' + slug,
     },
     context: {
       uri: uri.toString(),
       fetchOptions: {
-        next: { revalidate: 15 },
+        cache: 'force-cache', // or 'no-store', depending on freshness
+        next: { revalidate: 3600 },
       },
     },
   });

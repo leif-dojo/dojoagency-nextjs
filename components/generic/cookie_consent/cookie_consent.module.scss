@@ -1,8 +1,7 @@
-@import '../../../styles/variables';
+@use '../../../styles/variables' as *;
 
 .root {
     display: none;
-    z-index: 999;
 
     .copy {
         a {

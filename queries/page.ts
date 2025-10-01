@@ -16,6 +16,8 @@ export const PageMetaQuery = gql`
         last_modified
         meta_title
         meta_description
+        canonical
+        keywords
         open_graph_image {
           ... on Asset_Assets {
             permalink
@@ -24,6 +26,10 @@ export const PageMetaQuery = gql`
             extension
           }
         }
+        robots_index
+        robots_follow
+        ai_crawl
+        ai_use
       }
     }
   }
@@ -49,6 +55,32 @@ export default gql`
         cursor {
           value
           label
+        }
+        meta_title
+        meta_description
+        schema {
+          ... on Set_Schema_Service {
+            id
+            service_type
+            service_name
+            service_description
+            service_image {
+              ... on Asset_Assets {
+                id
+                alt
+                url
+                width
+                height
+                path
+                permalink
+                extension
+                is_image
+                is_video
+                is_audio
+                focus_css
+              }
+            }
+          }
         }
         components {
           ... on Set_Components_HomeHero {

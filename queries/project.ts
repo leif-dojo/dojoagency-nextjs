@@ -16,6 +16,8 @@ export const ProjectMetaQuery = gql`
         last_modified
         meta_title
         meta_description
+        canonical
+        keywords
         open_graph_image {
           ... on Asset_Assets {
             permalink
@@ -24,6 +26,10 @@ export const ProjectMetaQuery = gql`
             extension
           }
         }
+        robots_index
+        robots_follow
+        ai_crawl
+        ai_use
       }
     }
   }
@@ -50,6 +56,32 @@ export default gql`
         url
         project_name
         permalink
+        meta_title
+        meta_description
+        schema {
+          ... on Set_Schema_Service {
+            id
+            service_type
+            service_name
+            service_description
+            service_image {
+              ... on Asset_Assets {
+                id
+                alt
+                url
+                width
+                height
+                path
+                permalink
+                extension
+                is_image
+                is_video
+                is_audio
+                focus_css
+              }
+            }
+          }
+        }
         client {
           ... on Entry_Clients_Client {
             id

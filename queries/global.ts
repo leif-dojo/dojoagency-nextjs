@@ -10,6 +10,11 @@ query GlobalQuery {
       linkedin_url
       meta_description
       meta_title
+      keywords
+      robots_follow
+      robots_index
+      ai_crawl
+      ai_use
       open_graph_image {
         ... on Asset_Assets {
           permalink

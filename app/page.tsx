@@ -3,11 +3,12 @@ import React from 'react'
 import { Metadata, ResolvingMetadata } from 'next'
 import PageQuery from '@/queries/page'
 import { PageMetaQuery } from '@/queries/page'
+import { GlobalMetaQuery } from "@/queries/global";
 import Repeater from '@/utils/rendering/repeater'
 import PageContext from '@/components/generic/page_context/page_context'
 
 type Props = {
-  params: { id: string }
+  params: { slug: string }
   searchParams: { [key: string]: string | string[] | undefined }
 }
 let jsonLd_WebPage = {}
@@ -16,19 +17,37 @@ export async function generateMetadata(
   { params, searchParams }: Props,
   parent?: ResolvingMetadata
 ): Promise<Metadata> {
+  // Await searchParams before using their properties
+  const { livepreview, token } = await searchParams;  // Ensure we await searchParams
+
   const client = getClient();
-  const uri = new URL(process.env.NEXT_PUBLIC_GRAPHQL_URL)
+  const uri = new URL(process.env.NEXT_PUBLIC_GRAPHQL_URL!);
+
+  if (token) {
+    uri.searchParams.append('token', token as string);
+    if (livepreview) {
+      uri.searchParams.append('live-preview', livepreview as string);
+    }
+  }
+
   const { data } = await client.query({
     query: PageMetaQuery,
     variables: {
       uri: '/',
     },
-    context:{
+    context: {
       fetchOptions: {
-        cache: 'no-store',
+        cache: 'force-cache', // or 'no-store', depending on freshness
+        next: { revalidate: 3600 },
       },
     }
   });
+
+  const { data: { globalmeta } } = await getClient().query({
+    query: GlobalMetaQuery,
+    context: { fetchOptions: { next: { revalidate: 3600 } } },
+  });
+
   jsonLd_WebPage = {
     "@context": "http://schema.org",
     "@type": "WebPage",
@@ -59,17 +78,30 @@ export async function generateMetadata(
       }
     }
   }
+
   return {
     title: data.entry.meta_title ? data.entry.meta_title : data.entry.title,
     description: data.entry.meta_description ? data.entry.meta_description : 'Brand marketing and health care advertising specialists based in Portland, Oregon.',
+    keywords: data.entry.keywords || globalmeta?.keywords,
+    alternates: {
+      canonical: data.entry.canonical || 'https://www.dojoagency.com/',
+    },
     openGraph: {
       siteName: 'Dojo Agency',
       url: 'https://wwww.dojoagency.com',
       title: data.entry.meta_title ? data.entry.meta_title : data.entry.title,
       description: data.entry.meta_description ? data.entry.meta_description : 'Brand marketing and health care advertising specialists based in Portland, Oregon.',
-      images: data.entry.open_graph_image?.permalink ? [{ url: data.entry.open_graph_image?.permalink, width: data.entry.open_graph_image?.width, height: data.entry.open_graph_image?.height }] : [],
+      images: data.entry.open_graph_image?.permalink ? [{ url: data.entry.open_graph_image?.permalink, width: data.entry.open_graph_image?.width, height: data.entry.open_graph_image?.height }] : [{ url: 'https://www.dojoagency.com/images/social_logo_1200x630.jpg', width: 1200, height: 630 }],
       locale: 'en_US',
       type: 'website',
+    },
+    robots: {
+      index: data.entry.robots_index ?? true,
+      follow: data.entry.robots_follow ?? true,
+    },
+    other: {
+      'ai-crawl': data.entry.ai_crawl ? data.entry.ai_crawl : true,
+      'ai-use': data.entry.ai_use ? data.entry.ai_use : false,
     }
   }
 }
@@ -77,11 +109,16 @@ export async function generateMetadata(
 export default async function Page(context: { params: { slug: string }, searchParams: { livepreview: string, token: string } }) {
   const client = getClient();
   const uri = new URL(process.env.NEXT_PUBLIC_GRAPHQL_URL)
-  const token = context.searchParams.token
-  const livepreview = context.searchParams.livepreview
+  const { searchParams } = context;
+
+  // Await searchParams before using them
+  const { token, livepreview } = await searchParams;  // Ensure we await searchParams
+
   if (token) {
-    uri.searchParams.append('token', token)
-    uri.searchParams.append('live-preview', livepreview)
+    uri.searchParams.append('token', token);
+    if (livepreview) {
+      uri.searchParams.append('live-preview', livepreview);
+    }
   }
 
   const { data } = await client.query({
@@ -92,7 +129,8 @@ export default async function Page(context: { params: { slug: string }, searchPa
     context: {
       uri: uri.toString(),
       fetchOptions: {
-        next: { revalidate: 15 },
+        cache: 'force-cache', // or 'no-store', depending on freshness
+        next: { revalidate: 3600 },
       },
     },
   });
@@ -104,7 +142,7 @@ export default async function Page(context: { params: { slug: string }, searchPa
 
   return (
     <>
-      <PageContext cursor={data.entry?.cursor ? data.entry?.cursor.value : 'default'}/>
+      <PageContext cursor={data.entry?.cursor ? data.entry?.cursor.value : 'default'} />
       <div className={`page`}>
         <Repeater blocks={data.entry.components} meta={pagemeta} />
       </div>
