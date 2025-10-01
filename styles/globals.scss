@@ -1,17 +1,18 @@
 /* reset.scss */
-@import '../node_modules/normalize.css/normalize.css';
+//@use '../node_modules/normalize.css/normalize.css';
 
 /* purgecss start ignore */
-@import 'variables';
-@import 'mixins';
-@import 'base';
-@import "typography";
+@use './variables' as *;
+@use './mixins' as *;
+@use './base' as *;
+@use './typography' as *;
 /* purgecss end ignore */
+
+/* Component-level styles */
+@use './buttons' as *;
+@use './scrollbar' as *;
+@use './inputs' as *;
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-@import "buttons";
-@import "scrollbar";
-@import "inputs";

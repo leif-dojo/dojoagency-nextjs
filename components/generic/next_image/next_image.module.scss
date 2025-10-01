@@ -1,0 +1,35 @@
+.root {
+    opacity: 0;
+
+    &.loaded {
+        opacity: 1;
+        transition: 500ms all ease-in-out 0ms;
+        animation: popfade 1000ms ease both;
+    }
+
+
+}
+.loader {
+    position: absolute;
+    display: block;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    .spinner {
+        display: inline-block;
+        box-sizing: border-box;
+        width: 50rem;
+        height: 50rem;
+        border-radius: 100%;
+        border: 2px solid rgba(255, 255, 255, 0.2);
+        border-top-color: theme('colors.gold');
+        animation: spin 1s infinite linear;
+    }
+
+    @keyframes spin {
+        100% {
+            transform: rotate(360deg);
+        }
+    }  
+}

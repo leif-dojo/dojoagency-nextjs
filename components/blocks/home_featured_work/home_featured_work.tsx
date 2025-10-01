@@ -217,9 +217,15 @@ const HomeFeaturedWork = ({ block }: { block: any }) => {
         <div ref={GridRef} className={`${styles.grid} project-wrap w-full ${projectRows}`}>
 
           {block?.featured_projects?.map((block: any, index: any) => {
-            const randomx = Math.floor(Math.random() * (-20 - -80 + 1)) + -80;
-            const randomy = Math.floor(Math.random() * (-10 - -40 + 1)) + -40;
-            const randomdur = Math.floor(Math.random() * (3 - 1 + 1)) + 1;
+            const seededRandom = (seed: number, min: number, max: number) => {
+              const x = Math.sin(seed) * 10000;
+              return Math.floor((x - Math.floor(x)) * (max - min + 1) + min);
+            };
+
+            const randomx = seededRandom(index, -80, -20);
+            const randomy = seededRandom(index + 1, -40, -10);
+            const randomdur = seededRandom(index + 2, 1, 3);
+
 
             return (
               <Link href={`${block?.link ? block?.link : ''}`} className={`${styles.project} project block relative overflow-hidden bg-dark w-full landscape:w-1/3 landscape:mb-0 md:w-1/3 mb-30 md:mb-0 fade`} key={index} data-x={randomx} data-y={randomy} data-dur={randomdur}>

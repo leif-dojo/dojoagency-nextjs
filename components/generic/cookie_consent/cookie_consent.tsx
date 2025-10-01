@@ -8,7 +8,7 @@ const Loading = ({
 }: {
   data: any
 }) => {
-  const [active, setActive] = useState(true)
+  const [active, setActive] = useState(false)
 
   const openOrClose = (index: any) => {
     active ? setActive(false) : setActive(true)
@@ -18,7 +18,7 @@ const Loading = ({
     //if consent given
     if(consent) {
       //set local cookie
-      setCookie('consent', true, 30)
+      setCookie('consent', true, 365)
       //send GTM event
       window.dataLayer = window.dataLayer || [];
       window.dataLayer.push({
@@ -57,11 +57,13 @@ const Loading = ({
     let cookie = getCookie('consent')
     if(cookie) {
       onConsent(true)
+    } else {
+      setActive(true)
     }
   }, []);
 
   return (
-    <div className={`${styles.root} fixed w-full bottom-0 left-0 bg-darkgrey text-white ${active ? styles.active : ''}`}>
+    <div className={`${styles.root} fixed w-full bottom-0 left-0 bg-darkgrey text-white z-[999] ${active ? styles.active : ''}`}>
       <div className="relative flex w-full px-50 md:px-100 py-60 md:py-30">
         <div className={`${styles.close} absolute top-50 right-50 flex items-center z-10 cursor-pointer`} role="none" onClick={() => openOrClose(0)}>
           <div className="a11y hidden">Toggle Consent</div>

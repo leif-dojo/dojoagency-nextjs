@@ -52,7 +52,7 @@ const GalleryHorizontalBlock = ({ block }: { block: any }) => {
     return window.innerHeight > window.innerWidth && window.innerWidth < 1024
   }
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     let ctx = gsap.context(() => {
 
       //Theme Colors
@@ -106,7 +106,7 @@ const GalleryHorizontalBlock = ({ block }: { block: any }) => {
   }, []);
 
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     let ctx = gsap.context(() => {
       //horizontal scroller
       if (!isMobile()) {
@@ -115,7 +115,7 @@ const GalleryHorizontalBlock = ({ block }: { block: any }) => {
           let container_width = gsap.getProperty(ContainerInnerRef.current, "width");
           let gallery_width = gsap.getProperty(ScrollerRef.current, "width");
           let diff = (gallery_width - container_width);
-          console.log("horizontal slider: ", container_width, gallery_width, diff)
+          //console.log("horizontal slider: ", container_width, gallery_width, diff)
           gsap.to(sections, {
             x: diff < 0 ? 0 : diff * -1,
             ease: "none",

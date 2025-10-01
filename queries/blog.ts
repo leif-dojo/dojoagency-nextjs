@@ -16,6 +16,8 @@ export const BlogMetaQuery = gql`
         last_modified
         meta_title
         meta_description
+        canonical
+        keywords
         open_graph_image {
           ... on Asset_Assets {
             permalink
@@ -24,6 +26,10 @@ export const BlogMetaQuery = gql`
             extension
           }
         }
+        robots_index
+        robots_follow
+        ai_crawl
+        ai_use
       }
     }
   }

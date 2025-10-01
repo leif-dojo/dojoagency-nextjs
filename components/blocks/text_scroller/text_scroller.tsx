@@ -6,7 +6,7 @@ import { useIsMobile, hexToRgb } from '@/utils/general'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger'
 import ScrollText from '@/utils/SplitText'
-import Arrow from 'public/icons/icon-arrow-down.svg'
+import Arrow from '@/public/icons/icon-arrow-down.svg'
 gsap.registerPlugin(ScrollTrigger)
 
 export const typename = 'Set_Components_TextScroller'

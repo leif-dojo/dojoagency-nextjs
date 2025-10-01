@@ -1,7 +1,7 @@
 "use client"
 import React, { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
-import Logo from 'public/icons/Dojo-Logo_Red_RGB.svg'
+import Logo from '@/public/icons/Dojo-Logo_Red_RGB.svg'
 import styles from './header.module.scss'
 import HeaderInterface from './header.interface'
 import Nav from '@/components/generic/nav/nav'
