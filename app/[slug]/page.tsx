@@ -62,6 +62,7 @@ export async function generateMetadata(
       }
     }
   }
+  
   return {
     title: data.entry.meta_title ? data.entry.meta_title : data.entry.title,
     description: data.entry.meta_description ? data.entry.meta_description : '',
