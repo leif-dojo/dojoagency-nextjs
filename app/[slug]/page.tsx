@@ -27,7 +27,8 @@ export async function generateMetadata(
     },
     context: {
       fetchOptions: {
-        cache: 'no-store',
+        cache: 'force-cache', // or 'no-store', depending on freshness
+        next: { revalidate: 3600 },
       },
     },
   });
@@ -113,7 +114,8 @@ export default async function Page(context: { params: { slug: string }, searchPa
     context: {
       uri: uri.toString(),
       fetchOptions: {
-        next: { revalidate: 15 },
+        cache: 'force-cache', // or 'no-store', depending on freshness
+        next: { revalidate: 3600 },
       },
     },
   });
